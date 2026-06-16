@@ -166,6 +166,12 @@ body {
   max-width: 820px;
 }
 
+body.page-consistency .content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+
 /* ── Page header ── */
 .page-header {
   margin-bottom: 1.5rem;
@@ -748,6 +754,10 @@ hr.div {
   }
 
   .page-shell {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  body.page-consistency .content {
     padding: 1.25rem 1rem 3rem;
   }
 }
