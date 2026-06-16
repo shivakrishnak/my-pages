@@ -635,6 +635,147 @@ hr.div {
 }
 
 /* ========================================
+   GLOBAL MOBILE FIXES
+======================================== */
+
+@media (max-width: 720px) {
+  /* content spacing */
+
+  .content {
+    padding: 1rem !important;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* prevent flex overflow */
+
+  * {
+    min-width: 0;
+  }
+
+  /* stacks rows */
+
+  .row,
+  .week-row,
+  .mvd-row,
+  .check-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .row-time,
+  .mvd-time,
+  .chk-time {
+    width: 100%;
+    margin-left: 0;
+    padding-top: 0;
+    font-size: 11px;
+  }
+
+  .week-num,
+  .row-num {
+    min-width: auto;
+  }
+
+  /* tab bars */
+
+  .tab-bar,
+  .phase-row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-bar::-webkit-scrollbar,
+  .phase-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab,
+  .phase-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  /* buttons wrap */
+
+  button {
+    max-width: 100%;
+  }
+
+  /* focus chips */
+
+  .focus-btn {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* grids */
+
+  .grid2,
+  .page-grid,
+  .home-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* day tracker */
+
+  .day-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* cards */
+
+  .card {
+    padding: 1rem;
+  }
+
+  /* typography */
+
+  h1,
+  .hero-title {
+    font-size: 28px !important;
+    line-height: 1.15;
+  }
+
+  h2,
+  .widget-head {
+    font-size: 22px !important;
+    line-height: 1.2;
+  }
+
+  .problem-title,
+  .card-head {
+    font-size: 14px;
+  }
+
+  .problem-body,
+  .card-body,
+  p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* long content safety */
+
+  img,
+  iframe,
+  video,
+  table,
+  pre {
+    max-width: 100%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* ========================================
    HOME PAGE
 ======================================== */
 
