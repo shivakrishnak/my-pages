@@ -635,33 +635,116 @@ hr.div {
 }
 
 /* ========================================
-   GLOBAL MOBILE FIXES
+   MOBILE RESPONSIVE
 ======================================== */
 
 @media (max-width: 720px) {
-  /* content spacing */
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  /* hide sidebar */
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* MUCH BETTER SPACING */
 
   .content {
-    padding: 1rem !important;
+    width: 100%;
     max-width: 100%;
+    padding: 1.25rem 1rem 3rem;
+
     overflow-x: hidden;
   }
 
-  /* prevent flex overflow */
+  /* prevent overflow */
 
   * {
     min-width: 0;
   }
 
-  /* stacks rows */
+  /* page titles */
+
+  .page-header h2,
+  .widget-head,
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p,
+  .widget-sub {
+    font-size: 1rem !important;
+    line-height: 1.75;
+    margin-top: 0.5rem;
+  }
+
+  /* FIX SMALL TEXT */
+
+  p,
+  .card-body,
+  .problem-body,
+  .week-detail,
+  .rule-text,
+  .chk-label,
+  .mvd-label,
+  .row-main {
+    font-size: 0.95rem !important;
+    line-height: 1.7;
+  }
+
+  .problem-title,
+  .week-focus,
+  .card-head {
+    font-size: 1rem !important;
+    line-height: 1.45;
+  }
+
+  .section-title,
+  .sec-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* better cards */
+
+  .card {
+    padding: 1rem;
+    border-radius: 14px;
+    margin-bottom: 0.85rem;
+  }
+
+  /* stack flex rows */
 
   .row,
   .week-row,
   .mvd-row,
   .check-row {
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 8px;
   }
+
+  .row-num,
+  .week-num {
+    min-width: auto;
+    width: 100%;
+    font-size: 11px;
+  }
+
+  /* time moves below */
 
   .row-time,
   .mvd-time,
@@ -670,19 +753,18 @@ hr.div {
     margin-left: 0;
     padding-top: 0;
     font-size: 11px;
+    color: var(--text3);
   }
 
-  .week-num,
-  .row-num {
-    min-width: auto;
-  }
-
-  /* tab bars */
+  /* tabs become scrollable */
 
   .tab-bar,
   .phase-row {
-    overflow-x: auto;
+    display: flex;
     flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+
     padding-bottom: 4px;
 
     scrollbar-width: none;
@@ -698,19 +780,19 @@ hr.div {
   .phase-btn {
     flex: 0 0 auto;
     white-space: nowrap;
+    min-width: max-content;
+
+    padding: 0.7rem 1rem;
+
+    font-size: 0.9rem;
   }
 
-  /* buttons wrap */
-
-  button {
-    max-width: 100%;
-  }
-
-  /* focus chips */
+  /* buttons stack */
 
   .focus-btn {
     width: 100%;
     text-align: left;
+    justify-content: flex-start;
   }
 
   /* grids */
@@ -718,7 +800,7 @@ hr.div {
   .grid2,
   .page-grid,
   .home-stats {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 
   /* day tracker */
@@ -727,43 +809,22 @@ hr.div {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  /* cards */
+  .day-cell {
+    min-height: 42px;
+    font-size: 12px;
+  }
 
-  .card {
+  /* topbar spacing */
+
+  .topbar {
     padding: 1rem;
   }
 
-  /* typography */
-
-  h1,
-  .hero-title {
-    font-size: 28px !important;
-    line-height: 1.15;
-  }
-
-  h2,
-  .widget-head {
-    font-size: 22px !important;
-    line-height: 1.2;
-  }
-
-  .problem-title,
-  .card-head {
-    font-size: 14px;
-  }
-
-  .problem-body,
-  .card-body,
-  p {
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  /* long content safety */
+  /* images / embeds safe */
 
   img,
-  iframe,
   video,
+  iframe,
   table,
   pre {
     max-width: 100%;
@@ -772,6 +833,30 @@ hr.div {
   table {
     display: block;
     overflow-x: auto;
+  }
+
+  pre {
+    overflow-x: auto;
+  }
+
+  /* mobile nav */
+
+  .mobile-nav {
+    display: flex;
+    gap: 8px;
+    padding: 0.75rem 1rem;
+
+    overflow-x: auto;
+    background: var(--bg2);
+
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-nav-item {
+    white-space: nowrap;
+    padding: 0.55rem 0.95rem;
+
+    font-size: 0.85rem;
   }
 }
 
