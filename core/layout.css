@@ -638,19 +638,18 @@ hr.div {
    MOBILE RESPONSIVE
 ======================================== */
 
-@media screen and (max-width: 768px) {
-  html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
+@media only screen and (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
     overflow-x: hidden;
   }
 
   body {
-    overflow-x: hidden;
-    width: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
-  /* remove desktop sidebar */
+  /* hide sidebar */
 
   .sidebar {
     display: none !important;
@@ -659,102 +658,55 @@ hr.div {
   .main {
     margin-left: 0 !important;
     width: 100% !important;
-    min-width: 0;
   }
 
-  /* content container */
+  /* proper padding */
 
-  .content {
+  .content,
+  .page-shell {
     width: 100%;
     max-width: 100%;
 
-    padding: env(safe-area-inset-top) 18px
-      calc(30px + env(safe-area-inset-bottom));
+    padding: 20px 18px 48px !important;
 
     overflow-x: hidden;
   }
 
-  /* prevent overflow bugs */
+  /* THE IMPORTANT FIX */
 
   * {
     max-width: 100%;
-    min-width: 0;
+    min-width: 0 !important;
   }
 
-  /* typography */
+  /* kill flex overflow */
 
-  h1,
-  .hero-title,
-  .widget-head,
-  .page-header h2 {
-    font-size: 30px !important;
-    line-height: 1.15 !important;
+  .row,
+  .week-row,
+  .mvd-row,
+  .check-row,
+  .tab-bar,
+  .phase-row {
+    min-width: 0 !important;
   }
 
-  h2 {
-    font-size: 24px !important;
-  }
-
-  p,
-  .card-body,
-  .problem-body,
-  .week-detail,
-  .mvd-label,
-  .chk-label,
-  .rule-text {
-    font-size: 16px !important;
-    line-height: 1.7 !important;
-  }
-
-  .problem-title,
-  .week-focus {
-    font-size: 17px !important;
-  }
-
-  .section-title,
-  .sec-label {
-    font-size: 11px !important;
-  }
-
-  /* cards */
-
-  .card {
-    width: 100%;
-    padding: 18px;
-    margin-bottom: 14px;
-    border-radius: 14px;
-  }
-
-  /* kill horizontal flex squeeze */
+  /* force vertical stacking */
 
   .row,
   .week-row,
   .mvd-row,
   .check-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
 
-  .row-time,
-  .chk-time,
-  .mvd-time {
-    margin-left: 0;
-    width: auto;
-    font-size: 12px;
-  }
-
-  /* tabs */
+  /* tab scroll */
 
   .tab-bar {
-    display: flex;
     overflow-x: auto;
-    gap: 8px;
-    padding-bottom: 4px;
+    flex-wrap: nowrap;
 
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
   }
 
   .tab-bar::-webkit-scrollbar {
@@ -764,60 +716,29 @@ hr.div {
   .tab {
     flex: 0 0 auto;
     white-space: nowrap;
-
-    min-width: fit-content;
-
-    padding: 12px 16px;
-
-    font-size: 14px;
   }
 
-  /* button groups */
+  /* readable text */
 
-  .phase-row {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 4px;
+  p,
+  .problem-body,
+  .week-detail,
+  .rule-text,
+  .mvd-label {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
   }
 
-  .focus-btn,
-  .phase-btn {
-    width: 100%;
-    min-height: 44px;
-    font-size: 14px;
+  .problem-title,
+  .week-focus {
+    font-size: 17px !important;
   }
 
-  /* stats/grid */
+  /* spacing */
 
-  .grid2,
-  .page-grid,
-  .home-stats {
-    grid-template-columns: 1fr;
-  }
-
-  /* tracker */
-
-  .day-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .day-cell {
-    min-height: 44px;
-  }
-
-  /* images/videos */
-
-  img,
-  iframe,
-  video,
-  table {
-    max-width: 100%;
-    height: auto;
-  }
-
-  table {
-    display: block;
-    overflow-x: auto;
+  .card {
+    padding: 18px !important;
+    margin-bottom: 14px;
   }
 }
 
