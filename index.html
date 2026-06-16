@@ -1,7 +1,112 @@
+```html
 <!doctype html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=./pages/sample_page.html" />
+    <title>My Knowledge Hub</title>
+
+    <link rel="stylesheet" href="./core/layout.css" />
   </head>
-  <body></body>
+
+  <body>
+    <div class="main">
+      <div class="content">
+        <div class="home-shell">
+          <div class="hero">
+            <div class="hero-tag">Knowledge System</div>
+
+            <h1 class="hero-title">My Pages</h1>
+
+            <p class="hero-sub">
+              A growing library of frameworks, analyses, systems, experiments,
+              dashboards, and notes.
+            </p>
+          </div>
+
+          <div class="home-stats">
+            <div class="stat-card">
+              <div class="stat-num" id="total-pages">—</div>
+
+              <div class="stat-label">Total Pages</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-num">HTML</div>
+
+              <div class="stat-label">Static Site</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-num">Auto</div>
+
+              <div class="stat-label">Generated Sidebar</div>
+            </div>
+          </div>
+
+          <div class="search-wrap">
+            <input
+              id="search"
+              class="search-box"
+              placeholder="Search pages..."
+            />
+          </div>
+
+          <div class="sec-label">Available Pages</div>
+
+          <div id="pages" class="page-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function loadPages() {
+        const res = await fetch("./core/pages.json");
+
+        const pages = await res.json();
+
+        document.getElementById("total-pages").textContent = pages.length;
+
+        const container = document.getElementById("pages");
+
+        function render(q = "") {
+          const filtered = pages.filter((p) =>
+            p.title.toLowerCase().includes(q.toLowerCase()),
+          );
+
+          container.innerHTML = filtered
+            .map(
+              (p) => `
+
+          <a
+            href="./pages/${p.file}"
+            class="page-card"
+          >
+
+            <div
+              class="page-card-title">
+              ${p.title}
+            </div>
+
+            <div
+              class="page-card-meta">
+              ${p.file}
+            </div>
+
+          </a>
+
+        `,
+            )
+            .join("");
+        }
+
+        render();
+
+        document
+          .getElementById("search")
+          .addEventListener("input", (e) => render(e.target.value));
+      }
+
+      loadPages();
+    </script>
+  </body>
 </html>
+```

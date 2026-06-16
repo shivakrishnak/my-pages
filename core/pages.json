@@ -4,7 +4,11 @@
     "file": "consistency_analysis.html"
   },
   {
-    "title": "Sample Page",
-    "file": "sample_page.html"
+    "title": "Consistency Analysis",
+    "file": "consistency_analysis.html"
+  },
+  {
+    "title": "Mastery Consistency Analysis",
+    "file": "mastery-consistency-analysis.html"
   }
 ]
