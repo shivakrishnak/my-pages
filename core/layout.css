@@ -638,164 +638,156 @@ hr.div {
    MOBILE RESPONSIVE
 ======================================== */
 
-@media (max-width: 720px) {
+@media screen and (max-width: 768px) {
   html {
-    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 
   body {
-    font-size: 16px;
-  }
-
-  /* hide sidebar */
-
-  .sidebar {
-    display: none;
-  }
-
-  .main {
-    margin-left: 0;
+    overflow-x: hidden;
     width: 100%;
   }
 
-  /* MUCH BETTER SPACING */
+  /* remove desktop sidebar */
+
+  .sidebar {
+    display: none !important;
+  }
+
+  .main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    min-width: 0;
+  }
+
+  /* content container */
 
   .content {
     width: 100%;
     max-width: 100%;
-    padding: 1.25rem 1rem 3rem;
+
+    padding: env(safe-area-inset-top) 18px
+      calc(30px + env(safe-area-inset-bottom));
 
     overflow-x: hidden;
   }
 
-  /* prevent overflow */
+  /* prevent overflow bugs */
 
   * {
+    max-width: 100%;
     min-width: 0;
   }
 
-  /* page titles */
+  /* typography */
 
-  .page-header h2,
+  h1,
+  .hero-title,
   .widget-head,
-  h1 {
-    font-size: 1.75rem !important;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+  .page-header h2 {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
   }
 
-  .page-header p,
-  .widget-sub {
-    font-size: 1rem !important;
-    line-height: 1.75;
-    margin-top: 0.5rem;
+  h2 {
+    font-size: 24px !important;
   }
-
-  /* FIX SMALL TEXT */
 
   p,
   .card-body,
   .problem-body,
   .week-detail,
-  .rule-text,
-  .chk-label,
   .mvd-label,
-  .row-main {
-    font-size: 0.95rem !important;
-    line-height: 1.7;
+  .chk-label,
+  .rule-text {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
   }
 
   .problem-title,
-  .week-focus,
-  .card-head {
-    font-size: 1rem !important;
-    line-height: 1.45;
+  .week-focus {
+    font-size: 17px !important;
   }
 
   .section-title,
   .sec-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    font-size: 11px !important;
   }
 
-  /* better cards */
+  /* cards */
 
   .card {
-    padding: 1rem;
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 14px;
     border-radius: 14px;
-    margin-bottom: 0.85rem;
   }
 
-  /* stack flex rows */
+  /* kill horizontal flex squeeze */
 
   .row,
   .week-row,
   .mvd-row,
   .check-row {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
   }
-
-  .row-num,
-  .week-num {
-    min-width: auto;
-    width: 100%;
-    font-size: 11px;
-  }
-
-  /* time moves below */
 
   .row-time,
-  .mvd-time,
-  .chk-time {
-    width: 100%;
+  .chk-time,
+  .mvd-time {
     margin-left: 0;
-    padding-top: 0;
-    font-size: 11px;
-    color: var(--text3);
+    width: auto;
+    font-size: 12px;
   }
 
-  /* tabs become scrollable */
+  /* tabs */
 
-  .tab-bar,
-  .phase-row {
+  .tab-bar {
     display: flex;
-    flex-wrap: nowrap;
     overflow-x: auto;
     gap: 8px;
-
     padding-bottom: 4px;
 
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
 
-  .tab-bar::-webkit-scrollbar,
-  .phase-row::-webkit-scrollbar {
+  .tab-bar::-webkit-scrollbar {
     display: none;
   }
 
-  .tab,
-  .phase-btn {
+  .tab {
     flex: 0 0 auto;
     white-space: nowrap;
-    min-width: max-content;
 
-    padding: 0.7rem 1rem;
+    min-width: fit-content;
 
-    font-size: 0.9rem;
+    padding: 12px 16px;
+
+    font-size: 14px;
   }
 
-  /* buttons stack */
+  /* button groups */
 
-  .focus-btn {
+  .phase-row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .focus-btn,
+  .phase-btn {
     width: 100%;
-    text-align: left;
-    justify-content: flex-start;
+    min-height: 44px;
+    font-size: 14px;
   }
 
-  /* grids */
+  /* stats/grid */
 
   .grid2,
   .page-grid,
@@ -803,60 +795,29 @@ hr.div {
     grid-template-columns: 1fr;
   }
 
-  /* day tracker */
+  /* tracker */
 
   .day-grid {
     grid-template-columns: repeat(5, 1fr);
   }
 
   .day-cell {
-    min-height: 42px;
-    font-size: 12px;
+    min-height: 44px;
   }
 
-  /* topbar spacing */
-
-  .topbar {
-    padding: 1rem;
-  }
-
-  /* images / embeds safe */
+  /* images/videos */
 
   img,
-  video,
   iframe,
-  table,
-  pre {
+  video,
+  table {
     max-width: 100%;
+    height: auto;
   }
 
   table {
     display: block;
     overflow-x: auto;
-  }
-
-  pre {
-    overflow-x: auto;
-  }
-
-  /* mobile nav */
-
-  .mobile-nav {
-    display: flex;
-    gap: 8px;
-    padding: 0.75rem 1rem;
-
-    overflow-x: auto;
-    background: var(--bg2);
-
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mobile-nav-item {
-    white-space: nowrap;
-    padding: 0.55rem 0.95rem;
-
-    font-size: 0.85rem;
   }
 }
 
