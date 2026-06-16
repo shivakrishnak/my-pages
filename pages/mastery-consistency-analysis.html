@@ -1,0 +1,730 @@
+<link rel="stylesheet" href="../assets/style.css" />
+<script src="../assets/script.js"></script>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .section {
+    margin: 0 0 2rem;
+  }
+
+  .card {
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-accent-purple {
+    border-left: 3px solid #7f77dd;
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  }
+
+  .card-accent-teal {
+    border-left: 3px solid #1d9e75;
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  }
+
+  .card-accent-amber {
+    border-left: 3px solid #ba7517;
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  }
+
+  .card-accent-coral {
+    border-left: 3px solid #d85a30;
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin: 0 0 0.75rem;
+  }
+
+  .problem-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 0.35rem;
+  }
+
+  .problem-body {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-right: 6px;
+  }
+
+  .badge-red {
+    background: #fcebeb;
+    color: #a32d2d;
+  }
+
+  .badge-amber {
+    background: #faeeda;
+    color: #854f0b;
+  }
+
+  .badge-teal {
+    background: #e1f5ee;
+    color: #0f6e56;
+  }
+
+  .week-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .week-row:last-child {
+    border-bottom: none;
+  }
+
+  .week-num {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    min-width: 52px;
+    padding-top: 2px;
+  }
+
+  .week-focus {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 2px;
+  }
+
+  .week-detail {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .dot-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .dot.done {
+    background: #1d9e75;
+    color: white;
+    border-color: #1d9e75;
+  }
+
+  .dot.missed {
+    background: #fcebeb;
+    color: #a32d2d;
+    border-color: #f09595;
+  }
+
+  .dot.today {
+    background: #afa9ec;
+    color: white;
+    border-color: #7f77dd;
+  }
+
+  .dot.future {
+    background: var(--color-background-secondary);
+    color: var(--color-text-tertiary);
+  }
+
+  .mvd-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .mvd-row:last-child {
+    border-bottom: none;
+  }
+
+  .mvd-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+
+  .mvd-check.checked {
+    background: #1d9e75;
+    border-color: #1d9e75;
+  }
+
+  .mvd-label {
+    font-size: 13px;
+    color: var(--color-text-primary);
+  }
+
+  .mvd-time {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin-left: auto;
+  }
+
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.25rem;
+    background: var(--color-background-secondary);
+    padding: 4px;
+    border-radius: var(--border-radius-md);
+  }
+
+  .tab {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .tab.active {
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .panel {
+    display: none;
+  }
+
+  .panel.active {
+    display: block;
+  }
+
+  .streak-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-background-secondary);
+    overflow: hidden;
+    margin: 6px 0 2px;
+  }
+
+  .streak-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: #1d9e75;
+    transition: width 0.4s;
+  }
+
+  .rule-box {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 12px 14px;
+    margin-top: 10px;
+  }
+
+  .rule-text {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  h2.widget-head {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin: 0 0 0.25rem;
+  }
+
+  p.widget-sub {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0 0 1.5rem;
+  }
+</style>
+
+<h2 class="sr-only">
+  Mastery system consistency analysis and 90-day action plan for Shiva
+</h2>
+
+<h2 class="widget-head">Your Mastery System — Honest Diagnosis</h2>
+<p class="widget-sub">
+  Why you keep stopping, and exactly what to do differently in the next 90 days.
+</p>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="switchTab('problems')">
+    What's stopping you
+  </button>
+  <button class="tab" onclick="switchTab('fix')">The fix (90 days)</button>
+  <button class="tab" onclick="switchTab('mvd')">Your daily MVD</button>
+</div>
+
+<div id="tab-problems" class="panel active">
+  <p class="section-title">Root cause diagnosis</p>
+
+  <div class="card card-accent-coral">
+    <span class="badge badge-red">Problem 1</span>
+    <p class="problem-title">
+      The system is a reference doc, not a daily driver
+    </p>
+    <p class="problem-body">
+      Your doc has 27+ skill sections across 5 parts. It's brilliant as a
+      reference — but it's not designed to tell you "do exactly THIS for 20
+      minutes today." When you open it, the cognitive load of deciding what to
+      do kills your momentum before you start.
+    </p>
+  </div>
+
+  <div class="card card-accent-coral">
+    <span class="badge badge-red">Problem 2</span>
+    <p class="problem-title">65–80 min/day is too heavy for a new habit</p>
+    <p class="problem-body">
+      Week 1 prescribes 65 minutes of structured practice on top of your work
+      day. Research on habit formation (BJ Fogg, James Clear) shows this is 3–4x
+      the threshold for sustainable new behaviors. You're not undisciplined —
+      you set the bar too high from day 1.
+    </p>
+  </div>
+
+  <div class="card card-accent-amber">
+    <span class="badge badge-amber">Problem 3</span>
+    <p class="problem-title">No feedback loop — you can't see progress</p>
+    <p class="problem-body">
+      The system measures skills over months (Section 48 says "results in weeks
+      4–8"). But your brain needs a dopamine signal every single day. Without a
+      visible streak or checklist, your brain registers the effort as invisible
+      — and invisible effort doesn't sustain.
+    </p>
+  </div>
+
+  <div class="card card-accent-amber">
+    <span class="badge badge-amber">Problem 4</span>
+    <p class="problem-title">Missing one day breaks the identity</p>
+    <p class="problem-body">
+      You're tracking by streaks mentally. One missed day feels like the whole
+      system collapsed. The Two-Day Rule (Section 26.5) is actually in your doc
+      — but you haven't built it into how you think about the practice. Missing
+      one day is data, not failure.
+    </p>
+  </div>
+
+  <div class="card card-accent-teal">
+    <span class="badge badge-teal">Root insight</span>
+    <p class="problem-title">The doc is the destination, not the map</p>
+    <p class="problem-body">
+      You have a world-class system. What you're missing is a tiny, daily,
+      non-negotiable front door to it — a 15-minute Minimum Viable Day that you
+      can always do, no matter what. Section 40 of your own doc says this. The
+      MVD is the answer.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <p class="rule-text">
+      "Never miss twice. The first miss is an accident. The second miss is the
+      start of a new habit." — James Clear (your doc, Section 26.5)
+    </p>
+  </div>
+</div>
+
+<div id="tab-fix" class="panel">
+  <p class="section-title">90-day phased re-entry plan</p>
+
+  <div class="card">
+    <div class="week-row">
+      <div class="week-num">Week 1–2</div>
+      <div>
+        <p class="week-focus">Identity first — 15 min only</p>
+        <p class="week-detail">
+          Do ONLY the MVD (see tab 3). No more. Prove to yourself you can show
+          up daily. Don't touch the full routine yet. The goal is: 14 days in a
+          row.
+        </p>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-num">Week 3–4</div>
+      <div>
+        <p class="week-focus">Add one habit stack</p>
+        <p class="week-detail">
+          After your MVD is stable, add 10 min shadowing (Section 4.5) right
+          after. One clip, 3 days/week. Total: ~25 min. Still leave the 65-min
+          routine alone.
+        </p>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-num">Month 2</div>
+      <div>
+        <p class="week-focus">Add Anki + one deep skill per week</p>
+        <p class="week-detail">
+          Add 10 min Anki reviews daily. Each week, pick ONE section from Part
+          II to focus on for the week (not all of them). Rotate through Sections
+          3, 5, 6, 9. Total: ~35 min.
+        </p>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-num">Month 3</div>
+      <div>
+        <p class="week-focus">Full Phase 1 routine — now it feels earned</p>
+        <p class="week-detail">
+          By now the habit groove is carved. The 65-min routine from your doc is
+          your new normal because you built up to it. Add the Sunday Weekly
+          Review (Section 38).
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-title" style="margin-top: 1rem">
+    Your 3 non-negotiable rules
+  </p>
+  <div class="card card-accent-purple">
+    <p class="problem-title" style="margin-bottom: 6px">
+      Rule 1 — Shrink the target, not your ambition
+    </p>
+    <p class="problem-body">
+      On hard days, do 5 minutes. Five minutes of vocal warm-up or shadowing
+      counts. Showing up counts. You're building an identity: "I am someone who
+      does this daily."
+    </p>
+  </div>
+  <div class="card card-accent-purple">
+    <p class="problem-title" style="margin-bottom: 6px">
+      Rule 2 — Never miss twice
+    </p>
+    <p class="problem-body">
+      Miss one day? Fine. That's life. Miss two in a row? Emergency restart. One
+      miss is allowed by design. Two misses is a pattern forming. React
+      immediately.
+    </p>
+  </div>
+  <div class="card card-accent-purple">
+    <p class="problem-title" style="margin-bottom: 6px">
+      Rule 3 — Pick ONE skill per week from the doc
+    </p>
+    <p class="problem-body">
+      Monday: choose one section. Practice only that this week. The rest of the
+      doc is context — not today's job. This ends the overwhelm of "I should be
+      doing everything."
+    </p>
+  </div>
+
+  <p class="section-title" style="margin-top: 1rem">
+    What to track (visible progress)
+  </p>
+  <div class="card">
+    <div class="streak-bar">
+      <div class="streak-fill" id="streak-demo" style="width: 0%"></div>
+    </div>
+    <p
+      style="
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        margin: 0 0 8px;
+      "
+    >
+      Day streak (target: 14 → 30 → 60 → 90)
+    </p>
+    <p
+      style="
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        margin: 0;
+        line-height: 1.6;
+      "
+    >
+      Track these monthly: (1) Record yourself speaking for 2 min — compare
+      month to month. (2) Count filler words per minute — should drop. (3) One
+      Anki deck size — should grow. These are your early signals, visible within
+      weeks, not months.
+    </p>
+  </div>
+</div>
+
+<div id="tab-mvd" class="panel">
+  <p class="section-title">Your minimum viable day — 15 minutes maximum</p>
+  <p
+    style="
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin: 0 0 1rem;
+      line-height: 1.6;
+    "
+  >
+    This is your front door to the system. Do this every single day, no matter
+    what. Tap each item when done.
+  </p>
+
+  <div class="card" id="mvd-list">
+    <div class="mvd-row" onclick="toggleCheck(this)">
+      <div class="mvd-check">
+        <i
+          class="ti ti-check"
+          style="font-size: 12px; color: white; display: none"
+        ></i>
+      </div>
+      <span class="mvd-label"
+        >Vocal warm-up — straw phonation + lip trills</span
+      >
+      <span class="mvd-time">3 min</span>
+    </div>
+    <div class="mvd-row" onclick="toggleCheck(this)">
+      <div class="mvd-check">
+        <i
+          class="ti ti-check"
+          style="font-size: 12px; color: white; display: none"
+        ></i>
+      </div>
+      <span class="mvd-label"
+        >Read one paragraph aloud (any English content)</span
+      >
+      <span class="mvd-time">2 min</span>
+    </div>
+    <div class="mvd-row" onclick="toggleCheck(this)">
+      <div class="mvd-check">
+        <i
+          class="ti ti-check"
+          style="font-size: 12px; color: white; display: none"
+        ></i>
+      </div>
+      <span class="mvd-label"
+        >"Teach the wall" — explain one concept out loud</span
+      >
+      <span class="mvd-time">3 min</span>
+    </div>
+    <div class="mvd-row" onclick="toggleCheck(this)">
+      <div class="mvd-check">
+        <i
+          class="ti ti-check"
+          style="font-size: 12px; color: white; display: none"
+        ></i>
+      </div>
+      <span class="mvd-label"
+        >2-min monologue on a random topic (no stopping)</span
+      >
+      <span class="mvd-time">2 min</span>
+    </div>
+    <div class="mvd-row" onclick="toggleCheck(this)">
+      <div class="mvd-check">
+        <i
+          class="ti ti-check"
+          style="font-size: 12px; color: white; display: none"
+        ></i>
+      </div>
+      <span class="mvd-label">One Anki review session (or add 1 new card)</span>
+      <span class="mvd-time">5 min</span>
+    </div>
+  </div>
+
+  <div
+    id="mvd-complete"
+    style="display: none"
+    class="card"
+    style="text-align: center"
+  >
+    <p
+      style="font-size: 15px; font-weight: 500; color: #1d9e75; margin: 0 0 4px"
+    >
+      MVD complete ✓
+    </p>
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0">
+      Anything beyond this today is a bonus. You showed up. That's the whole
+      game.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 1rem">
+    <p class="rule-text">
+      When you feel like skipping: do just the first 3 items. That's 8 minutes.
+      You can always find 8 minutes. The habit is more important than the
+      quality today.
+    </p>
+  </div>
+
+  <p class="section-title" style="margin-top: 1.5rem">
+    This week's skill focus
+  </p>
+  <div class="card card-accent-purple">
+    <p class="problem-title" style="margin-bottom: 4px">
+      Pick one and only one section from Part II
+    </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px">
+      <button
+        onclick="setFocus(this, 'Section 4.5 — Shadowing')"
+        class="focus-btn"
+        style="
+          font-size: 12px;
+          padding: 5px 12px;
+          border-radius: 20px;
+          border: 0.5px solid var(--color-border-secondary);
+          background: var(--color-background-secondary);
+          cursor: pointer;
+          color: var(--color-text-primary);
+        "
+      >
+        4.5 Shadowing
+      </button>
+      <button
+        onclick="setFocus(this, 'Section 5.1 — Stop translating')"
+        class="focus-btn"
+        style="
+          font-size: 12px;
+          padding: 5px 12px;
+          border-radius: 20px;
+          border: 0.5px solid var(--color-border-secondary);
+          background: var(--color-background-secondary);
+          cursor: pointer;
+          color: var(--color-text-primary);
+        "
+      >
+        5.1 Stop translating
+      </button>
+      <button
+        onclick="setFocus(this, 'Section 6.1 — PREP framework')"
+        class="focus-btn"
+        style="
+          font-size: 12px;
+          padding: 5px 12px;
+          border-radius: 20px;
+          border: 0.5px solid var(--color-border-secondary);
+          background: var(--color-background-secondary);
+          cursor: pointer;
+          color: var(--color-text-primary);
+        "
+      >
+        6.1 PREP framework
+      </button>
+      <button
+        onclick="setFocus(this, 'Section 9C.5 — Teach the wall')"
+        class="focus-btn"
+        style="
+          font-size: 12px;
+          padding: 5px 12px;
+          border-radius: 20px;
+          border: 0.5px solid var(--color-border-secondary);
+          background: var(--color-background-secondary);
+          cursor: pointer;
+          color: var(--color-text-primary);
+        "
+      >
+        9C.5 Teach the wall
+      </button>
+      <button
+        onclick="setFocus(this, 'Section 11 — Mental models')"
+        class="focus-btn"
+        style="
+          font-size: 12px;
+          padding: 5px 12px;
+          border-radius: 20px;
+          border: 0.5px solid var(--color-border-secondary);
+          background: var(--color-background-secondary);
+          cursor: pointer;
+          color: var(--color-text-primary);
+        "
+      >
+        11 Mental models
+      </button>
+    </div>
+    <p
+      id="focus-result"
+      style="font-size: 13px; color: #1d9e75; margin: 10px 0 0; display: none"
+    ></p>
+  </div>
+</div>
+
+<script>
+  function switchTab(name) {
+    document
+      .querySelectorAll(".tab")
+      .forEach((t, i) => t.classList.remove("active"));
+    document
+      .querySelectorAll(".panel")
+      .forEach((p) => p.classList.remove("active"));
+    const tabs = ["problems", "fix", "mvd"];
+    const idx = tabs.indexOf(name);
+    document.querySelectorAll(".tab")[idx].classList.add("active");
+    document.getElementById("tab-" + name).classList.add("active");
+  }
+
+  function toggleCheck(row) {
+    const check = row.querySelector(".mvd-check");
+    const icon = row.querySelector("i");
+    const label = row.querySelector(".mvd-label");
+    const done = !check.classList.contains("checked");
+    check.classList.toggle("checked", done);
+    icon.style.display = done ? "block" : "none";
+    label.style.color = done
+      ? "var(--color-text-tertiary)"
+      : "var(--color-text-primary)";
+    label.style.textDecoration = done ? "line-through" : "none";
+    const all = document.querySelectorAll(".mvd-check");
+    const allDone = Array.from(all).every((c) =>
+      c.classList.contains("checked"),
+    );
+    document.getElementById("mvd-complete").style.display = allDone
+      ? "block"
+      : "none";
+  }
+
+  function setFocus(btn, text) {
+    document.querySelectorAll(".focus-btn").forEach((b) => {
+      b.style.background = "var(--color-background-secondary)";
+      b.style.borderColor = "var(--color-border-secondary)";
+      b.style.color = "var(--color-text-primary)";
+    });
+    btn.style.background = "#E1F5EE";
+    btn.style.borderColor = "#1D9E75";
+    btn.style.color = "#085041";
+    const r = document.getElementById("focus-result");
+    r.textContent =
+      "This week: " +
+      text +
+      " only. Open the doc to that section, read it once, then practice it daily during your MVD.";
+    r.style.display = "block";
+  }
+
+  setTimeout(() => {
+    const bar = document.getElementById("streak-demo");
+    if (bar) bar.style.width = "33%";
+  }, 600);
+</script>

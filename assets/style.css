@@ -1,33 +1,33 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f8fafc;
-    color: #1f2937;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+  color: #1f2937;
 }
 
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 a {
-    color: #2563eb;
-    text-decoration: none;
+  color: #2563eb;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
