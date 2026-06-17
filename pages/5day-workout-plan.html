@@ -10,17 +10,10 @@
      Only things unique to this page live here: the day-progress
      strip, exercise prescription grid, and back-care flag styling. */
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
       .page-shell {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        box-sizing: border-box;
+        max-width: 820px;
       }
+
       .day-meta {
         display: flex;
         gap: 16px;
@@ -191,44 +184,10 @@
       .exercise.done .ex-name {
         text-decoration: line-through;
       }
-      /* Tab system */
-      .page {
-        display: none !important;
-      }
-
-      .page.active {
-        display: block !important;
-      }
-
-      /* Tabs */
-      .tab-bar {
-        display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        margin-bottom: 1rem;
-      }
-
-      .tab {
-        cursor: pointer;
-        flex: 0 0 auto;
-      }
-
-      /* Prevent clipping */
-      .page-shell,
-      .content,
-      .main {
-        min-width: 0;
-        max-width: 100%;
-      }
-
-      .page-shell {
-        overflow-x: hidden;
-      }
     </style>
   </head>
-  <body data-no-layout="true">
-    <div class="page-shell">
+  <body>
+    <div class="page-shell" data-no-layout-note="false">
       <div
         class="topbar"
         style="
@@ -1800,29 +1759,28 @@
     </div>
 
     <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        const tabs = document.querySelectorAll("#dayNav .tab");
+      const tabs = document.querySelectorAll("#dayNav .tab");
+      const views = document.querySelectorAll(".page");
 
-        function activateView(target) {
-          document
-            .querySelectorAll("#dayNav .tab")
-            .forEach((t) => t.classList.remove("active"));
+      function activateView(target) {
+        tabs.forEach((t) => t.classList.remove("active"));
+        document
+          .querySelector('#dayNav .tab[data-view="' + target + '"]')
+          .classList.add("active");
+        views.forEach((v) => v.classList.remove("active"));
+        document.getElementById("view-" + target).classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-          document
-            .querySelector(`#dayNav .tab[data-view="${target}"]`)
-            ?.classList.add("active");
-
-          document
-            .querySelectorAll(".page")
-            .forEach((v) => v.classList.remove("active"));
-
-          document.getElementById(`view-${target}`)?.classList.add("active");
-        }
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            activateView(tab.dataset.view);
-          });
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () =>
+          activateView(tab.getAttribute("data-view")),
+        );
+        tab.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            activateView(tab.getAttribute("data-view"));
+          }
         });
       });
 
