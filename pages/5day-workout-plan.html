@@ -1,0 +1,2213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Plan</title>
+    <style>
+      :root {
+        --bg: #1c1f23;
+        --bg-soft: #242830;
+        --panel: #2a2f38;
+        --panel-2: #30363f;
+        --line: #3a4049;
+        --text: #eef0f2;
+        --text-dim: #aab1bc;
+        --text-faint: #717a86;
+        --amber: #e8923c;
+        --amber-soft: rgba(232, 146, 60, 0.14);
+        --sage: #7fa384;
+        --sage-soft: rgba(127, 163, 132, 0.14);
+        --red-flag: #c9685a;
+        --red-soft: rgba(201, 104, 90, 0.14);
+        --radius: 14px;
+        --display: "Oswald", "Arial Narrow", sans-serif;
+        --body-font:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --mono: "JetBrains Mono", "Courier New", monospace;
+      }
+
+      @font-face {
+        font-family: "Oswald";
+        src: local("Oswald");
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--body-font);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 80px;
+      }
+
+      /* ============ HEADER ============ */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: linear-gradient(
+          180deg,
+          var(--bg) 0%,
+          rgba(28, 31, 35, 0.96) 80%,
+          rgba(28, 31, 35, 0.85) 100%
+        );
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+        padding: 14px 18px 0 18px;
+      }
+
+      .brandrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .brand-title {
+        font-family: var(--display);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        margin: 0;
+        color: var(--text);
+      }
+      .brand-title span {
+        color: var(--amber);
+      }
+
+      .brand-sub {
+        font-size: 0.78rem;
+        color: var(--text-faint);
+        margin-top: 2px;
+        letter-spacing: 0.3px;
+      }
+
+      .profile-chip {
+        text-align: right;
+        font-size: 0.72rem;
+        color: var(--text-faint);
+        line-height: 1.4;
+        font-family: var(--mono);
+      }
+      .profile-chip b {
+        color: var(--text-dim);
+        font-weight: 600;
+      }
+
+      /* day tab navigation */
+      .daynav {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding: 4px 0 12px 0;
+        scrollbar-width: none;
+      }
+      .daynav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .day-tab {
+        flex: 0 0 auto;
+        padding: 9px 14px;
+        border-radius: 10px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.4px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        white-space: nowrap;
+        text-transform: uppercase;
+      }
+      .day-tab .tab-num {
+        color: var(--text-faint);
+        margin-right: 5px;
+      }
+      .day-tab.active {
+        background: var(--amber);
+        border-color: var(--amber);
+        color: #1c1f23;
+        font-weight: 600;
+      }
+      .day-tab.active .tab-num {
+        color: rgba(28, 31, 35, 0.6);
+      }
+      .day-tab.rest-tab.active {
+        background: var(--sage);
+        border-color: var(--sage);
+      }
+      .day-tab:hover:not(.active) {
+        border-color: var(--text-faint);
+      }
+
+      /* ============ MAIN ============ */
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 18px 18px 0 18px;
+      }
+
+      .section-nav {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.78rem;
+      }
+      .section-nav a {
+        color: var(--text-faint);
+        text-decoration: none;
+        padding-bottom: 8px;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+      }
+      .section-nav a.active {
+        color: var(--amber);
+        border-bottom-color: var(--amber);
+      }
+
+      .view {
+        display: none;
+        animation: fadein 0.25s ease;
+      }
+      .view.active {
+        display: block;
+      }
+      @keyframes fadein {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* day header block */
+      .day-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 6px;
+      }
+      .day-name {
+        font-family: var(--display);
+        font-size: 1.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0;
+      }
+      .day-focus {
+        color: var(--amber);
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin: 2px 0 14px 0;
+      }
+      .day-meta {
+        display: flex;
+        gap: 16px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--text-faint);
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .day-meta b {
+        color: var(--text-dim);
+      }
+
+      .progress-strip {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 20px;
+      }
+      .progress-seg {
+        flex: 1;
+        height: 5px;
+        border-radius: 3px;
+        background: var(--panel-2);
+      }
+      .progress-seg.warmup {
+        background: var(--sage);
+        opacity: 0.55;
+      }
+      .progress-seg.main {
+        background: var(--amber);
+        opacity: 0.85;
+      }
+      .progress-seg.core {
+        background: var(--text-faint);
+        opacity: 0.55;
+      }
+      .progress-seg.cool {
+        background: var(--sage);
+        opacity: 0.55;
+      }
+
+      /* block label */
+      .block-label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--text-faint);
+        margin: 22px 0 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .block-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+      }
+
+      /* exercise card */
+      .exercise {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        margin-bottom: 10px;
+      }
+      .ex-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .ex-name {
+        font-weight: 600;
+        font-size: 0.98rem;
+        color: var(--text);
+        margin: 0;
+      }
+      .ex-tag {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 3px 7px;
+        border-radius: 5px;
+        background: var(--sage-soft);
+        color: var(--sage);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .ex-tag.compound {
+        background: var(--amber-soft);
+        color: var(--amber);
+      }
+
+      .ex-prescription {
+        display: flex;
+        gap: 14px;
+        margin-top: 10px;
+        font-family: var(--mono);
+        flex-wrap: wrap;
+      }
+      .rx-item {
+        font-size: 0.8rem;
+      }
+      .rx-item .rx-label {
+        color: var(--text-faint);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        display: block;
+        margin-bottom: 1px;
+      }
+      .rx-item .rx-val {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .ex-cue {
+        margin-top: 10px;
+        font-size: 0.82rem;
+        color: var(--text-dim);
+        line-height: 1.5;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+      }
+      .ex-cue b {
+        color: var(--text);
+      }
+
+      .ex-cue .swap {
+        display: block;
+        margin-top: 6px;
+        color: var(--text-faint);
+        font-size: 0.78rem;
+      }
+      .ex-cue .swap b {
+        color: var(--sage);
+        font-weight: 600;
+      }
+
+      .back-flag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 8px;
+        font-size: 0.74rem;
+        color: var(--red-flag);
+        background: var(--red-soft);
+        padding: 5px 9px;
+        border-radius: 6px;
+      }
+
+      /* cardio block special */
+      .cardio-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin-bottom: 10px;
+      }
+      .cardio-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 0.85rem;
+      }
+      .cardio-table th {
+        text-align: left;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        color: var(--text-faint);
+        padding: 6px 8px;
+        border-bottom: 1px solid var(--line);
+      }
+      .cardio-table td {
+        padding: 8px 8px;
+        border-bottom: 1px solid var(--line);
+        color: var(--text-dim);
+      }
+      .cardio-table td.hi {
+        color: var(--amber);
+        font-weight: 600;
+      }
+
+      /* info / principle cards */
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      @media (max-width: 560px) {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .info-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      .info-card h4 {
+        font-family: var(--display);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        font-size: 0.95rem;
+        margin: 0 0 8px 0;
+        color: var(--amber);
+      }
+      .info-card p {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        margin: 0;
+      }
+      .info-card ul {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+      .info-card li {
+        margin-bottom: 6px;
+      }
+
+      .lead-p {
+        color: var(--text-dim);
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+      }
+
+      .week-table-wrap {
+        overflow-x: auto;
+        margin-top: 14px;
+      }
+      table.week-overview {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+      table.week-overview th {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--text-faint);
+        text-align: left;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      table.week-overview td {
+        padding: 10px 10px;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.82rem;
+        color: var(--text-dim);
+        vertical-align: top;
+      }
+      table.week-overview td.daycell {
+        color: var(--text);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      table.week-overview tr.restrow td {
+        color: var(--sage);
+      }
+
+      .progression-note {
+        background: var(--amber-soft);
+        border: 1px solid rgba(232, 146, 60, 0.3);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        margin: 18px 0;
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+      .progression-note b {
+        color: var(--amber);
+      }
+
+      footer {
+        max-width: 720px;
+        margin: 30px auto 0 auto;
+        padding: 18px;
+        font-size: 0.72rem;
+        color: var(--text-faint);
+        border-top: 1px solid var(--line);
+        line-height: 1.6;
+      }
+
+      h2.page-title {
+        font-family: var(--display);
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        letter-spacing: 0.4px;
+        margin: 0 0 4px 0;
+      }
+      .page-sub {
+        color: var(--text-faint);
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+      }
+
+      /* checkbox interaction for exercises */
+      .ex-check {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        border: 1.5px solid var(--text-faint);
+        flex-shrink: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+        margin-top: 1px;
+      }
+      .ex-check.done {
+        background: var(--amber);
+        border-color: var(--amber);
+      }
+      .ex-check.done::after {
+        content: "✓";
+        color: #1c1f23;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+      .ex-row-top {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .exercise.done {
+        opacity: 0.55;
+      }
+      .exercise.done .ex-name {
+        text-decoration: line-through;
+      }
+
+      @media (max-width: 480px) {
+        .day-name {
+          font-size: 1.5rem;
+        }
+        .ex-prescription {
+          gap: 10px;
+        }
+        main {
+          padding: 14px 12px 0 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="brandrow">
+        <div>
+          <h1 class="brand-title">Training Plan <span>Five Days</span></h1>
+          <div class="brand-sub">
+            Cult Neo Gym · 5-Day Fitness &amp; Strength Plan
+          </div>
+        </div>
+        <div class="profile-chip">
+          <b>34M</b> · 70kg · 5'6"<br />Goal: Fitness · Endurance · Strength
+        </div>
+      </div>
+      <div class="daynav" id="dayNav">
+        <div class="day-tab active" data-view="overview">
+          <span class="tab-num">·</span>Overview
+        </div>
+        <div class="day-tab" data-view="mon">
+          <span class="tab-num">Mon</span>Lower A
+        </div>
+        <div class="day-tab" data-view="tue">
+          <span class="tab-num">Tue</span>Upper A
+        </div>
+        <div class="day-tab" data-view="wed">
+          <span class="tab-num">Wed</span>Cardio
+        </div>
+        <div class="day-tab" data-view="thu">
+          <span class="tab-num">Thu</span>Lower B
+        </div>
+        <div class="day-tab" data-view="fri">
+          <span class="tab-num">Fri</span>Upper B
+        </div>
+        <div class="day-tab rest-tab" data-view="rest">
+          <span class="tab-num">Sat/Sun</span>Rest
+        </div>
+        <div class="day-tab" data-view="principles">
+          <span class="tab-num">·</span>Principles
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <!-- ============ OVERVIEW ============ -->
+      <section class="view active" id="view-overview">
+        <h2 class="page-title">Your Weekly Plan</h2>
+        <p class="page-sub">
+          Built for general fitness, endurance, and strength — not bodybuilding.
+          Five sessions a week, 45–60 minutes each, using the standard equipment
+          available at Cult Neo Gym Mallapur (barbells, dumbbells,
+          cable/functional trainer, smith machine or squat rack, leg press, lat
+          pulldown, chest press, treadmill/cross-trainer).
+        </p>
+
+        <p class="lead-p">
+          This is an <b style="color: var(--text)">Upper/Lower split</b>: two
+          lower-body days, two upper-body days, and one dedicated
+          cardio/conditioning day, with two rest days. Every session opens with
+          a hip-hinge or core-stability move chosen specifically because of your
+          lower back sensitivity — the goal is to build a strong, pain-resistant
+          back, not just avoid aggravating it.
+        </p>
+
+        <div class="week-table-wrap">
+          <table class="week-overview">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Focus</th>
+                <th>Main Lifts</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="daycell">Monday</td>
+                <td>Lower Body A + Core</td>
+                <td>Goblet Squat, Romanian Deadlift, Leg Press, Plank</td>
+                <td>50 min</td>
+              </tr>
+              <tr>
+                <td class="daycell">Tuesday</td>
+                <td>Upper Body A (Push/Pull)</td>
+                <td>Chest Press, Lat Pulldown, Shoulder Press, Row</td>
+                <td>50 min</td>
+              </tr>
+              <tr>
+                <td class="daycell">Wednesday</td>
+                <td>Cardio + Conditioning</td>
+                <td>Incline Treadmill, Cross-Trainer Intervals, Core</td>
+                <td>45 min</td>
+              </tr>
+              <tr>
+                <td class="daycell">Thursday</td>
+                <td>Lower Body B + Core</td>
+                <td>Hip Thrust, Split Squat, Leg Curl, Dead Bug</td>
+                <td>50 min</td>
+              </tr>
+              <tr>
+                <td class="daycell">Friday</td>
+                <td>Upper Body B (Push/Pull) + Easy Cardio</td>
+                <td>Incline Press, Cable Row, Lateral Raise, Curl</td>
+                <td>55 min</td>
+              </tr>
+              <tr class="restrow">
+                <td class="daycell">Sat / Sun</td>
+                <td>Rest / Active Recovery</td>
+                <td>Walk 30–40 min, mobility, stretching</td>
+                <td>Optional</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="progression-note">
+          <b>How to use this:</b> Tap a day tab above to open that day's full
+          workout — sets, reps, weight guidance, and form cues are all listed.
+          Tap the checkbox next to any exercise to mark it done during your
+          session. Check the <b>Principles</b> tab for warm-up routine,
+          progression rules, and back-care guidelines that apply to every
+          session.
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Why This Split</h4>
+            <p>
+              Five compound-lift-based sessions a week, alternating upper and
+              lower body, give each muscle group roughly 48 hours to recover
+              between sessions while still training everything twice a week —
+              the rep range proven most reliable for building strength and
+              muscle endurance together, per ACSM/NSCA general fitness
+              guidelines.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>Why So Few Exercises</h4>
+            <p>
+              5–6 exercises per day, all compound (multi-joint) movements.
+              Research consistently shows a handful of well-executed compound
+              lifts builds more real-world strength and fitness than 15
+              isolation exercises — and it's far easier to recover from and stay
+              consistent with.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MONDAY ============ -->
+      <section class="view" id="view-mon">
+        <div class="day-head">
+          <h2 class="day-name">Monday</h2>
+        </div>
+        <div class="day-focus">Lower Body A + Core</div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~50 min</span>
+          <span><b>Exercises:</b> 6</span>
+          <span><b>Intensity:</b> Moderate–Hard</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="block-label">Warm-up — 5 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Cardio pulse + Hip Mobility</p>
+                <span class="ex-tag">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Bike/Treadmill</span
+                  ><span class="rx-val">3 min easy</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Leg swings</span
+                  ><span class="rx-val">10 each leg</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Bodyweight squats</span
+                  ><span class="rx-val">10 reps</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Get blood flowing and hips moving before loading the spine and
+                legs. Don't skip this — it's your best back-injury prevention
+                tool.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Main Lifts — 35 min</div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Goblet Squat (Dumbbell)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">12–16 kg DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Hold one dumbbell vertically against your chest. Sit back and
+                down, knees tracking over toes, chest tall, until thighs are
+                roughly parallel to the floor.
+                <b
+                  >Keep your lower back neutral — don't round it at the
+                  bottom.</b
+                >
+                <span class="back-flag"
+                  >⚑ Back-friendly squat pattern — easier on the spine than a
+                  barbell back squat</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Romanian Deadlift (Dumbbell)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">10–14 kg per DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Hold dumbbells in front of thighs. Push hips back (not down)
+                while keeping knees soft and back flat, lowering weights along
+                your shins until you feel a hamstring stretch, then drive hips
+                forward to stand.
+                <b
+                  >This is the single best exercise for building a resilient
+                  lower back</b
+                >
+                — it strengthens the exact hip-hinge pattern you use when
+                lifting your kids.
+                <span class="swap"
+                  ><b>Form priority:</b> Start lighter than you think you need.
+                  Stop the descent the moment your back starts to round.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Leg Press (Machine)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12–15</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Start ~40kg, build</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Feet shoulder-width on the platform. Lower until knees reach
+                about 90°, press back up without locking knees out hard.
+                Machine-supported, so it's very low-risk for your back while
+                still building real leg strength.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">4. Standing Calf Raise</p>
+                <span class="ex-tag">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">15</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Bodyweight or DB in hand</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                On flat ground or a small step, rise onto your toes, pause 1
+                second, lower slowly. Builds ankle/calf endurance for walking,
+                running, and daily stamina.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Core — 7 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Front Plank</p>
+                <span class="ex-tag">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Hold</span
+                  ><span class="rx-val">30–45 sec</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Forearms on the ground, body in one straight line from head to
+                heels, squeeze glutes and brace your abs like you're about to be
+                punched in the stomach.
+                <b
+                  >This builds the core stability that directly protects your
+                  lower back</b
+                >
+                — far more useful for back pain than crunches.
+                <span class="back-flag"
+                  >⚑ Spine-safe core work — no spinal flexion</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Cool-down Stretch</p>
+                <span class="ex-tag">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Hip flexor stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Hamstring stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Child's pose</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Gentle static stretching to close the session and aid recovery.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TUESDAY ============ -->
+      <section class="view" id="view-tue">
+        <div class="day-head">
+          <h2 class="day-name">Tuesday</h2>
+        </div>
+        <div class="day-focus">Upper Body A — Push &amp; Pull</div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~50 min</span>
+          <span><b>Exercises:</b> 6</span>
+          <span><b>Intensity:</b> Moderate–Hard</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="block-label">Warm-up — 5 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Arm Circles + Band Pull-Aparts</p>
+                <span class="ex-tag">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Arm circles</span
+                  ><span class="rx-val">20 sec each direction</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Pull-aparts/cable</span
+                  ><span class="rx-val">15 reps light</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Push-ups</span
+                  ><span class="rx-val">8 reps</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Opens up the shoulders and activates the upper back before
+                pressing and pulling load.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Main Lifts — 35 min</div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Flat Chest Press (Machine or Barbell)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8–10</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Start light, build over weeks</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Drive the handles or bar away from your chest until arms are
+                extended (not locked), control the way back. The chest press
+                machine keeps your back supported — a good first choice given
+                your back history.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Lat Pulldown (Cable)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate, controlled</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Grip slightly wider than shoulders, pull the bar to your upper
+                chest by driving elbows down and back, avoid leaning back
+                excessively. Builds the upper-back and pulling strength that
+                balances out a desk-sitting posture.
+                <span class="back-flag"
+                  >⚑ Counteracts forward-hunch posture from desk work</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Seated Shoulder Press (Machine or DB)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light–moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Press straight overhead until arms are nearly straight, lower to
+                ear level. Seated with back support reduces lower-back strain
+                compared to standing presses.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">4. Seated Cable Row</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Sit tall, pull handle to your stomach while squeezing shoulder
+                blades together, control the return. Keep your torso still —
+                don't rock back and forth using your lower back as momentum.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Core &amp; Finish — 7 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Dead Bug</p>
+                <span class="ex-tag">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Lie on your back, arms up, knees bent at 90°. Slowly extend
+                opposite arm and leg toward the floor while keeping your lower
+                back pressed flat into the mat, return, switch sides.
+                <span class="back-flag"
+                  >⚑ One of the best-researched exercises for low back pain
+                  rehab and prevention</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Cool-down Stretch</p>
+                <span class="ex-tag">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Chest doorway stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Lat stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Cat-cow</span
+                  ><span class="rx-val">8 reps</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Cat-cow gently mobilizes the spine after upper-body pulling
+                work.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ WEDNESDAY ============ -->
+      <section class="view" id="view-wed">
+        <div class="day-head">
+          <h2 class="day-name">Wednesday</h2>
+        </div>
+        <div class="day-focus">Cardio &amp; Conditioning</div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~45 min</span>
+          <span><b>Goal:</b> Endurance &amp; stamina</span>
+          <span><b>Intensity:</b> Moderate</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg core"></div>
+        </div>
+
+        <p class="lead-p">
+          This day is specifically for building your aerobic base, endurance,
+          and stamina — the things you said matter to you beyond strength. We're
+          using interval-style cardio because it's more time-efficient and
+          produces better fitness gains than steady pace alone, per current
+          exercise science consensus.
+        </p>
+
+        <div class="block-label">Warm-up — 5 min</div>
+        <div class="cardio-card">
+          <p class="ex-name" style="margin-bottom: 6px">
+            Easy Walk / Treadmill
+          </p>
+          <div class="ex-cue" style="border-top: none; padding-top: 0">
+            5 minutes flat walking pace to raise heart rate and warm up joints
+            before intervals.
+          </div>
+        </div>
+
+        <div class="block-label">Main Set — 25 min</div>
+        <div class="cardio-card">
+          <p class="ex-name">Interval Training — Treadmill or Cross-Trainer</p>
+          <table class="cardio-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Duration</th>
+                <th>Effort</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Push interval</td>
+                <td>2 min</td>
+                <td class="hi">Hard — 7.5–8/10 effort, breathing hard</td>
+              </tr>
+              <tr>
+                <td>Recovery interval</td>
+                <td>2 min</td>
+                <td>Easy — 4/10 effort, recover breath</td>
+              </tr>
+              <tr>
+                <td
+                  colspan="3"
+                  style="
+                    color: var(--text-faint);
+                    font-size: 0.78rem;
+                    padding-top: 4px;
+                  "
+                >
+                  Repeat the push/recovery cycle
+                  <b style="color: var(--text-dim)">5 times</b> (≈ 20 min
+                  total), then 5 min easy cool-down pace
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ex-cue">
+            On a treadmill: alternate between a fast walk/light jog (incline
+            3–5%) and a comfortable walk. On a cross-trainer: alternate high
+            resistance/fast pace with low resistance/easy pace.
+            <b
+              >Incline walking is excellent and low-impact on your back and
+              knees</b
+            >
+            — a great default if running ever feels jarring.
+          </div>
+        </div>
+
+        <div class="block-label">Core &amp; Stability — 12 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Side Plank</p>
+                <span class="ex-tag">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Hold</span
+                  ><span class="rx-val">20–30 sec</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">30 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Stack feet, lift hips so your body forms a straight line,
+                supported on one forearm. Builds the lateral core strength
+                that's commonly weak in people with low back pain.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Bird Dog</p>
+                <span class="ex-tag">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">30 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                On hands and knees, extend opposite arm and leg straight out
+                while keeping your back flat and hips level. Hold 2 seconds.
+                Excellent for spinal stability and balance.
+                <span class="back-flag"
+                  >⚑ Clinically recommended exercise for chronic low back
+                  pain</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Cool-down Stretch &amp; Walk</p>
+                <span class="ex-tag">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Easy walk</span
+                  ><span class="rx-val">3 min</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Full body stretch</span
+                  ><span class="rx-val">5 min</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Bring heart rate down gradually and stretch major muscle groups
+                while warm.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ THURSDAY ============ -->
+      <section class="view" id="view-thu">
+        <div class="day-head">
+          <h2 class="day-name">Thursday</h2>
+        </div>
+        <div class="day-focus">Lower Body B + Core</div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~50 min</span>
+          <span><b>Exercises:</b> 6</span>
+          <span><b>Intensity:</b> Moderate–Hard</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="block-label">Warm-up — 5 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Glute Bridges + Walking Lunges</p>
+                <span class="ex-tag">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Glute bridges</span
+                  ><span class="rx-val">15 reps</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Bodyweight lunges</span
+                  ><span class="rx-val">8 per leg</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Activates glutes before hip-dominant lifting — glutes are your
+                biggest natural lower-back protectors.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Main Lifts — 35 min</div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Hip Thrust (Barbell or Machine)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Start with bar/light, build</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Upper back braced on a bench, bar/pad across hips, feet flat.
+                Drive hips up until your body forms a straight line from
+                shoulders to knees, squeeze glutes hard at the top.
+                <b
+                  >The single best exercise for strengthening the glutes that
+                  protect your spine during everyday lifting</b
+                >
+                (like picking up your kids).
+                <span class="back-flag"
+                  >⚑ Top-tier exercise for low back pain prevention</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">
+                  2. Bulgarian Split Squat (DB, rear foot elevated)
+                </p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8–10 per leg</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">6–10 kg per DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Rear foot up on a bench, front foot forward. Lower straight down
+                until front thigh is near parallel, drive back up. Builds
+                single-leg strength and balance — directly useful for everyday
+                stability.
+                <span class="swap"
+                  ><b>Easier swap:</b> If balance is hard at first, use a static
+                  split squat (both feet on the ground) instead.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Lying or Seated Leg Curl (Machine)</p>
+                <span class="ex-tag">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light–moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Curl the pad toward your glutes in a slow, controlled motion.
+                Directly strengthens hamstrings, which support your lower back
+                and balance out all the quad work from squats/lunges.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">4. Cable or Machine Hip Abduction</p>
+                <span class="ex-tag">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">2</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">15 per leg</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Strengthens hip-stabilizing muscles often neglected, which
+                support good walking/running mechanics and reduce knee and lower
+                back strain.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Core — 7 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Dead Bug (progression: add light DB)</p>
+                <span class="ex-tag">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Same movement as Tuesday — repetition here is intentional,
+                mastering this pattern is one of the highest-value things you
+                can do for your back.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Cool-down Stretch</p>
+                <span class="ex-tag">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Glute/piriformis stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Quad stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Child's pose</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Closes out the session and supports next-day recovery.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FRIDAY ============ -->
+      <section class="view" id="view-fri">
+        <div class="day-head">
+          <h2 class="day-name">Friday</h2>
+        </div>
+        <div class="day-focus">Upper Body B + Easy Cardio</div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~55 min</span>
+          <span><b>Exercises:</b> 6 + cardio</span>
+          <span><b>Intensity:</b> Moderate</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="block-label">Warm-up — 5 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Shoulder Mobility + Light Cable Rows</p>
+                <span class="ex-tag">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Band/cable pull-aparts</span
+                  ><span class="rx-val">15 reps</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Arm swings</span
+                  ><span class="rx-val">15 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Prepares shoulders and upper back for pressing and pulling.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Main Lifts — 30 min</div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Incline Chest Press (Machine or DB)</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light–moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Same pressing pattern as Tuesday's flat press but at an incline,
+                to hit the chest and shoulders slightly differently and build
+                balanced pushing strength.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Single-Arm Cable Row or Dumbbell Row</p>
+                <span class="ex-tag compound">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Support yourself with one hand on a bench, pull the dumbbell or
+                cable handle up toward your hip, keeping back flat (not
+                twisting). Builds unilateral pulling strength and corrects any
+                left/right imbalance.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Lateral Raise (Dumbbell)</p>
+                <span class="ex-tag">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12–15</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">3–6 kg per DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Raise dumbbells out to your sides until level with shoulders,
+                slight bend in elbows, control the descent. Builds shoulder
+                width and joint health — go light, this is about control, not
+                weight.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">
+                  4. Bicep Curl + Triceps Pushdown (Superset)
+                </p>
+                <span class="ex-tag">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">2 rounds</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12 each</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec between rounds</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Do 12 dumbbell curls immediately followed by 12 cable triceps
+                pushdowns, then rest. Efficient way to finish off the arms
+                without adding extra time to your session.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-label">Core + Easy Cardio — 15 min</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Plank (with shoulder taps)</p>
+                <span class="ex-tag">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10 taps each side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                In plank position, tap opposite shoulder with each hand
+                alternately while keeping hips as still as possible. Adds an
+                anti-rotation challenge to standard planks.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div class="ex-check" onclick="toggleDone(this)"></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Easy Cardio Finish + Stretch</p>
+                <span class="ex-tag">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Treadmill/Bike</span
+                  ><span class="rx-val">10 min easy pace</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Full body stretch</span
+                  ><span class="rx-val">5 min</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                A relaxed, conversational-pace cardio finish adds extra
+                endurance volume for the week without adding fatigue, then
+                stretch everything out before you leave.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ REST ============ -->
+      <section class="view" id="view-rest">
+        <h2 class="page-title">
+          Saturday &amp; Sunday — Rest / Active Recovery
+        </h2>
+        <p class="page-sub">
+          Rest days are when your muscles actually repair and grow stronger —
+          they're not optional, they're part of the plan.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>What To Do</h4>
+            <ul>
+              <li>A relaxed 30–40 minute walk on one or both days</li>
+              <li>
+                Light stretching, especially hips, hamstrings, and lower back
+              </li>
+              <li>
+                Playing with your kids counts as activity — no need to "do more"
+              </li>
+              <li>
+                Prioritize sleep — this is where most muscle recovery happens
+              </li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>What To Avoid</h4>
+            <ul>
+              <li>Heavy lifting or high-intensity training</li>
+              <li>
+                Sitting completely still all day if avoidable — gentle movement
+                helps back pain more than total rest
+              </li>
+              <li>
+                Skipping both rest days even if you feel good — recovery is when
+                adaptation happens
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block-label">Optional 10-Minute Back Care Routine</div>
+        <div class="exercise">
+          <div class="ex-row-top">
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Gentle Mobility Flow</p>
+                <span class="ex-tag">Recovery</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Cat-Cow</span
+                  ><span class="rx-val">10 reps</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Child's Pose</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Knee-to-chest stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Glute bridge holds</span
+                  ><span class="rx-val">3 x 20 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Optional, but genuinely useful on a weekend if you've been
+                carrying the kids a lot or sitting for long stretches. Takes 10
+                minutes and keeps the back loose without any real fatigue.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRINCIPLES ============ -->
+      <section class="view" id="view-principles">
+        <h2 class="page-title">Principles &amp; Progression Rules</h2>
+        <p class="page-sub">
+          The rules that make this plan work over months, not just one week.
+        </p>
+
+        <div class="block-label">Progressive Overload — How To Add Weight</div>
+        <div class="progression-note">
+          <b>The 2-for-2 rule:</b> If you complete all prescribed sets and reps
+          with good form for 2 consecutive sessions on an exercise, add a small
+          amount of weight next time — typically 2.5kg for upper body lifts and
+          2.5–5kg for lower body lifts. If form breaks down or you miss reps,
+          stay at the same weight until you complete it cleanly.
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Starting Weights</h4>
+            <p>
+              The weight numbers in this plan are sensible starting points for
+              someone with some training experience, not fixed targets. Your
+              first 1–2 weeks should feel like a "could do a few more reps"
+              effort — this lets you learn each movement pattern safely before
+              adding real load. Adjust up or down in week 1 based on how each
+              lift actually feels.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>Tracking Progress</h4>
+            <p>
+              Keep a simple note on your phone: date, exercise, weight, reps
+              completed. Five minutes a week of tracking is what turns "going to
+              the gym" into measurable, lasting strength and fitness gains.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>Rest Between Sets</h4>
+            <p>
+              The rest periods listed (45–90 seconds) are based on the goal of
+              each exercise: compound lower-body lifts need more recovery
+              (75–90s) than isolation or core work (45s). Resting properly is
+              part of the program, not wasted time.
+            </p>
+          </div>
+          <div class="info-card">
+            <h4>Nutrition &amp; Sleep Basics</h4>
+            <p>
+              No exercise program outperforms poor sleep or poor eating. Aim for
+              7+ hours of sleep, adequate protein (roughly 1.2–1.6g per kg
+              bodyweight daily, so ~85–110g for you), and consistent meals. This
+              matters more than any single workout detail.
+            </p>
+          </div>
+        </div>
+
+        <div class="block-label">Back Pain — Specific Guidance For You</div>
+        <div class="progression-note">
+          Your back pain pattern (slight, linked to carrying toddlers and long
+          sitting) is extremely common and responds very well to exactly the
+          kind of training in this plan:
+          <b
+            >hip hinge strength (Romanian deadlifts, hip thrusts),
+            anti-extension core work (planks, dead bugs, bird dogs), and glute
+            strengthening.</b
+          >
+          These rebuild the support structure around your spine. A few extra
+          rules:
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Always Do</h4>
+            <ul>
+              <li>
+                Brace your core (like before a light punch to the stomach)
+                before any lift involving your back
+              </li>
+              <li>
+                Keep your lower back's natural curve — neither rounded nor
+                over-arched — during squats and hinges
+              </li>
+              <li>
+                Stop a rep immediately if you feel sharp or shooting pain
+                (different from normal muscle fatigue)
+              </li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>Avoid For Now</h4>
+            <ul>
+              <li>
+                Heavy barbell deadlifts from the floor until your hip-hinge
+                pattern is confident (the DB Romanian deadlift in this plan
+                builds toward this safely)
+              </li>
+              <li>
+                Loaded spinal flexion exercises like weighted sit-ups or Russian
+                twists with heavy weight
+              </li>
+              <li>
+                Lifting your kids by bending your back — bend your knees and
+                hips instead, same pattern you're training on Mondays
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block-label">
+          Equipment Reference — Cult Neo Gym Mallapur
+        </div>
+        <p class="lead-p">
+          This plan uses standard equipment found in essentially every Cult gym
+          location: barbells &amp; weight plates, a dumbbell rack, a
+          cable/functional trainer station, chest press &amp; shoulder press
+          machines, lat pulldown, seated row, leg press, leg curl machine, a
+          Smith machine or squat rack, and cardio machines (treadmills,
+          cross-trainers, stationary bikes). If a specific named machine isn't
+          available on a given day, use the listed swap or ask a trainer on-site
+          for the nearest equivalent — the movement pattern matters more than
+          the exact machine.
+        </p>
+
+        <div class="progression-note">
+          <b>Not medical advice:</b> This plan is general fitness guidance based
+          on established exercise science principles. Since you mentioned
+          recurring back pain, consider a quick check with a doctor or
+          physiotherapist before starting, especially if pain is frequent,
+          sharp, or radiates down a leg — they can confirm this approach is
+          right for your specific case.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Mallapur Five — built around Cult Neo Gym Mallapur's standard equipment.
+      Adjust weights to your own comfort and always prioritize form over load,
+      especially on lower-back-involved lifts. Re-check progress every 4–6 weeks
+      and increase weight or reps gradually.
+    </footer>
+
+    <script>
+      const tabs = document.querySelectorAll(".day-tab");
+      const views = document.querySelectorAll(".view");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const target = tab.getAttribute("data-view");
+          views.forEach((v) => v.classList.remove("active"));
+          document.getElementById("view-" + target).classList.add("active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+
+      function toggleDone(checkEl) {
+        checkEl.classList.toggle("done");
+        const card = checkEl.closest(".exercise");
+        if (card) {
+          card.classList.toggle("done");
+        }
+      }
+    </script>
+  </body>
+</html>
