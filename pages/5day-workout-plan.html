@@ -191,17 +191,39 @@
       .exercise.done .ex-name {
         text-decoration: line-through;
       }
+      /* Tab system */
+      .page {
+        display: none !important;
+      }
+
+      .page.active {
+        display: block !important;
+      }
+
+      /* Tabs */
       .tab-bar {
         display: flex;
         gap: 8px;
         overflow-x: auto;
-        white-space: nowrap;
-        padding-bottom: 8px;
+        flex-wrap: nowrap;
+        margin-bottom: 1rem;
       }
 
       .tab {
-        flex: 0 0 auto;
         cursor: pointer;
+        flex: 0 0 auto;
+      }
+
+      /* Prevent clipping */
+      .page-shell,
+      .content,
+      .main {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .page-shell {
+        overflow-x: hidden;
       }
     </style>
   </head>
