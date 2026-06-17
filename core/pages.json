@@ -1,5 +1,9 @@
 [
   {
+    "title": "5-Day Training Plan",
+    "file": "5day-workout-plan.html"
+  },
+  {
     "title": "90-Day Mastery Plan",
     "file": "90day-mastery-plan.html"
   },
@@ -10,9 +14,5 @@
   {
     "title": "Sample Page",
     "file": "sample-page.html"
-  },
-  {
-    "title": "Training Plan",
-    "file": "5day-workout-plan.html"
   }
 ]
