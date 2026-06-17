@@ -10,6 +10,17 @@
      Only things unique to this page live here: the day-progress
      strip, exercise prescription grid, and back-care flag styling. */
 
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      .page-shell {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
       .day-meta {
         display: flex;
         gap: 16px;
@@ -180,10 +191,22 @@
       .exercise.done .ex-name {
         text-decoration: line-through;
       }
+      .tab-bar {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 8px;
+      }
+
+      .tab {
+        flex: 0 0 auto;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-    <div class="page-shell" data-no-layout-note="true">
+    <div class="page-shell" data-no-layout="true">
       <div
         class="topbar"
         style="
