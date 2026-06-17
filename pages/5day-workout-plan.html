@@ -227,8 +227,8 @@
       }
     </style>
   </head>
-  <body>
-    <div class="page-shell" data-no-layout="true">
+  <body data-no-layout="true">
+    <div class="page-shell">
       <div
         class="topbar"
         style="
@@ -1800,28 +1800,29 @@
     </div>
 
     <script>
-      const tabs = document.querySelectorAll("#dayNav .tab");
-      const views = document.querySelectorAll(".page");
+      window.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll("#dayNav .tab");
 
-      function activateView(target) {
-        tabs.forEach((t) => t.classList.remove("active"));
-        document
-          .querySelector('#dayNav .tab[data-view="' + target + '"]')
-          .classList.add("active");
-        views.forEach((v) => v.classList.remove("active"));
-        document.getElementById("view-" + target).classList.add("active");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+        function activateView(target) {
+          document
+            .querySelectorAll("#dayNav .tab")
+            .forEach((t) => t.classList.remove("active"));
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () =>
-          activateView(tab.getAttribute("data-view")),
-        );
-        tab.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            activateView(tab.getAttribute("data-view"));
-          }
+          document
+            .querySelector(`#dayNav .tab[data-view="${target}"]`)
+            ?.classList.add("active");
+
+          document
+            .querySelectorAll(".page")
+            .forEach((v) => v.classList.remove("active"));
+
+          document.getElementById(`view-${target}`)?.classList.add("active");
+        }
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            activateView(tab.dataset.view);
+          });
         });
       });
 
