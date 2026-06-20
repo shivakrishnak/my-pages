@@ -1,0 +1,105 @@
+{
+  "generated": "2026-06-20T17:23:39Z",
+  "count": 11,
+  "pages": [
+    {
+      "title": "5-Day Workout Plan",
+      "description": "",
+      "category": "General",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/5day-workout-plan.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "90-Day Mastery Plan",
+      "description": "",
+      "category": "General",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/90day-mastery-plan.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Mastery Consistency Analysis",
+      "description": "",
+      "category": "General",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/mastery-consistency-analysis.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Sample Page",
+      "description": "",
+      "category": "General",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/sample-page.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Part I — The Science",
+      "description": "Why your brain forgets, how memory actually works, and the science behind every technique in this system.",
+      "category": "Mastery System",
+      "icon": "🧠",
+      "order": 1,
+      "path": "pages/mastery/part1.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Part II — Voice & Fluency §3-6",
+      "description": "The instrument, the mechanics, the engine, and the architecture — voice, pronunciation, fluency, and structured speaking frameworks.",
+      "category": "Mastery System",
+      "icon": "🎙️",
+      "order": 2,
+      "path": "pages/mastery/part2a.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Part II — Thinking & Communication §7–16",
+      "description": "Public speaking, deep learning systems, 30 mental models, workplace communication, and brain-freeze elimination.",
+      "category": "Mastery System",
+      "icon": "💬",
+      "order": 3,
+      "path": "pages/mastery/part2b.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Part II — Advanced Skills §17–27",
+      "description": "Polymath knowledge, writing as thinking, decision-making, deep work, Stoicism, leadership, and financial literacy.",
+      "category": "Mastery System",
+      "icon": "🎯",
+      "order": 4,
+      "path": "pages/mastery/part2c.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Part III & IV — Drills & Execution Plan",
+      "description": "The complete drill library, weekly challenges, conversation simulations, and the phased 90-day execution framework.",
+      "category": "Mastery System",
+      "icon": "📋",
+      "order": 5,
+      "path": "pages/mastery/part3-4.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "Part V — Resources",
+      "description": "Book recommendations, tools, Anki deck starters, a glossary of every framework, and 12 principles worth printing.",
+      "category": "Mastery System",
+      "icon": "📚",
+      "order": 6,
+      "path": "pages/mastery/part5.html",
+      "modified": "2026-06-20"
+    },
+    {
+      "title": "90-Day Action Plan",
+      "description": "Interactive day-by-day, week-by-week tracker with a streak counter, daily checklists, and links to every related section.",
+      "category": "Trackers & Tools",
+      "icon": "📅",
+      "order": 1,
+      "path": "pages/mastery/90day-plan.html",
+      "modified": "2026-06-20"
+    }
+  ]
+}
