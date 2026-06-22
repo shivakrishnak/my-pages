@@ -1,19 +1,297 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  SAMPLE PAGE — the minimal starting point, powered by init.js
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
+  This is the simplest page that still looks and behaves like part
+  of the hub. One script tag in <head>. That's the entire setup.
 
+  data-layout="full" (the default — shown explicitly here for clarity)
+  gives you: sidebar + topbar + bottom-nav + dark mode + search,
+  all built automatically. Swap to "mixed" for topbar-only, or
+  "none" for a completely bare page — see core/init.js for the full
+  explanation of each mode, or pages/guides/how-to-add-a-page.html
+  for the visual walkthrough.
+
+  THE #1 RULE THAT MAKES OR BREAKS A NEW PAGE:
+  The <script src="..."> path must have exactly as many "../" as
+  the folder depth of wherever you put this file. This file sits at
+  pages/general/sample-page.html — two folders below the repo root —
+  so it needs ../../core/init.js. Get this wrong and nothing
+  injects at all; the page renders as plain unstyled text.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- ░░░ EDIT: title and description — these populate the homepage card ░░░ -->
     <title>Sample Page</title>
+    <meta name="description" content="A minimal page — the simplest starting point in this hub, built on init.js.">
+    <meta name="page-icon" content="📄">
+    <!-- No page-category meta tag — this page sits directly in pages/general/,
+         so it's grouped under "General" automatically. -->
 
-    <script src="../core/init.js"></script>
-  </head>
-  <body data-layout="none">
-    <h1>Sample Page</h1>
-    <p>Self contained page.</p>
-  </body>
+    <!-- The entire setup. init.js reads data-layout below and injects
+         everything else: shell.css, the sidebar/topbar/bottom-nav DOM,
+         dark mode, search, scroll-spy. -->
+    <script src="../../core/init.js"></script>
+</head>
+
+<!-- ░░░ EDIT: data-layout controls the chrome. "full" (shown here) is
+     also what you get if you omit the attribute entirely — it's the
+     default. Use data-title for the topbar text, data-toc="true" if
+     this page has multiple h2/h3 sections worth listing in the
+     sidebar automatically. ░░░ -->
+<body data-layout="full" data-title="Sample Page" data-toc="true">
+
+<!-- ░░░ EDIT: everything inside #page-content is your actual page.
+     init.js moves this into place automatically — don't add your
+     own <header>/<aside>/nav markup, that's all generated for you. ░░░ -->
+<div id="page-content">
+
+    <div class="ms-hero" style="padding-top:1rem">
+        <h1>Sample Page</h1>
+        <p class="ms-hero-sub">The minimal starting point. Replace this content with whatever you're building.</p>
+    </div>
+
+    <div class="ms-section" id="s1">
+        <h2><span class="ms-section-num">§1</span>What this proves</h2>
+        <p>This page proves the minimum setup works: one script tag with the correct relative path, and a <code>data-layout</code>
+            attribute. Everything else — stylesheet, sidebar, topbar, dark mode toggle, mobile bottom nav, the way back
+            to the homepage — is generated automatically by <code>core/init.js</code>.</p>
+
+        <div class="ms-callout">
+            Component classes available out of the box: <code>.ms-callout</code> (this box), <code>.ms-table</code>,
+            <code>.ms-framework</code>, <code>.ms-steps</code>, <code>.ms-quote</code>, <code>.ms-drill</code>, <code>.ms-badge</code>,
+            <code>.ms-checklist</code>. See <code>pages/fitness/workout-plan.html</code> or any page in <code>pages/mastery/</code>
+            for live examples of each in a real, content-heavy page.
+        </div>
+    </div>
+
+    <div class="ms-section" id="s2">
+        <h2><span class="ms-section-num">§2</span>The three layout modes</h2>
+        <p>Set on <code>&lt;body data-layout="..."&gt;</code>:</p>
+        <div class="ms-table-wrap">
+            <table class="ms-table">
+                <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>What you get</th>
+                    <th>Use it for</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>full</code> <em>(default)</em></td>
+                    <td>Sidebar + topbar + bottom-nav</td>
+                    <td>Reference docs, anything with multiple sections</td>
+                </tr>
+                <tr>
+                    <td><code>mixed</code></td>
+                    <td>Topbar + bottom-nav, no sidebar</td>
+                    <td>Single-screen tools, dashboards, short notes</td>
+                </tr>
+                <tr>
+                    <td><code>none</code></td>
+                    <td>Nothing injected — just shell.css linked and dark mode applied</td>
+                    <td>Fully custom layouts that need complete control</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Leaving the attribute off <code>&lt;body&gt;</code> entirely behaves exactly like <code>full</code> — so a
+            brand new page with zero configuration still gets the complete hub experience.</p>
+    </div>
+
+    <div class="ms-section" id="s3">
+        <h2><span class="ms-section-num">§3</span>Useful data attributes</h2>
+        <div class="ms-table-wrap">
+            <table class="ms-table">
+                <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Effect</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>data-title="..."</code></td>
+                    <td>Text shown in the topbar</td>
+                </tr>
+                <tr>
+                    <td><code>data-badge="..."</code></td>
+                    <td>Small colored pill next to the title</td>
+                </tr>
+                <tr>
+                    <td><code>data-badge-color="..."</code></td>
+                    <td>indigo · teal · amber · coral · sage</td>
+                </tr>
+                <tr>
+                    <td><code>data-brand="..."</code></td>
+                    <td>Sidebar header text (full layout only)</td>
+                </tr>
+                <tr>
+                    <td><code>data-toc="true"</code></td>
+                    <td>Auto-builds a sidebar table of contents from this page's <code>&lt;h2&gt;</code>/<code>&lt;h3&gt;</code>
+                        headings
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html><!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  SAMPLE PAGE — the minimal starting point, powered by init.js
+
+  This is the simplest page that still looks and behaves like part
+  of the hub. One script tag in <head>. That's the entire setup.
+
+  data-layout="full" (the default — shown explicitly here for clarity)
+  gives you: sidebar + topbar + bottom-nav + dark mode + search,
+  all built automatically. Swap to "mixed" for topbar-only, or
+  "none" for a completely bare page — see core/init.js for the full
+  explanation of each mode, or pages/guides/how-to-add-a-page.html
+  for the visual walkthrough.
+
+  THE #1 RULE THAT MAKES OR BREAKS A NEW PAGE:
+  The <script src="..."> path must have exactly as many "../" as
+  the folder depth of wherever you put this file. This file sits at
+  pages/general/sample-page.html — two folders below the repo root —
+  so it needs ../../core/init.js. Get this wrong and nothing
+  injects at all; the page renders as plain unstyled text.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- ░░░ EDIT: title and description — these populate the homepage card ░░░ -->
+    <title>Sample Page</title>
+    <meta name="description" content="A minimal page — the simplest starting point in this hub, built on init.js.">
+    <meta name="page-icon" content="📄">
+    <!-- No page-category meta tag — this page sits directly in pages/general/,
+         so it's grouped under "General" automatically. -->
+
+    <!-- The entire setup. init.js reads data-layout below and injects
+         everything else: shell.css, the sidebar/topbar/bottom-nav DOM,
+         dark mode, search, scroll-spy. -->
+    <script src="../../core/init.js"></script>
+</head>
+
+<!-- ░░░ EDIT: data-layout controls the chrome. "full" (shown here) is
+     also what you get if you omit the attribute entirely — it's the
+     default. Use data-title for the topbar text, data-toc="true" if
+     this page has multiple h2/h3 sections worth listing in the
+     sidebar automatically. ░░░ -->
+<body data-layout="full" data-title="Sample Page" data-toc="true">
+
+<!-- ░░░ EDIT: everything inside #page-content is your actual page.
+     init.js moves this into place automatically — don't add your
+     own <header>/<aside>/nav markup, that's all generated for you. ░░░ -->
+<div id="page-content">
+
+    <div class="ms-hero" style="padding-top:1rem">
+        <h1>Sample Page</h1>
+        <p class="ms-hero-sub">The minimal starting point. Replace this content with whatever you're building.</p>
+    </div>
+
+    <div class="ms-section" id="s1">
+        <h2><span class="ms-section-num">§1</span>What this proves</h2>
+        <p>This page proves the minimum setup works: one script tag with the correct relative path, and a <code>data-layout</code>
+            attribute. Everything else — stylesheet, sidebar, topbar, dark mode toggle, mobile bottom nav, the way back
+            to the homepage — is generated automatically by <code>core/init.js</code>.</p>
+
+        <div class="ms-callout">
+            Component classes available out of the box: <code>.ms-callout</code> (this box), <code>.ms-table</code>,
+            <code>.ms-framework</code>, <code>.ms-steps</code>, <code>.ms-quote</code>, <code>.ms-drill</code>, <code>.ms-badge</code>,
+            <code>.ms-checklist</code>. See <code>pages/fitness/workout-plan.html</code> or any page in <code>pages/mastery/</code>
+            for live examples of each in a real, content-heavy page.
+        </div>
+    </div>
+
+    <div class="ms-section" id="s2">
+        <h2><span class="ms-section-num">§2</span>The three layout modes</h2>
+        <p>Set on <code>&lt;body data-layout="..."&gt;</code>:</p>
+        <div class="ms-table-wrap">
+            <table class="ms-table">
+                <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>What you get</th>
+                    <th>Use it for</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>full</code> <em>(default)</em></td>
+                    <td>Sidebar + topbar + bottom-nav</td>
+                    <td>Reference docs, anything with multiple sections</td>
+                </tr>
+                <tr>
+                    <td><code>mixed</code></td>
+                    <td>Topbar + bottom-nav, no sidebar</td>
+                    <td>Single-screen tools, dashboards, short notes</td>
+                </tr>
+                <tr>
+                    <td><code>none</code></td>
+                    <td>Nothing injected — just shell.css linked and dark mode applied</td>
+                    <td>Fully custom layouts that need complete control</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Leaving the attribute off <code>&lt;body&gt;</code> entirely behaves exactly like <code>full</code> — so a
+            brand new page with zero configuration still gets the complete hub experience.</p>
+    </div>
+
+    <div class="ms-section" id="s3">
+        <h2><span class="ms-section-num">§3</span>Useful data attributes</h2>
+        <div class="ms-table-wrap">
+            <table class="ms-table">
+                <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Effect</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>data-title="..."</code></td>
+                    <td>Text shown in the topbar</td>
+                </tr>
+                <tr>
+                    <td><code>data-badge="..."</code></td>
+                    <td>Small colored pill next to the title</td>
+                </tr>
+                <tr>
+                    <td><code>data-badge-color="..."</code></td>
+                    <td>indigo · teal · amber · coral · sage</td>
+                </tr>
+                <tr>
+                    <td><code>data-brand="..."</code></td>
+                    <td>Sidebar header text (full layout only)</td>
+                </tr>
+                <tr>
+                    <td><code>data-toc="true"</code></td>
+                    <td>Auto-builds a sidebar table of contents from this page's <code>&lt;h2&gt;</code>/<code>&lt;h3&gt;</code>
+                        headings
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
 </html>
