@@ -47,16 +47,21 @@ Override the auto-derived label any time with an explicit meta tag (see below) �
 3. Link the shared stylesheet and script — path depends on folder depth:
    ```html
    <!-- file at pages/your-project/page.html -->
-   <link rel="stylesheet" href="../../core/shell.css">
+   <link rel="stylesheet" href="../../core/shell.css" />
    <script src="../../core/shell.js"></script>
    ```
 4. Add metadata to `<head>` so the homepage can list it well:
    ```html
    <title>Your Page Title</title>
-   <meta name="description" content="One sentence shown on the homepage card.">
-   <meta name="page-icon" content="🧪">
-   <meta name="page-order" content="1">                  <!-- optional, sort within category -->
-   <meta name="page-category" content="Custom Label">    <!-- optional, overrides folder-derived category -->
+   <meta
+     name="description"
+     content="One sentence shown on the homepage card."
+   />
+   <meta name="page-icon" content="🧪" />
+   <meta name="page-order" content="1" />
+   <!-- optional, sort within category -->
+   <meta name="page-category" content="Custom Label" />
+   <!-- optional, overrides folder-derived category -->
    ```
    Omit `page-category` to use the folder name automatically. Set `<meta name="page-hidden" content="true">` to keep a page off the homepage without deleting it.
 5. Run the registry generator from the repo root:
@@ -75,12 +80,12 @@ Projects are organized as folders under `pages/`, not by naming convention — t
 
 ## Pages
 
-| Page | What it is |
-|---|---|
-| `pages/mastery/part1.html` | Part I — The Science of learning, memory, voice, and fluency |
-| `pages/mastery/part2a.html` | Part II — Voice, Pronunciation & Structured Speaking (§3–6) |
-| `pages/mastery/part2b.html` | Part II — Thinking & Communication (§7–16) |
-| `pages/mastery/part2c.html` | Part II — Advanced Skills (§17–27) |
-| `pages/mastery/part3-4.html` | Part III & IV — Drills, Templates & Execution Plan |
-| `pages/mastery/part5.html` | Part V — Resources, books, tools, glossary |
-| `pages/mastery/90day-plan.html` | Interactive 90-day action plan with streak tracker |
+| Page                            | What it is                                                   |
+| ------------------------------- | ------------------------------------------------------------ |
+| `pages/mastery/part1.html`      | Part I — The Science of learning, memory, voice, and fluency |
+| `pages/mastery/part2a.html`     | Part II — Voice, Pronunciation & Structured Speaking (§3–6)  |
+| `pages/mastery/part2b.html`     | Part II — Thinking & Communication (§7–16)                   |
+| `pages/mastery/part2c.html`     | Part II — Advanced Skills (§17–27)                           |
+| `pages/mastery/part3-4.html`    | Part III & IV — Drills, Templates & Execution Plan           |
+| `pages/mastery/part5.html`      | Part V — Resources, books, tools, glossary                   |
+| `pages/mastery/90day-plan.html` | Interactive 90-day action plan with streak tracker           |
