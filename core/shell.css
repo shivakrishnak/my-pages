@@ -157,14 +157,15 @@ a {
   border-right: 1px solid var(--border);
   position: fixed;
   inset: 0 auto 0 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 300;
   display: flex;
   flex-direction: column;
+  z-index: 300;
   transition:
     transform var(--dur) var(--ease),
     box-shadow var(--dur);
+  /* ── DESKTOP SCROLL FIX ── */
+  overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
 }
 /* Thin scrollbar */
@@ -445,7 +446,9 @@ a {
   flex: 1;
   max-width: var(--content-max);
   width: 100%;
-  padding: 2.5rem 2rem 5rem;
+  margin: 0 auto;
+  padding: 2.25rem 2rem 6rem;
+  min-width: 0;
 }
 
 /* ─────────────── HERO ─────────────── */
