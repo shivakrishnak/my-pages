@@ -207,8 +207,11 @@
         ICON_MENU +
         "</button>";
 
+      var customSidebar = document.getElementById("page-sidebar");
       var tocHtml = '<span class="ms-nav-label">This Page</span>';
-      if (buildToc) {
+      if (customSidebar) {
+        tocHtml = customSidebar.innerHTML;
+      } else if (buildToc) {
         tocHtml += '<div id="ms-auto-toc"></div>';
       } else {
         tocHtml +=
