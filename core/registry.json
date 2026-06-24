@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-24T01:31:37Z",
-  "count": 10,
+  "generated": "2026-06-24T07:37:54Z",
+  "count": 11,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -27,6 +27,15 @@
       "icon": "🧭",
       "order": 1,
       "path": "pages/guides/how-to-add-a-page.html",
+      "modified": "2026-06-24"
+    },
+    {
+      "title": "Anki Masterclass — Building Cards That Stick Forever",
+      "description": "",
+      "category": "Masterclass",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/masterclass/anki-masterclass.html",
       "modified": "2026-06-24"
     },
     {
