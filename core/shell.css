@@ -52,9 +52,9 @@
      to avoid alarm — this is a reference system, not an app. */
 
   /* Ground */
-  --bg: #f7f5f0; /* warm ivory — the page */
-  --bg-2: #efece5; /* subtle card inset / sidebar */
-  --bg-3: #e6e2d8; /* active / hover state ground */
+  --bg: #f8f6f1; /* warm ivory — the page */
+  --bg-2: #f0ede5; /* subtle card inset / sidebar */
+  --bg-3: #e5e0d5; /* active / hover state ground */
   --surface: #ffffff; /* card / modal surface */
 
   /* Borders */
