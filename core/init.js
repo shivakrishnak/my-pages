@@ -215,7 +215,7 @@
         tocHtml += '<div id="ms-auto-toc"></div>';
       } else {
         tocHtml +=
-          '<span style="display:block;padding:6px 1.1rem;font-size:11.5px;color:var(--text4);line-height:1.5">No table of contents configured. Add data-toc="true" to &lt;body&gt; for an automatic one, or hand-write sidebar links — see core/templates/template-with-sidebar.html.</span>';
+          '<span style="display:block;padding:6px 1.1rem;font-size:11.5px;color:var(--text-4);line-height:1.5">No table of contents configured. Add data-toc="true" to &lt;body&gt; for an automatic one, or hand-write sidebar links — see core/templates/template-with-sidebar.html.</span>';
       }
 
       sidebarHtml =
@@ -256,7 +256,7 @@
       (layout === "mixed"
         ? '<a href="' +
           rootBase +
-          'index.html" style="font-size:13px;font-weight:700;color:var(--text1);text-decoration:none;flex-shrink:0">← ' +
+          'index.html" style="font-size:13px;font-weight:700;color:var(--text-1);text-decoration:none;flex-shrink:0">← ' +
           escapeHtml(brand) +
           "</a>"
         : "") +
@@ -266,7 +266,7 @@
       "</span>" +
       "</div>" +
       '<div class="ms-topbar-right">' +
-      '<span id="ms-reading-time" style="font-size:11px;color:var(--text3)"></span>' +
+      '<span id="ms-reading-time" style="font-size:11px;color:var(--text-3)"></span>' +
       '<button class="ms-icon-btn" id="ms-dark-btn" aria-label="Toggle dark mode"></button>' +
       "</div>" +
       "</header>";
@@ -348,7 +348,7 @@
         });
         tocTarget.outerHTML = found
           ? html
-          : '<span style="display:block;padding:6px 1.1rem;font-size:11.5px;color:var(--text4)">No headings with ids found yet.</span>';
+          : '<span style="display:block;padding:6px 1.1rem;font-size:11.5px;color:var(--text-4)">No headings with ids found yet.</span>';
       }
     }
 

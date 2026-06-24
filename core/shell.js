@@ -257,7 +257,7 @@
       bottom: "80px",
       left: "50%",
       transform: "translateX(-50%)",
-      background: "var(--text1)",
+      background: "var(--text-1)",
       color: "var(--bg)",
       padding: "8px 16px",
       borderRadius: "6px",

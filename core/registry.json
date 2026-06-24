@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-24T07:37:54Z",
-  "count": 11,
+  "generated": "2026-06-24T11:33:44Z",
+  "count": 12,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -27,6 +27,15 @@
       "icon": "🧭",
       "order": 1,
       "path": "pages/guides/how-to-add-a-page.html",
+      "modified": "2026-06-24"
+    },
+    {
+      "title": "PKH Design System — shell.css Reference",
+      "description": "",
+      "category": "Guides",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/guides/design-system-preview.html",
       "modified": "2026-06-24"
     },
     {

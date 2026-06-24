@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea93c57c-eb0d-47eb-a1a9-bfa018b9cf6a" name="Changes" comment="fix workout plan">
+    <list default="true" id="ea93c57c-eb0d-47eb-a1a9-bfa018b9cf6a" name="Changes" comment="anki master class - link style.css">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/init.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/registry.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/registry.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/shell.css" beforeDir="false" afterPath="$PROJECT_DIR$/core/shell.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/shell.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/shell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/sidebar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/5day-workout-plan.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/90day-mastery-plan.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mastery-consistency-analysis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/template-standalone.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/template-standalone.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/template-with-sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/template-with-sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/fitness/workout-plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/fitness/workout-plan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/guides/how-to-add-a-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/guides/how-to-add-a-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/masterclass/anki-masterclass.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/masterclass/anki-masterclass.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/mastery/90day-plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/90day-plan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/part1.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/part2a.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part2a.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/mastery/part2b.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part2b.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/mastery/part2c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part2c.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/mastery/part3-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part3-4.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/mastery/part5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/sample-page.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,20 +56,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -122,7 +125,39 @@
       <option name="project" value="LOCAL" />
       <updated>1782192478275</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="anki master class - add init script">
+      <option name="closed" value="true" />
+      <created>1782287281362</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1782287281362</updated>
+    </task>
+    <task id="LOCAL-00007" summary="anki master class - revert to original">
+      <option name="closed" value="true" />
+      <created>1782292498852</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1782292498852</updated>
+    </task>
+    <task id="LOCAL-00008" summary="anki master class - light mode">
+      <option name="closed" value="true" />
+      <created>1782294237548</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1782294237548</updated>
+    </task>
+    <task id="LOCAL-00009" summary="anki master class - link style.css">
+      <option name="closed" value="true" />
+      <created>1782294444470</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1782294444470</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +180,10 @@
     <MESSAGE value="formatting" />
     <MESSAGE value="claude new design from sshtoshiva" />
     <MESSAGE value="fix workout plan" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix workout plan" />
+    <MESSAGE value="anki master class - add init script" />
+    <MESSAGE value="anki master class - revert to original" />
+    <MESSAGE value="anki master class - light mode" />
+    <MESSAGE value="anki master class - link style.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="anki master class - link style.css" />
   </component>
 </project>
