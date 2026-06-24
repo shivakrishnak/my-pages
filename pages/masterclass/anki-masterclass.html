@@ -12,40 +12,66 @@
     <style>
       /* ─── TOKENS ─────────────────────────────────────────────────────────────── */
       :root {
-        --bg: #0d0d0f;
-        --bg2: #131317;
-        --bg3: #1a1a20;
-        --bg4: #212128;
-        --surface: #252530;
-        --border: rgba(255, 255, 255, 0.07);
-        --border2: rgba(255, 255, 255, 0.12);
-        --text: #f0ede6;
-        --muted: #9491a1;
-        --subtle: #5e5c6b;
-        --amber: #e8a020;
-        --amber2: #f5c056;
-        --amber-bg: rgba(232, 160, 32, 0.08);
-        --amber-border: rgba(232, 160, 32, 0.25);
-        --teal: #3abfbf;
-        --teal-bg: rgba(58, 191, 191, 0.08);
-        --violet: #a78bfa;
-        --violet-bg: rgba(167, 139, 250, 0.08);
-        --rose: #f87171;
-        --rose-bg: rgba(248, 113, 113, 0.08);
-        --green: #4ade80;
-        --green-bg: rgba(74, 222, 128, 0.08);
-        --blue: #60a5fa;
-        --blue-bg: rgba(96, 165, 250, 0.08);
+        /* Backgrounds */
+        --bg: #f8f6f1;
+        --bg2: #f0ede5;
+        --bg3: #e5e0d5;
+        --bg4: #d8d1c4; /* new */
+        --surface: #ffffff;
 
+        /* Borders */
+        --border: #e0dad0;
+        --border2: #c8bfb0;
+
+        /* Text */
+        --text1: #19170f;
+        --text2: #3c3930;
+        --text3: #78736a;
+        --text4: #a09888;
+
+        /* Text */
+        --text: var(--text1);
+        --muted: var(--text2);
+        --subtle: var(--text3);
+
+        /* Amber */
+        --amber: #b06b10;
+        --amber2: #c9821a; /* new */
+        --amber-bg: #faf0dd;
+        --amber-border: #e7d1a8; /* new */
+
+        /* Teal */
+        --teal: #1a8c6a;
+        --teal-bg: #e0f5ec;
+
+        /* Violet (mapped from indigo) */
+        --violet: #6b65da;
+        --violet-bg: #eeedfa;
+
+        /* Rose (mapped from coral) */
+        --rose: #c94c28;
+        --rose-bg: #faebe5;
+
+        /* Green (mapped from sage) */
+        --green: #5a7a5a;
+        --green-bg: #e8f1e8;
+
+        /* Blue (new semantic color) */
+        --blue: #4d7fe6;
+        --blue-bg: #e8f0ff;
+
+        /* Typography */
         --font-display: "Fraunces", Georgia, serif;
         --font-body: "Inter", system-ui, sans-serif;
         --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
+        /* Radius */
         --r-sm: 6px;
         --r-md: 10px;
         --r-lg: 16px;
         --r-xl: 20px;
 
+        /* Layout */
         --toc-w: 220px;
         --content-max: 860px;
       }
@@ -296,7 +322,7 @@
       }
 
       p {
-        color: var(--muted);
+        color: var(--text);
         margin-bottom: 1rem;
         font-size: 0.95rem;
         line-height: 1.75;
@@ -325,7 +351,7 @@
 
       .callout-teal {
         background: var(--teal-bg);
-        border-color: rgba(58, 191, 191, 0.2);
+        border-color: var(--teal-border);
         color: var(--teal);
       }
 
