@@ -1,367 +1,1042 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F8F6F1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
-<title>Part V — Resources | Complete Mastery System</title>
-<meta name="description" content="Book recommendations, tools, Anki deck starters, a glossary of every framework, and 12 principles worth printing.">
-<meta name="page-category" content="Mastery System">
-<meta name="page-icon" content="📚">
-<meta name="page-order" content="6">
-<link rel="stylesheet" href="../../core/shell.css">
-<script>
-  // Apply saved theme before paint — prevents flash of wrong theme
-  (function () {
-    if (localStorage.getItem('ms-dark') === '1') {
-      document.documentElement.classList.add('dark');
-    }
-  })();
-</script>
-</head>
-<body>
-<a href="#main-content" class="ms-skip-link">Skip to content</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="theme-color"
+      content="#F8F6F1"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#121110"
+      media="(prefers-color-scheme: dark)"
+    />
+    <title>Part V — Resources | Complete Mastery System</title>
+    <meta
+      name="description"
+      content="Book recommendations, tools, Anki deck starters, a glossary of every framework, and 12 principles worth printing."
+    />
+    <meta name="page-category" content="Mastery System" />
+    <meta name="page-icon" content="📚" />
+    <meta name="page-order" content="6" />
+    <link rel="stylesheet" href="../../core/shell.css" />
+    <script>
+      // Apply saved theme before paint — prevents flash of wrong theme
+      (function () {
+        if (localStorage.getItem("ms-dark") === "1") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="ms-skip-link">Skip to content</a>
 
-<div class="ms-progress" aria-hidden="true"><div class="ms-progress-bar" id="ms-progress-bar"></div></div>
-<div class="ms-overlay" id="ms-overlay"></div>
-
-<div class="ms-layout">
-
-  <aside class="ms-sidebar" id="ms-sidebar" aria-label="Site navigation">
-    <div class="ms-sidebar-header">
-      <a href="../../index.html" class="ms-brand">
-        Complete Mastery System
-        <span>by Shiva Krishna K</span>
-      </a>
-      <button class="ms-sidebar-close" id="ms-sidebar-close" aria-label="Close navigation">✕</button>
+    <div class="ms-progress" aria-hidden="true">
+      <div class="ms-progress-bar" id="ms-progress-bar"></div>
     </div>
-    <div class="ms-sidebar-search">
-      <span class="ms-search-icon">⌕</span>
-      <input type="search" id="ms-search" placeholder="Search sections…" aria-label="Search sections">
+    <div class="ms-overlay" id="ms-overlay"></div>
+
+    <div class="ms-layout">
+      <aside class="ms-sidebar" id="ms-sidebar" aria-label="Site navigation">
+        <div class="ms-sidebar-header">
+          <a href="../../index.html" class="ms-brand">
+            Complete Mastery System
+            <span>by Shiva Krishna K</span>
+          </a>
+          <button
+            class="ms-sidebar-close"
+            id="ms-sidebar-close"
+            aria-label="Close navigation"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="ms-sidebar-search">
+          <span class="ms-search-icon">⌕</span>
+          <input
+            type="search"
+            id="ms-search"
+            placeholder="Search sections…"
+            aria-label="Search sections"
+          />
+        </div>
+        <nav class="ms-toc" aria-label="Page sections">
+          <span class="ms-nav-label">Resources</span>
+          <a href="#s41" class="ms-nav-item sub">41. Book Recommendations</a>
+          <a href="#s42" class="ms-nav-item sub">42. Tools &amp; Apps</a>
+          <a href="#s43" class="ms-nav-item sub">43. YouTube &amp; Podcasts</a>
+          <a href="#s44" class="ms-nav-item sub">44. Websites &amp; Courses</a>
+          <a href="#s45" class="ms-nav-item sub">45. Anki Deck Starters</a>
+          <a href="#s46" class="ms-nav-item sub">46. Glossary of Terms</a>
+          <a href="#s47" class="ms-nav-item sub">47. 12 Principles to Pin Up</a>
+          <a href="#s48" class="ms-nav-item sub">48. Expected Timeline</a>
+          <a href="#s49" class="ms-nav-item sub"
+            >49. How to Read This Document</a
+          >
+        </nav>
+        <div style="border-top: 1px solid var(--border); padding: 0.5rem 0">
+          <span class="ms-nav-label">All Parts</span>
+          <a href="part1.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part I — The Science</a
+          >
+          <a href="part2a.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part II — Voice &amp; Fluency
+            (§3–6)</a
+          >
+          <a href="part2b.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part II — Thinking &amp; Comm
+            (§7–16)</a
+          >
+          <a href="part2c.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part II — Advanced Skills
+            (§17–27)</a
+          >
+          <a href="part3-4.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part III &amp; IV — Drills &amp;
+            Plan</a
+          >
+          <a href="part5.html" class="ms-nav-item active"
+            ><span class="ms-nav-dot"></span>Part V — Resources</a
+          >
+          <a href="90day-plan.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>90-Day Action Plan ↗</a
+          >
+        </div>
+        <div class="ms-sidebar-footer">
+          <a href="../../index.html">← All pages</a>
+        </div>
+      </aside>
+
+      <main class="ms-main" id="main-content">
+        <header class="ms-topbar">
+          <div class="ms-topbar-left">
+            <button
+              class="ms-hamburger"
+              id="ms-hamburger"
+              aria-label="Open navigation"
+              aria-expanded="false"
+              aria-controls="ms-sidebar"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <span class="ms-badge sage">Part V</span>
+            <span class="ms-topbar-title">Resources &amp; Reference</span>
+          </div>
+          <div class="ms-topbar-right">
+            <span
+              id="ms-reading-time"
+              style="font-size: 11px; color: var(--text3)"
+            ></span>
+            <button
+              class="ms-icon-btn"
+              id="ms-dark-btn"
+              aria-label="Toggle dark mode"
+            ></button>
+          </div>
+        </header>
+
+        <div class="ms-content">
+          <div class="ms-hero">
+            <div class="ms-hero-eyebrow" style="color: var(--sage)">
+              <span class="ms-badge sage">Part V</span> Resources
+            </div>
+            <h1>Resources, Tools &amp; Reference</h1>
+            <p class="ms-hero-sub">
+              Books, apps, the Anki starter deck, a glossary of every framework
+              name, and the 12 principles worth printing and pinning to your
+              wall.
+            </p>
+          </div>
+
+          <nav class="ms-part-nav" aria-label="Navigate parts">
+            <a href="part1.html" class="ms-part-pill">I · Science</a>
+            <a href="part2a.html" class="ms-part-pill"
+              >II · Voice &amp; Fluency</a
+            >
+            <a href="part2b.html" class="ms-part-pill"
+              >II · Thinking &amp; Comm</a
+            >
+            <a href="part2c.html" class="ms-part-pill">II · Advanced</a>
+            <a href="part3-4.html" class="ms-part-pill"
+              >III–IV · Drills &amp; Plan</a
+            >
+            <a href="part5.html" class="ms-part-pill active">V · Resources</a>
+          </nav>
+
+          <div class="ms-section" id="s41">
+            <h2>
+              <span class="ms-section-num">§41</span>Book Recommendations by
+              Category
+            </h2>
+
+            <h3>Communication &amp; Speaking</h3>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Talk Like TED</strong></td>
+                    <td>Carmine Gallo</td>
+                    <td>
+                      Deconstructs what makes TED talks effective — structure,
+                      delivery, story
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Made to Stick</strong></td>
+                    <td>Chip &amp; Dan Heath</td>
+                    <td>
+                      Why some ideas survive and others die — the SUCCESS
+                      framework
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Words That Work</strong></td>
+                    <td>Frank Luntz</td>
+                    <td>
+                      How specific word choice changes perception and persuasion
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>The Pyramid Principle</strong></td>
+                    <td>Barbara Minto</td>
+                    <td>
+                      The original McKinsey structured communication method
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Learning &amp; Memory</h3>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Make It Stick</strong></td>
+                    <td>Brown, Roediger, McDaniel</td>
+                    <td>
+                      The definitive research-backed guide to effective learning
+                      — source of §1.3
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Moonwalking with Einstein</strong></td>
+                    <td>Joshua Foer</td>
+                    <td>Memory techniques and the science of expertise</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ultralearning</strong></td>
+                    <td>Scott Young</td>
+                    <td>Systematic approach to rapid skill acquisition</td>
+                  </tr>
+                  <tr>
+                    <td><strong>A Mind for Numbers</strong></td>
+                    <td>Barbara Oakley</td>
+                    <td>
+                      How learning actually works in the brain — focused/diffuse
+                      modes
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Thinking &amp; Mental Models</h3>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Thinking, Fast and Slow</strong></td>
+                    <td>Daniel Kahneman</td>
+                    <td>
+                      The foundational text on cognitive biases and System 1/2
+                      thinking
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Poor Charlie's Almanack</strong></td>
+                    <td>Charlie Munger</td>
+                    <td>
+                      The source of the "latticework of mental models" concept
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>The Great Mental Models (Vol. 1–3)</strong></td>
+                    <td>Shane Parrish (Farnam Street)</td>
+                    <td>
+                      The most accessible compilation of the models in §11
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Superforecasting</strong></td>
+                    <td>Tetlock &amp; Gardner</td>
+                    <td>
+                      How to think probabilistically and calibrate judgment
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Habits &amp; Behaviour</h3>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Atomic Habits</strong></td>
+                    <td>James Clear</td>
+                    <td>
+                      The most practical, actionable habit-formation book —
+                      source of §26
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Deep Work</strong></td>
+                    <td>Cal Newport</td>
+                    <td>
+                      The case for and method of focused, distraction-free work
+                      — source of §20
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>The Power of Full Engagement</strong></td>
+                    <td>Loehr &amp; Schwartz</td>
+                    <td>Energy management over time management</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Philosophy &amp; Mindset</h3>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Meditations</strong></td>
+                    <td>Marcus Aurelius</td>
+                    <td>The primary source for Stoic practice — §21</td>
+                  </tr>
+                  <tr>
+                    <td><strong>The Obstacle Is the Way</strong></td>
+                    <td>Ryan Holiday</td>
+                    <td>Modern, accessible application of Stoic principles</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Man's Search for Meaning</strong></td>
+                    <td>Viktor Frankl</td>
+                    <td>
+                      The stimulus-response gap — source of the §21.4 quote
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s42">
+            <h2><span class="ms-section-num">§42</span>Tools &amp; Apps</h2>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Tool</th>
+                    <th>Use case</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Anki</strong></td>
+                    <td>
+                      Spaced repetition — the core retention engine (§9.3)
+                    </td>
+                    <td>Free (desktop), one-time (iOS)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Youglish.com</strong></td>
+                    <td>Pronunciation in context across real videos (§4.1)</td>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Obsidian</strong></td>
+                    <td>Zettelkasten-style linked note-taking (§9.2)</td>
+                    <td>Free</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Otter.ai</strong></td>
+                    <td>Transcribe your recordings to text for review</td>
+                    <td>Free tier available</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Voice Memos / Phone recorder</strong></td>
+                    <td>Daily and milestone recordings (§31, §39)</td>
+                    <td>Free (built-in)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Elsa Speak</strong></td>
+                    <td>AI pronunciation feedback app</td>
+                    <td>Freemium</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Grammarly</strong></td>
+                    <td>Writing clarity and grammar checking</td>
+                    <td>Free tier available</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hemingway Editor</strong></td>
+                    <td>Simplify and clarify written communication</td>
+                    <td>Free (web)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s43">
+            <h2>
+              <span class="ms-section-num">§43</span>YouTube Channels &amp;
+              Podcasts
+            </h2>
+            <h3>For Shadowing Practice (§4.5)</h3>
+            <ul>
+              <li>
+                <strong>TED / TED-Ed</strong> — clear, well-structured 5–18 min
+                talks, ideal length
+              </li>
+              <li>
+                <strong>NPR's "How I Built This"</strong> — natural
+                conversational American English
+              </li>
+              <li>
+                <strong>BBC Global News Podcast</strong> — British accent, news
+                register
+              </li>
+            </ul>
+            <h3>For Mental Models &amp; Thinking</h3>
+            <ul>
+              <li>
+                <strong>Farnam Street (Shane Parrish)</strong> — mental models,
+                decision-making
+              </li>
+              <li>
+                <strong>Naval Ravikant's podcast appearances</strong> — search
+                "Naval Ravikant" on any major podcast
+              </li>
+              <li>
+                <strong>Lex Fridman Podcast</strong> — long-form deep
+                conversations across disciplines
+              </li>
+            </ul>
+            <h3>For Communication Skill</h3>
+            <ul>
+              <li>
+                <strong>Vinh Giang (YouTube)</strong> — vocal variety and public
+                speaking specifically
+              </li>
+              <li>
+                <strong>Charisma on Command</strong> — body language and
+                presence breakdowns
+              </li>
+            </ul>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s44">
+            <h2>
+              <span class="ms-section-num">§44</span>Websites &amp; Courses
+            </h2>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Resource</th>
+                    <th>What it offers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Farnam Street (fs.blog)</strong></td>
+                    <td>
+                      The deepest free resource on mental models and
+                      decision-making
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Youglish.com</strong></td>
+                    <td>Pronunciation in natural spoken context</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Coursera — "Learning How to Learn"</strong></td>
+                    <td>
+                      Barbara Oakley's research-based course on learning science
+                      (free to audit)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Toastmasters International</strong></td>
+                    <td>
+                      Structured, low-stakes public speaking practice with real
+                      feedback — strongly recommended for Phase 3
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s45">
+            <h2>
+              <span class="ms-section-num">§45</span>Anki Deck Starters — Copy
+              These Cards
+            </h2>
+            <p>
+              Front / Back format. Copy these directly into Anki to start your
+              Tier 1 deck.
+            </p>
+
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Front</th>
+                    <th>Back</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>What is PREP?</td>
+                    <td>
+                      Point → Reason → Example → Point. Best for meetings,
+                      Q&amp;A, standups.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is the Pyramid Principle?</td>
+                    <td>
+                      Conclusion first, then 2–3 supporting arguments, then
+                      data. For email/written comms.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is First Principles thinking?</td>
+                    <td>
+                      Break a problem to fundamental truths; reason upward
+                      instead of by analogy.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is Inversion?</td>
+                    <td>
+                      Ask how to guarantee failure, then avoid those things.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is Second-Order Thinking?</td>
+                    <td>
+                      Ask what happens next — and then what happens after that.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is the Two-Day Rule?</td>
+                    <td>
+                      Never miss a habit twice in a row. One miss is an
+                      accident; two is a new habit forming.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is the Feynman Technique?</td>
+                    <td>
+                      Explain a concept simply as if to a 12-year-old; gaps in
+                      your explanation reveal gaps in understanding.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is RASA?</td>
+                    <td>
+                      Receive, Appreciate, Summarize, Ask — active listening
+                      framework.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is SBI feedback?</td>
+                    <td>
+                      Situation → Behaviour → Impact. Specific, non-judgmental
+                      feedback structure.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>What is the dichotomy of control?</td>
+                    <td>
+                      Stoic principle: separate what's in your control
+                      (thoughts, actions) from what isn't (outcomes, others'
+                      opinions). Focus only on the former.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s46">
+            <h2>
+              <span class="ms-section-num">§46</span>Glossary of Frameworks
+              &amp; Terms
+            </h2>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Term</th>
+                    <th>Section</th>
+                    <th>One-line definition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>PREP</td>
+                    <td>§6.1</td>
+                    <td>
+                      Point–Reason–Example–Point structure for quick responses
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Pyramid Principle</td>
+                    <td>§6.2</td>
+                    <td>Conclusion-first written communication structure</td>
+                  </tr>
+                  <tr>
+                    <td>STAR</td>
+                    <td>§6.6</td>
+                    <td>
+                      Situation–Task–Action–Result for professional anecdotes
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>BLUF</td>
+                    <td>§12.1</td>
+                    <td>
+                      Bottom Line Up Front — military-derived email structure
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SBI</td>
+                    <td>§12.3</td>
+                    <td>Situation–Behaviour–Impact feedback model</td>
+                  </tr>
+                  <tr>
+                    <td>LEARN</td>
+                    <td>§12.4</td>
+                    <td>
+                      Listen–Empathize–Ask–Respond–Next steps for receiving
+                      feedback
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RASA</td>
+                    <td>§14.5</td>
+                    <td>
+                      Receive–Appreciate–Summarize–Ask active listening model
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>AREA</td>
+                    <td>§7.6</td>
+                    <td>
+                      Acknowledge–Reframe–Explain–Ask back for Q&amp;A handling
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DESC</td>
+                    <td>§15.9, §23.7</td>
+                    <td>
+                      Describe–Express–Specify–Consequences for conflict
+                      resolution
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>GROW</td>
+                    <td>§23.6</td>
+                    <td>Goal–Reality–Options–Will coaching framework</td>
+                  </tr>
+                  <tr>
+                    <td>SCAMPER</td>
+                    <td>§22.3</td>
+                    <td>
+                      Substitute–Combine–Adapt–Modify–Put to other
+                      uses–Eliminate–Reverse
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4-3-2 Technique</td>
+                    <td>§5.3</td>
+                    <td>
+                      Same topic spoken at decreasing time limits to build
+                      fluency
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MVD</td>
+                    <td>§40</td>
+                    <td>
+                      Minimum Viable Day — the 8-minute non-negotiable practice
+                      floor
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s47">
+            <h2>
+              <span class="ms-section-num">§47</span>12 Principles to Pin on
+              Your Wall
+            </h2>
+            <div class="ms-model-grid">
+              <div class="ms-model-card">
+                <div class="ms-model-num">01</div>
+                <div class="ms-model-name">Systems beat motivation</div>
+                <div class="ms-model-def">
+                  Build the system, protect the system, let the system build
+                  you.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">02</div>
+                <div class="ms-model-name">Never miss twice</div>
+                <div class="ms-model-def">
+                  One miss is an accident. Two is a new habit forming.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">03</div>
+                <div class="ms-model-name">Retrieval beats re-reading</div>
+                <div class="ms-model-def">
+                  Closing the book and recalling is worth more than ten
+                  re-reads.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">04</div>
+                <div class="ms-model-name">If you can't explain it simply…</div>
+                <div class="ms-model-def">
+                  …you don't understand it well enough. — Feynman
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">05</div>
+                <div class="ms-model-name">Conclusion first, always</div>
+                <div class="ms-model-def">
+                  Pyramid Principle. Busy people want the answer before the
+                  reasoning.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">06</div>
+                <div class="ms-model-name">
+                  The pause is a tool, not a failure
+                </div>
+                <div class="ms-model-def">
+                  Silence sounds confident. "Um" sounds uncertain.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">07</div>
+                <div class="ms-model-name">Invert the problem</div>
+                <div class="ms-model-def">
+                  How would I guarantee failure? Now avoid those things.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">08</div>
+                <div class="ms-model-name">
+                  Focus only on what's in your control
+                </div>
+                <div class="ms-model-def">
+                  The dichotomy of control. Release the rest.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">09</div>
+                <div class="ms-model-name">Apply within 48 hours</div>
+                <div class="ms-model-def">
+                  Knowledge becomes skill only through real application, fast.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">10</div>
+                <div class="ms-model-name">Identity, not outcome</div>
+                <div class="ms-model-def">
+                  "I am someone who practises daily" beats "I want to get
+                  better."
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">11</div>
+                <div class="ms-model-name">Compare only to your past self</div>
+                <div class="ms-model-def">
+                  Progress is measured against Day 1, never against anyone else.
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">12</div>
+                <div class="ms-model-name">You will not feel it day by day</div>
+                <div class="ms-model-def">
+                  Then one day, you will notice you already are.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s48">
+            <h2>
+              <span class="ms-section-num">§48</span>Expected Timeline of
+              Results
+            </h2>
+            <div class="ms-timeline">
+              <div class="ms-timeline-item">
+                <strong>Week 1–2</strong> — No visible change yet. This is
+                normal. You're building retrieval pathways that don't show
+                external results immediately.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Week 3–4</strong> — You start noticing your own fillers
+                more (awareness precedes elimination). Voice warm-up feels
+                automatic.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Week 5–8</strong> — Frameworks (PREP, Pyramid) start
+                appearing naturally in real meetings without conscious effort.
+                First visible changes in recordings.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Week 9–12</strong> — Brain freeze frequency drops
+                noticeably. Colleagues may comment on clearer communication.
+                Identity shift solidifies — you start to think of yourself
+                differently.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Month 4–6</strong> — Genuinely different communicator.
+                Frameworks are unconscious competence. Mental models actively
+                shape your decision-making, not just your speaking.
+              </div>
+            </div>
+            <div class="ms-callout">
+              <strong>The honest caveat:</strong> This timeline assumes
+              consistent practice at 80%+ adherence. Results compound — Month 6
+              is not 2× Month 3, it's closer to 5–6× because retrieval pathways
+              strengthen non-linearly with repetition.
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s49">
+            <h2>
+              <span class="ms-section-num">§49</span>How to Read This Document
+            </h2>
+            <p>
+              This system has 49 sections across 5 parts and is intentionally
+              comprehensive — built as a permanent reference, not a single
+              read-through. Here is how to actually use it without being
+              overwhelmed:
+            </p>
+            <ol class="ms-steps">
+              <li>
+                <strong>Read Part I once</strong> — understand the science. This
+                explains why everything else works.
+              </li>
+              <li>
+                <strong>Don't read Part II linearly</strong> — it's a reference.
+                Pull one section at a time, matched to your current week in the
+                90-day plan.
+              </li>
+              <li>
+                <strong>Use Part III as a drill lookup</strong> — when you need
+                a specific exercise, find it here.
+              </li>
+              <li>
+                <strong>Follow Part IV as your operating system</strong> — the
+                day-by-day, week-by-week structure that tells you exactly what
+                to do today.
+              </li>
+              <li>
+                <strong>Return to Part V when you need a resource</strong> — a
+                book, a tool, an Anki card, or a reminder of the core
+                principles.
+              </li>
+            </ol>
+            <div class="ms-callout teal">
+              <strong>The golden rule:</strong> One doc section per week. The
+              rest of the document is context, not today's job. Close the doc
+              when you're done reading your section — open it again next week.
+            </div>
+          </div>
+
+          <div style="text-align: center; padding: 2rem 0; margin-top: 1rem">
+            <a
+              href="90day-plan.html"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 15px;
+                font-weight: 600;
+                color: #fff;
+                background: var(--indigo);
+                text-decoration: none;
+                padding: 12px 28px;
+                border-radius: var(--radius-lg);
+                box-shadow: 0 4px 16px rgba(74, 67, 204, 0.25);
+              "
+            >
+              Go to your 90-Day Action Plan →
+            </a>
+          </div>
+
+          <div class="ms-page-nav">
+            <a href="part3-4.html" class="ms-page-nav-prev"
+              >← Part III &amp; IV · Drills &amp; Plan</a
+            >
+            <a href="90day-plan.html" class="ms-page-nav-next"
+              >90-Day Action Plan →</a
+            >
+          </div>
+        </div>
+
+        <!-- Mobile bottom nav -->
+        <nav class="ms-bottom-nav" aria-label="Mobile navigation">
+          <button
+            class="ms-bottom-nav-item"
+            data-action="menu"
+            aria-label="Open menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+            <span>Menu</span>
+          </button>
+          <a
+            class="ms-bottom-nav-item"
+            href="../../index.html"
+            aria-label="Home"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span>Home</span>
+          </a>
+          <button
+            class="ms-bottom-nav-item"
+            data-action="top"
+            aria-label="Back to top"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+            <span>Top</span>
+          </button>
+          <button
+            class="ms-bottom-nav-item"
+            data-action="dark"
+            aria-label="Toggle dark mode"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <span>Dark</span>
+          </button>
+        </nav>
+      </main>
     </div>
-    <nav class="ms-toc" aria-label="Page sections">
-      <span class="ms-nav-label">Resources</span>
-      <a href="#s41" class="ms-nav-item sub">41. Book Recommendations</a>
-      <a href="#s42" class="ms-nav-item sub">42. Tools &amp; Apps</a>
-      <a href="#s43" class="ms-nav-item sub">43. YouTube &amp; Podcasts</a>
-      <a href="#s44" class="ms-nav-item sub">44. Websites &amp; Courses</a>
-      <a href="#s45" class="ms-nav-item sub">45. Anki Deck Starters</a>
-      <a href="#s46" class="ms-nav-item sub">46. Glossary of Terms</a>
-      <a href="#s47" class="ms-nav-item sub">47. 12 Principles to Pin Up</a>
-      <a href="#s48" class="ms-nav-item sub">48. Expected Timeline</a>
-      <a href="#s49" class="ms-nav-item sub">49. How to Read This Document</a>
-    </nav>
-    <div style="border-top:1px solid var(--border);padding:0.5rem 0">
-      <span class="ms-nav-label">All Parts</span>
-      <a href="part1.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part I — The Science</a>      <a href="part2a.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part II — Voice &amp; Fluency (§3–6)</a>      <a href="part2b.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part II — Thinking &amp; Comm (§7–16)</a>      <a href="part2c.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part II — Advanced Skills (§17–27)</a>      <a href="part3-4.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part III &amp; IV — Drills &amp; Plan</a>      <a href="part5.html" class="ms-nav-item active"><span class="ms-nav-dot"></span>Part V — Resources</a>      <a href="90day-plan.html" class="ms-nav-item"><span class="ms-nav-dot"></span>90-Day Action Plan ↗</a>
-    </div>
-    <div class="ms-sidebar-footer">
-      <a href="../../index.html">← All pages</a>
-    </div>
-  </aside>
-
-  <main class="ms-main" id="main-content">
-  <header class="ms-topbar">
-    <div class="ms-topbar-left">
-      <button class="ms-hamburger" id="ms-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="ms-sidebar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <span class="ms-badge sage">Part V</span>
-      <span class="ms-topbar-title">Resources &amp; Reference</span>
-    </div>
-    <div class="ms-topbar-right">
-      <span id="ms-reading-time" style="font-size:11px;color:var(--text3)"></span>
-      <button class="ms-icon-btn" id="ms-dark-btn" aria-label="Toggle dark mode"></button>
-    </div>
-  </header>
-
-    <div class="ms-content">
-
-    <div class="ms-hero">
-      <div class="ms-hero-eyebrow" style="color:var(--sage)">
-        <span class="ms-badge sage">Part V</span> Resources
-      </div>
-      <h1>Resources, Tools &amp; Reference</h1>
-      <p class="ms-hero-sub">Books, apps, the Anki starter deck, a glossary of every framework name, and the 12 principles worth printing and pinning to your wall.</p>
-    </div>
-
-        <nav class="ms-part-nav" aria-label="Navigate parts">
-      <a href="part1.html" class="ms-part-pill">I · Science</a>
-      <a href="part2a.html" class="ms-part-pill">II · Voice &amp; Fluency</a>
-      <a href="part2b.html" class="ms-part-pill">II · Thinking &amp; Comm</a>
-      <a href="part2c.html" class="ms-part-pill">II · Advanced</a>
-      <a href="part3-4.html" class="ms-part-pill">III–IV · Drills &amp; Plan</a>
-      <a href="part5.html" class="ms-part-pill active">V · Resources</a>
-    </nav>
-
-    <div class="ms-section" id="s41">
-      <h2><span class="ms-section-num">§41</span>Book Recommendations by Category</h2>
-
-      <h3>Communication &amp; Speaking</h3>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Book</th><th>Author</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Talk Like TED</strong></td><td>Carmine Gallo</td><td>Deconstructs what makes TED talks effective — structure, delivery, story</td></tr>
-            <tr><td><strong>Made to Stick</strong></td><td>Chip &amp; Dan Heath</td><td>Why some ideas survive and others die — the SUCCESS framework</td></tr>
-            <tr><td><strong>Words That Work</strong></td><td>Frank Luntz</td><td>How specific word choice changes perception and persuasion</td></tr>
-            <tr><td><strong>The Pyramid Principle</strong></td><td>Barbara Minto</td><td>The original McKinsey structured communication method</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Learning &amp; Memory</h3>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Book</th><th>Author</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Make It Stick</strong></td><td>Brown, Roediger, McDaniel</td><td>The definitive research-backed guide to effective learning — source of §1.3</td></tr>
-            <tr><td><strong>Moonwalking with Einstein</strong></td><td>Joshua Foer</td><td>Memory techniques and the science of expertise</td></tr>
-            <tr><td><strong>Ultralearning</strong></td><td>Scott Young</td><td>Systematic approach to rapid skill acquisition</td></tr>
-            <tr><td><strong>A Mind for Numbers</strong></td><td>Barbara Oakley</td><td>How learning actually works in the brain — focused/diffuse modes</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Thinking &amp; Mental Models</h3>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Book</th><th>Author</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Thinking, Fast and Slow</strong></td><td>Daniel Kahneman</td><td>The foundational text on cognitive biases and System 1/2 thinking</td></tr>
-            <tr><td><strong>Poor Charlie's Almanack</strong></td><td>Charlie Munger</td><td>The source of the "latticework of mental models" concept</td></tr>
-            <tr><td><strong>The Great Mental Models (Vol. 1–3)</strong></td><td>Shane Parrish (Farnam Street)</td><td>The most accessible compilation of the models in §11</td></tr>
-            <tr><td><strong>Superforecasting</strong></td><td>Tetlock &amp; Gardner</td><td>How to think probabilistically and calibrate judgment</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Habits &amp; Behaviour</h3>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Book</th><th>Author</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Atomic Habits</strong></td><td>James Clear</td><td>The most practical, actionable habit-formation book — source of §26</td></tr>
-            <tr><td><strong>Deep Work</strong></td><td>Cal Newport</td><td>The case for and method of focused, distraction-free work — source of §20</td></tr>
-            <tr><td><strong>The Power of Full Engagement</strong></td><td>Loehr &amp; Schwartz</td><td>Energy management over time management</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>Philosophy &amp; Mindset</h3>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Book</th><th>Author</th><th>Why</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Meditations</strong></td><td>Marcus Aurelius</td><td>The primary source for Stoic practice — §21</td></tr>
-            <tr><td><strong>The Obstacle Is the Way</strong></td><td>Ryan Holiday</td><td>Modern, accessible application of Stoic principles</td></tr>
-            <tr><td><strong>Man's Search for Meaning</strong></td><td>Viktor Frankl</td><td>The stimulus-response gap — source of the §21.4 quote</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s42">
-      <h2><span class="ms-section-num">§42</span>Tools &amp; Apps</h2>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Tool</th><th>Use case</th><th>Cost</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Anki</strong></td><td>Spaced repetition — the core retention engine (§9.3)</td><td>Free (desktop), one-time (iOS)</td></tr>
-            <tr><td><strong>Youglish.com</strong></td><td>Pronunciation in context across real videos (§4.1)</td><td>Free</td></tr>
-            <tr><td><strong>Obsidian</strong></td><td>Zettelkasten-style linked note-taking (§9.2)</td><td>Free</td></tr>
-            <tr><td><strong>Otter.ai</strong></td><td>Transcribe your recordings to text for review</td><td>Free tier available</td></tr>
-            <tr><td><strong>Voice Memos / Phone recorder</strong></td><td>Daily and milestone recordings (§31, §39)</td><td>Free (built-in)</td></tr>
-            <tr><td><strong>Elsa Speak</strong></td><td>AI pronunciation feedback app</td><td>Freemium</td></tr>
-            <tr><td><strong>Grammarly</strong></td><td>Writing clarity and grammar checking</td><td>Free tier available</td></tr>
-            <tr><td><strong>Hemingway Editor</strong></td><td>Simplify and clarify written communication</td><td>Free (web)</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s43">
-      <h2><span class="ms-section-num">§43</span>YouTube Channels &amp; Podcasts</h2>
-      <h3>For Shadowing Practice (§4.5)</h3>
-      <ul>
-        <li><strong>TED / TED-Ed</strong> — clear, well-structured 5–18 min talks, ideal length</li>
-        <li><strong>NPR's "How I Built This"</strong> — natural conversational American English</li>
-        <li><strong>BBC Global News Podcast</strong> — British accent, news register</li>
-      </ul>
-      <h3>For Mental Models &amp; Thinking</h3>
-      <ul>
-        <li><strong>Farnam Street (Shane Parrish)</strong> — mental models, decision-making</li>
-        <li><strong>Naval Ravikant's podcast appearances</strong> — search "Naval Ravikant" on any major podcast</li>
-        <li><strong>Lex Fridman Podcast</strong> — long-form deep conversations across disciplines</li>
-      </ul>
-      <h3>For Communication Skill</h3>
-      <ul>
-        <li><strong>Vinh Giang (YouTube)</strong> — vocal variety and public speaking specifically</li>
-        <li><strong>Charisma on Command</strong> — body language and presence breakdowns</li>
-      </ul>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s44">
-      <h2><span class="ms-section-num">§44</span>Websites &amp; Courses</h2>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Resource</th><th>What it offers</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Farnam Street (fs.blog)</strong></td><td>The deepest free resource on mental models and decision-making</td></tr>
-            <tr><td><strong>Youglish.com</strong></td><td>Pronunciation in natural spoken context</td></tr>
-            <tr><td><strong>Coursera — "Learning How to Learn"</strong></td><td>Barbara Oakley's research-based course on learning science (free to audit)</td></tr>
-            <tr><td><strong>Toastmasters International</strong></td><td>Structured, low-stakes public speaking practice with real feedback — strongly recommended for Phase 3</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s45">
-      <h2><span class="ms-section-num">§45</span>Anki Deck Starters — Copy These Cards</h2>
-      <p>Front / Back format. Copy these directly into Anki to start your Tier 1 deck.</p>
-
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Front</th><th>Back</th></tr></thead>
-          <tbody>
-            <tr><td>What is PREP?</td><td>Point → Reason → Example → Point. Best for meetings, Q&amp;A, standups.</td></tr>
-            <tr><td>What is the Pyramid Principle?</td><td>Conclusion first, then 2–3 supporting arguments, then data. For email/written comms.</td></tr>
-            <tr><td>What is First Principles thinking?</td><td>Break a problem to fundamental truths; reason upward instead of by analogy.</td></tr>
-            <tr><td>What is Inversion?</td><td>Ask how to guarantee failure, then avoid those things.</td></tr>
-            <tr><td>What is Second-Order Thinking?</td><td>Ask what happens next — and then what happens after that.</td></tr>
-            <tr><td>What is the Two-Day Rule?</td><td>Never miss a habit twice in a row. One miss is an accident; two is a new habit forming.</td></tr>
-            <tr><td>What is the Feynman Technique?</td><td>Explain a concept simply as if to a 12-year-old; gaps in your explanation reveal gaps in understanding.</td></tr>
-            <tr><td>What is RASA?</td><td>Receive, Appreciate, Summarize, Ask — active listening framework.</td></tr>
-            <tr><td>What is SBI feedback?</td><td>Situation → Behaviour → Impact. Specific, non-judgmental feedback structure.</td></tr>
-            <tr><td>What is the dichotomy of control?</td><td>Stoic principle: separate what's in your control (thoughts, actions) from what isn't (outcomes, others' opinions). Focus only on the former.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s46">
-      <h2><span class="ms-section-num">§46</span>Glossary of Frameworks &amp; Terms</h2>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Term</th><th>Section</th><th>One-line definition</th></tr></thead>
-          <tbody>
-            <tr><td>PREP</td><td>§6.1</td><td>Point–Reason–Example–Point structure for quick responses</td></tr>
-            <tr><td>Pyramid Principle</td><td>§6.2</td><td>Conclusion-first written communication structure</td></tr>
-            <tr><td>STAR</td><td>§6.6</td><td>Situation–Task–Action–Result for professional anecdotes</td></tr>
-            <tr><td>BLUF</td><td>§12.1</td><td>Bottom Line Up Front — military-derived email structure</td></tr>
-            <tr><td>SBI</td><td>§12.3</td><td>Situation–Behaviour–Impact feedback model</td></tr>
-            <tr><td>LEARN</td><td>§12.4</td><td>Listen–Empathize–Ask–Respond–Next steps for receiving feedback</td></tr>
-            <tr><td>RASA</td><td>§14.5</td><td>Receive–Appreciate–Summarize–Ask active listening model</td></tr>
-            <tr><td>AREA</td><td>§7.6</td><td>Acknowledge–Reframe–Explain–Ask back for Q&amp;A handling</td></tr>
-            <tr><td>DESC</td><td>§15.9, §23.7</td><td>Describe–Express–Specify–Consequences for conflict resolution</td></tr>
-            <tr><td>GROW</td><td>§23.6</td><td>Goal–Reality–Options–Will coaching framework</td></tr>
-            <tr><td>SCAMPER</td><td>§22.3</td><td>Substitute–Combine–Adapt–Modify–Put to other uses–Eliminate–Reverse</td></tr>
-            <tr><td>4-3-2 Technique</td><td>§5.3</td><td>Same topic spoken at decreasing time limits to build fluency</td></tr>
-            <tr><td>MVD</td><td>§40</td><td>Minimum Viable Day — the 8-minute non-negotiable practice floor</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s47">
-      <h2><span class="ms-section-num">§47</span>12 Principles to Pin on Your Wall</h2>
-      <div class="ms-model-grid">
-        <div class="ms-model-card"><div class="ms-model-num">01</div><div class="ms-model-name">Systems beat motivation</div><div class="ms-model-def">Build the system, protect the system, let the system build you.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">02</div><div class="ms-model-name">Never miss twice</div><div class="ms-model-def">One miss is an accident. Two is a new habit forming.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">03</div><div class="ms-model-name">Retrieval beats re-reading</div><div class="ms-model-def">Closing the book and recalling is worth more than ten re-reads.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">04</div><div class="ms-model-name">If you can't explain it simply…</div><div class="ms-model-def">…you don't understand it well enough. — Feynman</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">05</div><div class="ms-model-name">Conclusion first, always</div><div class="ms-model-def">Pyramid Principle. Busy people want the answer before the reasoning.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">06</div><div class="ms-model-name">The pause is a tool, not a failure</div><div class="ms-model-def">Silence sounds confident. "Um" sounds uncertain.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">07</div><div class="ms-model-name">Invert the problem</div><div class="ms-model-def">How would I guarantee failure? Now avoid those things.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">08</div><div class="ms-model-name">Focus only on what's in your control</div><div class="ms-model-def">The dichotomy of control. Release the rest.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">09</div><div class="ms-model-name">Apply within 48 hours</div><div class="ms-model-def">Knowledge becomes skill only through real application, fast.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">10</div><div class="ms-model-name">Identity, not outcome</div><div class="ms-model-def">"I am someone who practises daily" beats "I want to get better."</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">11</div><div class="ms-model-name">Compare only to your past self</div><div class="ms-model-def">Progress is measured against Day 1, never against anyone else.</div></div>
-        <div class="ms-model-card"><div class="ms-model-num">12</div><div class="ms-model-name">You will not feel it day by day</div><div class="ms-model-def">Then one day, you will notice you already are.</div></div>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s48">
-      <h2><span class="ms-section-num">§48</span>Expected Timeline of Results</h2>
-      <div class="ms-timeline">
-        <div class="ms-timeline-item"><strong>Week 1–2</strong> — No visible change yet. This is normal. You're building retrieval pathways that don't show external results immediately.</div>
-        <div class="ms-timeline-item"><strong>Week 3–4</strong> — You start noticing your own fillers more (awareness precedes elimination). Voice warm-up feels automatic.</div>
-        <div class="ms-timeline-item"><strong>Week 5–8</strong> — Frameworks (PREP, Pyramid) start appearing naturally in real meetings without conscious effort. First visible changes in recordings.</div>
-        <div class="ms-timeline-item"><strong>Week 9–12</strong> — Brain freeze frequency drops noticeably. Colleagues may comment on clearer communication. Identity shift solidifies — you start to think of yourself differently.</div>
-        <div class="ms-timeline-item"><strong>Month 4–6</strong> — Genuinely different communicator. Frameworks are unconscious competence. Mental models actively shape your decision-making, not just your speaking.</div>
-      </div>
-      <div class="ms-callout">
-        <strong>The honest caveat:</strong> This timeline assumes consistent practice at 80%+ adherence. Results compound — Month 6 is not 2× Month 3, it's closer to 5–6× because retrieval pathways strengthen non-linearly with repetition.
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <div class="ms-section" id="s49">
-      <h2><span class="ms-section-num">§49</span>How to Read This Document</h2>
-      <p>This system has 49 sections across 5 parts and is intentionally comprehensive — built as a permanent reference, not a single read-through. Here is how to actually use it without being overwhelmed:</p>
-      <ol class="ms-steps">
-        <li><strong>Read Part I once</strong> — understand the science. This explains why everything else works.</li>
-        <li><strong>Don't read Part II linearly</strong> — it's a reference. Pull one section at a time, matched to your current week in the 90-day plan.</li>
-        <li><strong>Use Part III as a drill lookup</strong> — when you need a specific exercise, find it here.</li>
-        <li><strong>Follow Part IV as your operating system</strong> — the day-by-day, week-by-week structure that tells you exactly what to do today.</li>
-        <li><strong>Return to Part V when you need a resource</strong> — a book, a tool, an Anki card, or a reminder of the core principles.</li>
-      </ol>
-      <div class="ms-callout teal">
-        <strong>The golden rule:</strong> One doc section per week. The rest of the document is context, not today's job. Close the doc when you're done reading your section — open it again next week.
-      </div>
-    </div>
-
-    <div style="text-align:center;padding:2rem 0;margin-top:1rem">
-      <a href="90day-plan.html" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#fff;background:var(--indigo);text-decoration:none;padding:12px 28px;border-radius:var(--radius-lg);box-shadow:0 4px 16px rgba(74,67,204,0.25)">
-        Go to your 90-Day Action Plan →
-      </a>
-    </div>
-
-
-      <div class="ms-page-nav">
-        <a href="part3-4.html" class="ms-page-nav-prev">← Part III &amp; IV · Drills &amp; Plan</a>
-        <a href="90day-plan.html" class="ms-page-nav-next">90-Day Action Plan →</a>
-      </div>
-    </div>
-
-  <!-- Mobile bottom nav -->
-  <nav class="ms-bottom-nav" aria-label="Mobile navigation">
-    <button class="ms-bottom-nav-item" data-action="menu" aria-label="Open menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      <span>Menu</span>
-    </button>
-    <a class="ms-bottom-nav-item" href="../../index.html" aria-label="Home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Home</span>
-    </a>
-    <button class="ms-bottom-nav-item" data-action="top" aria-label="Back to top">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-      <span>Top</span>
-    </button>
-    <button class="ms-bottom-nav-item" data-action="dark" aria-label="Toggle dark mode">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <span>Dark</span>
-    </button>
-  </nav>
-  </main>
-
-</div><!-- /.ms-layout -->
-<script src="../../core/shell.js"></script>
-</body>
+    <!-- /.ms-layout -->
+    <script src="../../core/shell.js"></script>
+  </body>
 </html>

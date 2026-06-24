@@ -1,42 +1,33 @@
 {
-  "generated": "2026-06-20T17:23:39Z",
-  "count": 11,
+  "generated": "2026-06-23T12:50:35Z",
+  "count": 10,
   "pages": [
     {
       "title": "5-Day Workout Plan",
-      "description": "",
-      "category": "General",
-      "icon": "📄",
-      "order": 999,
-      "path": "pages/5day-workout-plan.html",
-      "modified": "2026-06-20"
-    },
-    {
-      "title": "90-Day Mastery Plan",
-      "description": "",
-      "category": "General",
-      "icon": "📄",
-      "order": 999,
-      "path": "pages/90day-mastery-plan.html",
-      "modified": "2026-06-20"
-    },
-    {
-      "title": "Mastery Consistency Analysis",
-      "description": "",
-      "category": "General",
-      "icon": "📄",
-      "order": 999,
-      "path": "pages/mastery-consistency-analysis.html",
-      "modified": "2026-06-20"
+      "description": "A 5-day upper/lower strength and conditioning plan for Cult Neo Gym Mallapur, with back-care built in and a full step-by-step exercise reference library.",
+      "category": "Fitness",
+      "icon": "🏋️",
+      "order": 1,
+      "path": "pages/fitness/workout-plan.html",
+      "modified": "2026-06-23"
     },
     {
       "title": "Sample Page",
-      "description": "",
+      "description": "A minimal page — the simplest starting point in this hub, built on init.js.",
       "category": "General",
       "icon": "📄",
       "order": 999,
-      "path": "pages/sample-page.html",
-      "modified": "2026-06-20"
+      "path": "pages/general/sample-page.html",
+      "modified": "2026-06-21"
+    },
+    {
+      "title": "How to Add a New Page or Project",
+      "description": "Step-by-step instructions for adding new pages and project groups to the knowledge hub, including troubleshooting a page with no styling applied.",
+      "category": "Guides",
+      "icon": "🧭",
+      "order": 1,
+      "path": "pages/guides/how-to-add-a-page.html",
+      "modified": "2026-06-21"
     },
     {
       "title": "Part I — The Science",

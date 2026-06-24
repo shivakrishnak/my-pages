@@ -8,8 +8,18 @@
 
   var sidebar, overlay, hamburger, closeBtn, searchInput, darkBtn, progressBar;
 
-  /* ── Init on DOM ready ── */
-  document.addEventListener("DOMContentLoaded", function () {
+  /* ── Init on DOM ready ──
+     shell.js can be loaded two ways:
+     1. A static <script src="shell.js"> in the original HTML — in
+        this case DOMContentLoaded hasn't fired yet, so the listener
+        below catches it normally.
+     2. Dynamically injected by core/init.js AFTER it builds the DOM
+        — in this case DOMContentLoaded already fired before this
+        script even started downloading, so the listener would never
+        run. The readyState check below covers that case by calling
+        initAll() immediately instead of waiting for an event that's
+        already in the past. */
+  function initAll() {
     sidebar = document.getElementById("ms-sidebar");
     overlay = document.getElementById("ms-overlay");
     hamburger = document.getElementById("ms-hamburger");
@@ -29,7 +39,16 @@
     initSmoothScroll();
     highlightCurrent();
     initBottomNav();
-  });
+  }
+
+  // If the document is still loading, wait for the normal event.
+  // If it's already past that point (dynamic load via init.js, or
+  // this script tag simply appears after the body), run right away.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
 
   /* ──────────── DARK MODE ──────────── */
   function initDark() {

@@ -1,0 +1,3699 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>5-Day Workout Plan</title>
+    <meta
+      name="description"
+      content="A 5-day upper/lower strength and conditioning plan for Cult Neo Gym Mallapur, with back-care built in and a full step-by-step exercise reference library."
+    />
+    <meta name="page-icon" content="🏋️" />
+    <meta name="page-category" content="Fitness" />
+    <meta name="page-order" content="1" />
+    <script src="../../core/init.js"></script>
+    <style>
+      /* Page-specific additions on top of shell.css.
+     Only things unique to this page live here: tab bar, day-progress
+     strip, exercise prescription grid, back-care flag styling, and
+     the new How-To exercise reference cards. */
+
+      /* ── Tab bar (day selector) ── */
+      .tab-bar {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 1.25rem 0 1rem;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+      }
+      .tab-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .tab {
+        flex-shrink: 0;
+        font-size: 12.5px;
+        font-weight: 500;
+        padding: 7px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border2);
+        background: var(--surface);
+        color: var(--text2);
+        cursor: pointer;
+        transition: all var(--dur);
+        white-space: nowrap;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+      }
+      .tab:hover {
+        border-color: var(--indigo-mid);
+        color: var(--indigo);
+      }
+      .tab.active {
+        background: var(--indigo);
+        color: #fff;
+        border-color: var(--indigo);
+        font-weight: 600;
+      }
+
+      /* ── Day views ── */
+      .day-view {
+        display: none;
+        animation: fadeUp 0.3s var(--ease) both;
+      }
+      .day-view.active {
+        display: block;
+      }
+
+      .day-meta {
+        display: flex;
+        gap: 16px;
+        font-size: 12px;
+        color: var(--text3);
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+      .day-meta b {
+        color: var(--text2);
+      }
+
+      .progress-strip {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 18px;
+      }
+      .progress-seg {
+        flex: 1;
+        height: 5px;
+        border-radius: 3px;
+        background: var(--bg3);
+      }
+      .progress-seg.warmup,
+      .progress-seg.cool {
+        background: var(--teal);
+        opacity: 0.45;
+      }
+      .progress-seg.prog-main {
+        background: var(--indigo);
+        opacity: 0.75;
+      }
+      .progress-seg.core {
+        background: var(--text3);
+        opacity: 0.45;
+      }
+
+      /* ── Exercise cards ── */
+      .exercise {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 0;
+        margin-bottom: 0.75rem;
+        overflow: hidden;
+      }
+      .check-row {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 1rem 1.1rem;
+        cursor: pointer;
+        transition: background var(--dur);
+      }
+      .check-row:hover {
+        background: var(--bg2);
+      }
+      .chk {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border2);
+        background: var(--bg2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+        transition: all var(--dur);
+      }
+      .chk.on {
+        background: var(--teal);
+        border-color: var(--teal);
+      }
+      .chk-icon {
+        display: none;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .chk.on .chk-icon {
+        display: block;
+      }
+
+      .ex-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .ex-name {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text1);
+        margin: 0;
+      }
+
+      .ex-prescription {
+        display: flex;
+        gap: 14px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+      .rx-item {
+        font-size: 12.5px;
+      }
+      .rx-item .rx-label {
+        color: var(--text3);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        display: block;
+        margin-bottom: 1px;
+      }
+      .rx-item .rx-val {
+        color: var(--text1);
+        font-weight: 600;
+      }
+
+      .ex-cue {
+        margin-top: 10px;
+        font-size: 12.5px;
+        color: var(--text2);
+        line-height: 1.65;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+      }
+      .ex-cue b {
+        color: var(--text1);
+      }
+      .ex-cue .swap {
+        display: block;
+        margin-top: 6px;
+        color: var(--text3);
+        font-size: 12px;
+      }
+      .ex-cue .swap b {
+        color: var(--teal);
+        font-weight: 600;
+      }
+
+      .back-flag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 8px;
+        font-size: 11.5px;
+        color: var(--coral);
+        background: var(--coral-lt);
+        padding: 5px 9px;
+        border-radius: 6px;
+      }
+
+      .howto-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 8px;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--indigo);
+        background: var(--indigo-lt);
+        padding: 5px 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all var(--dur);
+        cursor: pointer;
+        border: none;
+      }
+      .howto-link:hover {
+        background: var(--indigo);
+        color: #fff;
+      }
+      .howto-link::before {
+        content: "▶";
+        font-size: 8px;
+      }
+
+      .exercise.done {
+        opacity: 0.55;
+      }
+      .exercise.done .ex-name {
+        text-decoration: line-through;
+      }
+
+      /* ── Cardio interval table ── */
+      .cardio-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 12.5px;
+      }
+      .cardio-table th {
+        text-align: left;
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--text3);
+        padding: 6px 8px;
+        border-bottom: 1px solid var(--border);
+      }
+      .cardio-table td {
+        padding: 8px 8px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text2);
+      }
+      .cardio-table td.hi {
+        color: var(--amber);
+        font-weight: 600;
+      }
+
+      /* ── Week overview table ── */
+      .week-table-wrap {
+        overflow-x: auto;
+        margin-top: 14px;
+      }
+      table.week-overview {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+      table.week-overview th {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: var(--text3);
+        text-align: left;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--border);
+      }
+      table.week-overview td {
+        padding: 10px 10px;
+        border-bottom: 1px solid var(--border);
+        font-size: 12.5px;
+        color: var(--text2);
+        vertical-align: top;
+      }
+      table.week-overview td.daycell {
+        color: var(--text1);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      table.week-overview tr.restrow td {
+        color: var(--teal);
+      }
+      table.week-overview tbody tr {
+        cursor: pointer;
+        transition: background var(--dur);
+      }
+      table.week-overview tbody tr:hover {
+        background: var(--bg2);
+      }
+
+      /* ── How-To exercise library cards ── */
+      .howto-search {
+        max-width: 100%;
+        margin: 0 0 1.25rem;
+        position: relative;
+      }
+      .howto-search input {
+        width: 100%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 10px 14px 10px 36px;
+        font-size: 14px;
+        color: var(--text1);
+        font-family: var(--font);
+        outline: none;
+        transition:
+          border-color var(--dur),
+          box-shadow var(--dur);
+      }
+      .howto-search input:focus {
+        border-color: var(--indigo-mid);
+        box-shadow: 0 0 0 3px var(--indigo-lt);
+      }
+      .howto-search-icon {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text4);
+        font-size: 14px;
+        pointer-events: none;
+      }
+
+      .howto-filter-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .howto-filter-pill {
+        font-size: 11.5px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 20px;
+        border: 1px solid var(--border2);
+        background: var(--surface);
+        color: var(--text2);
+        cursor: pointer;
+        transition: all var(--dur);
+      }
+      .howto-filter-pill:hover {
+        border-color: var(--indigo-mid);
+        color: var(--indigo);
+      }
+      .howto-filter-pill.active {
+        background: var(--indigo);
+        color: #fff;
+        border-color: var(--indigo);
+      }
+
+      .howto-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        margin-bottom: 0.85rem;
+        overflow: hidden;
+        scroll-margin-top: 80px;
+      }
+      .howto-card-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 1rem 1.1rem;
+        cursor: pointer;
+        transition: background var(--dur);
+      }
+      .howto-card-head:hover {
+        background: var(--bg2);
+      }
+      .howto-card-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--indigo-lt);
+        color: var(--indigo);
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .howto-card-title {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text1);
+      }
+      .howto-card-tags {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .howto-card-chevron {
+        font-size: 16px;
+        color: var(--text3);
+        transition: transform var(--dur);
+        flex-shrink: 0;
+      }
+      .howto-card.open .howto-card-chevron {
+        transform: rotate(90deg);
+      }
+      .howto-card-body {
+        display: none;
+        padding: 0 1.1rem 1.1rem;
+      }
+      .howto-card.open .howto-card-body {
+        display: block;
+        animation: fadeUp 0.25s var(--ease) both;
+      }
+
+      .howto-muscles {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 0.85rem;
+      }
+      .muscle-chip {
+        font-size: 10.5px;
+        font-weight: 600;
+        padding: 3px 9px;
+        border-radius: 20px;
+        background: var(--bg2);
+        color: var(--text2);
+      }
+
+      .howto-section-label {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text3);
+        margin: 0.85rem 0 0.4rem;
+      }
+      .howto-section-label:first-child {
+        margin-top: 0;
+      }
+
+      .howto-mistakes {
+        background: var(--coral-lt);
+        border-radius: var(--radius-sm);
+        padding: 0.7rem 0.9rem;
+        margin-top: 0.6rem;
+      }
+      .howto-mistakes-title {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--coral);
+        margin-bottom: 4px;
+      }
+      .howto-mistakes ul {
+        margin: 0 0 0 1.1rem;
+        padding: 0;
+      }
+      .howto-mistakes li {
+        font-size: 12.5px;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-bottom: 2px;
+      }
+
+      @media (max-width: 640px) {
+        .tab-bar {
+          margin: 1rem 0 0.85rem;
+        }
+        .ex-prescription {
+          gap: 10px;
+        }
+        .day-meta {
+          gap: 10px;
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body
+    data-layout="full"
+    data-title="5-Day Workout Plan"
+    data-badge="Cult Neo Gym · Mallapur"
+    data-badge-color="teal"
+  >
+    <div id="page-content">
+      <div class="ms-hero" style="padding-top: 1rem">
+        <div class="ms-hero-eyebrow" style="color: var(--teal)">
+          <span class="ms-badge teal">5-Day Fitness &amp; Strength Plan</span>
+        </div>
+        <h1>5-Day Workout Plan</h1>
+        <p class="ms-hero-sub">
+          Built for general fitness, endurance, and strength — with extra
+          attention to lower-back care. 34M · 70kg · 5'6" · Cult Neo Gym,
+          Mallapur.
+        </p>
+      </div>
+
+      <div class="tab-bar" id="dayNav" role="tablist" aria-label="Day selector">
+        <div class="tab active" data-view="overview" role="tab" tabindex="0">
+          Overview
+        </div>
+        <div class="tab" data-view="mon" role="tab" tabindex="0">
+          Mon · Lower A
+        </div>
+        <div class="tab" data-view="tue" role="tab" tabindex="0">
+          Tue · Upper A
+        </div>
+        <div class="tab" data-view="wed" role="tab" tabindex="0">
+          Wed · Cardio
+        </div>
+        <div class="tab" data-view="thu" role="tab" tabindex="0">
+          Thu · Lower B
+        </div>
+        <div class="tab" data-view="fri" role="tab" tabindex="0">
+          Fri · Upper B
+        </div>
+        <div class="tab" data-view="rest" role="tab" tabindex="0">
+          Sat/Sun · Rest
+        </div>
+        <div class="tab" data-view="principles" role="tab" tabindex="0">
+          Principles
+        </div>
+        <div class="tab" data-view="howto" role="tab" tabindex="0">
+          📖 How-To Library
+        </div>
+      </div>
+
+      <hr class="ms-divider" style="margin: 1rem 0 1.5rem" />
+
+      <!-- ============ OVERVIEW ============ -->
+      <div class="day-view active" id="view-overview">
+        <div class="page-header">
+          <h2>Your Weekly Plan</h2>
+          <p>
+            Built for general fitness, endurance, and strength — not
+            bodybuilding. Five sessions a week, 45–60 minutes each, using the
+            standard equipment available at Cult Neo Gym Mallapur (barbells,
+            dumbbells, cable/functional trainer, smith machine or squat rack,
+            leg press, lat pulldown, chest press, treadmill/cross-trainer).
+          </p>
+        </div>
+
+        <p class="card-body" style="margin-bottom: 1rem">
+          This is an <b style="color: var(--text1)">Upper/Lower split</b>: two
+          lower-body days, two upper-body days, and one dedicated
+          cardio/conditioning day, with two rest days. Every session opens with
+          a hip-hinge or core-stability move chosen specifically because of your
+          lower back sensitivity — the goal is to build a strong, pain-resistant
+          back, not just avoid aggravating it.
+        </p>
+
+        <div class="week-table-wrap">
+          <table class="week-overview">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Focus</th>
+                <th>Main Lifts</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr onclick="activateView('mon')">
+                <td class="daycell">Monday</td>
+                <td>Lower Body A + Core</td>
+                <td>Goblet Squat, Romanian Deadlift, Leg Press, Plank</td>
+                <td>50 min</td>
+              </tr>
+              <tr onclick="activateView('tue')">
+                <td class="daycell">Tuesday</td>
+                <td>Upper Body A (Push/Pull)</td>
+                <td>Chest Press, Lat Pulldown, Shoulder Press, Row</td>
+                <td>50 min</td>
+              </tr>
+              <tr onclick="activateView('wed')">
+                <td class="daycell">Wednesday</td>
+                <td>Cardio + Conditioning</td>
+                <td>Incline Treadmill, Cross-Trainer Intervals, Core</td>
+                <td>45 min</td>
+              </tr>
+              <tr onclick="activateView('thu')">
+                <td class="daycell">Thursday</td>
+                <td>Lower Body B + Core</td>
+                <td>Hip Thrust, Split Squat, Leg Curl, Dead Bug</td>
+                <td>50 min</td>
+              </tr>
+              <tr onclick="activateView('fri')">
+                <td class="daycell">Friday</td>
+                <td>Upper Body B (Push/Pull) + Easy Cardio</td>
+                <td>Incline Press, Cable Row, Lateral Raise, Curl</td>
+                <td>55 min</td>
+              </tr>
+              <tr class="restrow" onclick="activateView('rest')">
+                <td class="daycell">Sat / Sun</td>
+                <td>Rest / Active Recovery</td>
+                <td>Walk 30–40 min, mobility, stretching</td>
+                <td>Optional</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 11px; color: var(--text3); margin-top: 6px">
+          Tap any row to jump straight to that day.
+        </p>
+
+        <div class="alert alert-purple" style="margin-top: 1.25rem">
+          <b>How to use this:</b> Tap a day tab above to open that day's full
+          workout — sets, reps, weight guidance, and form cues are all listed.
+          Tap the circle next to any exercise to mark it done during your
+          session. New to an exercise? Tap <b>"How to do this →"</b> on its card
+          to jump to the full step-by-step instructions. Check the
+          <b>Principles</b> tab for progression rules and back-care guidelines
+          that apply to every session.
+        </div>
+
+        <div class="grid2" style="margin-top: 1.25rem">
+          <div class="card card-indigo">
+            <div class="card-head">Why This Split</div>
+            <div class="card-body">
+              Five compound-lift-based sessions a week, alternating upper and
+              lower body, give each muscle group roughly 48 hours to recover
+              between sessions while still training everything twice a week —
+              the rep range proven most reliable for building strength and
+              muscle endurance together, per ACSM/NSCA general fitness
+              guidelines.
+            </div>
+          </div>
+          <div class="card card-teal">
+            <div class="card-head">Why So Few Exercises</div>
+            <div class="card-body">
+              5–6 exercises per day, all compound (multi-joint) movements.
+              Research consistently shows a handful of well-executed compound
+              lifts builds more real-world strength and fitness than 15
+              isolation exercises — and it's far easier to recover from and stay
+              consistent with.
+            </div>
+          </div>
+        </div>
+
+        <div class="ms-callout teal" style="margin-top: 1.25rem">
+          <b>First time at the gym, or returning after a break?</b> Open the
+          <b>How-To Library</b> tab now and skim through it before your first
+          session. You don't need to memorize anything — just get a rough sense
+          of what each movement looks like so Monday doesn't feel like learning
+          twenty new things at once.
+        </div>
+      </div>
+      <!-- ============ MONDAY ============ -->
+      <div class="day-view" id="view-mon">
+        <div class="page-header"><h2>Monday — Lower Body A + Core</h2></div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~50 min</span><span><b>Exercises:</b> 6</span
+          ><span><b>Intensity:</b> Moderate–Hard</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="sec-label">Warm-up — 5 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Cardio Pulse + Hip Mobility</p>
+                <span class="badge b-teal">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Bike/Treadmill</span
+                  ><span class="rx-val">3 min easy</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Leg swings</span
+                  ><span class="rx-val">10 each leg</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Bodyweight squats</span
+                  ><span class="rx-val">10 reps</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Get blood flowing and hips moving before loading the spine and
+                legs. Don't skip this — it's your best back-injury prevention
+                tool.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-warmup-general');
+                  "
+                >
+                  How to do this
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Main Lifts — 35 min</div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Goblet Squat (Dumbbell)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">12–16 kg DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Hold one dumbbell vertically against your chest. Sit back and
+                down, knees tracking over toes, chest tall, until thighs are
+                roughly parallel to the floor.
+                <b
+                  >Keep your lower back neutral — don't round it at the
+                  bottom.</b
+                >
+                <span class="back-flag"
+                  >⚑ Back-friendly squat pattern — easier on the spine than a
+                  barbell back squat</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-goblet-squat');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Romanian Deadlift (Dumbbell)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">10–14 kg per DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Hold dumbbells in front of thighs. Push hips back (not down)
+                while keeping knees soft and back flat, lowering weights along
+                your shins until you feel a hamstring stretch, then drive hips
+                forward to stand.
+                <b
+                  >This is the single best exercise for building a resilient
+                  lower back</b
+                >
+                — it strengthens the exact hip-hinge pattern you use when
+                lifting your kids.
+                <span class="swap"
+                  ><b>Form priority:</b> Start lighter than you think you need.
+                  Stop the descent the moment your back starts to round.</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-rdl');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Leg Press (Machine)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12–15</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Start ~40kg, build</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Feet shoulder-width on the platform. Lower until knees reach
+                about 90°, press back up without locking knees out hard.
+                Machine-supported, so it's very low-risk for your back while
+                still building real leg strength.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-leg-press');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">4. Standing Calf Raise</p>
+                <span class="badge b-gray">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">15</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Bodyweight or DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                On flat ground or a small step, rise onto your toes, pause 1
+                second, lower slowly. Builds ankle/calf endurance for walking,
+                running, and daily stamina.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-calf-raise');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Core — 7 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Front Plank</p>
+                <span class="badge b-gray">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Hold</span
+                  ><span class="rx-val">30–45 sec</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Forearms on the ground, body in one straight line from head to
+                heels, squeeze glutes and brace your abs like you're about to be
+                punched in the stomach.
+                <b
+                  >This builds the core stability that directly protects your
+                  lower back</b
+                >
+                — far more useful for back pain than crunches.
+                <span class="back-flag"
+                  >⚑ Spine-safe core work — no spinal flexion</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-plank');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Cool-down Stretch</p>
+                <span class="badge b-teal">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Hip flexor</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Hamstring</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Child's pose</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Gentle static stretching to close the session and aid recovery.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ TUESDAY ============ -->
+      <div class="day-view" id="view-tue">
+        <div class="page-header">
+          <h2>Tuesday — Upper Body A: Push &amp; Pull</h2>
+        </div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~50 min</span><span><b>Exercises:</b> 6</span
+          ><span><b>Intensity:</b> Moderate–Hard</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="sec-label">Warm-up — 5 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Arm Circles + Band Pull-Aparts</p>
+                <span class="badge b-teal">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Arm circles</span
+                  ><span class="rx-val">20 sec/direction</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Pull-aparts</span
+                  ><span class="rx-val">15 reps light</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Push-ups</span
+                  ><span class="rx-val">8 reps</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Opens up the shoulders and activates the upper back before
+                pressing and pulling load.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-warmup-general');
+                  "
+                >
+                  How to do this
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Main Lifts — 35 min</div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Flat Chest Press (Machine or Barbell)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8–10</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Start light, build</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Drive the handles or bar away from your chest until arms are
+                extended (not locked), control the way back. The chest press
+                machine keeps your back supported — a good first choice given
+                your back history.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-chest-press');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Lat Pulldown (Cable)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate, controlled</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Grip slightly wider than shoulders, pull the bar to your upper
+                chest by driving elbows down and back, avoid leaning back
+                excessively. Builds the upper-back and pulling strength that
+                balances out a desk-sitting posture.
+                <span class="back-flag"
+                  >⚑ Counteracts forward-hunch posture from desk work</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-lat-pulldown');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Seated Shoulder Press (Machine or DB)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light–moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Press straight overhead until arms are nearly straight, lower to
+                ear level. Seated with back support reduces lower-back strain
+                compared to standing presses.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-shoulder-press');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">4. Seated Cable Row</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Sit tall, pull handle to your stomach while squeezing shoulder
+                blades together, control the return. Keep your torso still —
+                don't rock back and forth using your lower back as momentum.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-cable-row');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Core &amp; Finish — 7 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Dead Bug</p>
+                <span class="badge b-gray">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Lie on your back, arms up, knees bent at 90°. Slowly extend
+                opposite arm and leg toward the floor while keeping your lower
+                back pressed flat into the mat, return, switch sides.
+                <span class="back-flag"
+                  >⚑ One of the best-researched exercises for low back pain
+                  rehab and prevention</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-dead-bug');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Cool-down Stretch</p>
+                <span class="badge b-teal">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Chest doorway</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Lat stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Cat-cow</span
+                  ><span class="rx-val">8 reps</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Cat-cow gently mobilizes the spine after upper-body pulling
+                work.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============ WEDNESDAY ============ -->
+      <div class="day-view" id="view-wed">
+        <div class="page-header">
+          <h2>Wednesday — Cardio &amp; Conditioning</h2>
+        </div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~45 min</span
+          ><span><b>Goal:</b> Endurance &amp; stamina</span
+          ><span><b>Intensity:</b> Moderate</span>
+        </div>
+
+        <p class="card-body" style="margin-bottom: 1rem">
+          This day is specifically for building your aerobic base, endurance,
+          and stamina — the things you said matter to you beyond strength. We're
+          using interval-style cardio because it's more time-efficient and
+          produces better fitness gains than steady pace alone, per current
+          exercise science consensus.
+        </p>
+
+        <div class="sec-label">Warm-up — 5 min</div>
+        <div class="card">
+          <div class="card-head">Easy Walk / Treadmill</div>
+          <div class="card-body">
+            5 minutes flat walking pace to raise heart rate and warm up joints
+            before intervals.
+          </div>
+        </div>
+
+        <div class="sec-label">Main Set — 25 min</div>
+        <div class="card">
+          <div class="card-head">
+            Interval Training — Treadmill or Cross-Trainer
+          </div>
+          <table class="cardio-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Duration</th>
+                <th>Effort</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Push interval</td>
+                <td>2 min</td>
+                <td class="hi">Hard — 7.5–8/10, breathing hard</td>
+              </tr>
+              <tr>
+                <td>Recovery interval</td>
+                <td>2 min</td>
+                <td>Easy — 4/10 effort, recover breath</td>
+              </tr>
+              <tr>
+                <td
+                  colspan="3"
+                  style="
+                    color: var(--text3);
+                    font-size: 11.5px;
+                    padding-top: 4px;
+                  "
+                >
+                  Repeat the push/recovery cycle
+                  <b style="color: var(--text2)">5 times</b> (≈20 min total),
+                  then 5 min easy cool-down pace
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ex-cue">
+            On a treadmill: alternate between a fast walk/light jog (incline
+            3–5%) and a comfortable walk. On a cross-trainer: alternate high
+            resistance/fast pace with low resistance/easy pace.
+            <b
+              >Incline walking is excellent and low-impact on your back and
+              knees</b
+            >
+            — a great default if running ever feels jarring.
+            <button
+              class="howto-link"
+              onclick="
+                event.stopPropagation();
+                goToHowto('howto-intervals');
+              "
+            >
+              How to do this — full steps
+            </button>
+          </div>
+        </div>
+
+        <div class="sec-label">Core &amp; Stability — 12 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Side Plank</p>
+                <span class="badge b-gray">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Hold</span
+                  ><span class="rx-val">20–30 sec</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">30 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Stack feet, lift hips so your body forms a straight line,
+                supported on one forearm. Builds the lateral core strength
+                that's commonly weak in people with low back pain.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-side-plank');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Bird Dog</p>
+                <span class="badge b-gray">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">30 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                On hands and knees, extend opposite arm and leg straight out
+                while keeping your back flat and hips level. Hold 2 seconds.
+                Excellent for spinal stability and balance.
+                <span class="back-flag"
+                  >⚑ Clinically recommended exercise for chronic low back
+                  pain</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-bird-dog');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Cool-down Stretch &amp; Walk</p>
+                <span class="badge b-teal">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Easy walk</span
+                  ><span class="rx-val">3 min</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Full body stretch</span
+                  ><span class="rx-val">5 min</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Bring heart rate down gradually and stretch major muscle groups
+                while warm.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============ THURSDAY ============ -->
+      <div class="day-view" id="view-thu">
+        <div class="page-header"><h2>Thursday — Lower Body B + Core</h2></div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~50 min</span><span><b>Exercises:</b> 6</span
+          ><span><b>Intensity:</b> Moderate–Hard</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="sec-label">Warm-up — 5 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Glute Bridges + Walking Lunges</p>
+                <span class="badge b-teal">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Glute bridges</span
+                  ><span class="rx-val">15 reps</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Bodyweight lunges</span
+                  ><span class="rx-val">8 per leg</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Activates glutes before hip-dominant lifting — glutes are your
+                biggest natural lower-back protectors.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-glute-bridge');
+                  "
+                >
+                  How to do this
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Main Lifts — 35 min</div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Hip Thrust (Barbell or Machine)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Start light, build</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Upper back braced on a bench, bar/pad across hips, feet flat.
+                Drive hips up until your body forms a straight line from
+                shoulders to knees, squeeze glutes hard at the top.
+                <b
+                  >The single best exercise for strengthening the glutes that
+                  protect your spine during everyday lifting</b
+                >
+                (like picking up your kids).
+                <span class="back-flag"
+                  >⚑ Top-tier exercise for low back pain prevention</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-hip-thrust');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">
+                  2. Bulgarian Split Squat (DB, rear foot elevated)
+                </p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">8–10 per leg</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">6–10 kg per DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">90 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Rear foot up on a bench, front foot forward. Lower straight down
+                until front thigh is near parallel, drive back up. Builds
+                single-leg strength and balance.
+                <span class="swap"
+                  ><b>Easier swap:</b> If balance is hard at first, use a static
+                  split squat (both feet on the ground) instead.</span
+                >
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-split-squat');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Lying or Seated Leg Curl (Machine)</p>
+                <span class="badge b-gray">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light–moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Curl the pad toward your glutes in a slow, controlled motion.
+                Directly strengthens hamstrings, which support your lower back
+                and balance out all the quad work from squats/lunges.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-leg-curl');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">4. Cable or Machine Hip Abduction</p>
+                <span class="badge b-gray">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">2</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">15 per leg</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Strengthens hip-stabilizing muscles often neglected, which
+                support good walking/running mechanics and reduce knee and lower
+                back strain.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-hip-abduction');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Core — 7 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Dead Bug (progression: add light DB)</p>
+                <span class="badge b-gray">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Same movement as Tuesday — repetition here is intentional,
+                mastering this pattern is one of the highest-value things you
+                can do for your back.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-dead-bug');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Cool-down Stretch</p>
+                <span class="badge b-teal">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Glute/piriformis</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Quad stretch</span
+                  ><span class="rx-val">30 sec/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Child's pose</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Closes out the session and supports next-day recovery.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ FRIDAY ============ -->
+      <div class="day-view" id="view-fri">
+        <div class="page-header">
+          <h2>Friday — Upper Body B + Easy Cardio</h2>
+        </div>
+        <div class="day-meta">
+          <span><b>Duration:</b> ~55 min</span
+          ><span><b>Exercises:</b> 6 + cardio</span
+          ><span><b>Intensity:</b> Moderate</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-seg warmup"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg prog-main"></div>
+          <div class="progress-seg core"></div>
+          <div class="progress-seg cool"></div>
+        </div>
+
+        <div class="sec-label">Warm-up — 5 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">Shoulder Mobility + Light Cable Rows</p>
+                <span class="badge b-teal">Warm-up</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Pull-aparts</span
+                  ><span class="rx-val">15 reps</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Arm swings</span
+                  ><span class="rx-val">15 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Prepares shoulders and upper back for pressing and pulling.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-warmup-general');
+                  "
+                >
+                  How to do this
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Main Lifts — 30 min</div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">1. Incline Chest Press (Machine or DB)</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10–12</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Light–moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">75 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Same pressing pattern as Tuesday's flat press but at an incline,
+                to hit the chest and shoulders slightly differently and build
+                balanced pushing strength.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-chest-press');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">2. Single-Arm Cable Row or Dumbbell Row</p>
+                <span class="badge b-indigo">Compound</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10 per side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">60 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Support yourself with one hand on a bench, pull the dumbbell or
+                cable handle up toward your hip, keeping back flat (not
+                twisting). Builds unilateral pulling strength and corrects any
+                left/right imbalance.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-cable-row');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">3. Lateral Raise (Dumbbell)</p>
+                <span class="badge b-gray">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12–15</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">3–6 kg per DB</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Raise dumbbells out to your sides until level with shoulders,
+                slight bend in elbows, control the descent. Builds shoulder
+                width and joint health — go light, this is about control, not
+                weight.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-lateral-raise');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">
+                  4. Bicep Curl + Triceps Pushdown (Superset)
+                </p>
+                <span class="badge b-gray">Isolation</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">2 rounds</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">12 each</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Weight</span
+                  ><span class="rx-val">Moderate</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec between rounds</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                Do 12 dumbbell curls immediately followed by 12 cable triceps
+                pushdowns, then rest. Efficient way to finish off the arms
+                without adding extra time to your session.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-bicep-curl');
+                  "
+                >
+                  Bicep curl steps
+                </button>
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-triceps-pushdown');
+                  "
+                >
+                  Triceps pushdown steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Core + Easy Cardio — 15 min</div>
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">5. Plank (with shoulder taps)</p>
+                <span class="badge b-gray">Core</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Sets</span
+                  ><span class="rx-val">3</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Reps</span
+                  ><span class="rx-val">10 taps/side</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Rest</span
+                  ><span class="rx-val">45 sec</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                In plank position, tap opposite shoulder with each hand
+                alternately while keeping hips as still as possible. Adds an
+                anti-rotation challenge to standard planks.
+                <button
+                  class="howto-link"
+                  onclick="
+                    event.stopPropagation();
+                    goToHowto('howto-plank');
+                  "
+                >
+                  How to do this — full steps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card exercise">
+          <div class="check-row" onclick="toggleDone(this)">
+            <div class="chk"><span class="chk-icon">✓</span></div>
+            <div style="flex: 1">
+              <div class="ex-top">
+                <p class="ex-name">6. Easy Cardio Finish + Stretch</p>
+                <span class="badge b-teal">Mobility</span>
+              </div>
+              <div class="ex-prescription">
+                <div class="rx-item">
+                  <span class="rx-label">Treadmill/Bike</span
+                  ><span class="rx-val">10 min easy pace</span>
+                </div>
+                <div class="rx-item">
+                  <span class="rx-label">Full body stretch</span
+                  ><span class="rx-val">5 min</span>
+                </div>
+              </div>
+              <div class="ex-cue">
+                A relaxed, conversational-pace cardio finish adds extra
+                endurance volume for the week without adding fatigue, then
+                stretch everything out before you leave.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============ REST ============ -->
+      <div class="day-view" id="view-rest">
+        <div class="page-header">
+          <h2>Saturday &amp; Sunday — Rest / Active Recovery</h2>
+          <p>
+            Rest days are when your muscles actually repair and grow stronger —
+            they're not optional, they're part of the plan.
+          </p>
+        </div>
+
+        <div class="grid2">
+          <div class="card">
+            <div class="card-head">What To Do</div>
+            <div class="card-body">
+              A relaxed 30–40 minute walk on one or both days. Light stretching,
+              especially hips, hamstrings, and lower back. Playing with your
+              kids counts as activity — no need to "do more." Prioritize sleep —
+              this is where most muscle recovery happens.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head">What To Avoid</div>
+            <div class="card-body">
+              Heavy lifting or high-intensity training. Sitting completely still
+              all day if avoidable — gentle movement helps back pain more than
+              total rest. Skipping both rest days even if you feel good —
+              recovery is when adaptation happens.
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Optional 10-Minute Back Care Routine</div>
+        <div class="card">
+          <div class="card-head">Gentle Mobility Flow</div>
+          <div class="ex-prescription">
+            <div class="rx-item">
+              <span class="rx-label">Cat-Cow</span
+              ><span class="rx-val">10 reps</span>
+            </div>
+            <div class="rx-item">
+              <span class="rx-label">Child's Pose</span
+              ><span class="rx-val">60 sec</span>
+            </div>
+            <div class="rx-item">
+              <span class="rx-label">Knee-to-chest</span
+              ><span class="rx-val">30 sec/side</span>
+            </div>
+            <div class="rx-item">
+              <span class="rx-label">Glute bridge holds</span
+              ><span class="rx-val">3×20 sec</span>
+            </div>
+          </div>
+          <div class="ex-cue">
+            Optional, but genuinely useful on a weekend if you've been carrying
+            the kids a lot or sitting for long stretches. Takes 10 minutes and
+            keeps the back loose without any real fatigue.
+            <button
+              class="howto-link"
+              onclick="goToHowto('howto-warmup-general')"
+            >
+              Cat-Cow steps
+            </button>
+            <button
+              class="howto-link"
+              onclick="goToHowto('howto-glute-bridge')"
+            >
+              Glute bridge steps
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PRINCIPLES ============ -->
+      <div class="day-view" id="view-principles">
+        <div class="page-header">
+          <h2>Principles &amp; Progression Rules</h2>
+          <p>
+            The rules that make this plan work over months, not just one week.
+          </p>
+        </div>
+
+        <div class="sec-label">Progressive Overload — How To Add Weight</div>
+        <div class="alert alert-purple">
+          <b>The 2-for-2 rule:</b> If you complete all prescribed sets and reps
+          with good form for 2 consecutive sessions on an exercise, add a small
+          amount of weight next time — typically 2.5kg for upper body lifts and
+          2.5–5kg for lower body lifts. If form breaks down or you miss reps,
+          stay at the same weight until you complete it cleanly.
+        </div>
+
+        <div class="grid2" style="margin-top: 1rem">
+          <div class="card">
+            <div class="card-head">Starting Weights</div>
+            <div class="card-body">
+              The weight numbers in this plan are sensible starting points for
+              someone with some training experience, not fixed targets. Your
+              first 1–2 weeks should feel like a "could do a few more reps"
+              effort — this lets you learn each movement pattern safely before
+              adding real load.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head">Tracking Progress</div>
+            <div class="card-body">
+              Keep a simple note on your phone: date, exercise, weight, reps
+              completed. Five minutes a week of tracking is what turns "going to
+              the gym" into measurable, lasting strength and fitness gains.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head">Rest Between Sets</div>
+            <div class="card-body">
+              The rest periods listed (45–90 seconds) are based on the goal of
+              each exercise: compound lower-body lifts need more recovery
+              (75–90s) than isolation or core work (45s). Resting properly is
+              part of the program, not wasted time.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head">Nutrition &amp; Sleep Basics</div>
+            <div class="card-body">
+              No exercise program outperforms poor sleep or poor eating. Aim for
+              7+ hours of sleep, adequate protein (roughly 1.2–1.6g per kg
+              bodyweight daily, so ~85–110g for you), and consistent meals.
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Back Pain — Specific Guidance For You</div>
+        <div class="alert alert-amber">
+          Your back pain pattern (slight, linked to carrying toddlers and long
+          sitting) is extremely common and responds very well to exactly the
+          kind of training in this plan:
+          <b
+            >hip hinge strength (Romanian deadlifts, hip thrusts),
+            anti-extension core work (planks, dead bugs, bird dogs), and glute
+            strengthening.</b
+          >
+          These rebuild the support structure around your spine.
+        </div>
+
+        <div class="grid2" style="margin-top: 1rem">
+          <div class="card card-teal">
+            <div class="card-head">Always Do</div>
+            <div class="card-body">
+              Brace your core (like before a light punch to the stomach) before
+              any lift involving your back. Keep your lower back's natural curve
+              — neither rounded nor over-arched — during squats and hinges. Stop
+              a rep immediately if you feel sharp or shooting pain (different
+              from normal muscle fatigue).
+            </div>
+          </div>
+          <div class="card card-coral">
+            <div class="card-head">Avoid For Now</div>
+            <div class="card-body">
+              Heavy barbell deadlifts from the floor until your hip-hinge
+              pattern is confident. Loaded spinal flexion exercises like
+              weighted sit-ups or heavy Russian twists. Lifting your kids by
+              bending your back — bend your knees and hips instead, same pattern
+              you're training on Mondays.
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-label">Equipment Reference — Cult Neo Gym Mallapur</div>
+        <p class="card-body" style="margin-bottom: 1rem">
+          This plan uses standard equipment found in essentially every Cult gym
+          location: barbells &amp; weight plates, a dumbbell rack, a
+          cable/functional trainer station, chest press &amp; shoulder press
+          machines, lat pulldown, seated row, leg press, leg curl machine, a
+          Smith machine or squat rack, and cardio machines (treadmills,
+          cross-trainers, stationary bikes). If a specific named machine isn't
+          available on a given day, use the listed swap or ask a trainer on-site
+          for the nearest equivalent.
+        </p>
+
+        <div class="alert alert-purple">
+          <b>Not medical advice:</b> This plan is general fitness guidance based
+          on established exercise science principles. Since you mentioned
+          recurring back pain, consider a quick check with a doctor or
+          physiotherapist before starting, especially if pain is frequent,
+          sharp, or radiates down a leg.
+        </div>
+      </div>
+      <!-- ============ HOW TO EXERCISE (reference library) ============ -->
+      <div class="day-view" id="view-howto">
+        <div class="page-header">
+          <h2>How to Do Each Exercise</h2>
+          <p>
+            A complete reference for every movement in this plan — what it is,
+            exactly how to do it step by step, what it should feel like, and the
+            mistakes to avoid. Read an exercise's entry here once before you do
+            it the first time; after that, the weekly tabs will refresh your
+            memory with quick cues.
+          </p>
+        </div>
+
+        <div class="howto-search">
+          <span class="howto-search-icon">⌕</span>
+          <input
+            type="search"
+            id="howto-search-input"
+            placeholder="Search exercises…"
+            aria-label="Search exercises"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="howto-filter-row" id="howto-filter-row">
+          <button class="howto-filter-pill active" data-filter="all">
+            All (20)
+          </button>
+          <button class="howto-filter-pill" data-filter="legs">
+            Legs &amp; Glutes
+          </button>
+          <button class="howto-filter-pill" data-filter="push">
+            Push (Chest/Shoulders)
+          </button>
+          <button class="howto-filter-pill" data-filter="pull">
+            Pull (Back/Arms)
+          </button>
+          <button class="howto-filter-pill" data-filter="core">
+            Core &amp; Back-Care
+          </button>
+          <button class="howto-filter-pill" data-filter="cardio">
+            Cardio &amp; Warm-up
+          </button>
+        </div>
+
+        <div class="alert alert-purple" style="margin-bottom: 1.25rem">
+          <b>New to the gym?</b> Every exercise below assumes zero prior
+          experience. Read the "How to do it" steps slowly the first time, then
+          watch a 30-second video search for the exercise name on YouTube before
+          you try it loaded — seeing it move helps far more than text alone.
+          Start lighter than the suggested weight for your first session on
+          anything new; you're learning the pattern, not testing your limit.
+        </div>
+
+        <!-- ══ LEGS & GLUTES ══ -->
+
+        <div class="howto-card" data-cat="legs" id="howto-goblet-squat">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">1</span>
+            <span class="howto-card-title">Goblet Squat</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Legs</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Quads</span
+              ><span class="muscle-chip">Glutes</span>
+              <span class="muscle-chip">Core</span
+              ><span class="muscle-chip">Inner thighs</span>
+            </div>
+            <p class="card-body">
+              A squat where you hold one dumbbell vertically against your chest.
+              The weight in front naturally keeps your torso upright, which is
+              why this is the easiest, safest squat variation to learn — and
+              exactly why it opens Monday's session.
+            </p>
+
+            <div class="howto-section-label">Setup</div>
+            <p class="card-body">
+              Stand with feet shoulder-width apart, toes turned out slightly
+              (about 15°). Hold one dumbbell vertically, cupping the top end
+              with both hands, and pull it into your chest like holding a
+              goblet.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Take a breath, brace your stomach as if about to be tapped
+                there.
+              </li>
+              <li>
+                Push your hips back and bend your knees together, lowering
+                straight down — imagine sitting into a chair behind you.
+              </li>
+              <li>
+                Keep the dumbbell close to your chest the whole way down; let
+                your elbows slide between your knees as you get low.
+              </li>
+              <li>
+                Go down until your thighs are roughly parallel to the floor, or
+                as low as you can while keeping your heels flat and back
+                straight.
+              </li>
+              <li>
+                Drive through your whole foot (not just your toes) to stand back
+                up, squeezing your glutes at the top.
+              </li>
+              <li>That's one rep. Breathe out as you stand.</li>
+            </ol>
+
+            <div class="howto-section-label">What it should feel like</div>
+            <p class="card-body">
+              Effort in your thighs and glutes. Your knees should track in the
+              same direction as your toes — not caving inward. Your heels stay
+              planted on the floor throughout; if they lift, you've gone lower
+              than your current ankle mobility allows — that's fine, just don't
+              force it deeper.
+            </p>
+
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Rounding the lower back at the bottom — stop the descent
+                  earlier if this happens
+                </li>
+                <li>
+                  Knees collapsing inward — actively push them out in the
+                  direction of your toes
+                </li>
+                <li>
+                  Rising onto toes — keep weight through the whole foot,
+                  especially the heel
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-rdl">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">2</span>
+            <span class="howto-card-title">Romanian Deadlift (Dumbbell)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Legs</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Hamstrings</span
+              ><span class="muscle-chip">Glutes</span
+              ><span class="muscle-chip">Lower back (stabilizing)</span>
+            </div>
+            <p class="card-body">
+              Not a "deadlift off the floor" — this version starts standing and
+              only travels down to about shin height. It's a hip-hinge: your
+              hips move backward, not your knees bending forward. This is the
+              single most important movement pattern for protecting your lower
+              back during everyday life, like lifting your kids.
+            </p>
+
+            <div class="howto-section-label">Setup</div>
+            <p class="card-body">
+              Stand holding a dumbbell in each hand in front of your thighs,
+              palms facing your body. Feet hip-width apart, soft (not locked)
+              knees.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Brace your core. Keep a very slight bend in your knees and
+                <b>keep it constant</b> — it doesn't change throughout the
+                movement.
+              </li>
+              <li>
+                Push your hips straight back, like closing a car door with your
+                butt. Your chest stays up, back stays flat.
+              </li>
+              <li>
+                Let the dumbbells slide straight down along the front of your
+                legs as your hips travel back.
+              </li>
+              <li>
+                Go down until you feel a clear stretch in your hamstrings — for
+                most beginners this is around shin or mid-shin height,
+                <b>not</b> the floor.
+              </li>
+              <li>
+                Reverse the motion by driving your hips forward to standing,
+                squeezing your glutes hard at the top.
+              </li>
+            </ol>
+
+            <div class="howto-section-label">What it should feel like</div>
+            <p class="card-body">
+              A stretching sensation in the back of your thighs (hamstrings) as
+              you lower, and a squeeze in your glutes as you stand. You should
+              <b>not</b> feel this in your lower back — if you do, you're
+              hinging too far or rounding your spine.
+            </p>
+
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Squatting instead of hinging — your knees should barely bend
+                  more than their starting position
+                </li>
+                <li>
+                  Rounding the back to reach lower — stop the descent the
+                  instant you feel your back start to curl
+                </li>
+                <li>
+                  Letting the dumbbells drift away from your legs — keep them
+                  brushing against your thighs/shins
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="alert alert-amber"
+              style="margin-top: 0.75rem; font-size: 12.5px"
+            >
+              <b>Start lighter than feels necessary.</b> This exercise's value
+              comes from the controlled hip-hinge pattern, not the weight.
+              Master the motion with light dumbbells (or even just your hands)
+              for the first week before adding real load.
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-leg-press">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">3</span>
+            <span class="howto-card-title">Leg Press (Machine)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Legs</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Quads</span
+              ><span class="muscle-chip">Glutes</span
+              ><span class="muscle-chip">Hamstrings</span>
+            </div>
+            <p class="card-body">
+              A seated machine that lets you push a weighted platform away with
+              your legs. The seat back fully supports your spine, making this
+              one of the safest ways to build serious leg strength regardless of
+              back history.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Sit in the machine with your back and head flat against the pad.
+                Place feet shoulder-width apart on the platform, roughly in the
+                middle.
+              </li>
+              <li>
+                Release the safety handles and let the platform lower under
+                control until your knees reach about a 90° bend.
+              </li>
+              <li>
+                Press through your whole foot to push the platform back up.
+              </li>
+              <li>
+                Stop just short of locking your knees out completely at the top
+                — keep a soft bend.
+              </li>
+            </ol>
+
+            <div class="howto-section-label">What it should feel like</div>
+            <p class="card-body">
+              Pure leg effort — your back stays passively supported by the pad
+              the entire time. If you feel your lower back lifting off the pad
+              at the bottom of the movement, you've gone too low for your
+              current flexibility — stop a little higher.
+            </p>
+
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Locking knees out hard at the top — keeps tension off the
+                  joint, stay soft
+                </li>
+                <li>
+                  Letting knees cave inward as you push — track them over your
+                  toes
+                </li>
+                <li>
+                  Lowering so far that your hips/back lift off the pad — find
+                  your comfortable range
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-calf-raise">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">4</span>
+            <span class="howto-card-title">Standing Calf Raise</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Isolation</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Calves</span>
+            </div>
+            <p class="card-body">
+              Standing on flat ground (or the edge of a small step for extra
+              range), you rise up onto your toes and lower back down. Simple,
+              but builds real ankle and calf endurance that helps with walking,
+              running, and everyday stamina.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Stand tall, holding a dumbbell in each hand if adding weight
+                (optional for the first weeks).
+              </li>
+              <li>
+                Rise up onto the balls of your feet as high as you can, pause
+                for 1 second at the top.
+              </li>
+              <li>Lower back down slowly, under control — don't just drop.</li>
+            </ol>
+            <p class="card-body">
+              If using a step: let your heels dip slightly below the step's edge
+              at the bottom for a deeper stretch.
+            </p>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-hip-thrust">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">5</span>
+            <span class="howto-card-title"
+              >Hip Thrust (Barbell or Machine)</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Legs</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Glutes</span
+              ><span class="muscle-chip">Hamstrings</span>
+            </div>
+            <p class="card-body">
+              Arguably the single best exercise for building strong glutes — and
+              strong glutes are your spine's best natural protector during
+              everyday lifting. Your upper back rests on a bench while you drive
+              a weighted bar (or machine pad) upward with your hips.
+            </p>
+
+            <div class="howto-section-label">Setup</div>
+            <p class="card-body">
+              Sit on the floor with your upper back against the edge of a bench.
+              Roll a barbell (with a pad across it for comfort) or position the
+              machine pad over your hips. Feet flat on the floor, knees bent.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>Brace your core and dig your heels into the floor.</li>
+              <li>
+                Drive your hips straight up by squeezing your glutes — not by
+                arching your lower back.
+              </li>
+              <li>
+                At the top, your body should form a straight line from your
+                shoulders through your hips to your knees.
+              </li>
+              <li>
+                Pause and squeeze your glutes hard for 1 second at the top.
+              </li>
+              <li>
+                Lower back down under control until your hips are just above the
+                floor, then repeat.
+              </li>
+            </ol>
+
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Overarching the lower back at the top instead of squeezing
+                  glutes — the line should be straight, not banana-shaped
+                </li>
+                <li>
+                  Pushing through toes instead of heels — heels do the work here
+                </li>
+                <li>
+                  Letting the bar/pad roll away from your hip crease — keep it
+                  positioned right at the hip joint
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-split-squat">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">6</span>
+            <span class="howto-card-title">Bulgarian Split Squat</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Legs</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Quads</span
+              ><span class="muscle-chip">Glutes</span
+              ><span class="muscle-chip">Balance</span>
+            </div>
+            <p class="card-body">
+              A single-leg squat with your rear foot elevated behind you on a
+              bench. Harder to balance than a regular squat at first, but
+              excellent for building leg strength evenly on both sides and
+              improving stability.
+            </p>
+
+            <div class="howto-section-label">Setup</div>
+            <p class="card-body">
+              Stand a couple of feet in front of a flat bench, facing away from
+              it. Place the top of one foot on the bench behind you (laces
+              down). Most of your weight should be on your front leg.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>Keep your torso upright and core braced.</li>
+              <li>
+                Lower straight down by bending your front knee, until your front
+                thigh is close to parallel with the floor.
+              </li>
+              <li>
+                Your back knee will dip toward the floor but shouldn't touch it.
+              </li>
+              <li>Push through your front foot to stand back up.</li>
+              <li>Complete all reps on one leg before switching sides.</li>
+            </ol>
+
+            <div class="howto-section-label">If balance is hard at first</div>
+            <p class="card-body">
+              Use the easier variation instead: a static split squat with
+              <b>both</b> feet on the ground (one foot forward, one foot back,
+              both touching the floor). Same up-and-down motion, much more
+              stable. Progress to the rear-foot-elevated version once that feels
+              comfortable.
+            </p>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-leg-curl">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">7</span>
+            <span class="howto-card-title">Leg Curl (Machine)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Isolation</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Hamstrings</span>
+            </div>
+            <p class="card-body">
+              A machine (lying or seated, whichever your gym has) where you curl
+              a padded lever using just your hamstrings. Directly strengthens
+              the back of your thighs, which balances out all the quad-dominant
+              work from squats and lunges, and supports your lower back.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Position yourself per the machine — lying face down or seated,
+                with the pad resting just above your ankles.
+              </li>
+              <li>
+                Curl the pad toward your glutes (lying version) or down toward
+                the floor (seated version) in a slow, controlled motion.
+              </li>
+              <li>Pause briefly at full contraction.</li>
+              <li>
+                Lower back to the start slowly — don't let the weight stack
+                drop.
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-hip-abduction">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">8</span>
+            <span class="howto-card-title"
+              >Hip Abduction (Cable or Machine)</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Isolation</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Outer glutes/hips</span>
+            </div>
+            <p class="card-body">
+              Strengthens the muscles on the outside of your hips, which
+              stabilize your pelvis when walking and running — a commonly
+              neglected area that, when weak, contributes to knee and lower-back
+              strain.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                On a seated machine: sit with the pads against the outside of
+                your knees/thighs, push your legs apart against the resistance,
+                then return slowly.
+              </li>
+              <li>
+                On a cable: attach an ankle strap, stand side-on to the machine
+                holding something for balance, and lift the working leg out to
+                the side, then return slowly.
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="legs" id="howto-lunge">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">9</span>
+            <span class="howto-card-title">Walking Lunge</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-teal">Warm-up</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Quads</span
+              ><span class="muscle-chip">Glutes</span
+              ><span class="muscle-chip">Balance</span>
+            </div>
+            <p class="card-body">
+              Used here as a warm-up — bodyweight only, no dumbbells needed.
+              Step forward into a lunge, alternating legs as you move across the
+              floor.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>Step forward with one leg, landing on your heel first.</li>
+              <li>
+                Lower your back knee toward the floor until both knees are
+                around 90°.
+              </li>
+              <li>
+                Push off your front foot to step through into the next lunge
+                with the opposite leg.
+              </li>
+              <li>Continue alternating legs as you move forward.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- ══ PUSH (chest/shoulders) ══ -->
+
+        <div class="howto-card" data-cat="push" id="howto-chest-press">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">10</span>
+            <span class="howto-card-title"
+              >Chest Press (Flat or Incline, Machine)</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Push</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Chest</span
+              ><span class="muscle-chip">Shoulders</span
+              ><span class="muscle-chip">Triceps</span>
+            </div>
+            <p class="card-body">
+              A seated machine that supports your back fully while you press
+              handles away from your chest. The flat version targets the chest
+              evenly; the incline version (seat angled up) shifts more emphasis
+              to the upper chest and shoulders.
+            </p>
+
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Sit with your back flat against the pad, handles roughly at
+                chest height.
+              </li>
+              <li>Grip the handles, brace your core.</li>
+              <li>
+                Press the handles forward until your arms are extended but not
+                locked.
+              </li>
+              <li>
+                Control the weight back to the starting position — don't let it
+                slam.
+              </li>
+            </ol>
+            <p class="card-body">
+              The machine keeps your back supported throughout, which is exactly
+              why it's the recommended choice over a barbell bench press for
+              now.
+            </p>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="push" id="howto-shoulder-press">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">11</span>
+            <span class="howto-card-title">Seated Shoulder Press</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Push</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Shoulders</span
+              ><span class="muscle-chip">Triceps</span>
+            </div>
+            <p class="card-body">
+              Pressing weight straight overhead while seated, with back support
+              — either a machine or dumbbells while sitting on a bench with a
+              back pad. Seated with support is much easier on your lower back
+              than standing overhead presses.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Sit with your back against the pad, holding the handles (or
+                dumbbells) at shoulder height, elbows bent.
+              </li>
+              <li>
+                Press straight upward until your arms are nearly straight
+                overhead.
+              </li>
+              <li>
+                Lower back down with control until the handles/dumbbells are
+                back at ear level.
+              </li>
+            </ol>
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Arching your lower back to press the last few inches — keep
+                  your back flat against the pad throughout
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="push" id="howto-lateral-raise">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">12</span>
+            <span class="howto-card-title">Lateral Raise (Dumbbell)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Isolation</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Side shoulders</span>
+            </div>
+            <p class="card-body">
+              Raising light dumbbells out to your sides to build shoulder width.
+              This is a control exercise, not a strength one — go lighter than
+              you think and focus on smooth movement.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Stand holding a light dumbbell in each hand at your sides,
+                slight bend in the elbows.
+              </li>
+              <li>
+                Raise both arms out to the sides until roughly level with your
+                shoulders — like making a "T" shape.
+              </li>
+              <li>
+                Pause briefly, then lower slowly back down. Don't let momentum
+                swing the weights up.
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="push" id="howto-triceps-pushdown">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">13</span>
+            <span class="howto-card-title">Triceps Pushdown (Cable)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Isolation</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Triceps</span>
+            </div>
+            <p class="card-body">
+              Standing at a cable machine with a bar or rope attachment set at
+              the top, pushing the attachment down by straightening your arms.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Stand facing the cable machine, grip the bar/rope with elbows
+                tucked close to your sides.
+              </li>
+              <li>
+                Without moving your upper arms, push the attachment down until
+                your arms are fully extended.
+              </li>
+              <li>
+                Squeeze briefly, then let it rise back to the start under
+                control.
+              </li>
+            </ol>
+            <p class="card-body">
+              Only your forearms should move — your elbows stay pinned at your
+              sides throughout.
+            </p>
+          </div>
+        </div>
+
+        <!-- ══ PULL (back/arms) ══ -->
+
+        <div class="howto-card" data-cat="pull" id="howto-lat-pulldown">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">14</span>
+            <span class="howto-card-title">Lat Pulldown (Cable)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Pull</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Upper back</span
+              ><span class="muscle-chip">Biceps</span>
+            </div>
+            <p class="card-body">
+              A seated cable machine where you pull a wide bar down to your
+              chest, building the upper back muscles that counteract the forward
+              hunch from sitting at a desk all day.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Sit with your thighs secured under the pads, grip the bar
+                slightly wider than shoulder width.
+              </li>
+              <li>Lean back very slightly (not excessively), chest up.</li>
+              <li>
+                Pull the bar down to your upper chest by driving your elbows
+                down and back — imagine trying to put your elbows in your back
+                pockets.
+              </li>
+              <li>
+                Pause briefly, then let the bar rise back up under control until
+                your arms are extended.
+              </li>
+            </ol>
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Leaning back excessively and using body weight to "cheat" the
+                  bar down — keep the lean minimal
+                </li>
+                <li>
+                  Pulling the bar behind your neck — always pull to the front,
+                  to your upper chest
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="pull" id="howto-cable-row">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">15</span>
+            <span class="howto-card-title"
+              >Seated Cable Row / Single-Arm Row</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-indigo">Pull</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Mid-back</span
+              ><span class="muscle-chip">Biceps</span>
+            </div>
+            <p class="card-body">
+              Sitting at a cable row station (or standing, for a single-arm
+              dumbbell row supported on a bench) and pulling a handle toward
+              your torso. Builds the pulling strength that balances your
+              pressing work.
+            </p>
+            <div class="howto-section-label">
+              How to do it — step by step (seated cable version)
+            </div>
+            <ol class="ms-steps">
+              <li>
+                Sit with knees slightly bent, feet braced on the platform, grip
+                the handle with arms extended.
+              </li>
+              <li>
+                Sit up tall — this is your starting posture and it shouldn't
+                change.
+              </li>
+              <li>
+                Pull the handle toward your stomach, squeezing your shoulder
+                blades together at the end.
+              </li>
+              <li>
+                Let your arms extend back out under control, without letting
+                your back round forward.
+              </li>
+            </ol>
+            <div class="howto-section-label">
+              Single-arm dumbbell row version
+            </div>
+            <p class="card-body">
+              Place one knee and one hand on a flat bench for support, holding a
+              dumbbell in the other hand, arm hanging straight down. Pull the
+              dumbbell up toward your hip, keeping your back flat (don't twist
+              your torso), then lower under control.
+            </p>
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Rocking your torso back and forth to add momentum — keep your
+                  torso still, let your arms and back do the work
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="pull" id="howto-bicep-curl">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">16</span>
+            <span class="howto-card-title">Bicep Curl (Dumbbell)</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Isolation</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Biceps</span>
+            </div>
+            <p class="card-body">
+              The classic arm exercise — curling dumbbells up toward your
+              shoulders.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Stand holding a dumbbell in each hand, arms hanging at your
+                sides, palms facing forward.
+              </li>
+              <li>
+                Without swinging your body, curl the dumbbells up toward your
+                shoulders, keeping your elbows pinned at your sides.
+              </li>
+              <li>
+                Squeeze briefly at the top, then lower slowly back to the start.
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- ══ CORE & BACK-CARE ══ -->
+
+        <div class="howto-card" data-cat="core" id="howto-plank">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">17</span>
+            <span class="howto-card-title"
+              >Front Plank (and Shoulder-Tap Variation)</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Core</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Whole core</span
+              ><span class="muscle-chip">Shoulders (stabilizing)</span>
+            </div>
+            <p class="card-body">
+              Holding a straight-line position supported on your forearms and
+              toes. This builds the core stability that directly protects your
+              lower back — far more useful for back health than crunches, which
+              actually load the spine in a way you want to avoid right now.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Lie face down, then prop yourself up on your forearms (elbows
+                directly under shoulders) and toes.
+              </li>
+              <li>
+                Lift your hips so your body forms one straight line from head to
+                heels.
+              </li>
+              <li>
+                Squeeze your glutes and brace your abs as if about to be punched
+                in the stomach.
+              </li>
+              <li>
+                Hold this position, breathing normally, for the prescribed time.
+              </li>
+            </ol>
+            <div class="howto-section-label">
+              Shoulder-tap variation (Friday)
+            </div>
+            <p class="card-body">
+              From the same plank position (hands on the floor instead of
+              forearms, like the top of a push-up), alternately tap your
+              opposite shoulder with each hand while keeping your hips as still
+              as possible. This adds an anti-rotation challenge.
+            </p>
+            <div class="howto-mistakes">
+              <div class="howto-mistakes-title">Common mistakes</div>
+              <ul>
+                <li>
+                  Letting your hips sag toward the floor — keep the straight
+                  line
+                </li>
+                <li>
+                  Piking your hips up too high — same fix, find the straight
+                  line
+                </li>
+                <li>Holding your breath — breathe normally throughout</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="core" id="howto-side-plank">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">18</span>
+            <span class="howto-card-title">Side Plank</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Core</span
+              ><span class="badge b-teal">Back-friendly</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Obliques (side core)</span>
+            </div>
+            <p class="card-body">
+              Builds lateral (side) core strength, which is commonly weak in
+              people with low back pain and is rarely trained by standard ab
+              exercises.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Lie on your side, propped up on one forearm, elbow directly
+                under your shoulder.
+              </li>
+              <li>
+                Stack your feet on top of each other (or stagger them for more
+                stability).
+              </li>
+              <li>
+                Lift your hips off the floor so your body forms a straight line
+                from head to feet.
+              </li>
+              <li>Hold, then repeat on the other side.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="core" id="howto-dead-bug">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">19</span>
+            <span class="howto-card-title">Dead Bug</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Core</span
+              ><span class="badge b-teal">Back-care priority</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Deep core</span
+              ><span class="muscle-chip">Spinal stability</span>
+            </div>
+            <p class="card-body">
+              One of the best-researched exercises specifically for low back
+              pain prevention and rehab. It trains your core to keep your spine
+              still while your arms and legs move — exactly the skill that
+              protects your back during real-world activities.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Lie on your back, arms reaching straight up toward the ceiling,
+                knees bent at 90° directly above your hips (like a tabletop
+                position).
+              </li>
+              <li>
+                Press your lower back flat into the floor/mat and keep it
+                pressed down for the entire set — this is the most important
+                part.
+              </li>
+              <li>
+                Slowly lower one arm overhead and the <b>opposite</b> leg
+                straight out toward the floor at the same time.
+              </li>
+              <li>
+                Stop just before your lower back wants to arch up off the floor.
+              </li>
+              <li>Return to the start and repeat on the other side.</li>
+            </ol>
+            <p class="card-body">
+              <b>The entire point of this exercise is the flat back.</b> If your
+              lower back arches off the floor at any point, you've moved your
+              arm/leg too far — bring the range in smaller until you can keep
+              your back glued down throughout.
+            </p>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="core" id="howto-bird-dog">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">20</span>
+            <span class="howto-card-title">Bird Dog</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-gray">Core</span
+              ><span class="badge b-teal">Back-care priority</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Deep core</span
+              ><span class="muscle-chip">Balance</span
+              ><span class="muscle-chip">Glutes</span>
+            </div>
+            <p class="card-body">
+              A clinically recommended exercise for chronic low back pain. Like
+              Dead Bug, it trains spinal stability — but from a hands-and-knees
+              position instead of lying down.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Start on hands and knees, hands under shoulders, knees under
+                hips. Keep your back flat — neither sagging nor arched.
+              </li>
+              <li>
+                Brace your core, then slowly extend one arm straight forward and
+                the opposite leg straight back at the same time.
+              </li>
+              <li>
+                Keep your hips and shoulders level — don't let either side
+                rotate up or down.
+              </li>
+              <li>
+                Hold for 2 seconds, then return to the start with control.
+              </li>
+              <li>Repeat on the other side.</li>
+            </ol>
+            <p class="card-body">
+              Move slowly. The value here is in the control and the stillness of
+              your trunk, not the speed.
+            </p>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="core" id="howto-glute-bridge">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">21</span>
+            <span class="howto-card-title">Glute Bridge</span>
+            <span class="howto-card-tags"
+              ><span class="badge b-teal">Warm-up / Back-care</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Glutes</span
+              ><span class="muscle-chip">Hamstrings</span>
+            </div>
+            <p class="card-body">
+              A simpler, bodyweight version of the hip thrust — used here as a
+              warm-up to activate your glutes before heavier lower-body lifting.
+            </p>
+            <div class="howto-section-label">How to do it — step by step</div>
+            <ol class="ms-steps">
+              <li>
+                Lie on your back, knees bent, feet flat on the floor close to
+                your glutes.
+              </li>
+              <li>
+                Squeeze your glutes and lift your hips up until your body forms
+                a straight line from shoulders to knees.
+              </li>
+              <li>
+                Hold briefly at the top, then lower back down with control.
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- ══ CARDIO & WARM-UP ══ -->
+
+        <div class="howto-card" data-cat="cardio" id="howto-intervals">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">22</span>
+            <span class="howto-card-title"
+              >Interval Cardio (Treadmill or Cross-Trainer)</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-amber">Cardio</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-muscles">
+              <span class="muscle-chip">Cardiovascular fitness</span>
+            </div>
+            <p class="card-body">
+              Alternating short bursts of harder effort with short recovery
+              periods. This builds fitness faster than a constant, steady pace —
+              and Wednesday's session is built entirely around this format.
+            </p>
+            <div class="howto-section-label">On a treadmill</div>
+            <p class="card-body">
+              For the "hard" interval: walk fast or jog lightly, optionally with
+              the incline raised to 3–5% to increase effort without needing to
+              run. For the "easy" interval: drop back to a comfortable, relaxed
+              walking pace.
+            </p>
+            <div class="howto-section-label">On a cross-trainer</div>
+            <p class="card-body">
+              For the "hard" interval: increase resistance and/or push the pace
+              until breathing is noticeably harder. For the "easy" interval:
+              drop resistance and slow down to a relaxed pace.
+            </p>
+            <p class="card-body">
+              A simple way to judge effort: during the hard interval you should
+              be breathing too hard to speak in full sentences. During the easy
+              interval you should be able to hold a conversation comfortably.
+            </p>
+          </div>
+        </div>
+
+        <div class="howto-card" data-cat="cardio" id="howto-warmup-general">
+          <div class="howto-card-head" onclick="toggleHowto(this)">
+            <span class="howto-card-num">23</span>
+            <span class="howto-card-title"
+              >General Warm-up Moves (Arm Circles, Leg Swings, Cat-Cow)</span
+            >
+            <span class="howto-card-tags"
+              ><span class="badge b-teal">Warm-up</span></span
+            >
+            <span class="howto-card-chevron">›</span>
+          </div>
+          <div class="howto-card-body">
+            <div class="howto-section-label">Arm circles</div>
+            <p class="card-body">
+              Stand with arms extended out to your sides. Make small circles,
+              gradually increasing the size, for the prescribed time, then
+              reverse direction.
+            </p>
+            <div class="howto-section-label">Leg swings</div>
+            <p class="card-body">
+              Hold onto something for balance. Swing one leg forward and
+              backward in a controlled motion, like a pendulum, for the
+              prescribed reps, then switch legs.
+            </p>
+            <div class="howto-section-label">Cat-Cow (spinal mobility)</div>
+            <p class="card-body">
+              On hands and knees: inhale as you drop your belly down and lift
+              your chest and tailbone up (Cow), then exhale as you round your
+              spine up toward the ceiling, tucking your chin (Cat). Move slowly
+              between the two positions, syncing with your breath.
+            </p>
+            <div class="howto-section-label">Band/cable pull-aparts</div>
+            <p class="card-body">
+              Hold a light resistance band (or use a cable station with a rope
+              handle) with arms extended in front of you at shoulder height.
+              Pull your hands apart, squeezing your shoulder blades together,
+              then return slowly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="ms-divider" style="margin-top: 2rem" />
+      <p style="font-size: 11px; color: var(--text3); text-align: center">
+        Mallapur Five — built around Cult Neo Gym Mallapur's standard equipment.
+        Adjust weights to your own comfort and always prioritize form over load.
+        Re-check progress every 4–6 weeks and increase weight or reps gradually.
+      </p>
+    </div>
+
+    <script>
+      /* ── Day tab navigation — uses event delegation so it works
+       even after core/init.js has rebuilt the DOM (direct NodeList
+       queries at script-parse time would point to detached nodes) ── */
+      function activateView(target) {
+        document
+          .querySelectorAll("#dayNav .tab")
+          .forEach((t) => t.classList.remove("active"));
+        const tabEl = document.querySelector(
+          '#dayNav .tab[data-view="' + target + '"]',
+        );
+        if (tabEl) tabEl.classList.add("active");
+        document
+          .querySelectorAll(".day-view")
+          .forEach((v) => v.classList.remove("active"));
+        const viewEl = document.getElementById("view-" + target);
+        if (viewEl) viewEl.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      window.activateView = activateView;
+
+      // Event delegation: single listener on document, catches all tab clicks
+      document.addEventListener("click", function (e) {
+        const tab = e.target.closest("#dayNav .tab");
+        if (!tab) return;
+        const view = tab.getAttribute("data-view");
+        if (view) activateView(view);
+      });
+      document.addEventListener("keydown", function (e) {
+        const tab = e.target.closest("#dayNav .tab");
+        if (!tab) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          activateView(tab.getAttribute("data-view"));
+        }
+      });
+
+      /* ── Exercise checkbox ── */
+      function toggleDone(rowEl) {
+        const chk = rowEl.querySelector(".chk");
+        chk.classList.toggle("on");
+        const card = rowEl.closest(".exercise");
+        if (card) card.classList.toggle("done");
+      }
+      window.toggleDone = toggleDone;
+
+      /* ── Jump from a workout card straight to its How-To entry ── */
+      function goToHowto(cardId) {
+        activateView("howto");
+        // Reset any active filter so the target card is guaranteed visible
+        document
+          .querySelectorAll(".howto-filter-pill")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelector('.howto-filter-pill[data-filter="all"]')
+          .classList.add("active");
+        document
+          .querySelectorAll(".howto-card")
+          .forEach((c) => (c.style.display = ""));
+        document.getElementById("howto-search-input").value = "";
+
+        setTimeout(() => {
+          const card = document.getElementById(cardId);
+          if (!card) return;
+          card.classList.add("open");
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+          card.style.outline = "2px solid var(--indigo)";
+          card.style.outlineOffset = "2px";
+          setTimeout(() => {
+            card.style.outline = "";
+            card.style.outlineOffset = "";
+          }, 1800);
+        }, 350);
+      }
+      window.goToHowto = goToHowto;
+
+      /* ── How-To accordion ── */
+      function toggleHowto(headEl) {
+        const card = headEl.closest(".howto-card");
+        card.classList.toggle("open");
+      }
+      window.toggleHowto = toggleHowto;
+
+      /* ── How-To search + category filter ── */
+      (function () {
+        const searchInput = document.getElementById("howto-search-input");
+        const filterPills = document.querySelectorAll(".howto-filter-pill");
+        const cards = document.querySelectorAll(".howto-card");
+        let activeFilter = "all";
+
+        function applyHowtoFilters() {
+          const q = (searchInput.value || "").toLowerCase().trim();
+          cards.forEach((card) => {
+            const cat = card.getAttribute("data-cat");
+            const text = card.textContent.toLowerCase();
+            const matchesFilter =
+              activeFilter === "all" || cat === activeFilter;
+            const matchesSearch = !q || text.includes(q);
+            card.style.display = matchesFilter && matchesSearch ? "" : "none";
+          });
+        }
+
+        filterPills.forEach((pill) => {
+          pill.addEventListener("click", () => {
+            filterPills.forEach((p) => p.classList.remove("active"));
+            pill.classList.add("active");
+            activeFilter = pill.getAttribute("data-filter");
+            applyHowtoFilters();
+          });
+        });
+
+        if (searchInput)
+          searchInput.addEventListener("input", applyHowtoFilters);
+      })();
+    </script>
+  </body>
+</html>

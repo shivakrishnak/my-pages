@@ -1,0 +1,292 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  SIDEBAR PAGE TEMPLATE — full sidebar + topbar + bottom-nav
+
+  Use this template for long-form reference content with multiple
+  sections — anything that benefits from a table-of-contents and
+  jump-to-section navigation. For a single-screen tool or short
+  page, use template-standalone.html instead, it's lighter.
+
+  This file is a real, working page. Copy it, rename it, edit the
+  marked sections, delete this comment block, done.
+
+  If your page is part of a MULTI-PAGE group (like the mastery
+  system's 7 pages), duplicate this template once per page in the
+  group, and keep the "All Parts" list in every copy's sidebar in
+  sync — it's how readers move between pages in the same project.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="theme-color"
+      content="#F8F6F1"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#121110"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!-- ░░░ EDIT: title and description — these populate the homepage card ░░░ -->
+    <title>Page Title Goes Here</title>
+    <meta
+      name="description"
+      content="One sentence shown on the homepage card. Keep it under ~110 characters."
+    />
+
+    <!-- ░░░ EDIT (optional): registry metadata — see core/generate_registry.py for full docs ░░░ -->
+    <meta name="page-icon" content="📘" />
+    <!-- <meta name="page-category" content="Custom Label"> -->
+    <!-- omit to use the folder name automatically -->
+    <!-- <meta name="page-order" content="1"> -->
+    <!-- omit to sort alphabetically -->
+    <!-- <meta name="page-hidden" content="true"> -->
+    <!-- uncomment to hide from homepage -->
+
+    <!-- ░░░ DO NOT EDIT: path depends on folder depth. If this file is at
+     pages/your-group/page.html, the path below (../../core/...) is correct.
+     If you nest one level deeper, add another ../ ░░░ -->
+    <link rel="stylesheet" href="../../core/shell.css" />
+    <script>
+      // Apply saved theme before paint — prevents flash of wrong theme.
+      // Keep this exact block on every page.
+      (function () {
+        if (localStorage.getItem("ms-dark") === "1") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="ms-progress" aria-hidden="true">
+      <div class="ms-progress-bar" id="ms-progress-bar"></div>
+    </div>
+    <a href="#main-content" class="ms-skip-link">Skip to content</a>
+    <div class="ms-overlay" id="ms-overlay"></div>
+
+    <div class="ms-layout">
+      <aside class="ms-sidebar" id="ms-sidebar" aria-label="Site navigation">
+        <div class="ms-sidebar-header">
+          <!-- ░░░ EDIT: project name and your name/byline ░░░ -->
+          <a href="../../index.html" class="ms-brand">
+            Project Name Goes Here
+            <span>by Shiva Krishna K</span>
+          </a>
+          <button
+            class="ms-sidebar-close"
+            id="ms-sidebar-close"
+            aria-label="Close navigation"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="ms-sidebar-search">
+          <span class="ms-search-icon">⌕</span>
+          <input
+            type="search"
+            id="ms-search"
+            placeholder="Search sections…"
+            aria-label="Search sections"
+          />
+        </div>
+
+        <!-- ░░░ EDIT: this is the table of contents for THIS page only.
+         Every <a href="#some-id"> below must match an id="some-id"
+         on a heading further down the page (see .ms-section examples). ░░░ -->
+        <nav class="ms-toc" aria-label="Page sections">
+          <span class="ms-nav-label">This Page</span>
+          <a href="#s1" class="ms-nav-item sub">1. First Section</a>
+          <a href="#s1-1" class="ms-nav-item sub">↳ 1.1 A Subsection</a>
+          <a href="#s1-2" class="ms-nav-item sub">↳ 1.2 Another Subsection</a>
+          <a href="#s2" class="ms-nav-item sub">2. Second Section</a>
+        </nav>
+
+        <!-- ░░░ EDIT: if this page is part of a multi-page group, list every
+         sibling page here so readers can jump between them. The "active"
+         class marks the current page — set it manually per copy.
+         If this is a single standalone page, delete this whole block. ░░░ -->
+        <div style="border-top: 1px solid var(--border); padding: 0.5rem 0">
+          <span class="ms-nav-label">All Pages In This Project</span>
+          <a href="page-one.html" class="ms-nav-item active"
+            ><span class="ms-nav-dot"></span>Page One</a
+          >
+          <a href="page-two.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Page Two</a
+          >
+        </div>
+
+        <div class="ms-sidebar-footer">
+          <a href="../../index.html">← All pages</a>
+        </div>
+      </aside>
+
+      <main class="ms-main" id="main-content">
+        <header class="ms-topbar">
+          <div class="ms-topbar-left">
+            <button
+              class="ms-hamburger"
+              id="ms-hamburger"
+              aria-label="Open navigation"
+              aria-expanded="false"
+              aria-controls="ms-sidebar"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <!-- ░░░ EDIT: badge color — pick one of: indigo, teal, amber, coral, sage ░░░ -->
+            <span class="ms-badge indigo">Section Tag</span>
+            <span class="ms-topbar-title">Page Title Goes Here</span>
+          </div>
+          <div class="ms-topbar-right">
+            <span
+              id="ms-reading-time"
+              style="font-size: 11px; color: var(--text3)"
+            ></span>
+            <button
+              class="ms-icon-btn"
+              id="ms-dark-btn"
+              aria-label="Toggle dark mode"
+            ></button>
+          </div>
+        </header>
+
+        <div class="ms-content">
+          <!-- ░░░ EDIT: hero intro ░░░ -->
+          <div class="ms-hero">
+            <div class="ms-hero-eyebrow" style="color: var(--indigo)">
+              <span class="ms-badge indigo">Project Name</span>
+            </div>
+            <h1>Page Title Goes Here</h1>
+            <p class="ms-hero-sub">
+              A one or two sentence description of what this page covers.
+            </p>
+          </div>
+
+          <!-- ░░░ EDIT: actual content. Each top-level topic should be a
+           .ms-section with an id matching its sidebar TOC link above.
+           Use shell.css's component classes — .ms-callout, .ms-table,
+           .ms-framework, .ms-steps, .ms-quote, .ms-drill, etc. — see
+           any file in pages/mastery/ for live examples of each. ░░░ -->
+          <div class="ms-section" id="s1">
+            <h2><span class="ms-section-num">§1</span>First Section</h2>
+            <p>Section content goes here.</p>
+          </div>
+
+          <div class="ms-section" id="s1-1">
+            <h3>1.1 A Subsection</h3>
+            <p>Subsection content goes here.</p>
+
+            <div class="ms-callout">
+              Example callout box — good for a key insight or warning.
+            </div>
+          </div>
+
+          <div class="ms-section" id="s1-2">
+            <h3>1.2 Another Subsection</h3>
+            <p>More content.</p>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <div class="ms-section" id="s2">
+            <h2><span class="ms-section-num">§2</span>Second Section</h2>
+            <p>Content for the second top-level section.</p>
+          </div>
+
+          <!-- ░░░ EDIT: prev/next links — delete this block if this is a
+           single standalone page with nothing to link to ░░░ -->
+          <div class="ms-page-nav">
+            <span></span>
+            <a href="page-two.html" class="ms-page-nav-next">Next Page →</a>
+          </div>
+        </div>
+
+        <nav class="ms-bottom-nav" aria-label="Mobile navigation">
+          <button
+            class="ms-bottom-nav-item"
+            data-action="menu"
+            aria-label="Open menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+            <span>Menu</span>
+          </button>
+          <a
+            class="ms-bottom-nav-item"
+            href="../../index.html"
+            aria-label="Home"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span>Home</span>
+          </a>
+          <button
+            class="ms-bottom-nav-item"
+            data-action="top"
+            aria-label="Back to top"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+            <span>Top</span>
+          </button>
+          <button
+            class="ms-bottom-nav-item"
+            data-action="dark"
+            aria-label="Toggle dark mode"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <span>Dark</span>
+          </button>
+        </nav>
+      </main>
+    </div>
+    <!-- /.ms-layout -->
+
+    <script src="../../core/shell.js"></script>
+  </body>
+</html>

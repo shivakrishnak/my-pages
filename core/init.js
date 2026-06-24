@@ -34,6 +34,25 @@
        automatically. If you don't include this wrapper, init.js
        falls back to using everything already in <body> at call
        time.
+     - Put page-specific <script> tags OUTSIDE #page-content but
+       still inside <body> — init.js will collect and re-execute
+       them after the layout is built.
+     - CRITICAL — page scripts must use EVENT DELEGATION, not
+       upfront NodeList queries. This is because init.js rebuilds
+       the DOM after the page's scripts first run, so any NodeList
+       captured at parse time will point to detached/orphaned nodes.
+
+       DO THIS (delegation — always works):
+         document.addEventListener('click', function(e) {
+           const btn = e.target.closest('.my-button');
+           if (!btn) return;
+           // handle click
+         });
+
+       NOT THIS (NodeList — broken after init.js runs):
+         const buttons = document.querySelectorAll('.my-button');
+         buttons.forEach(b => b.addEventListener('click', handler));
+
      - Optionally provide page metadata as data-attributes on
        <body> for nicer chrome:
          data-title="Page Title"           (topbar + tab title)

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea93c57c-eb0d-47eb-a1a9-bfa018b9cf6a" name="Changes" comment="fix workout plan">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/registry.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/registry.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/shell.css" beforeDir="false" afterPath="$PROJECT_DIR$/core/shell.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/shell.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/shell.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/sidebar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/5day-workout-plan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/90day-mastery-plan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery-consistency-analysis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/90day-plan.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/90day-plan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/part2b.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part2b.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/part2c.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part2c.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/part3-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part3-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mastery/part5.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mastery/part5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/sample-page.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/ASK/MyWorkspace/my-pages" value="3FTwbPqDxyUN5eVbG4kNTsa4273" />
+    </persistenceIdMap>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;shivakrishnak&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/shivakrishnak/my-pages.git&quot;,
+    &quot;accountId&quot;: &quot;65f8919a-30bf-4d21-bdf4-071e03ac3028&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3FTwbPqDxyUN5eVbG4kNTsa4273" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea93c57c-eb0d-47eb-a1a9-bfa018b9cf6a" name="Changes" comment="" />
+      <created>1782112448748</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782112448748</updated>
+    </task>
+    <task id="LOCAL-00001" summary="added init.js">
+      <option name="closed" value="true" />
+      <created>1782131588029</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1782131588030</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Scroll website with mouse wheel">
+      <option name="closed" value="true" />
+      <created>1782132876825</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1782132876825</updated>
+    </task>
+    <task id="LOCAL-00003" summary="formatting">
+      <option name="closed" value="true" />
+      <created>1782190600806</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1782190600806</updated>
+    </task>
+    <task id="LOCAL-00004" summary="claude new design from sshtoshiva">
+      <option name="closed" value="true" />
+      <created>1782190871976</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1782190871976</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix workout plan">
+      <option name="closed" value="true" />
+      <created>1782192478275</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1782192478275</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added init.js" />
+    <MESSAGE value="Scroll website with mouse wheel" />
+    <MESSAGE value="formatting" />
+    <MESSAGE value="claude new design from sshtoshiva" />
+    <MESSAGE value="fix workout plan" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix workout plan" />
+  </component>
+</project>

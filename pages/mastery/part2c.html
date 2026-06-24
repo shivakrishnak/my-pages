@@ -1,549 +1,1485 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#F8F6F1" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
-<title>Part II — Advanced Skills §17–27 | Complete Mastery System</title>
-<meta name="description" content="Polymath knowledge, writing as thinking, decision-making, deep work, Stoicism, leadership, and financial literacy.">
-<meta name="page-category" content="Mastery System">
-<meta name="page-icon" content="🎯">
-<meta name="page-order" content="4">
-<link rel="stylesheet" href="../../core/shell.css">
-<script>
-  // Apply saved theme before paint — prevents flash of wrong theme
-  (function () {
-    if (localStorage.getItem('ms-dark') === '1') {
-      document.documentElement.classList.add('dark');
-    }
-  })();
-</script>
-</head>
-<body>
-<a href="#main-content" class="ms-skip-link">Skip to content</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="theme-color"
+      content="#F8F6F1"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#121110"
+      media="(prefers-color-scheme: dark)"
+    />
+    <title>Part II — Advanced Skills §17–27 | Complete Mastery System</title>
+    <meta
+      name="description"
+      content="Polymath knowledge, writing as thinking, decision-making, deep work, Stoicism, leadership, and financial literacy."
+    />
+    <meta name="page-category" content="Mastery System" />
+    <meta name="page-icon" content="🎯" />
+    <meta name="page-order" content="4" />
+    <link rel="stylesheet" href="../../core/shell.css" />
+    <script>
+      // Apply saved theme before paint — prevents flash of wrong theme
+      (function () {
+        if (localStorage.getItem("ms-dark") === "1") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="ms-skip-link">Skip to content</a>
 
-<div class="ms-progress" aria-hidden="true"><div class="ms-progress-bar" id="ms-progress-bar"></div></div>
-<div class="ms-overlay" id="ms-overlay"></div>
-
-<div class="ms-layout">
-
-  <aside class="ms-sidebar" id="ms-sidebar" aria-label="Site navigation">
-    <div class="ms-sidebar-header">
-      <a href="../../index.html" class="ms-brand">
-        Complete Mastery System
-        <span>by Shiva Krishna K</span>
-      </a>
-      <button class="ms-sidebar-close" id="ms-sidebar-close" aria-label="Close navigation">✕</button>
+    <div class="ms-progress" aria-hidden="true">
+      <div class="ms-progress-bar" id="ms-progress-bar"></div>
     </div>
-    <div class="ms-sidebar-search">
-      <span class="ms-search-icon">⌕</span>
-      <input type="search" id="ms-search" placeholder="Search sections…" aria-label="Search sections">
-    </div>
-    <nav class="ms-toc" aria-label="Page sections">
-      <span class="ms-nav-label">§17–24 Knowledge & Writing</span>
-      <a href="#s17" class="ms-nav-item sub">17. Polymath Knowledge</a>
-      <a href="#s18" class="ms-nav-item sub">18. Writing as Thinking</a>
-      <a href="#s19" class="ms-nav-item sub">19. Decision-Making</a>
-      <a href="#s20" class="ms-nav-item sub">20. Deep Work &amp; Focus</a>
-      <a href="#s21" class="ms-nav-item sub">21. Stoic Operating System</a>
-      <a href="#s22" class="ms-nav-item sub">22. Creative Thinking</a>
-      <a href="#s23" class="ms-nav-item sub">23. Leadership Communication</a>
-      <a href="#s24" class="ms-nav-item sub">24. Personal Brand</a>
-      <span class="ms-nav-label">§25–27 Foundations</span>
-      <a href="#s25" class="ms-nav-item sub">25. Meditation &amp; Mindfulness</a>
-      <a href="#s26" class="ms-nav-item sub">26. Habits &amp; Behaviour Design</a>
-      <a href="#s27" class="ms-nav-item sub">27. Financial Literacy</a>
-    </nav>
-    <div style="border-top:1px solid var(--border);padding:0.5rem 0">
-      <span class="ms-nav-label">All Parts</span>
-      <a href="part1.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part I — The Science</a>      <a href="part2a.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part II — Voice &amp; Fluency (§3–6)</a>      <a href="part2b.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part II — Thinking &amp; Comm (§7–16)</a>      <a href="part2c.html" class="ms-nav-item active"><span class="ms-nav-dot"></span>Part II — Advanced Skills (§17–27)</a>      <a href="part3-4.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part III &amp; IV — Drills &amp; Plan</a>      <a href="part5.html" class="ms-nav-item"><span class="ms-nav-dot"></span>Part V — Resources</a>      <a href="90day-plan.html" class="ms-nav-item"><span class="ms-nav-dot"></span>90-Day Action Plan ↗</a>
-    </div>
-    <div class="ms-sidebar-footer">
-      <a href="../../index.html">← All pages</a>
-    </div>
-  </aside>
+    <div class="ms-overlay" id="ms-overlay"></div>
 
-  <main class="ms-main" id="main-content">
-  <header class="ms-topbar">
-    <div class="ms-topbar-left">
-      <button class="ms-hamburger" id="ms-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="ms-sidebar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <span class="ms-badge amber">Part II · §17–27</span>
-      <span class="ms-topbar-title">Advanced Skills — Thinking, Leading &amp; Living</span>
-    </div>
-    <div class="ms-topbar-right">
-      <span id="ms-reading-time" style="font-size:11px;color:var(--text3)"></span>
-      <button class="ms-icon-btn" id="ms-dark-btn" aria-label="Toggle dark mode"></button>
-    </div>
-  </header>
-
-    <div class="ms-content">
-
-    <div class="ms-hero">
-      <div class="ms-hero-eyebrow" style="color:var(--amber)">
-        <span class="ms-badge amber">Part II · §17–27</span> The Skills
-      </div>
-      <h1>Advanced Skills — Thinking, Leading &amp; Living</h1>
-      <p class="ms-hero-sub">Polymath knowledge, writing as a thinking tool, decision-making, deep work, Stoic philosophy, leadership communication, habits science, and financial literacy. The complete operating system.</p>
-    </div>
-
-        <nav class="ms-part-nav" aria-label="Navigate parts">
-      <a href="part1.html" class="ms-part-pill">I · Science</a>
-      <a href="part2a.html" class="ms-part-pill">II · Voice &amp; Fluency</a>
-      <a href="part2b.html" class="ms-part-pill">II · Thinking &amp; Comm</a>
-      <a href="part2c.html" class="ms-part-pill active">II · Advanced</a>
-      <a href="part3-4.html" class="ms-part-pill">III–IV · Drills &amp; Plan</a>
-      <a href="part5.html" class="ms-part-pill">V · Resources</a>
-    </nav>
-
-    <!-- §17 POLYMATH -->
-    <div class="ms-section" id="s17">
-      <h2><span class="ms-section-num">§17</span>Building Polymath Knowledge</h2>
-
-      <h3>17.1 The T-Shaped Knowledge Model</h3>
-      <p>The most valuable knowledge structure combines <strong>one area of deep expertise</strong> (the vertical bar of the T) with <strong>broad working knowledge across many disciplines</strong> (the horizontal bar). Deep expertise gives you credibility and capability. Broad knowledge gives you the connections and insights that specialists miss.</p>
-      <div class="ms-callout teal">
-        <strong>For software engineers:</strong> Your vertical is your technical domain. Your horizontal should include psychology (how people use software), economics (business models, incentives), statistics (making sense of data), communication (selling your ideas), and at least one completely unrelated domain — history, biology, music. The unexpected connections from unrelated domains are where original ideas live.
-      </div>
-
-      <h3>17.2 The 8-Discipline Core Curriculum</h3>
-      <div class="ms-model-grid">
-        <div class="ms-model-card"><div class="ms-model-num">01</div><div class="ms-model-name">Mathematics &amp; Statistics</div><div class="ms-model-def">Probabilistic thinking, risk, data interpretation. One book: <em>How to Lie with Statistics</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">02</div><div class="ms-model-name">Psychology</div><div class="ms-model-def">How humans think, decide, and behave. One book: <em>Thinking, Fast and Slow</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">03</div><div class="ms-model-name">Economics</div><div class="ms-model-def">Incentives, markets, opportunity cost. One book: <em>Freakonomics</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">04</div><div class="ms-model-name">History</div><div class="ms-model-def">Patterns, second-order effects, how change happens. One book: <em>Sapiens</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">05</div><div class="ms-model-name">Philosophy</div><div class="ms-model-def">Ethics, epistemology, how to think about thinking. One book: <em>Meditations</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">06</div><div class="ms-model-name">Biology &amp; Evolution</div><div class="ms-model-def">Systems, adaptation, emergent behaviour. One book: <em>The Selfish Gene</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">07</div><div class="ms-model-name">Physics</div><div class="ms-model-def">First principles, systems, how things work at the base level. One book: <em>Surely You're Joking, Mr Feynman</em></div></div>
-        <div class="ms-model-card"><div class="ms-model-num">08</div><div class="ms-model-name">Art &amp; Design</div><div class="ms-model-def">Aesthetics, attention, creativity, non-verbal communication. One book: <em>The Design of Everyday Things</em></div></div>
-      </div>
-
-      <h3>17.3 The 20-Hour Foundation per Discipline</h3>
-      <p>Josh Kaufman's research: 20 hours of focused, deliberate practice is sufficient to move from complete beginner to functional. Not expert — but functional enough to think usefully in that domain. That's 20 hours of reading, exercises, and application per discipline. At 1 hour/week, you cover one new discipline per 5 months.</p>
-
-      <h3>17.4 The Cross-Pollination Method</h3>
-      <p>The most original ideas come from applying a concept from one domain to a completely different domain. This is deliberate practice:</p>
-      <ul>
-        <li>Keep a "cross-pollination journal" — when you learn something from biology, ask "How does this apply to software architecture?"</li>
-        <li>When studying economics, ask "Where do I see this dynamic in my team?"</li>
-        <li>Every concept you learn in any discipline: test it against two other domains</li>
-      </ul>
-    </div>
-
-    <hr class="ms-divider">
-
-    <!-- §18 WRITING -->
-    <div class="ms-section" id="s18">
-      <h2><span class="ms-section-num">§18</span>Writing as a Thinking Tool</h2>
-
-      <h3>18.1 Why Writing Is the Ultimate Thinking Exercise</h3>
-      <p>Writing forces precision that thinking doesn't. When you think, you can glide over fuzzy concepts because no one is checking. When you write, the fuzziness becomes visible — you cannot write clearly about something you don't understand clearly. This is why the best thinkers are also prolific writers.</p>
-      <div class="ms-quote">"I write to find out what I think."<cite>— Joan Didion</cite></div>
-      <div class="ms-quote">"Writing is thinking. To write well is to think clearly. That's why it's so hard."<cite>— David McCullough</cite></div>
-
-      <h3>18.2 The Paul Graham Essay Method</h3>
-      <ol class="ms-steps">
-        <li><strong>Start with a question</strong>, not a thesis: "What's actually going on here?" Let the writing discover the answer.</li>
-        <li><strong>Follow the thread</strong>: When a sentence surprises you, follow it. Surprise is a signal that you've found something real.</li>
-        <li><strong>Cut ruthlessly</strong>: Every sentence that doesn't advance the argument or add a useful detail: cut it. Good writing is mostly cutting.</li>
-        <li><strong>Plain language</strong>: If a simpler word works, use it. Complexity of language is inversely correlated with clarity of thought.</li>
-        <li><strong>Let it be wrong first</strong>: Write a bad first draft. The purpose of the first draft is to exist, not to be good.</li>
-      </ol>
-
-      <h3>18.3 Principles of Clear Writing</h3>
-      <ul>
-        <li><strong>One idea per paragraph</strong> — if you're making two points, use two paragraphs</li>
-        <li><strong>Active voice over passive</strong> — "I made a mistake" is clearer than "A mistake was made"</li>
-        <li><strong>Concrete over abstract</strong> — "We reduced latency by 40%" beats "We improved performance significantly"</li>
-        <li><strong>Short sentences when possible</strong> — vary length for rhythm, but default short</li>
-        <li><strong>Delete throat-clearing</strong> — delete the first sentence of most paragraphs. You usually get to the point in sentence 2.</li>
-      </ul>
-
-      <h3>18.4 The Writing Practice Hierarchy</h3>
-      <div class="ms-timeline">
-        <div class="ms-timeline-item"><strong>Daily</strong> — Journaling or morning pages. 5–10 minutes. Unfiltered thinking on paper. Builds the writing muscle.</div>
-        <div class="ms-timeline-item"><strong>Weekly</strong> — One synthesis journal entry connecting ideas from the week. 10 minutes.</div>
-        <div class="ms-timeline-item"><strong>Monthly</strong> — One structured piece: a written explanation of something you learned, a proposal, or a reflection. 30–60 minutes.</div>
-        <div class="ms-timeline-item"><strong>Quarterly</strong> — One longer essay or document exploring a question you genuinely care about. This is where original thinking happens.</div>
-      </div>
-
-      <h3>18.5 The Minto Pyramid for Documents</h3>
-      <p>Barbara Minto's Pyramid Principle applied to documents: structure every document so that the key message is at the top, supported by grouped arguments, each supported by data. A reader should be able to read only the first sentence of each section and still understand the document's complete argument.</p>
-    </div>
-
-    <hr class="ms-divider">
-
-    <!-- §19 DECISION MAKING -->
-    <div class="ms-section" id="s19">
-      <h2><span class="ms-section-num">§19</span>Decision-Making &amp; Judgment</h2>
-
-      <h3>19.1 Why Smart People Make Bad Decisions</h3>
-      <p>Intelligence does not protect against cognitive biases — it only makes you better at rationalising the bad decisions your intuitions already made. The solution is not to be smarter; it's to use processes that systematically counteract known biases.</p>
-      <div class="ms-callout coral">
-        <strong>The three most common decision failures for engineers:</strong>
-        <ol style="margin:0.5rem 0 0 1.25rem">
-          <li><strong>Sunk cost fallacy</strong> — continuing a bad technical choice because you've already invested time in it</li>
-          <li><strong>Confirmation bias</strong> — seeking evidence that your chosen approach will work, not evidence that it won't</li>
-          <li><strong>Availability heuristic</strong> — overweighting recent incidents (like the last production outage) when estimating risks</li>
-        </ol>
-      </div>
-
-      <h3>19.2 The Decision-Making Framework</h3>
-      <ol class="ms-steps">
-        <li><strong>Define the actual decision</strong> — "Should we refactor now?" is different from "Should we accept more technical debt?" Clarity on what you're deciding changes everything.</li>
-        <li><strong>List the alternatives</strong> — at least three. Binary thinking (do it or don't) is usually false. There's almost always a third option.</li>
-        <li><strong>Identify the key criteria</strong> — what matters most? Speed, cost, quality, reversibility?</li>
-        <li><strong>Assess each option against criteria</strong> — not intuitively, explicitly.</li>
-        <li><strong>Pre-mortem</strong> — for your leading option, ask: "It's 6 months from now and this decision was a disaster. What went wrong?" Then decide how to prevent those things.</li>
-        <li><strong>Decide and record</strong> — write down what you decided and why. This is the basis for learning from the outcome.</li>
-      </ol>
-
-      <h3>19.3 The Pre-Mortem (Gary Klein)</h3>
-      <p>Before committing to a major decision, imagine you're 6 months in the future and the decision was a failure. Work backwards: what went wrong? This technique, developed by Gary Klein, surfaces risks that people are reluctant to raise before a decision (because it seems negative) but think about privately.</p>
-      <div class="ms-drill">
-        <div class="ms-drill-title">Pre-Mortem Template <span class="ms-drill-time">10 min</span></div>
-        <p>"It is [6 months from now]. We committed to [decision] and it failed badly. What happened? List the top 5 most likely causes of failure." Then address each one proactively.</p>
-      </div>
-
-      <h3>19.4 The Decision Journal</h3>
-      <p>Record every significant decision you make with: the decision, your reasoning, the alternatives you considered, the key uncertainties, and your confidence level. Review quarterly. This is the only way to improve your judgment — you need a feedback loop.</p>
-      <div class="ms-example">
-        <div class="ms-example-label">Decision journal entry format</div>
-        <div class="ms-example-body" style="font-size:13px;line-height:1.75">
-          <strong>Date:</strong> [date]<br>
-          <strong>Decision:</strong> Switch from REST to GraphQL for the new API<br>
-          <strong>Alternatives considered:</strong> REST (familiar), gRPC (performance), GraphQL (flexibility)<br>
-          <strong>Key reasoning:</strong> Frontend needs vary per client; REST over-fetches; team has GraphQL experience<br>
-          <strong>Key uncertainty:</strong> Performance at scale; N+1 problem<br>
-          <strong>Confidence:</strong> 70%<br>
-          <strong>[6 months later — review]</strong> Was the decision right? What did I miss?
+    <div class="ms-layout">
+      <aside class="ms-sidebar" id="ms-sidebar" aria-label="Site navigation">
+        <div class="ms-sidebar-header">
+          <a href="../../index.html" class="ms-brand">
+            Complete Mastery System
+            <span>by Shiva Krishna K</span>
+          </a>
+          <button
+            class="ms-sidebar-close"
+            id="ms-sidebar-close"
+            aria-label="Close navigation"
+          >
+            ✕
+          </button>
         </div>
-      </div>
-
-      <h3>19.5 Thinking in Bets (Annie Duke)</h3>
-      <p>A decision is not the same as an outcome. A good decision can lead to a bad outcome (bad luck). A bad decision can lead to a good outcome (good luck). Judging decisions purely by outcomes is "resulting" — a cognitive error.</p>
-      <p>Instead: evaluate the quality of your decision-making <em>process</em> — did you consider the right alternatives? Did you assess probabilities accurately? Did you have the right information? The outcome tells you something, but not everything.</p>
-
-      <h3>19.6 The Eisenhower Matrix</h3>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th></th><th>Urgent</th><th>Not Urgent</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Important</strong></td><td class="hi">DO immediately</td><td class="med">SCHEDULE — deep work</td></tr>
-            <tr><td><strong>Not Important</strong></td><td>DELEGATE if possible</td><td class="lo">ELIMINATE</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Most engineers spend the majority of time in "urgent, important" (crises) and "urgent, not important" (interruptions). The highest-value quadrant is <strong>"important, not urgent"</strong> — skill development, architecture decisions, relationship-building. This only happens when you protect time for it deliberately.</p>
-    </div>
-
-    <hr class="ms-divider">
-
-    <!-- §20 DEEP WORK -->
-    <div class="ms-section" id="s20">
-      <h2><span class="ms-section-num">§20</span>Deep Work, Focus &amp; Energy Management</h2>
-
-      <h3>20.1 Deep Work (Cal Newport)</h3>
-      <p><strong>Deep work:</strong> Professional activities performed in a state of distraction-free concentration that push your cognitive capabilities to their limit. These create new value, improve your skills, and are hard to replicate.</p>
-      <p><strong>Shallow work:</strong> Logistical tasks that can be performed while distracted — email, Slack, admin, routine meetings. These are necessary but not differentiating.</p>
-      <div class="ms-callout">
-        <strong>The deep work hypothesis:</strong> The ability to perform deep work is becoming increasingly rare and increasingly valuable in the knowledge economy. The few who cultivate this ability will thrive; the many who are distracted will struggle.
-      </div>
-
-      <h3>20.2 The Attention Management System</h3>
-      <ol class="ms-steps">
-        <li><strong>Time-block deep work</strong> — schedule it as a non-negotiable meeting with yourself. 90-minute blocks are optimal (one full ultradian cycle).</li>
-        <li><strong>Digital minimalism</strong> — tools should justify their presence by their value. Remove apps that distract without adding proportional value.</li>
-        <li><strong>Phone off the desk</strong> — even the presence of a phone face-down on the desk reduces cognitive capacity (Ward et al., 2017, University of Texas).</li>
-        <li><strong>Single-tasking</strong> — multitasking reduces the quality of all tasks simultaneously. It's not a skill; it's a liability.</li>
-        <li><strong>Shutdown ritual</strong> — a deliberate end-of-work ritual that closes all open loops. This allows genuine rest, which restores the capacity for deep work.</li>
-      </ol>
-
-      <h3>20.3 Flow States (Mihaly Csikszentmihalyi)</h3>
-      <p>Flow is the mental state of complete absorption in a challenging task. It's where the best work happens, time distorts, and the work feels effortless despite being difficult. Prerequisites for flow:</p>
-      <ul>
-        <li><strong>Clear goal</strong> — you know exactly what you're trying to do</li>
-        <li><strong>Immediate feedback</strong> — you can see whether you're progressing</li>
-        <li><strong>Challenge-skill balance</strong> — the task is difficult enough to require full attention but not so hard it causes anxiety</li>
-        <li><strong>No interruptions</strong> — flow takes 15–20 minutes to enter and is destroyed instantly by a notification</li>
-      </ul>
-
-      <h3>20.4 Energy Management &gt; Time Management</h3>
-      <p>You cannot manufacture time, but you can manage energy. Cognitive performance depends on physical state.</p>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Energy lever</th><th>High ROI action</th><th>Impact on cognition</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Sleep</strong></td><td>7–8 hours consistently; same wake time daily</td><td>Greatest single lever for cognitive performance; affects memory consolidation</td></tr>
-            <tr><td><strong>Exercise</strong></td><td>30+ min moderate exercise 4× week</td><td>Grows BDNF (brain-derived neurotrophic factor); enhances learning and memory</td></tr>
-            <tr><td><strong>Nutrition</strong></td><td>Avoid blood sugar spikes; delay first meal if possible</td><td>Stable glucose = stable attention; spikes → crashes</td></tr>
-            <tr><td><strong>Light</strong></td><td>Morning sunlight within 1hr of waking</td><td>Sets circadian rhythm; affects alertness throughout the day</td></tr>
-            <tr><td><strong>Breaks</strong></td><td>5-min break every 90 min of work</td><td>Maintains peak cognitive performance; prevents decision fatigue</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <hr class="ms-divider">
-
-    <!-- §21 STOICISM -->
-    <div class="ms-section" id="s21">
-      <h2><span class="ms-section-num">§21</span>The Stoic Operating System</h2>
-
-      <h3>21.1 Why Stoicism Matters</h3>
-      <p>Stoicism is not about suppressing emotions. It's about responding to events with clarity and reason rather than reflexive reaction. In a professional context, it's the philosophy that produces composure under pressure, long-term thinking over short-term reaction, and focus on what you can control.</p>
-      <p>Marcus Aurelius ruled the Roman Empire for nearly 20 years while practicing Stoicism. Epictetus was born a slave and became one of the most influential philosophers in history. Neither circumstance is unusual for Stoics — the philosophy is specifically designed for adversity.</p>
-
-      <h3>21.2 The Four Core Principles</h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.65rem;margin:1rem 0">
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem">
-          <div style="font-size:11px;font-weight:700;color:var(--indigo);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em">Dichotomy of Control</div>
-          <p style="font-size:13px;color:var(--text2);margin:0;line-height:1.55">Some things are in your control (thoughts, choices, responses). Most things are not (others' opinions, outcomes, events). Invest energy only in the former.</p>
+        <div class="ms-sidebar-search">
+          <span class="ms-search-icon">⌕</span>
+          <input
+            type="search"
+            id="ms-search"
+            placeholder="Search sections…"
+            aria-label="Search sections"
+          />
         </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem">
-          <div style="font-size:11px;font-weight:700;color:var(--teal);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em">Amor Fati</div>
-          <p style="font-size:13px;color:var(--text2);margin:0;line-height:1.55">Love your fate. Not acceptance of bad things, but seeing obstacles as necessary parts of the path. Every difficulty is a training event.</p>
+        <nav class="ms-toc" aria-label="Page sections">
+          <span class="ms-nav-label">§17–24 Knowledge & Writing</span>
+          <a href="#s17" class="ms-nav-item sub">17. Polymath Knowledge</a>
+          <a href="#s18" class="ms-nav-item sub">18. Writing as Thinking</a>
+          <a href="#s19" class="ms-nav-item sub">19. Decision-Making</a>
+          <a href="#s20" class="ms-nav-item sub">20. Deep Work &amp; Focus</a>
+          <a href="#s21" class="ms-nav-item sub">21. Stoic Operating System</a>
+          <a href="#s22" class="ms-nav-item sub">22. Creative Thinking</a>
+          <a href="#s23" class="ms-nav-item sub"
+            >23. Leadership Communication</a
+          >
+          <a href="#s24" class="ms-nav-item sub">24. Personal Brand</a>
+          <span class="ms-nav-label">§25–27 Foundations</span>
+          <a href="#s25" class="ms-nav-item sub"
+            >25. Meditation &amp; Mindfulness</a
+          >
+          <a href="#s26" class="ms-nav-item sub"
+            >26. Habits &amp; Behaviour Design</a
+          >
+          <a href="#s27" class="ms-nav-item sub">27. Financial Literacy</a>
+        </nav>
+        <div style="border-top: 1px solid var(--border); padding: 0.5rem 0">
+          <span class="ms-nav-label">All Parts</span>
+          <a href="part1.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part I — The Science</a
+          >
+          <a href="part2a.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part II — Voice &amp; Fluency
+            (§3–6)</a
+          >
+          <a href="part2b.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part II — Thinking &amp; Comm
+            (§7–16)</a
+          >
+          <a href="part2c.html" class="ms-nav-item active"
+            ><span class="ms-nav-dot"></span>Part II — Advanced Skills
+            (§17–27)</a
+          >
+          <a href="part3-4.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part III &amp; IV — Drills &amp;
+            Plan</a
+          >
+          <a href="part5.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>Part V — Resources</a
+          >
+          <a href="90day-plan.html" class="ms-nav-item"
+            ><span class="ms-nav-dot"></span>90-Day Action Plan ↗</a
+          >
         </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem">
-          <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em">Memento Mori</div>
-          <p style="font-size:13px;color:var(--text2);margin:0;line-height:1.55">Remember you will die. Not morbid — clarifying. It forces prioritisation: if you had one year, would you spend it on this worry?</p>
+        <div class="ms-sidebar-footer">
+          <a href="../../index.html">← All pages</a>
         </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem">
-          <div style="font-size:11px;font-weight:700;color:var(--sage);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em">Virtue is Enough</div>
-          <p style="font-size:13px;color:var(--text2);margin:0;line-height:1.55">The only truly good thing is virtue — wisdom, courage, justice, moderation. Everything else (money, fame, health) is preferred but not necessary for a good life.</p>
+      </aside>
+
+      <main class="ms-main" id="main-content">
+        <header class="ms-topbar">
+          <div class="ms-topbar-left">
+            <button
+              class="ms-hamburger"
+              id="ms-hamburger"
+              aria-label="Open navigation"
+              aria-expanded="false"
+              aria-controls="ms-sidebar"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <span class="ms-badge amber">Part II · §17–27</span>
+            <span class="ms-topbar-title"
+              >Advanced Skills — Thinking, Leading &amp; Living</span
+            >
+          </div>
+          <div class="ms-topbar-right">
+            <span
+              id="ms-reading-time"
+              style="font-size: 11px; color: var(--text3)"
+            ></span>
+            <button
+              class="ms-icon-btn"
+              id="ms-dark-btn"
+              aria-label="Toggle dark mode"
+            ></button>
+          </div>
+        </header>
+
+        <div class="ms-content">
+          <div class="ms-hero">
+            <div class="ms-hero-eyebrow" style="color: var(--amber)">
+              <span class="ms-badge amber">Part II · §17–27</span> The Skills
+            </div>
+            <h1>Advanced Skills — Thinking, Leading &amp; Living</h1>
+            <p class="ms-hero-sub">
+              Polymath knowledge, writing as a thinking tool, decision-making,
+              deep work, Stoic philosophy, leadership communication, habits
+              science, and financial literacy. The complete operating system.
+            </p>
+          </div>
+
+          <nav class="ms-part-nav" aria-label="Navigate parts">
+            <a href="part1.html" class="ms-part-pill">I · Science</a>
+            <a href="part2a.html" class="ms-part-pill"
+              >II · Voice &amp; Fluency</a
+            >
+            <a href="part2b.html" class="ms-part-pill"
+              >II · Thinking &amp; Comm</a
+            >
+            <a href="part2c.html" class="ms-part-pill active">II · Advanced</a>
+            <a href="part3-4.html" class="ms-part-pill"
+              >III–IV · Drills &amp; Plan</a
+            >
+            <a href="part5.html" class="ms-part-pill">V · Resources</a>
+          </nav>
+
+          <!-- §17 POLYMATH -->
+          <div class="ms-section" id="s17">
+            <h2>
+              <span class="ms-section-num">§17</span>Building Polymath Knowledge
+            </h2>
+
+            <h3>17.1 The T-Shaped Knowledge Model</h3>
+            <p>
+              The most valuable knowledge structure combines
+              <strong>one area of deep expertise</strong> (the vertical bar of
+              the T) with
+              <strong>broad working knowledge across many disciplines</strong>
+              (the horizontal bar). Deep expertise gives you credibility and
+              capability. Broad knowledge gives you the connections and insights
+              that specialists miss.
+            </p>
+            <div class="ms-callout teal">
+              <strong>For software engineers:</strong> Your vertical is your
+              technical domain. Your horizontal should include psychology (how
+              people use software), economics (business models, incentives),
+              statistics (making sense of data), communication (selling your
+              ideas), and at least one completely unrelated domain — history,
+              biology, music. The unexpected connections from unrelated domains
+              are where original ideas live.
+            </div>
+
+            <h3>17.2 The 8-Discipline Core Curriculum</h3>
+            <div class="ms-model-grid">
+              <div class="ms-model-card">
+                <div class="ms-model-num">01</div>
+                <div class="ms-model-name">Mathematics &amp; Statistics</div>
+                <div class="ms-model-def">
+                  Probabilistic thinking, risk, data interpretation. One book:
+                  <em>How to Lie with Statistics</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">02</div>
+                <div class="ms-model-name">Psychology</div>
+                <div class="ms-model-def">
+                  How humans think, decide, and behave. One book:
+                  <em>Thinking, Fast and Slow</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">03</div>
+                <div class="ms-model-name">Economics</div>
+                <div class="ms-model-def">
+                  Incentives, markets, opportunity cost. One book:
+                  <em>Freakonomics</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">04</div>
+                <div class="ms-model-name">History</div>
+                <div class="ms-model-def">
+                  Patterns, second-order effects, how change happens. One book:
+                  <em>Sapiens</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">05</div>
+                <div class="ms-model-name">Philosophy</div>
+                <div class="ms-model-def">
+                  Ethics, epistemology, how to think about thinking. One book:
+                  <em>Meditations</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">06</div>
+                <div class="ms-model-name">Biology &amp; Evolution</div>
+                <div class="ms-model-def">
+                  Systems, adaptation, emergent behaviour. One book:
+                  <em>The Selfish Gene</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">07</div>
+                <div class="ms-model-name">Physics</div>
+                <div class="ms-model-def">
+                  First principles, systems, how things work at the base level.
+                  One book: <em>Surely You're Joking, Mr Feynman</em>
+                </div>
+              </div>
+              <div class="ms-model-card">
+                <div class="ms-model-num">08</div>
+                <div class="ms-model-name">Art &amp; Design</div>
+                <div class="ms-model-def">
+                  Aesthetics, attention, creativity, non-verbal communication.
+                  One book: <em>The Design of Everyday Things</em>
+                </div>
+              </div>
+            </div>
+
+            <h3>17.3 The 20-Hour Foundation per Discipline</h3>
+            <p>
+              Josh Kaufman's research: 20 hours of focused, deliberate practice
+              is sufficient to move from complete beginner to functional. Not
+              expert — but functional enough to think usefully in that domain.
+              That's 20 hours of reading, exercises, and application per
+              discipline. At 1 hour/week, you cover one new discipline per 5
+              months.
+            </p>
+
+            <h3>17.4 The Cross-Pollination Method</h3>
+            <p>
+              The most original ideas come from applying a concept from one
+              domain to a completely different domain. This is deliberate
+              practice:
+            </p>
+            <ul>
+              <li>
+                Keep a "cross-pollination journal" — when you learn something
+                from biology, ask "How does this apply to software
+                architecture?"
+              </li>
+              <li>
+                When studying economics, ask "Where do I see this dynamic in my
+                team?"
+              </li>
+              <li>
+                Every concept you learn in any discipline: test it against two
+                other domains
+              </li>
+            </ul>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §18 WRITING -->
+          <div class="ms-section" id="s18">
+            <h2>
+              <span class="ms-section-num">§18</span>Writing as a Thinking Tool
+            </h2>
+
+            <h3>18.1 Why Writing Is the Ultimate Thinking Exercise</h3>
+            <p>
+              Writing forces precision that thinking doesn't. When you think,
+              you can glide over fuzzy concepts because no one is checking. When
+              you write, the fuzziness becomes visible — you cannot write
+              clearly about something you don't understand clearly. This is why
+              the best thinkers are also prolific writers.
+            </p>
+            <div class="ms-quote">
+              "I write to find out what I think."<cite>— Joan Didion</cite>
+            </div>
+            <div class="ms-quote">
+              "Writing is thinking. To write well is to think clearly. That's
+              why it's so hard."<cite>— David McCullough</cite>
+            </div>
+
+            <h3>18.2 The Paul Graham Essay Method</h3>
+            <ol class="ms-steps">
+              <li>
+                <strong>Start with a question</strong>, not a thesis: "What's
+                actually going on here?" Let the writing discover the answer.
+              </li>
+              <li>
+                <strong>Follow the thread</strong>: When a sentence surprises
+                you, follow it. Surprise is a signal that you've found something
+                real.
+              </li>
+              <li>
+                <strong>Cut ruthlessly</strong>: Every sentence that doesn't
+                advance the argument or add a useful detail: cut it. Good
+                writing is mostly cutting.
+              </li>
+              <li>
+                <strong>Plain language</strong>: If a simpler word works, use
+                it. Complexity of language is inversely correlated with clarity
+                of thought.
+              </li>
+              <li>
+                <strong>Let it be wrong first</strong>: Write a bad first draft.
+                The purpose of the first draft is to exist, not to be good.
+              </li>
+            </ol>
+
+            <h3>18.3 Principles of Clear Writing</h3>
+            <ul>
+              <li>
+                <strong>One idea per paragraph</strong> — if you're making two
+                points, use two paragraphs
+              </li>
+              <li>
+                <strong>Active voice over passive</strong> — "I made a mistake"
+                is clearer than "A mistake was made"
+              </li>
+              <li>
+                <strong>Concrete over abstract</strong> — "We reduced latency by
+                40%" beats "We improved performance significantly"
+              </li>
+              <li>
+                <strong>Short sentences when possible</strong> — vary length for
+                rhythm, but default short
+              </li>
+              <li>
+                <strong>Delete throat-clearing</strong> — delete the first
+                sentence of most paragraphs. You usually get to the point in
+                sentence 2.
+              </li>
+            </ul>
+
+            <h3>18.4 The Writing Practice Hierarchy</h3>
+            <div class="ms-timeline">
+              <div class="ms-timeline-item">
+                <strong>Daily</strong> — Journaling or morning pages. 5–10
+                minutes. Unfiltered thinking on paper. Builds the writing
+                muscle.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Weekly</strong> — One synthesis journal entry connecting
+                ideas from the week. 10 minutes.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Monthly</strong> — One structured piece: a written
+                explanation of something you learned, a proposal, or a
+                reflection. 30–60 minutes.
+              </div>
+              <div class="ms-timeline-item">
+                <strong>Quarterly</strong> — One longer essay or document
+                exploring a question you genuinely care about. This is where
+                original thinking happens.
+              </div>
+            </div>
+
+            <h3>18.5 The Minto Pyramid for Documents</h3>
+            <p>
+              Barbara Minto's Pyramid Principle applied to documents: structure
+              every document so that the key message is at the top, supported by
+              grouped arguments, each supported by data. A reader should be able
+              to read only the first sentence of each section and still
+              understand the document's complete argument.
+            </p>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §19 DECISION MAKING -->
+          <div class="ms-section" id="s19">
+            <h2>
+              <span class="ms-section-num">§19</span>Decision-Making &amp;
+              Judgment
+            </h2>
+
+            <h3>19.1 Why Smart People Make Bad Decisions</h3>
+            <p>
+              Intelligence does not protect against cognitive biases — it only
+              makes you better at rationalising the bad decisions your
+              intuitions already made. The solution is not to be smarter; it's
+              to use processes that systematically counteract known biases.
+            </p>
+            <div class="ms-callout coral">
+              <strong
+                >The three most common decision failures for engineers:</strong
+              >
+              <ol style="margin: 0.5rem 0 0 1.25rem">
+                <li>
+                  <strong>Sunk cost fallacy</strong> — continuing a bad
+                  technical choice because you've already invested time in it
+                </li>
+                <li>
+                  <strong>Confirmation bias</strong> — seeking evidence that
+                  your chosen approach will work, not evidence that it won't
+                </li>
+                <li>
+                  <strong>Availability heuristic</strong> — overweighting recent
+                  incidents (like the last production outage) when estimating
+                  risks
+                </li>
+              </ol>
+            </div>
+
+            <h3>19.2 The Decision-Making Framework</h3>
+            <ol class="ms-steps">
+              <li>
+                <strong>Define the actual decision</strong> — "Should we
+                refactor now?" is different from "Should we accept more
+                technical debt?" Clarity on what you're deciding changes
+                everything.
+              </li>
+              <li>
+                <strong>List the alternatives</strong> — at least three. Binary
+                thinking (do it or don't) is usually false. There's almost
+                always a third option.
+              </li>
+              <li>
+                <strong>Identify the key criteria</strong> — what matters most?
+                Speed, cost, quality, reversibility?
+              </li>
+              <li>
+                <strong>Assess each option against criteria</strong> — not
+                intuitively, explicitly.
+              </li>
+              <li>
+                <strong>Pre-mortem</strong> — for your leading option, ask:
+                "It's 6 months from now and this decision was a disaster. What
+                went wrong?" Then decide how to prevent those things.
+              </li>
+              <li>
+                <strong>Decide and record</strong> — write down what you decided
+                and why. This is the basis for learning from the outcome.
+              </li>
+            </ol>
+
+            <h3>19.3 The Pre-Mortem (Gary Klein)</h3>
+            <p>
+              Before committing to a major decision, imagine you're 6 months in
+              the future and the decision was a failure. Work backwards: what
+              went wrong? This technique, developed by Gary Klein, surfaces
+              risks that people are reluctant to raise before a decision
+              (because it seems negative) but think about privately.
+            </p>
+            <div class="ms-drill">
+              <div class="ms-drill-title">
+                Pre-Mortem Template <span class="ms-drill-time">10 min</span>
+              </div>
+              <p>
+                "It is [6 months from now]. We committed to [decision] and it
+                failed badly. What happened? List the top 5 most likely causes
+                of failure." Then address each one proactively.
+              </p>
+            </div>
+
+            <h3>19.4 The Decision Journal</h3>
+            <p>
+              Record every significant decision you make with: the decision,
+              your reasoning, the alternatives you considered, the key
+              uncertainties, and your confidence level. Review quarterly. This
+              is the only way to improve your judgment — you need a feedback
+              loop.
+            </p>
+            <div class="ms-example">
+              <div class="ms-example-label">Decision journal entry format</div>
+              <div
+                class="ms-example-body"
+                style="font-size: 13px; line-height: 1.75"
+              >
+                <strong>Date:</strong> [date]<br />
+                <strong>Decision:</strong> Switch from REST to GraphQL for the
+                new API<br />
+                <strong>Alternatives considered:</strong> REST (familiar), gRPC
+                (performance), GraphQL (flexibility)<br />
+                <strong>Key reasoning:</strong> Frontend needs vary per client;
+                REST over-fetches; team has GraphQL experience<br />
+                <strong>Key uncertainty:</strong> Performance at scale; N+1
+                problem<br />
+                <strong>Confidence:</strong> 70%<br />
+                <strong>[6 months later — review]</strong> Was the decision
+                right? What did I miss?
+              </div>
+            </div>
+
+            <h3>19.5 Thinking in Bets (Annie Duke)</h3>
+            <p>
+              A decision is not the same as an outcome. A good decision can lead
+              to a bad outcome (bad luck). A bad decision can lead to a good
+              outcome (good luck). Judging decisions purely by outcomes is
+              "resulting" — a cognitive error.
+            </p>
+            <p>
+              Instead: evaluate the quality of your decision-making
+              <em>process</em> — did you consider the right alternatives? Did
+              you assess probabilities accurately? Did you have the right
+              information? The outcome tells you something, but not everything.
+            </p>
+
+            <h3>19.6 The Eisenhower Matrix</h3>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Urgent</th>
+                    <th>Not Urgent</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Important</strong></td>
+                    <td class="hi">DO immediately</td>
+                    <td class="med">SCHEDULE — deep work</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Not Important</strong></td>
+                    <td>DELEGATE if possible</td>
+                    <td class="lo">ELIMINATE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Most engineers spend the majority of time in "urgent, important"
+              (crises) and "urgent, not important" (interruptions). The
+              highest-value quadrant is
+              <strong>"important, not urgent"</strong> — skill development,
+              architecture decisions, relationship-building. This only happens
+              when you protect time for it deliberately.
+            </p>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §20 DEEP WORK -->
+          <div class="ms-section" id="s20">
+            <h2>
+              <span class="ms-section-num">§20</span>Deep Work, Focus &amp;
+              Energy Management
+            </h2>
+
+            <h3>20.1 Deep Work (Cal Newport)</h3>
+            <p>
+              <strong>Deep work:</strong> Professional activities performed in a
+              state of distraction-free concentration that push your cognitive
+              capabilities to their limit. These create new value, improve your
+              skills, and are hard to replicate.
+            </p>
+            <p>
+              <strong>Shallow work:</strong> Logistical tasks that can be
+              performed while distracted — email, Slack, admin, routine
+              meetings. These are necessary but not differentiating.
+            </p>
+            <div class="ms-callout">
+              <strong>The deep work hypothesis:</strong> The ability to perform
+              deep work is becoming increasingly rare and increasingly valuable
+              in the knowledge economy. The few who cultivate this ability will
+              thrive; the many who are distracted will struggle.
+            </div>
+
+            <h3>20.2 The Attention Management System</h3>
+            <ol class="ms-steps">
+              <li>
+                <strong>Time-block deep work</strong> — schedule it as a
+                non-negotiable meeting with yourself. 90-minute blocks are
+                optimal (one full ultradian cycle).
+              </li>
+              <li>
+                <strong>Digital minimalism</strong> — tools should justify their
+                presence by their value. Remove apps that distract without
+                adding proportional value.
+              </li>
+              <li>
+                <strong>Phone off the desk</strong> — even the presence of a
+                phone face-down on the desk reduces cognitive capacity (Ward et
+                al., 2017, University of Texas).
+              </li>
+              <li>
+                <strong>Single-tasking</strong> — multitasking reduces the
+                quality of all tasks simultaneously. It's not a skill; it's a
+                liability.
+              </li>
+              <li>
+                <strong>Shutdown ritual</strong> — a deliberate end-of-work
+                ritual that closes all open loops. This allows genuine rest,
+                which restores the capacity for deep work.
+              </li>
+            </ol>
+
+            <h3>20.3 Flow States (Mihaly Csikszentmihalyi)</h3>
+            <p>
+              Flow is the mental state of complete absorption in a challenging
+              task. It's where the best work happens, time distorts, and the
+              work feels effortless despite being difficult. Prerequisites for
+              flow:
+            </p>
+            <ul>
+              <li>
+                <strong>Clear goal</strong> — you know exactly what you're
+                trying to do
+              </li>
+              <li>
+                <strong>Immediate feedback</strong> — you can see whether you're
+                progressing
+              </li>
+              <li>
+                <strong>Challenge-skill balance</strong> — the task is difficult
+                enough to require full attention but not so hard it causes
+                anxiety
+              </li>
+              <li>
+                <strong>No interruptions</strong> — flow takes 15–20 minutes to
+                enter and is destroyed instantly by a notification
+              </li>
+            </ul>
+
+            <h3>20.4 Energy Management &gt; Time Management</h3>
+            <p>
+              You cannot manufacture time, but you can manage energy. Cognitive
+              performance depends on physical state.
+            </p>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Energy lever</th>
+                    <th>High ROI action</th>
+                    <th>Impact on cognition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Sleep</strong></td>
+                    <td>7–8 hours consistently; same wake time daily</td>
+                    <td>
+                      Greatest single lever for cognitive performance; affects
+                      memory consolidation
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Exercise</strong></td>
+                    <td>30+ min moderate exercise 4× week</td>
+                    <td>
+                      Grows BDNF (brain-derived neurotrophic factor); enhances
+                      learning and memory
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Nutrition</strong></td>
+                    <td>
+                      Avoid blood sugar spikes; delay first meal if possible
+                    </td>
+                    <td>Stable glucose = stable attention; spikes → crashes</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Light</strong></td>
+                    <td>Morning sunlight within 1hr of waking</td>
+                    <td>
+                      Sets circadian rhythm; affects alertness throughout the
+                      day
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Breaks</strong></td>
+                    <td>5-min break every 90 min of work</td>
+                    <td>
+                      Maintains peak cognitive performance; prevents decision
+                      fatigue
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §21 STOICISM -->
+          <div class="ms-section" id="s21">
+            <h2>
+              <span class="ms-section-num">§21</span>The Stoic Operating System
+            </h2>
+
+            <h3>21.1 Why Stoicism Matters</h3>
+            <p>
+              Stoicism is not about suppressing emotions. It's about responding
+              to events with clarity and reason rather than reflexive reaction.
+              In a professional context, it's the philosophy that produces
+              composure under pressure, long-term thinking over short-term
+              reaction, and focus on what you can control.
+            </p>
+            <p>
+              Marcus Aurelius ruled the Roman Empire for nearly 20 years while
+              practicing Stoicism. Epictetus was born a slave and became one of
+              the most influential philosophers in history. Neither circumstance
+              is unusual for Stoics — the philosophy is specifically designed
+              for adversity.
+            </p>
+
+            <h3>21.2 The Four Core Principles</h3>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 0.65rem;
+                margin: 1rem 0;
+              "
+            >
+              <div
+                style="
+                  background: var(--surface);
+                  border: 1px solid var(--border);
+                  border-radius: var(--radius);
+                  padding: 0.9rem;
+                "
+              >
+                <div
+                  style="
+                    font-size: 11px;
+                    font-weight: 700;
+                    color: var(--indigo);
+                    margin-bottom: 6px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                  "
+                >
+                  Dichotomy of Control
+                </div>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--text2);
+                    margin: 0;
+                    line-height: 1.55;
+                  "
+                >
+                  Some things are in your control (thoughts, choices,
+                  responses). Most things are not (others' opinions, outcomes,
+                  events). Invest energy only in the former.
+                </p>
+              </div>
+              <div
+                style="
+                  background: var(--surface);
+                  border: 1px solid var(--border);
+                  border-radius: var(--radius);
+                  padding: 0.9rem;
+                "
+              >
+                <div
+                  style="
+                    font-size: 11px;
+                    font-weight: 700;
+                    color: var(--teal);
+                    margin-bottom: 6px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                  "
+                >
+                  Amor Fati
+                </div>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--text2);
+                    margin: 0;
+                    line-height: 1.55;
+                  "
+                >
+                  Love your fate. Not acceptance of bad things, but seeing
+                  obstacles as necessary parts of the path. Every difficulty is
+                  a training event.
+                </p>
+              </div>
+              <div
+                style="
+                  background: var(--surface);
+                  border: 1px solid var(--border);
+                  border-radius: var(--radius);
+                  padding: 0.9rem;
+                "
+              >
+                <div
+                  style="
+                    font-size: 11px;
+                    font-weight: 700;
+                    color: var(--amber);
+                    margin-bottom: 6px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                  "
+                >
+                  Memento Mori
+                </div>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--text2);
+                    margin: 0;
+                    line-height: 1.55;
+                  "
+                >
+                  Remember you will die. Not morbid — clarifying. It forces
+                  prioritisation: if you had one year, would you spend it on
+                  this worry?
+                </p>
+              </div>
+              <div
+                style="
+                  background: var(--surface);
+                  border: 1px solid var(--border);
+                  border-radius: var(--radius);
+                  padding: 0.9rem;
+                "
+              >
+                <div
+                  style="
+                    font-size: 11px;
+                    font-weight: 700;
+                    color: var(--sage);
+                    margin-bottom: 6px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                  "
+                >
+                  Virtue is Enough
+                </div>
+                <p
+                  style="
+                    font-size: 13px;
+                    color: var(--text2);
+                    margin: 0;
+                    line-height: 1.55;
+                  "
+                >
+                  The only truly good thing is virtue — wisdom, courage,
+                  justice, moderation. Everything else (money, fame, health) is
+                  preferred but not necessary for a good life.
+                </p>
+              </div>
+            </div>
+
+            <h3>21.3 The Daily Stoic Practice</h3>
+            <div class="ms-framework">
+              <div class="ms-framework-name">Morning (5 min)</div>
+              <ol class="ms-steps">
+                <li>
+                  "What is in my control today? What is not?" — Write or
+                  mentally note each category.
+                </li>
+                <li>
+                  "What could go wrong today? How will I respond with virtue if
+                  it does?" — Brief mental rehearsal of potential difficulties.
+                </li>
+                <li>
+                  Set one intention: "Today I will practice [specific virtue —
+                  courage / patience / clarity]."
+                </li>
+              </ol>
+            </div>
+            <div class="ms-framework" style="margin-top: 0.75rem">
+              <div class="ms-framework-name">Evening (5 min)</div>
+              <ol class="ms-steps">
+                <li>"What went well? Why?" — Note genuine wins.</li>
+                <li>
+                  "What fell short? What would a wiser version of me have done?"
+                  — Without self-blame, with honest assessment.
+                </li>
+                <li>
+                  "What am I grateful for today?" — Marcus Aurelius: gratitude
+                  prevents entitlement, which corrodes virtue.
+                </li>
+              </ol>
+            </div>
+
+            <h3>21.4 Stoicism Under Pressure</h3>
+            <p>
+              When something goes wrong at work: pause before reacting. Ask —
+              "Is this in my control?" If no: release it. If yes: what's the
+              highest-virtue response? This 3-second gap between stimulus and
+              response is where all character is built.
+            </p>
+            <div class="ms-quote">
+              "Between stimulus and response there is a space. In that space is
+              our power to choose our response. In our response lies our growth
+              and our freedom."<cite>— Viktor Frankl</cite>
+            </div>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §22 CREATIVE THINKING -->
+          <div class="ms-section" id="s22">
+            <h2>
+              <span class="ms-section-num">§22</span>Creative &amp; Lateral
+              Thinking
+            </h2>
+
+            <h3>22.1 Why Analytical Thinkers Need Creative Thinking</h3>
+            <p>
+              Analytical thinking optimises within constraints. Creative
+              thinking questions the constraints. The best engineers and
+              problem-solvers do both: they use analytical precision to execute
+              and creative thinking to define the problem differently before
+              executing.
+            </p>
+
+            <h3>22.3 SCAMPER Framework</h3>
+            <p>
+              A systematic brainstorming tool — apply each lens to any problem:
+            </p>
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Letter</th>
+                    <th>Question</th>
+                    <th>Example (applied to standup meetings)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>S</strong>ubstitute</td>
+                    <td>What can be substituted?</td>
+                    <td>Replace verbal standup with async written update</td>
+                  </tr>
+                  <tr>
+                    <td><strong>C</strong>ombine</td>
+                    <td>What can be combined?</td>
+                    <td>Combine standup with code review discussion</td>
+                  </tr>
+                  <tr>
+                    <td><strong>A</strong>dapt</td>
+                    <td>What can be adapted from elsewhere?</td>
+                    <td>Adapt the walking meeting format from product teams</td>
+                  </tr>
+                  <tr>
+                    <td><strong>M</strong>odify</td>
+                    <td>What can be made bigger/smaller/different?</td>
+                    <td>Reduce to 3 sentences per person maximum</td>
+                  </tr>
+                  <tr>
+                    <td><strong>P</strong>ut to other uses</td>
+                    <td>What else could this do?</td>
+                    <td>Use standup recordings to onboard new team members</td>
+                  </tr>
+                  <tr>
+                    <td><strong>E</strong>liminate</td>
+                    <td>What can be removed?</td>
+                    <td>Skip the standup entirely 2 days a week</td>
+                  </tr>
+                  <tr>
+                    <td><strong>R</strong>everse</td>
+                    <td>What if you reversed it?</td>
+                    <td>
+                      Have team members present to the manager, not the other
+                      way
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>22.7 How to Have Better Ideas</h3>
+            <ul>
+              <li>
+                <strong>Read widely across domains</strong> — most ideas are
+                combinations of existing ideas from different fields
+              </li>
+              <li>
+                <strong>Boredom is productive</strong> — the default mode
+                network (the brain's "resting" state) is where ideas connect.
+                Protect time where your mind wanders without a screen.
+              </li>
+              <li>
+                <strong>Keep a capture system</strong> — ideas appear at random.
+                Capture them immediately or they're gone. A simple notes app
+                works; the habit is what matters.
+              </li>
+              <li>
+                <strong>Think on paper</strong> — writing externalises your
+                thinking, allowing you to see connections you can't see in your
+                head
+              </li>
+              <li>
+                <strong>Combinatorial creativity</strong> (Steve Jobs) —
+                "Creativity is just connecting things." Put two unrelated
+                concepts together and ask: "How could this combination solve a
+                real problem?"
+              </li>
+            </ul>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §23 LEADERSHIP -->
+          <div class="ms-section" id="s23">
+            <h2>
+              <span class="ms-section-num">§23</span>Leadership Communication
+            </h2>
+
+            <h3>23.1 The Shift from Individual to Leader</h3>
+            <p>
+              The transition from individual contributor to tech lead or senior
+              engineer is fundamentally a communication shift. Your output is no
+              longer code — it's
+              <strong
+                >clarity, direction, and the ability to make others more
+                effective</strong
+              >. Every skill in this system becomes a force multiplier when
+              applied to influencing others.
+            </p>
+
+            <h3>23.2 Casting Vision</h3>
+            <p>
+              Leaders communicate the "why" before the "what" and the "how."
+              Simon Sinek's Golden Circle: start with why (purpose), then what
+              (the mission), then how (the execution). Most engineers do the
+              reverse: they explain how the system works before telling anyone
+              why it matters.
+            </p>
+
+            <h3>23.3 Managing Up</h3>
+            <ul>
+              <li>
+                <strong>Make your manager's job easier</strong> — they shouldn't
+                have to ask for status updates; give them proactively in BLUF
+                format
+              </li>
+              <li>
+                <strong>Bring solutions, not just problems</strong> — "We have a
+                problem AND here's what I propose" beats "we have a problem"
+              </li>
+              <li>
+                <strong>Understand their priorities</strong> — align your work
+                to what matters to them this quarter
+              </li>
+              <li>
+                <strong>Communicate in their preferred format</strong> — some
+                managers want details; others want the one-line summary. Ask
+                explicitly.
+              </li>
+            </ul>
+
+            <h3>23.6 The Coaching Conversation — GROW Model</h3>
+            <div class="ms-framework">
+              <div class="ms-framework-name">GROW</div>
+              <ol class="ms-steps">
+                <li><strong>G</strong>oal — "What do you want to achieve?"</li>
+                <li>
+                  <strong>R</strong>eality — "What's the current situation?
+                  What's already been tried?"
+                </li>
+                <li>
+                  <strong>O</strong>ptions — "What are your options? What else
+                  could you do?"
+                </li>
+                <li>
+                  <strong>W</strong>ill — "What will you do? By when? How
+                  committed are you on a 1–10 scale?"
+                </li>
+              </ol>
+            </div>
+            <p>
+              Most engineers coach by immediately providing solutions. GROW asks
+              questions instead — which produces solutions the other person
+              actually commits to, because they own them.
+            </p>
+
+            <h3>23.7 Difficult Conversations</h3>
+            <p>
+              Difficult conversations avoided become catastrophic conversations
+              forced. The three conversations that feel hardest but matter most:
+              addressing underperformance, giving unwelcome feedback upward, and
+              surfacing disagreement with a decision already made.
+            </p>
+            <p>
+              Framework: Prepare using DESC (§15.9). Open with the situation —
+              not your judgment. Stay curious — you may be missing context. End
+              with a specific next step, not just an expression of concern.
+            </p>
+          </div>
+
+          <hr class="ms-divider" />
+
+          <!-- §24–27 -->
+          <div class="ms-section" id="s24">
+            <h2>
+              <span class="ms-section-num">§24</span>Personal Brand &amp;
+              Intellectual Visibility
+            </h2>
+
+            <h3>24.1 Why Visibility Matters</h3>
+            <p>
+              In large organisations and the broader industry, your reputation
+              travels further than your work. Two engineers of equal technical
+              skill — the one who writes, speaks, or shares publicly
+              consistently gets more opportunities. This is not unfair; it's
+              information flow. People can only advocate for you if they know
+              about you and trust your thinking.
+            </p>
+
+            <h3>24.2 The LinkedIn Presence System</h3>
+            <ul>
+              <li>
+                <strong>Post once per week</strong> — one insight from something
+                you learned, built, or thought about
+              </li>
+              <li>
+                <strong>Written > image posts</strong> — text posts with genuine
+                thinking outperform graphics
+              </li>
+              <li>
+                <strong>Engagement compounds</strong> — comment thoughtfully on
+                3–5 posts per week; your comments surface you to new audiences
+              </li>
+              <li>
+                <strong>One strong niche</strong> — be known for something
+                specific, not everything
+              </li>
+            </ul>
+
+            <h3>24.3 Being "Known For" Something</h3>
+            <p>
+              The most valuable professional brand is:
+              <em
+                >known for solving a specific type of problem particularly
+                well</em
+              >. Not "good engineer" — but "the person who makes complex systems
+              legible to non-technical stakeholders" or "the person who can turn
+              any vague requirement into a precise spec."
+            </p>
+          </div>
+
+          <div class="ms-section" id="s25">
+            <h2>
+              <span class="ms-section-num">§25</span>Meditation &amp;
+              Mindfulness
+            </h2>
+
+            <h3>25.1 Why Meditation Is Non-Negotiable</h3>
+            <p>
+              Neuroscience research (Davidson, Harvard; Luders, UCLA)
+              consistently shows: 8 weeks of daily meditation produces
+              measurable changes in the prefrontal cortex (attention regulation)
+              and amygdala (stress response). This is not woo — it's structural
+              brain change through practice.
+            </p>
+            <p>
+              For communication specifically: meditation reduces the anxiety
+              that floods working memory in high-pressure speaking situations
+              (§1.5). It builds the gap between stimulus and response (§21.4).
+              It improves listening quality by reducing internal noise.
+            </p>
+
+            <h3>25.2 The Practice</h3>
+            <ol class="ms-steps">
+              <li>
+                <strong>Start with 10 minutes</strong> — longer is not better
+                when starting. Consistency matters more than duration.
+              </li>
+              <li>
+                <strong>Breath-focused</strong> — sit comfortably, close eyes,
+                focus on the sensation of breathing. When the mind wanders — and
+                it will — notice it and return. The "noticing and returning" is
+                the exercise.
+              </li>
+              <li>
+                <strong>Daily, same time</strong> — habit stacking: attach it to
+                an existing habit (after morning coffee, before deep work).
+              </li>
+              <li>
+                <strong>Don't judge the session</strong> — every session counts
+                equally, regardless of how distracted you were.
+              </li>
+            </ol>
+
+            <h3>25.4 Recommended Apps</h3>
+            <p>
+              Waking Up (Sam Harris) · Headspace · Insight Timer (free). Waking
+              Up is the strongest for understanding the practice philosophically
+              alongside the technique.
+            </p>
+          </div>
+
+          <div class="ms-section" id="s26">
+            <h2>
+              <span class="ms-section-num">§26</span>Habits &amp; Behaviour
+              Design
+            </h2>
+
+            <h3>26.1 Why Systems Beat Motivation</h3>
+            <p>
+              Motivation is a feeling. Feelings are variable. Systems are
+              structures. The goal is to make the desired behaviour the path of
+              least resistance — so it happens even when motivation is absent,
+              which is most of the time.
+            </p>
+            <div class="ms-quote">
+              "You do not rise to the level of your goals. You fall to the level
+              of your systems."<cite>— James Clear, Atomic Habits</cite>
+            </div>
+
+            <h3>26.2 The Habit Loop</h3>
+            <div class="ms-framework">
+              <div class="ms-framework-name">
+                Cue → Craving → Response → Reward
+              </div>
+              <ol class="ms-steps">
+                <li>
+                  <strong>Cue</strong> — the trigger that initiates behaviour
+                  (alarm, location, preceding habit)
+                </li>
+                <li>
+                  <strong>Craving</strong> — the motivational force (the feeling
+                  you want the habit to produce)
+                </li>
+                <li><strong>Response</strong> — the actual behaviour</li>
+                <li>
+                  <strong>Reward</strong> — the satisfying signal that
+                  reinforces the loop
+                </li>
+              </ol>
+            </div>
+            <p>
+              To build a new habit: make the cue obvious, the craving
+              attractive, the response easy, and the reward satisfying. To break
+              a bad habit: invert each of these.
+            </p>
+
+            <h3>26.3 Identity-Based Habits</h3>
+            <p>
+              The most powerful habit change comes from identity shift, not
+              goal-setting. Instead of "I want to practice speaking" (outcome
+              focus), adopt "I am someone who practises communication daily"
+              (identity focus). Every practice session becomes a vote for this
+              identity. Enough votes, and the identity solidifies.
+            </p>
+
+            <h3>26.4 Habit Stacking</h3>
+            <p>
+              Formula:
+              <strong>"After I [current habit], I will [new habit]."</strong
+              ><br />
+              Example: "After I make my morning coffee, I will do my vocal
+              warm-up." The existing habit provides the cue for the new one.
+              This is the fastest way to add new habits reliably.
+            </p>
+
+            <h3>26.5 The Two-Day Rule</h3>
+            <div class="ms-callout">
+              <strong>Never miss twice in a row.</strong> One missed day is an
+              accident. Two missed days is the start of a new (bad) habit. The
+              first day of missing doesn't break the habit — the second day
+              does. Protect the second day with everything you have.
+            </div>
+
+            <h3>26.6 Environment Design</h3>
+            <p>
+              Your environment shapes your behaviour more than your willpower
+              does. Make desired behaviours obvious, easy, and attractive:
+            </p>
+            <ul>
+              <li>
+                Put your Anki card deck on your phone's home screen, not buried
+                in a folder
+              </li>
+              <li>
+                Leave a straw on your desk for vocal warm-ups — the physical
+                trigger matters
+              </li>
+              <li>
+                Put your phone in another room during deep work blocks —
+                friction is a feature
+              </li>
+              <li>
+                Set a recurring calendar block for your daily practice —
+                scheduled beats intended
+              </li>
+            </ul>
+          </div>
+
+          <div class="ms-section" id="s27">
+            <h2>
+              <span class="ms-section-num">§27</span>Financial Literacy
+              Fundamentals
+            </h2>
+
+            <h3>27.1 Why This Belongs in a Mastery System</h3>
+            <p>
+              Financial stress is the single biggest cognitive bandwidth tax on
+              professionals. Research (Mani et al., 2013) shows financial worry
+              reduces available IQ by the equivalent of losing a night's sleep.
+              Financial clarity — even imperfect — frees mental capacity for
+              everything else in this system.
+            </p>
+
+            <h3>27.2 The Core Concepts</h3>
+            <ul>
+              <li>
+                <strong>Compounding</strong> — the most powerful force in
+                wealth-building. ₹10,000/month invested at 12% for 20 years = ₹1
+                crore+. Starting 10 years later halves the result.
+              </li>
+              <li>
+                <strong>Inflation</strong> — money in a savings account loses
+                purchasing power. Investment (equity, real estate) is not
+                optional — it's necessary to stay in place.
+              </li>
+              <li>
+                <strong>Risk tolerance</strong> — not a personality trait but a
+                function of time horizon. Longer horizon = more risk tolerance.
+                At 30, your 30-year time horizon means equity volatility is
+                acceptable.
+              </li>
+              <li>
+                <strong>Tax efficiency</strong> — NPS (80CCD), ELSS (80C), HRA,
+                and EPF are not optional for Indian professionals — they are
+                free returns. Maximise before investing anything else.
+              </li>
+              <li>
+                <strong>Emergency fund</strong> — 6 months of expenses in a
+                liquid instrument (high-yield savings, liquid fund). This
+                removes the cognitive tax of financial vulnerability.
+              </li>
+            </ul>
+
+            <h3>27.3 The Rule of Thumb</h3>
+            <p>
+              <strong>50/30/20:</strong> 50% needs, 30% wants, 20% savings and
+              investment. Adjust as income grows — lifestyle inflation is the
+              main destroyer of wealth-building capacity.
+            </p>
+
+            <h3>27.4 How Financial Literacy Connects to Communication</h3>
+            <p>
+              Understanding financial language — EBITDA, ROI, unit economics,
+              burn rate, CAC — allows you to speak the language of business
+              conversations, salary negotiations, and leadership decisions.
+              Engineers who understand the financial context of their technical
+              decisions become significantly more influential.
+            </p>
+          </div>
+
+          <div class="ms-page-nav">
+            <a href="part2b.html" class="ms-page-nav-prev"
+              >← Part II · Thinking &amp; Comm</a
+            >
+            <a href="part3-4.html" class="ms-page-nav-next"
+              >Part III &amp; IV · Drills &amp; Plan →</a
+            >
+          </div>
         </div>
-      </div>
 
-      <h3>21.3 The Daily Stoic Practice</h3>
-      <div class="ms-framework">
-        <div class="ms-framework-name">Morning (5 min)</div>
-        <ol class="ms-steps">
-          <li>"What is in my control today? What is not?" — Write or mentally note each category.</li>
-          <li>"What could go wrong today? How will I respond with virtue if it does?" — Brief mental rehearsal of potential difficulties.</li>
-          <li>Set one intention: "Today I will practice [specific virtue — courage / patience / clarity]."</li>
-        </ol>
-      </div>
-      <div class="ms-framework" style="margin-top:0.75rem">
-        <div class="ms-framework-name">Evening (5 min)</div>
-        <ol class="ms-steps">
-          <li>"What went well? Why?" — Note genuine wins.</li>
-          <li>"What fell short? What would a wiser version of me have done?" — Without self-blame, with honest assessment.</li>
-          <li>"What am I grateful for today?" — Marcus Aurelius: gratitude prevents entitlement, which corrodes virtue.</li>
-        </ol>
-      </div>
-
-      <h3>21.4 Stoicism Under Pressure</h3>
-      <p>When something goes wrong at work: pause before reacting. Ask — "Is this in my control?" If no: release it. If yes: what's the highest-virtue response? This 3-second gap between stimulus and response is where all character is built.</p>
-      <div class="ms-quote">"Between stimulus and response there is a space. In that space is our power to choose our response. In our response lies our growth and our freedom."<cite>— Viktor Frankl</cite></div>
+        <!-- Mobile bottom nav -->
+        <nav class="ms-bottom-nav" aria-label="Mobile navigation">
+          <button
+            class="ms-bottom-nav-item"
+            data-action="menu"
+            aria-label="Open menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+            <span>Menu</span>
+          </button>
+          <a
+            class="ms-bottom-nav-item"
+            href="../../index.html"
+            aria-label="Home"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span>Home</span>
+          </a>
+          <button
+            class="ms-bottom-nav-item"
+            data-action="top"
+            aria-label="Back to top"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+            <span>Top</span>
+          </button>
+          <button
+            class="ms-bottom-nav-item"
+            data-action="dark"
+            aria-label="Toggle dark mode"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <span>Dark</span>
+          </button>
+        </nav>
+      </main>
     </div>
-
-    <hr class="ms-divider">
-
-    <!-- §22 CREATIVE THINKING -->
-    <div class="ms-section" id="s22">
-      <h2><span class="ms-section-num">§22</span>Creative &amp; Lateral Thinking</h2>
-
-      <h3>22.1 Why Analytical Thinkers Need Creative Thinking</h3>
-      <p>Analytical thinking optimises within constraints. Creative thinking questions the constraints. The best engineers and problem-solvers do both: they use analytical precision to execute and creative thinking to define the problem differently before executing.</p>
-
-      <h3>22.3 SCAMPER Framework</h3>
-      <p>A systematic brainstorming tool — apply each lens to any problem:</p>
-      <div class="ms-table-wrap">
-        <table class="ms-table">
-          <thead><tr><th>Letter</th><th>Question</th><th>Example (applied to standup meetings)</th></tr></thead>
-          <tbody>
-            <tr><td><strong>S</strong>ubstitute</td><td>What can be substituted?</td><td>Replace verbal standup with async written update</td></tr>
-            <tr><td><strong>C</strong>ombine</td><td>What can be combined?</td><td>Combine standup with code review discussion</td></tr>
-            <tr><td><strong>A</strong>dapt</td><td>What can be adapted from elsewhere?</td><td>Adapt the walking meeting format from product teams</td></tr>
-            <tr><td><strong>M</strong>odify</td><td>What can be made bigger/smaller/different?</td><td>Reduce to 3 sentences per person maximum</td></tr>
-            <tr><td><strong>P</strong>ut to other uses</td><td>What else could this do?</td><td>Use standup recordings to onboard new team members</td></tr>
-            <tr><td><strong>E</strong>liminate</td><td>What can be removed?</td><td>Skip the standup entirely 2 days a week</td></tr>
-            <tr><td><strong>R</strong>everse</td><td>What if you reversed it?</td><td>Have team members present to the manager, not the other way</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>22.7 How to Have Better Ideas</h3>
-      <ul>
-        <li><strong>Read widely across domains</strong> — most ideas are combinations of existing ideas from different fields</li>
-        <li><strong>Boredom is productive</strong> — the default mode network (the brain's "resting" state) is where ideas connect. Protect time where your mind wanders without a screen.</li>
-        <li><strong>Keep a capture system</strong> — ideas appear at random. Capture them immediately or they're gone. A simple notes app works; the habit is what matters.</li>
-        <li><strong>Think on paper</strong> — writing externalises your thinking, allowing you to see connections you can't see in your head</li>
-        <li><strong>Combinatorial creativity</strong> (Steve Jobs) — "Creativity is just connecting things." Put two unrelated concepts together and ask: "How could this combination solve a real problem?"</li>
-      </ul>
-    </div>
-
-    <hr class="ms-divider">
-
-    <!-- §23 LEADERSHIP -->
-    <div class="ms-section" id="s23">
-      <h2><span class="ms-section-num">§23</span>Leadership Communication</h2>
-
-      <h3>23.1 The Shift from Individual to Leader</h3>
-      <p>The transition from individual contributor to tech lead or senior engineer is fundamentally a communication shift. Your output is no longer code — it's <strong>clarity, direction, and the ability to make others more effective</strong>. Every skill in this system becomes a force multiplier when applied to influencing others.</p>
-
-      <h3>23.2 Casting Vision</h3>
-      <p>Leaders communicate the "why" before the "what" and the "how." Simon Sinek's Golden Circle: start with why (purpose), then what (the mission), then how (the execution). Most engineers do the reverse: they explain how the system works before telling anyone why it matters.</p>
-
-      <h3>23.3 Managing Up</h3>
-      <ul>
-        <li><strong>Make your manager's job easier</strong> — they shouldn't have to ask for status updates; give them proactively in BLUF format</li>
-        <li><strong>Bring solutions, not just problems</strong> — "We have a problem AND here's what I propose" beats "we have a problem"</li>
-        <li><strong>Understand their priorities</strong> — align your work to what matters to them this quarter</li>
-        <li><strong>Communicate in their preferred format</strong> — some managers want details; others want the one-line summary. Ask explicitly.</li>
-      </ul>
-
-      <h3>23.6 The Coaching Conversation — GROW Model</h3>
-      <div class="ms-framework">
-        <div class="ms-framework-name">GROW</div>
-        <ol class="ms-steps">
-          <li><strong>G</strong>oal — "What do you want to achieve?"</li>
-          <li><strong>R</strong>eality — "What's the current situation? What's already been tried?"</li>
-          <li><strong>O</strong>ptions — "What are your options? What else could you do?"</li>
-          <li><strong>W</strong>ill — "What will you do? By when? How committed are you on a 1–10 scale?"</li>
-        </ol>
-      </div>
-      <p>Most engineers coach by immediately providing solutions. GROW asks questions instead — which produces solutions the other person actually commits to, because they own them.</p>
-
-      <h3>23.7 Difficult Conversations</h3>
-      <p>Difficult conversations avoided become catastrophic conversations forced. The three conversations that feel hardest but matter most: addressing underperformance, giving unwelcome feedback upward, and surfacing disagreement with a decision already made.</p>
-      <p>Framework: Prepare using DESC (§15.9). Open with the situation — not your judgment. Stay curious — you may be missing context. End with a specific next step, not just an expression of concern.</p>
-    </div>
-
-    <hr class="ms-divider">
-
-    <!-- §24–27 -->
-    <div class="ms-section" id="s24">
-      <h2><span class="ms-section-num">§24</span>Personal Brand &amp; Intellectual Visibility</h2>
-
-      <h3>24.1 Why Visibility Matters</h3>
-      <p>In large organisations and the broader industry, your reputation travels further than your work. Two engineers of equal technical skill — the one who writes, speaks, or shares publicly consistently gets more opportunities. This is not unfair; it's information flow. People can only advocate for you if they know about you and trust your thinking.</p>
-
-      <h3>24.2 The LinkedIn Presence System</h3>
-      <ul>
-        <li><strong>Post once per week</strong> — one insight from something you learned, built, or thought about</li>
-        <li><strong>Written > image posts</strong> — text posts with genuine thinking outperform graphics</li>
-        <li><strong>Engagement compounds</strong> — comment thoughtfully on 3–5 posts per week; your comments surface you to new audiences</li>
-        <li><strong>One strong niche</strong> — be known for something specific, not everything</li>
-      </ul>
-
-      <h3>24.3 Being "Known For" Something</h3>
-      <p>The most valuable professional brand is: <em>known for solving a specific type of problem particularly well</em>. Not "good engineer" — but "the person who makes complex systems legible to non-technical stakeholders" or "the person who can turn any vague requirement into a precise spec."</p>
-    </div>
-
-    <div class="ms-section" id="s25">
-      <h2><span class="ms-section-num">§25</span>Meditation &amp; Mindfulness</h2>
-
-      <h3>25.1 Why Meditation Is Non-Negotiable</h3>
-      <p>Neuroscience research (Davidson, Harvard; Luders, UCLA) consistently shows: 8 weeks of daily meditation produces measurable changes in the prefrontal cortex (attention regulation) and amygdala (stress response). This is not woo — it's structural brain change through practice.</p>
-      <p>For communication specifically: meditation reduces the anxiety that floods working memory in high-pressure speaking situations (§1.5). It builds the gap between stimulus and response (§21.4). It improves listening quality by reducing internal noise.</p>
-
-      <h3>25.2 The Practice</h3>
-      <ol class="ms-steps">
-        <li><strong>Start with 10 minutes</strong> — longer is not better when starting. Consistency matters more than duration.</li>
-        <li><strong>Breath-focused</strong> — sit comfortably, close eyes, focus on the sensation of breathing. When the mind wanders — and it will — notice it and return. The "noticing and returning" is the exercise.</li>
-        <li><strong>Daily, same time</strong> — habit stacking: attach it to an existing habit (after morning coffee, before deep work).</li>
-        <li><strong>Don't judge the session</strong> — every session counts equally, regardless of how distracted you were.</li>
-      </ol>
-
-      <h3>25.4 Recommended Apps</h3>
-      <p>Waking Up (Sam Harris) · Headspace · Insight Timer (free). Waking Up is the strongest for understanding the practice philosophically alongside the technique.</p>
-    </div>
-
-    <div class="ms-section" id="s26">
-      <h2><span class="ms-section-num">§26</span>Habits &amp; Behaviour Design</h2>
-
-      <h3>26.1 Why Systems Beat Motivation</h3>
-      <p>Motivation is a feeling. Feelings are variable. Systems are structures. The goal is to make the desired behaviour the path of least resistance — so it happens even when motivation is absent, which is most of the time.</p>
-      <div class="ms-quote">"You do not rise to the level of your goals. You fall to the level of your systems."<cite>— James Clear, Atomic Habits</cite></div>
-
-      <h3>26.2 The Habit Loop</h3>
-      <div class="ms-framework">
-        <div class="ms-framework-name">Cue → Craving → Response → Reward</div>
-        <ol class="ms-steps">
-          <li><strong>Cue</strong> — the trigger that initiates behaviour (alarm, location, preceding habit)</li>
-          <li><strong>Craving</strong> — the motivational force (the feeling you want the habit to produce)</li>
-          <li><strong>Response</strong> — the actual behaviour</li>
-          <li><strong>Reward</strong> — the satisfying signal that reinforces the loop</li>
-        </ol>
-      </div>
-      <p>To build a new habit: make the cue obvious, the craving attractive, the response easy, and the reward satisfying. To break a bad habit: invert each of these.</p>
-
-      <h3>26.3 Identity-Based Habits</h3>
-      <p>The most powerful habit change comes from identity shift, not goal-setting. Instead of "I want to practice speaking" (outcome focus), adopt "I am someone who practises communication daily" (identity focus). Every practice session becomes a vote for this identity. Enough votes, and the identity solidifies.</p>
-
-      <h3>26.4 Habit Stacking</h3>
-      <p>Formula: <strong>"After I [current habit], I will [new habit]."</strong><br>
-      Example: "After I make my morning coffee, I will do my vocal warm-up." The existing habit provides the cue for the new one. This is the fastest way to add new habits reliably.</p>
-
-      <h3>26.5 The Two-Day Rule</h3>
-      <div class="ms-callout">
-        <strong>Never miss twice in a row.</strong> One missed day is an accident. Two missed days is the start of a new (bad) habit. The first day of missing doesn't break the habit — the second day does. Protect the second day with everything you have.
-      </div>
-
-      <h3>26.6 Environment Design</h3>
-      <p>Your environment shapes your behaviour more than your willpower does. Make desired behaviours obvious, easy, and attractive:</p>
-      <ul>
-        <li>Put your Anki card deck on your phone's home screen, not buried in a folder</li>
-        <li>Leave a straw on your desk for vocal warm-ups — the physical trigger matters</li>
-        <li>Put your phone in another room during deep work blocks — friction is a feature</li>
-        <li>Set a recurring calendar block for your daily practice — scheduled beats intended</li>
-      </ul>
-    </div>
-
-    <div class="ms-section" id="s27">
-      <h2><span class="ms-section-num">§27</span>Financial Literacy Fundamentals</h2>
-
-      <h3>27.1 Why This Belongs in a Mastery System</h3>
-      <p>Financial stress is the single biggest cognitive bandwidth tax on professionals. Research (Mani et al., 2013) shows financial worry reduces available IQ by the equivalent of losing a night's sleep. Financial clarity — even imperfect — frees mental capacity for everything else in this system.</p>
-
-      <h3>27.2 The Core Concepts</h3>
-      <ul>
-        <li><strong>Compounding</strong> — the most powerful force in wealth-building. ₹10,000/month invested at 12% for 20 years = ₹1 crore+. Starting 10 years later halves the result.</li>
-        <li><strong>Inflation</strong> — money in a savings account loses purchasing power. Investment (equity, real estate) is not optional — it's necessary to stay in place.</li>
-        <li><strong>Risk tolerance</strong> — not a personality trait but a function of time horizon. Longer horizon = more risk tolerance. At 30, your 30-year time horizon means equity volatility is acceptable.</li>
-        <li><strong>Tax efficiency</strong> — NPS (80CCD), ELSS (80C), HRA, and EPF are not optional for Indian professionals — they are free returns. Maximise before investing anything else.</li>
-        <li><strong>Emergency fund</strong> — 6 months of expenses in a liquid instrument (high-yield savings, liquid fund). This removes the cognitive tax of financial vulnerability.</li>
-      </ul>
-
-      <h3>27.3 The Rule of Thumb</h3>
-      <p><strong>50/30/20:</strong> 50% needs, 30% wants, 20% savings and investment. Adjust as income grows — lifestyle inflation is the main destroyer of wealth-building capacity.</p>
-
-      <h3>27.4 How Financial Literacy Connects to Communication</h3>
-      <p>Understanding financial language — EBITDA, ROI, unit economics, burn rate, CAC — allows you to speak the language of business conversations, salary negotiations, and leadership decisions. Engineers who understand the financial context of their technical decisions become significantly more influential.</p>
-    </div>
-
-
-      <div class="ms-page-nav">
-        <a href="part2b.html" class="ms-page-nav-prev">← Part II · Thinking &amp; Comm</a>
-        <a href="part3-4.html" class="ms-page-nav-next">Part III &amp; IV · Drills &amp; Plan →</a>
-      </div>
-    </div>
-
-  <!-- Mobile bottom nav -->
-  <nav class="ms-bottom-nav" aria-label="Mobile navigation">
-    <button class="ms-bottom-nav-item" data-action="menu" aria-label="Open menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      <span>Menu</span>
-    </button>
-    <a class="ms-bottom-nav-item" href="../../index.html" aria-label="Home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Home</span>
-    </a>
-    <button class="ms-bottom-nav-item" data-action="top" aria-label="Back to top">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-      <span>Top</span>
-    </button>
-    <button class="ms-bottom-nav-item" data-action="dark" aria-label="Toggle dark mode">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <span>Dark</span>
-    </button>
-  </nav>
-  </main>
-
-</div><!-- /.ms-layout -->
-<script src="../../core/shell.js"></script>
-</body>
+    <!-- /.ms-layout -->
+    <script src="../../core/shell.js"></script>
+  </body>
 </html>
