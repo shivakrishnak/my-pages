@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-23T12:50:35Z",
+  "generated": "2026-06-24T01:31:37Z",
   "count": 10,
   "pages": [
     {
@@ -9,7 +9,7 @@
       "icon": "🏋️",
       "order": 1,
       "path": "pages/fitness/workout-plan.html",
-      "modified": "2026-06-23"
+      "modified": "2026-06-24"
     },
     {
       "title": "Sample Page",
@@ -18,7 +18,7 @@
       "icon": "📄",
       "order": 999,
       "path": "pages/general/sample-page.html",
-      "modified": "2026-06-21"
+      "modified": "2026-06-24"
     },
     {
       "title": "How to Add a New Page or Project",
@@ -27,7 +27,7 @@
       "icon": "🧭",
       "order": 1,
       "path": "pages/guides/how-to-add-a-page.html",
-      "modified": "2026-06-21"
+      "modified": "2026-06-24"
     },
     {
       "title": "Part I — The Science",
@@ -36,7 +36,7 @@
       "icon": "🧠",
       "order": 1,
       "path": "pages/mastery/part1.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     },
     {
       "title": "Part II — Voice & Fluency §3-6",
@@ -45,7 +45,7 @@
       "icon": "🎙️",
       "order": 2,
       "path": "pages/mastery/part2a.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     },
     {
       "title": "Part II — Thinking & Communication §7–16",
@@ -54,7 +54,7 @@
       "icon": "💬",
       "order": 3,
       "path": "pages/mastery/part2b.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     },
     {
       "title": "Part II — Advanced Skills §17–27",
@@ -63,7 +63,7 @@
       "icon": "🎯",
       "order": 4,
       "path": "pages/mastery/part2c.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     },
     {
       "title": "Part III & IV — Drills & Execution Plan",
@@ -72,7 +72,7 @@
       "icon": "📋",
       "order": 5,
       "path": "pages/mastery/part3-4.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     },
     {
       "title": "Part V — Resources",
@@ -81,7 +81,7 @@
       "icon": "📚",
       "order": 6,
       "path": "pages/mastery/part5.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     },
     {
       "title": "90-Day Action Plan",
@@ -90,7 +90,7 @@
       "icon": "📅",
       "order": 1,
       "path": "pages/mastery/90day-plan.html",
-      "modified": "2026-06-20"
+      "modified": "2026-06-24"
     }
   ]
 }
