@@ -94,7 +94,9 @@ html {
   text-size-adjust: 100%;
 }
 html {
+  height: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 body {
   font-family: var(--font);
@@ -106,6 +108,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
 }
 img,
