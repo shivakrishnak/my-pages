@@ -1,0 +1,2996 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anki Masterclass — Building Cards That Stick Forever</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ─── TOKENS ─────────────────────────────────────────────────────────────── */
+      :root {
+        --bg: #0d0d0f;
+        --bg2: #131317;
+        --bg3: #1a1a20;
+        --bg4: #212128;
+        --surface: #252530;
+        --border: rgba(255, 255, 255, 0.07);
+        --border2: rgba(255, 255, 255, 0.12);
+        --text: #f0ede6;
+        --muted: #9491a1;
+        --subtle: #5e5c6b;
+        --amber: #e8a020;
+        --amber2: #f5c056;
+        --amber-bg: rgba(232, 160, 32, 0.08);
+        --amber-border: rgba(232, 160, 32, 0.25);
+        --teal: #3abfbf;
+        --teal-bg: rgba(58, 191, 191, 0.08);
+        --violet: #a78bfa;
+        --violet-bg: rgba(167, 139, 250, 0.08);
+        --rose: #f87171;
+        --rose-bg: rgba(248, 113, 113, 0.08);
+        --green: #4ade80;
+        --green-bg: rgba(74, 222, 128, 0.08);
+        --blue: #60a5fa;
+        --blue-bg: rgba(96, 165, 250, 0.08);
+
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+        --r-sm: 6px;
+        --r-md: 10px;
+        --r-lg: 16px;
+        --r-xl: 20px;
+
+        --toc-w: 220px;
+        --content-max: 860px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ─── SCROLLBAR ──────────────────────────────────────────────────────────── */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--surface);
+        border-radius: 3px;
+      }
+
+      /* ─── LAYOUT ─────────────────────────────────────────────────────────────── */
+      .layout {
+        display: grid;
+        grid-template-columns: var(--toc-w) 1fr;
+        grid-template-areas: "toc main";
+        min-height: 100vh;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      /* ─── TOC ─────────────────────────────────────────────────────────────────── */
+      .toc {
+        grid-area: toc;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 2rem 1.25rem;
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .toc-brand {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--amber);
+        margin-bottom: 2rem;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+      }
+
+      .toc-section-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        margin: 1.5rem 0 0.5rem;
+      }
+
+      .toc a {
+        display: block;
+        font-size: 12.5px;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 4px 8px;
+        border-radius: var(--r-sm);
+        transition:
+          color 0.15s,
+          background 0.15s;
+        line-height: 1.4;
+        margin-bottom: 1px;
+      }
+
+      .toc a:hover,
+      .toc a.active {
+        color: var(--text);
+        background: var(--bg3);
+      }
+
+      .toc a.active {
+        color: var(--amber2);
+      }
+
+      .toc-progress {
+        margin-top: auto;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .toc-progress-label {
+        font-size: 11px;
+        color: var(--subtle);
+        margin-bottom: 6px;
+      }
+
+      .toc-progress-bar {
+        height: 3px;
+        background: var(--bg3);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .toc-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--amber), var(--amber2));
+        border-radius: 2px;
+        transition: width 0.3s;
+        width: 0%;
+      }
+
+      /* ─── MAIN CONTENT ───────────────────────────────────────────────────────── */
+      main {
+        grid-area: main;
+        padding: 0 3rem 6rem 3rem;
+        max-width: var(--content-max);
+        width: 100%;
+      }
+
+      /* ─── HERO ────────────────────────────────────────────────────────────────── */
+      .hero {
+        padding: 5rem 0 4rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 4rem;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--amber);
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 3.6rem);
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--amber2);
+      }
+
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-stat-value {
+        font-family: var(--font-display);
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin-bottom: 3px;
+      }
+
+      .hero-stat-label {
+        font-size: 11px;
+        color: var(--subtle);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      /* ─── SECTION ─────────────────────────────────────────────────────────────── */
+      .section {
+        margin-bottom: 5rem;
+      }
+
+      .section-eyebrow {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 0.75rem;
+      }
+
+      .section h2 {
+        font-family: var(--font-display);
+        font-size: 1.9rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+        margin-bottom: 1.25rem;
+        color: var(--text);
+      }
+
+      .section h3 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 400;
+        letter-spacing: -0.015em;
+        color: var(--text);
+        margin: 2.5rem 0 1rem;
+      }
+
+      .section h3.h3-amber {
+        color: var(--amber2);
+      }
+
+      p {
+        color: var(--muted);
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      p strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* ─── CALLOUT ─────────────────────────────────────────────────────────────── */
+      .callout {
+        border-radius: var(--r-lg);
+        padding: 1.25rem 1.5rem;
+        margin: 1.5rem 0;
+        border: 1px solid;
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      .callout-amber {
+        background: var(--amber-bg);
+        border-color: var(--amber-border);
+        color: var(--amber2);
+      }
+
+      .callout-teal {
+        background: var(--teal-bg);
+        border-color: rgba(58, 191, 191, 0.2);
+        color: var(--teal);
+      }
+
+      .callout-violet {
+        background: var(--violet-bg);
+        border-color: rgba(167, 139, 250, 0.2);
+        color: var(--violet);
+      }
+
+      .callout-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        opacity: 0.7;
+      }
+
+      /* ─── LAWS GRID ───────────────────────────────────────────────────────────── */
+      .laws-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 1.5rem 0;
+      }
+
+      .law-card {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 1.25rem;
+        transition: border-color 0.2s;
+      }
+
+      .law-card:hover {
+        border-color: var(--border2);
+      }
+
+      .law-num {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 300;
+        color: var(--amber);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        opacity: 0.6;
+      }
+
+      .law-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .law-desc {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ─── CARD TYPE TABLE ─────────────────────────────────────────────────────── */
+      .type-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.5rem 0;
+        font-size: 0.85rem;
+      }
+
+      .type-table th {
+        text-align: left;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        padding: 0.6rem 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .type-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .type-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .type-table tr:hover td {
+        background: var(--bg3);
+      }
+
+      .type-table td:first-child {
+        color: var(--text);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 20px;
+        letter-spacing: 0.04em;
+      }
+
+      .badge-amber {
+        background: var(--amber-bg);
+        color: var(--amber2);
+        border: 1px solid var(--amber-border);
+      }
+      .badge-teal {
+        background: var(--teal-bg);
+        color: var(--teal);
+        border: 1px solid rgba(58, 191, 191, 0.2);
+      }
+      .badge-violet {
+        background: var(--violet-bg);
+        color: var(--violet);
+        border: 1px solid rgba(167, 139, 250, 0.2);
+      }
+      .badge-rose {
+        background: var(--rose-bg);
+        color: var(--rose);
+        border: 1px solid rgba(248, 113, 113, 0.2);
+      }
+      .badge-green {
+        background: var(--green-bg);
+        color: var(--green);
+        border: 1px solid rgba(74, 222, 128, 0.2);
+      }
+      .badge-blue {
+        background: var(--blue-bg);
+        color: var(--blue);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+      }
+
+      /* ─── FLIP CARD DECK ──────────────────────────────────────────────────────── */
+      .domain-tabs {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+
+      .domain-tab {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--border2);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.15s;
+        font-family: var(--font-body);
+      }
+
+      .domain-tab:hover {
+        border-color: var(--amber-border);
+        color: var(--amber2);
+      }
+
+      .domain-tab.active {
+        background: var(--amber-bg);
+        border-color: var(--amber-border);
+        color: var(--amber2);
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      /* flip card */
+      .flip-wrap {
+        perspective: 1000px;
+        height: 220px;
+      }
+
+      .flip-wrap[data-domain] {
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+
+      .flip-wrap.hidden-card {
+        display: none;
+      }
+
+      .flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+
+      .flip-wrap.flipped .flip-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-front,
+      .flip-back {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: var(--r-lg);
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--border);
+        transition: border-color 0.2s;
+      }
+
+      .flip-wrap:hover .flip-front,
+      .flip-wrap:hover .flip-back {
+        border-color: var(--border2);
+      }
+
+      .flip-front {
+        background: var(--bg3);
+      }
+
+      .flip-back {
+        background: var(--bg4);
+        transform: rotateY(180deg);
+      }
+
+      .flip-domain-badge {
+        margin-bottom: auto;
+      }
+
+      .flip-type-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        margin-bottom: 0.75rem;
+      }
+
+      .flip-q {
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--text);
+        line-height: 1.5;
+        flex: 1;
+        font-style: italic;
+      }
+
+      .flip-cta {
+        font-size: 11px;
+        color: var(--subtle);
+        margin-top: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .flip-cta::after {
+        content: "↗";
+        font-size: 10px;
+      }
+
+      .flip-back-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 0.75rem;
+      }
+
+      .flip-a {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.65;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .flip-a strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .flip-note {
+        font-size: 0.75rem;
+        color: var(--subtle);
+        border-top: 1px solid var(--border);
+        padding-top: 0.6rem;
+        margin-top: 0.75rem;
+        line-height: 1.5;
+      }
+
+      /* ─── PROTOCOL STEPS ─────────────────────────────────────────────────────── */
+      .steps {
+        counter-reset: step;
+        margin: 1.5rem 0;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 0 1rem;
+        margin-bottom: 1rem;
+        counter-increment: step;
+      }
+
+      .step-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--amber);
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      .step-num::after {
+        content: "";
+        position: absolute;
+        top: 44px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: calc(100% + 16px);
+        background: var(--border);
+      }
+
+      .step:last-child .step-num::after {
+        display: none;
+      }
+
+      .step-content {
+        padding-top: 10px;
+        padding-bottom: 1rem;
+      }
+
+      .step-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.3rem;
+      }
+
+      .step-desc {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ─── DOMAIN MATRIX ───────────────────────────────────────────────────────── */
+      .domain-matrix {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.5rem 0;
+        font-size: 0.83rem;
+      }
+
+      .domain-matrix th {
+        text-align: left;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--subtle);
+        padding: 0.6rem 1rem;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg2);
+      }
+
+      .domain-matrix th:first-child {
+        border-radius: var(--r-sm) 0 0 0;
+      }
+      .domain-matrix th:last-child {
+        border-radius: 0 var(--r-sm) 0 0;
+      }
+
+      .domain-matrix td {
+        padding: 0.7rem 1rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .domain-matrix tr:last-child td {
+        border-bottom: none;
+      }
+      .domain-matrix tr:hover td {
+        background: var(--bg3);
+      }
+
+      .domain-matrix td:first-child {
+        color: var(--text);
+        font-weight: 500;
+        width: 160px;
+      }
+
+      /* ─── CODE BLOCK ──────────────────────────────────────────────────────────── */
+      .code-block {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r-lg);
+        padding: 1.25rem 1.5rem;
+        margin: 1rem 0;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.8;
+        overflow-x: auto;
+      }
+
+      .code-block .kw {
+        color: var(--violet);
+      }
+      .code-block .str {
+        color: var(--green);
+      }
+      .code-block .cmt {
+        color: var(--subtle);
+        font-style: italic;
+      }
+      .code-block .hl {
+        color: var(--amber2);
+      }
+      .code-block .q {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .code-block .a {
+        color: var(--teal);
+      }
+
+      /* ─── ANTI-PATTERNS ──────────────────────────────────────────────────────── */
+      .comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 1.5rem 0;
+      }
+
+      .comp-panel {
+        border-radius: var(--r-lg);
+        padding: 1.25rem;
+        border: 1px solid;
+      }
+
+      .comp-bad {
+        background: var(--rose-bg);
+        border-color: rgba(248, 113, 113, 0.2);
+      }
+
+      .comp-good {
+        background: var(--green-bg);
+        border-color: rgba(74, 222, 128, 0.2);
+      }
+
+      .comp-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .comp-bad .comp-label {
+        color: var(--rose);
+      }
+      .comp-good .comp-label {
+        color: var(--green);
+      }
+
+      .comp-front {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--text);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 0.6rem 0.8rem;
+        border-radius: var(--r-sm);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+
+      .comp-back {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--muted);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 0.6rem 0.8rem;
+        border-radius: var(--r-sm);
+        line-height: 1.6;
+      }
+
+      .comp-why {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.75rem;
+        line-height: 1.5;
+        font-style: italic;
+      }
+
+      /* ─── FILTER: when not to memorize ─────────────────────────────────────────── */
+      .filter-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 1.5rem 0;
+      }
+
+      .filter-card {
+        border-radius: var(--r-lg);
+        padding: 1.1rem 1.25rem;
+        border: 1px solid var(--border);
+        background: var(--bg3);
+      }
+
+      .filter-card-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .dot-yes {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        flex-shrink: 0;
+      }
+      .dot-no {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--rose);
+        flex-shrink: 0;
+      }
+
+      .filter-card ul {
+        list-style: none;
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* ─── SPACED REPETITION EXPLAINER ─────────────────────────────────────────── */
+      .sr-timeline {
+        display: flex;
+        align-items: flex-end;
+        gap: 0;
+        height: 100px;
+        margin: 1.5rem 0 0.5rem;
+        padding: 0 0.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sr-bar-wrap {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .sr-bar {
+        width: 100%;
+        max-width: 40px;
+        border-radius: 4px 4px 0 0;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        position: relative;
+      }
+
+      .sr-bar.review {
+        background: linear-gradient(
+          180deg,
+          var(--amber) 0%,
+          rgba(232, 160, 32, 0.3) 100%
+        );
+        border-color: var(--amber-border);
+      }
+
+      .sr-label {
+        font-size: 9px;
+        color: var(--subtle);
+        text-align: center;
+        line-height: 1.3;
+      }
+
+      /* ─── BLOOM TAXONOMY ─────────────────────────────────────────────────────── */
+      .bloom-stack {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .bloom-level {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: var(--r-md);
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        background: var(--bg3);
+        transition: border-color 0.2s;
+      }
+
+      .bloom-level:hover {
+        border-color: var(--border2);
+      }
+
+      .bloom-tier {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        width: 90px;
+        flex-shrink: 0;
+      }
+
+      .bloom-desc {
+        font-size: 0.82rem;
+        color: var(--muted);
+        flex: 1;
+        line-height: 1.5;
+      }
+
+      .bloom-card-type {
+        font-size: 0.78rem;
+        color: var(--subtle);
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      /* ─── FORMULA BOX ─────────────────────────────────────────────────────────── */
+      .formula-box {
+        background: var(--bg2);
+        border: 1px solid var(--amber-border);
+        border-radius: var(--r-lg);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        text-align: center;
+      }
+
+      .formula-text {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        font-style: italic;
+        color: var(--amber2);
+        letter-spacing: -0.01em;
+        line-height: 1.5;
+      }
+
+      .formula-note {
+        font-size: 0.8rem;
+        color: var(--subtle);
+        margin-top: 0.6rem;
+      }
+
+      /* ─── CHECKLIST ───────────────────────────────────────────────────────────── */
+      .checklist {
+        list-style: none;
+        margin: 1rem 0;
+      }
+
+      .checklist li {
+        font-size: 0.88rem;
+        color: var(--muted);
+        padding: 0.4rem 0 0.4rem 1.75rem;
+        position: relative;
+        border-bottom: 1px solid var(--border);
+        line-height: 1.5;
+      }
+
+      .checklist li:last-child {
+        border-bottom: none;
+      }
+
+      .checklist li::before {
+        content: "□";
+        position: absolute;
+        left: 0;
+        color: var(--subtle);
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+      }
+
+      .checklist li strong {
+        color: var(--text);
+      }
+
+      /* ─── QUOTE ───────────────────────────────────────────────────────────────── */
+      blockquote {
+        border-left: 2px solid var(--amber);
+        margin: 1.5rem 0;
+        padding: 0.75rem 1.25rem;
+        background: var(--amber-bg);
+        border-radius: 0 var(--r-md) var(--r-md) 0;
+      }
+
+      blockquote p {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--amber2);
+        margin: 0;
+      }
+
+      blockquote cite {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--muted);
+        font-style: normal;
+        margin-top: 0.4rem;
+      }
+
+      /* ─── FOOTER ──────────────────────────────────────────────────────────────── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 0;
+        font-size: 0.8rem;
+        color: var(--subtle);
+      }
+
+      /* ─── RESPONSIVE ──────────────────────────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+          grid-template-areas: "main";
+        }
+        .toc {
+          display: none;
+        }
+        main {
+          padding: 0 1.25rem 4rem;
+        }
+        .laws-grid,
+        .comparison,
+        .filter-grid,
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+        .flip-wrap {
+          height: auto;
+          min-height: 180px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero-stats {
+          gap: 1.5rem;
+        }
+        .domain-tabs {
+          gap: 4px;
+        }
+        .domain-tab {
+          font-size: 11px;
+          padding: 4px 10px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .flip-inner {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- ─── TOC ──────────────────────────────────────────────────────────────── -->
+      <nav class="toc" id="toc" aria-label="Table of contents">
+        <div class="toc-brand">Anki<br />Masterclass</div>
+
+        <div class="toc-section-label">Foundations</div>
+        <a href="#science">The Science</a>
+        <a href="#five-laws">5 Laws of Recall</a>
+        <a href="#card-types">Card Type System</a>
+        <a href="#bloom">Bloom's Taxonomy Map</a>
+
+        <div class="toc-section-label">Building Cards</div>
+        <a href="#protocol">Creation Protocol</a>
+        <a href="#antipatterns">Anti-Patterns</a>
+        <a href="#what-not">What Not to Memorize</a>
+        <a href="#cloze-mastery">Cloze Mastery</a>
+
+        <div class="toc-section-label">Examples Library</div>
+        <a href="#examples">All Examples (60+)</a>
+        <a href="#science-ex">Science</a>
+        <a href="#cs-ex">Computer Science</a>
+        <a href="#software-ex">Software Engineering</a>
+        <a href="#math-ex">Mathematics</a>
+        <a href="#physics-ex">Physics</a>
+        <a href="#biology-ex">Biology</a>
+        <a href="#systems-ex">Systems Thinking</a>
+
+        <div class="toc-section-label">Strategies</div>
+        <a href="#domain-guide">Domain Guide</a>
+        <a href="#spaced-rep">Spaced Repetition</a>
+        <a href="#workflow">Daily Workflow</a>
+        <a href="#review">Review Ritual</a>
+
+        <div class="toc-progress">
+          <div class="toc-progress-label">Reading progress</div>
+          <div class="toc-progress-bar">
+            <div class="toc-progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ─── MAIN ──────────────────────────────────────────────────────────────── -->
+      <main id="main-content">
+        <!-- HERO -->
+        <section class="hero" id="top">
+          <div class="hero-eyebrow">
+            Personal Knowledge Hub — Learning System
+          </div>
+          <h1>Building Anki Cards<br />That <em>Stick Forever</em></h1>
+          <p class="hero-sub">
+            A masterclass in evidence-based flashcard design. Every technique
+            here is grounded in cognitive science research on memory, retrieval,
+            and long-term retention.
+          </p>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-value">6</div>
+              <div class="hero-stat-label">Card Types</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">60+</div>
+              <div class="hero-stat-label">Examples</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">8</div>
+              <div class="hero-stat-label">Domains</div>
+            </div>
+            <div>
+              <div class="hero-stat-value">5</div>
+              <div class="hero-stat-label">Laws of Recall</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION: SCIENCE -->
+        <section class="section" id="science">
+          <div class="section-eyebrow">Why It Works</div>
+          <h2>The Cognitive Science Behind Retention</h2>
+
+          <p>
+            Anki is not magic — it is the implementation of two of the most
+            replicated findings in cognitive psychology. Understanding
+            <em>why</em> these work transforms how you design cards.
+          </p>
+
+          <h3>The Testing Effect (Retrieval Practice)</h3>
+          <p>
+            Roediger & Karpicke (2006) showed that students who studied by
+            retrieval testing recalled <strong>50% more</strong> material one
+            week later than those who studied by re-reading. The act of
+            <em>attempting to retrieve</em> a memory — even failing —
+            strengthens the memory trace far more than passive review.
+          </p>
+
+          <div class="callout callout-amber">
+            <div class="callout-label">Key insight</div>
+            The struggle of retrieval IS the learning. Effortless recall means
+            the card is too easy. Difficulty is a signal, not a failure.
+          </div>
+
+          <h3>The Spacing Effect</h3>
+          <p>
+            Reviewing information at increasing intervals — just as you are
+            about to forget it — causes dramatically deeper re-encoding than
+            massed review. Ebbinghaus (1885) first documented the forgetting
+            curve. Cepeda et al. (2008) confirmed optimal spacing: review when
+            retention drops to ~70%, not when it drops to 0%.
+          </p>
+
+          <div class="callout callout-teal">
+            <div class="callout-label">Why Anki works</div>
+            Anki's SM-2 algorithm calculates the optimal next review interval
+            based on your rating. Your only job is card quality — the algorithm
+            handles when.
+          </div>
+
+          <h3>Desirable Difficulties</h3>
+          <p>
+            Bjork's research shows that conditions making learning feel
+            <em>harder in the moment</em> — interleaving, retrieval practice,
+            spacing — produce dramatically better long-term retention. This is
+            why Anki cards often feel harder than just reading notes. The
+            difficulty is the mechanism, not a flaw.
+          </p>
+
+          <h3>Elaborative Interrogation</h3>
+          <p>
+            Cards that ask <strong>"Why does this happen?"</strong> produce
+            stronger retention than cards that ask "What is this?" The brain
+            encodes meaning into a network of prior knowledge. The more
+            connections, the more retrieval paths.
+          </p>
+
+          <blockquote>
+            <p>
+              "Memory is not a single thing; it is a web of associations. Every
+              connection you build is another path to retrieval."
+            </p>
+            <cite
+              >— Robert Bjork, UCLA Memory & Cognitive Control Laboratory</cite
+            >
+          </blockquote>
+        </section>
+
+        <!-- SECTION: 5 LAWS -->
+        <section class="section" id="five-laws">
+          <div class="section-eyebrow">Foundations</div>
+          <h2>The 5 Laws of Permanent Recall</h2>
+          <p>
+            Every card you create should pass these laws. A card that violates
+            any one of them will either be forgotten quickly, cause confusion
+            during review, or waste your review time.
+          </p>
+
+          <div class="laws-grid">
+            <div class="law-card">
+              <div class="law-num">01</div>
+              <div class="law-title">Minimum Information</div>
+              <div class="law-desc">
+                One atomic idea per card. If the answer requires "and" or "also"
+                — split the card. Compound answers prevent clean retrieval.
+              </div>
+            </div>
+            <div class="law-card">
+              <div class="law-num">02</div>
+              <div class="law-title">Test Understanding, Not Memory</div>
+              <div class="law-desc">
+                Cards that ask you to copy a definition test recognition, not
+                understanding. Test application, consequence, or explanation
+                instead.
+              </div>
+            </div>
+            <div class="law-card">
+              <div class="law-num">03</div>
+              <div class="law-title">Context on the Front</div>
+              <div class="law-desc">
+                The cue should trigger real-world thinking. Replace "What is X?"
+                with "You're facing [situation]. How does X apply?"
+              </div>
+            </div>
+            <div class="law-card">
+              <div class="law-num">04</div>
+              <div class="law-title">Multiple Angles</div>
+              <div class="law-desc">
+                For anything important, create 3–5 cards from different
+                directions. A concept you can only recall one way is fragile.
+              </div>
+            </div>
+            <div class="law-card">
+              <div class="law-num">05</div>
+              <div class="law-title">Ruthless Filtering</div>
+              <div class="law-desc">
+                Most information does not deserve a card. Ask: "Will I be
+                embarrassed not to know this in a year?" If unsure, don't card
+                it yet.
+              </div>
+            </div>
+            <div class="law-card">
+              <div class="law-num">∞</div>
+              <div class="law-title">Understand First</div>
+              <div class="law-desc">
+                Never card something you don't understand. Confusion encoded is
+                confusion reinforced. Card knowledge, not confusion.
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <div class="formula-text">
+              Card Quality × Consistency of Review<br />= Permanent Recall
+            </div>
+            <div class="formula-note">
+              Both factors are necessary. Great cards reviewed once a year will
+              be forgotten. Mediocre cards reviewed daily will be misunderstood
+              forever.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION: CARD TYPES -->
+        <section class="section" id="card-types">
+          <div class="section-eyebrow">Card Architecture</div>
+          <h2>The 6-Type Card System</h2>
+          <p>
+            Different types of knowledge require different card shapes. Using
+            only one type produces a fragile, one-dimensional understanding.
+            Master all six, deploy them by situation.
+          </p>
+
+          <table class="type-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Best for</th>
+                <th>Cognitive level</th>
+                <th>Risk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic Q&amp;A</td>
+                <td>Atomic facts, definitions with consequence</td>
+                <td><span class="badge badge-blue">Remember</span></td>
+                <td>Too vague → recognition, not recall</td>
+              </tr>
+              <tr>
+                <td>Cloze Deletion</td>
+                <td>Key terms inside context sentences</td>
+                <td><span class="badge badge-teal">Understand</span></td>
+                <td>Over-using → becomes pattern matching</td>
+              </tr>
+              <tr>
+                <td>Application</td>
+                <td>Principles, frameworks, mental models</td>
+                <td><span class="badge badge-amber">Apply / Analyze</span></td>
+                <td>Overlong answers → skip during review</td>
+              </tr>
+              <tr>
+                <td>Forward + Reverse</td>
+                <td>Vocabulary, formulas, bidirectional concepts</td>
+                <td><span class="badge badge-teal">Understand</span></td>
+                <td>Forget to create the reverse direction</td>
+              </tr>
+              <tr>
+                <td>Explain Simply</td>
+                <td>Complex mechanisms — Feynman test</td>
+                <td>
+                  <span class="badge badge-violet">Evaluate / Create</span>
+                </td>
+                <td>Rating yourself too generously</td>
+              </tr>
+              <tr>
+                <td>Image Occlusion</td>
+                <td>Diagrams, anatomy, circuits, spatial systems</td>
+                <td><span class="badge badge-green">Apply</span></td>
+                <td>Too many occlusions per image = overwhelm</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- SECTION: BLOOM -->
+        <section class="section" id="bloom">
+          <div class="section-eyebrow">Cognitive Architecture</div>
+          <h2>Bloom's Taxonomy Card Map</h2>
+          <p>
+            Bloom's Taxonomy describes levels of cognitive depth. Most Anki
+            users create cards only at the lowest two levels (Remember,
+            Understand). True mastery requires cards at every level.
+          </p>
+
+          <div class="bloom-stack">
+            <div class="bloom-level">
+              <div class="bloom-tier" style="color: var(--rose)">Create</div>
+              <div class="bloom-desc">
+                Design something new using the concept. "Design a caching
+                strategy using what you know about hash tables."
+              </div>
+              <div class="bloom-card-type">Explain Simply</div>
+            </div>
+            <div class="bloom-level">
+              <div class="bloom-tier" style="color: var(--amber)">Evaluate</div>
+              <div class="bloom-desc">
+                Judge, critique, decide. "Given two sorting algorithms, which do
+                you pick for this input and why?"
+              </div>
+              <div class="bloom-card-type">Application</div>
+            </div>
+            <div class="bloom-level">
+              <div class="bloom-tier" style="color: var(--amber2)">Analyze</div>
+              <div class="bloom-desc">
+                Break apart, distinguish, compare. "What is the difference
+                between a mutex and a semaphore?"
+              </div>
+              <div class="bloom-card-type">Forward + Reverse</div>
+            </div>
+            <div class="bloom-level">
+              <div class="bloom-tier" style="color: var(--teal)">Apply</div>
+              <div class="bloom-desc">
+                Use the concept in a new situation. "You have a sorted array of
+                1M items. Which search do you use?"
+              </div>
+              <div class="bloom-card-type">Application</div>
+            </div>
+            <div class="bloom-level">
+              <div class="bloom-tier" style="color: var(--blue)">
+                Understand
+              </div>
+              <div class="bloom-desc">
+                Explain in your own words, give examples. "What makes a linked
+                list different from an array in memory?"
+              </div>
+              <div class="bloom-card-type">Cloze / Basic</div>
+            </div>
+            <div class="bloom-level">
+              <div class="bloom-tier" style="color: var(--muted)">Remember</div>
+              <div class="bloom-desc">
+                Recall a fact. "What is Big O notation for binary search?"
+              </div>
+              <div class="bloom-card-type">Basic Q&amp;A</div>
+            </div>
+          </div>
+
+          <div class="callout callout-violet">
+            <div class="callout-label">Design principle</div>
+            For every important concept, create at least one card at each Bloom
+            level. Start from the bottom but weight your deck toward the top.
+            "Remember" cards are the cheapest to create and the least valuable.
+          </div>
+        </section>
+
+        <!-- SECTION: PROTOCOL -->
+        <section class="section" id="protocol">
+          <div class="section-eyebrow">Workflow</div>
+          <h2>The Card Creation Protocol</h2>
+          <p>
+            Follow this protocol every time you finish learning something new.
+            It takes 5–10 minutes and produces cards that survive years of
+            review.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Filter ruthlessly</div>
+                <div class="step-desc">
+                  Before opening Anki, ask: "Will I need this in one year? Would
+                  I be embarrassed not to know this?" If unsure, skip. Most
+                  notes don't deserve cards. The goal is a small, high-signal
+                  deck, not a mirror of your notes.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">Understand before encoding</div>
+                <div class="step-desc">
+                  Write the core idea in one sentence. If you can't compress it,
+                  you don't understand it yet. Confusion encoded is confusion
+                  reinforced. Read, discuss, ask Claude, draw it out — then card
+                  it.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Create the atomic Basic card</div>
+                <div class="step-desc">
+                  Write one Q&amp;A that captures the essential fact with a
+                  consequence. Not "What is X?" — instead "What does X enable
+                  that Y doesn't?" Constrain the question so the answer is
+                  predictable.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Add an Application card</div>
+                <div class="step-desc">
+                  Write a scenario where you'd need to use this concept. The
+                  front describes a situation, the back walks through the
+                  reasoning. This is the most valuable card type — don't skip
+                  it.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <div class="step-title">Add a Cloze from a key sentence</div>
+                <div class="step-desc">
+                  Find the single sentence that best encodes this concept.
+                  Delete the most important 1–3 words. Each deletion becomes a
+                  separate card automatically in Anki.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <div class="step-title">
+                  Add Explain Simply for core concepts
+                </div>
+                <div class="step-desc">
+                  For anything foundational, create a card that asks you to
+                  explain it to a 12-year-old using a fresh analogy. You cannot
+                  fake this one. Rate yourself strictly: "Could a non-expert
+                  follow this?"
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">7</div>
+              <div class="step-content">
+                <div class="step-title">Self-review once before adding</div>
+                <div class="step-desc">
+                  Read the front. Can you predict the back? If yes — too easy,
+                  make the front harder. If you have no idea — too vague,
+                  constrain the question or add context. Then add to Anki.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION: ANTI-PATTERNS -->
+        <section class="section" id="antipatterns">
+          <div class="section-eyebrow">What Not To Do</div>
+          <h2>Common Anti-Patterns</h2>
+          <p>
+            These are the card mistakes that cause decks to decay, review
+            sessions to drag, and knowledge to remain shallow. Each has a direct
+            fix.
+          </p>
+
+          <div class="comparison">
+            <div class="comp-panel comp-bad">
+              <div class="comp-label">
+                ✗ Anti-Pattern 1: Copy-paste definitions
+              </div>
+              <div class="comp-front">Q: What is Big O notation?</div>
+              <div class="comp-back">
+                A: Big O notation is a mathematical notation that describes the
+                limiting behavior of a function when the argument tends towards
+                a particular value or infinity.
+              </div>
+              <div class="comp-why">
+                Tests recognition of a sentence. Doesn't test if you can use or
+                reason with the concept. You'll "remember" this but not
+                understand it.
+              </div>
+            </div>
+            <div class="comp-panel comp-good">
+              <div class="comp-label">✓ Fixed: Consequence-focused</div>
+              <div class="comp-front">
+                Q: You have O(n²) code and 10× more data. What happens to
+                runtime — and why does Big O matter for this decision?
+              </div>
+              <div class="comp-back">
+                A: Runtime grows ~100×. Big O describes growth rate, not raw
+                speed — so a 10× data increase squares the work for O(n²) but
+                barely changes O(log n).
+              </div>
+              <div class="comp-why">
+                Tests real reasoning. You have to understand growth rates, not
+                recall a definition.
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison">
+            <div class="comp-panel comp-bad">
+              <div class="comp-label">✗ Anti-Pattern 2: Compound questions</div>
+              <div class="comp-front">
+                Q: What are the four ACID properties and what does each mean?
+              </div>
+              <div class="comp-back">
+                A: Atomicity (all-or-nothing), Consistency (valid state),
+                Isolation (concurrent txns don't interfere), Durability
+                (committed = permanent).
+              </div>
+              <div class="comp-why">
+                Four facts in one card. You'll almost always remember some but
+                not all, creating ambiguous ratings and weak encoding for each.
+              </div>
+            </div>
+            <div class="comp-panel comp-good">
+              <div class="comp-label">✓ Fixed: One fact per card (×4)</div>
+              <div class="comp-front">
+                Q: A payment succeeds but the inventory update fails. Which ACID
+                property determines whether both operations are treated as one
+                unit?
+              </div>
+              <div class="comp-back">
+                A: Atomicity — the transaction is all-or-nothing. Both succeed
+                or both roll back. No partial states.
+              </div>
+              <div class="comp-why">
+                One crisp fact, tested with a real scenario. Make four cards
+                like this, one per property.
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison">
+            <div class="comp-panel comp-bad">
+              <div class="comp-label">
+                ✗ Anti-Pattern 3: No context on the front
+              </div>
+              <div class="comp-front">Q: What is the CAP theorem?</div>
+              <div class="comp-back">
+                A: A distributed system can only guarantee two of three:
+                Consistency, Availability, Partition Tolerance.
+              </div>
+              <div class="comp-why">
+                "What is X" tests nothing. You'll remember the acronym but not
+                when or how to use it.
+              </div>
+            </div>
+            <div class="comp-panel comp-good">
+              <div class="comp-label">✓ Fixed: Situation-based</div>
+              <div class="comp-front">
+                Q: Your distributed DB is partitioned. Nodes can't sync. The CAP
+                theorem says you must choose — what's the choice and what does
+                each option cost?
+              </div>
+              <div class="comp-back">
+                A: Consistency vs Availability. Choose C: reject writes until
+                partition heals (safe, unavailable). Choose A: accept writes
+                that may conflict (available, inconsistent).
+              </div>
+              <div class="comp-why">
+                Tests that you understand the real trade-off, not just the
+                acronym expansion.
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison">
+            <div class="comp-panel comp-bad">
+              <div class="comp-label">
+                ✗ Anti-Pattern 4: No reverse direction
+              </div>
+              <div class="comp-front">
+                Q: What is a monad in functional programming?
+              </div>
+              <div class="comp-back">
+                A: A design pattern wrapping a value with context (Maybe,
+                Promise, Result) that allows chaining operations without
+                explicit null-checking.
+              </div>
+              <div class="comp-why">
+                You can recall the definition when given the name. But can you
+                recognize a monad when you see one? Probably not.
+              </div>
+            </div>
+            <div class="comp-panel comp-good">
+              <div class="comp-label">
+                ✓ Fixed: Add a reverse recognition card
+              </div>
+              <div class="comp-front">
+                Q: You see code that chains .flatMap() on a nullable type to
+                avoid null checks at each step, wrapping the result at the end.
+                What pattern is this?
+              </div>
+              <div class="comp-back">
+                A: A monad (specifically a Maybe/Option monad). The flatMap
+                chains operations on the wrapped value, short-circuiting on
+                null/None automatically.
+              </div>
+              <div class="comp-why">
+                Recognition in context is a different skill from definition
+                recall. Both cards together = robust understanding.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION: WHAT NOT TO MEMORIZE -->
+        <section class="section" id="what-not">
+          <div class="section-eyebrow">Ruthless Filtering</div>
+          <h2>What Not to Memorize</h2>
+          <p>
+            The most underrated Anki skill is knowing what to <em>exclude</em>.
+            A bloated deck with low-signal cards destroys motivation and dilutes
+            review quality. Apply these filters before creating any card.
+          </p>
+
+          <div class="filter-grid">
+            <div class="filter-card">
+              <div class="filter-card-title">
+                <span class="dot-yes"></span> Memorize this
+              </div>
+              <ul>
+                <li>Core principles that apply across many situations</li>
+                <li>
+                  Distinctions that are easy to confuse (mutex vs semaphore)
+                </li>
+                <li>Order-of-magnitude facts (O(log n) vs O(n))</li>
+                <li>Mental models you'll reach for daily</li>
+                <li>Vocabulary that unlocks reading in a domain</li>
+                <li>Counterintuitive results that change behavior</li>
+                <li>Clinical thresholds / diagnostic criteria in medicine</li>
+                <li>Syntax you use weekly but keep forgetting</li>
+              </ul>
+            </div>
+            <div class="filter-card">
+              <div class="filter-card-title">
+                <span class="dot-no"></span> Don't card this
+              </div>
+              <ul>
+                <li>Anything you can look up in 10 seconds</li>
+                <li>Things you use so often you can't forget them</li>
+                <li>Information you've never needed once in practice</li>
+                <li>Details inside details (version numbers, minor APIs)</li>
+                <li>Things you don't understand yet</li>
+                <li>Trivia with no application to your actual work or goals</li>
+                <li>Content from a book chapter you skimmed once</li>
+                <li>Anything where you can't write a real scenario for it</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout callout-amber">
+            <div class="callout-label">The 1-year test</div>
+            Before creating a card, ask: "If I forgot this for one year, would
+            it cost me something real?" If the answer is no — skip it. If yes —
+            card it and make sure the card tests <em>use</em>, not recognition.
+          </div>
+        </section>
+
+        <!-- SECTION: CLOZE MASTERY -->
+        <section class="section" id="cloze-mastery">
+          <div class="section-eyebrow">Advanced Technique</div>
+          <h2>Cloze Deletion Mastery</h2>
+          <p>
+            Cloze cards are the fastest to create and — when designed well —
+            among the most powerful. Most people use them badly. Here is the
+            advanced approach.
+          </p>
+
+          <h3>The Context Rule</h3>
+          <p>
+            The deleted word must be <em>deducible from context</em> — not
+            random. The surrounding sentence should make the deleted term feel
+            inevitable in retrospect. If you could delete any word and the card
+            would still make sense, you're doing it wrong.
+          </p>
+
+          <div class="code-block">
+            <span class="cmt">// Bad — no context, could be anything</span>
+            <span class="q">Q:</span> <span class="hl">{{c1::Redis}}</span> is a
+            database.
+
+            <span class="cmt">// Good — context forces the specific term</span>
+            <span class="q">Q:</span> When you need sub-millisecond latency for
+            session storage and can tolerate data loss on crash, you choose
+            <span class="hl">{{c1::Redis}}</span> over PostgreSQL because it
+            keeps the working set <span class="hl">{{c2::in memory}}</span>.
+
+            <span class="cmt"
+              >// Two deletions = two cards. Each tests different
+              knowledge.</span
+            >
+            <span class="a">A1:</span> Redis (when: sub-ms latency + tolerable
+            data loss) <span class="a">A2:</span> In memory (why Redis is fast)
+          </div>
+
+          <h3>Sentence Selection</h3>
+          <p>
+            Choose sentences that encode a <strong>mechanism</strong> or
+            <strong>consequence</strong>, not just a description. The best cloze
+            sentences contain: a subject, a condition, and an outcome. "When
+            [condition], [X] causes [outcome]."
+          </p>
+
+          <h3>Multiple Deletions from One Sentence</h3>
+          <p>
+            Anki treats each {{c1::}}, {{c2::}} etc. as a separate card. A
+            single well-crafted sentence can generate 3–5 cards that each test a
+            different dimension of the same fact. This is extremely high ROI.
+          </p>
+
+          <div class="code-block">
+            <span class="cmt">// Single sentence → 4 cards</span>
+            <span class="q">TCP</span> guarantees
+            <span class="hl">{{c1::ordered}}</span> delivery via
+            <span class="hl">{{c2::sequence numbers}}</span>, at the cost of
+            <span class="hl">{{c3::latency}}</span>, making it unsuitable for
+            <span class="hl">{{c4::real-time applications like gaming}}</span>.
+
+            <span class="a">c1:</span> ordered
+            <span class="a">c2:</span> sequence numbers
+            <span class="a">c3:</span> latency
+            <span class="a">c4:</span> real-time applications like gaming
+          </div>
+        </section>
+
+        <!-- SECTION: EXAMPLES LIBRARY -->
+        <section class="section" id="examples">
+          <div class="section-eyebrow">Master Reference</div>
+          <h2>Examples Library</h2>
+          <p>
+            60+ production-quality cards across 8 domains. Click any card to
+            flip it and reveal the answer. Use these as templates for your own
+            decks.
+          </p>
+
+          <div class="domain-tabs" id="domain-tabs">
+            <button class="domain-tab active" data-filter="all">
+              All domains
+            </button>
+            <button class="domain-tab" data-filter="cs">
+              Computer Science
+            </button>
+            <button class="domain-tab" data-filter="software">
+              Software Engineering
+            </button>
+            <button class="domain-tab" data-filter="physics">Physics</button>
+            <button class="domain-tab" data-filter="biology">Biology</button>
+            <button class="domain-tab" data-filter="math">Mathematics</button>
+            <button class="domain-tab" data-filter="chemistry">
+              Chemistry
+            </button>
+            <button class="domain-tab" data-filter="systems">
+              Systems Thinking
+            </button>
+            <button class="domain-tab" data-filter="neuroscience">
+              Neuroscience
+            </button>
+          </div>
+
+          <div class="cards-grid" id="cards-grid">
+            <!-- cards injected by JS below -->
+          </div>
+        </section>
+
+        <!-- SECTION: SCIENCE EXAMPLES (anchor) -->
+        <div id="science-ex"></div>
+        <div id="cs-ex"></div>
+        <div id="software-ex"></div>
+        <div id="math-ex"></div>
+        <div id="physics-ex"></div>
+        <div id="biology-ex"></div>
+        <div id="systems-ex"></div>
+
+        <!-- SECTION: DOMAIN GUIDE -->
+        <section class="section" id="domain-guide">
+          <div class="section-eyebrow">Strategy</div>
+          <h2>Domain-Specific Card Strategy</h2>
+          <p>
+            Different fields have different knowledge shapes. Use this guide to
+            choose the right card type for each domain.
+          </p>
+
+          <table class="domain-matrix">
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Primary card types</th>
+                <th>Key pattern</th>
+                <th>Avoid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Software Engineering</td>
+                <td>
+                  <span class="badge badge-amber">Application</span>
+                  <span class="badge badge-teal">Cloze</span>
+                </td>
+                <td>
+                  "Given this code smell, what's wrong and how do you fix it?"
+                  beats "what is a code smell?"
+                </td>
+                <td>Memorizing API signatures you use daily</td>
+              </tr>
+              <tr>
+                <td>Computer Science (Theory)</td>
+                <td>
+                  <span class="badge badge-blue">Basic</span>
+                  <span class="badge badge-violet">Explain Simply</span>
+                </td>
+                <td>
+                  Big-O as scenario: "You're sorting 1M items by last name,
+                  once. Which sort and why?"
+                </td>
+                <td>
+                  Memorizing proofs step-by-step without understanding the logic
+                </td>
+              </tr>
+              <tr>
+                <td>Physics</td>
+                <td>
+                  <span class="badge badge-amber">Application</span>
+                  <span class="badge badge-green">Image Occlusion</span>
+                </td>
+                <td>
+                  Dimensional analysis and unit reasoning; "why does this
+                  formula have these units?"
+                </td>
+                <td>
+                  Memorizing constants without their context or order of
+                  magnitude intuition
+                </td>
+              </tr>
+              <tr>
+                <td>Biology / Medicine</td>
+                <td>
+                  <span class="badge badge-green">Image Occlusion</span>
+                  <span class="badge badge-teal">Cloze</span>
+                </td>
+                <td>
+                  Mechanisms over names: "What causes [symptom] at the molecular
+                  level?"
+                </td>
+                <td>Long lists of symptoms without mechanistic grouping</td>
+              </tr>
+              <tr>
+                <td>Mathematics</td>
+                <td>
+                  <span class="badge badge-blue">Basic</span>
+                  <span class="badge badge-violet">Explain Simply</span>
+                </td>
+                <td>
+                  "Give an intuitive reason why the derivative of sin(x) is
+                  cos(x)" over memorizing the derivative table
+                </td>
+                <td>
+                  Memorizing formulas without knowing what they mean
+                  geometrically
+                </td>
+              </tr>
+              <tr>
+                <td>Chemistry</td>
+                <td>
+                  <span class="badge badge-teal">Cloze</span>
+                  <span class="badge badge-amber">Application</span>
+                </td>
+                <td>
+                  Reaction mechanisms with electron flow logic; "why does this
+                  nucleophile attack here?"
+                </td>
+                <td>
+                  Memorizing reaction products without the underlying electron
+                  pushing logic
+                </td>
+              </tr>
+              <tr>
+                <td>History / Social Science</td>
+                <td>
+                  <span class="badge badge-blue">Basic</span>
+                  <span class="badge badge-teal">Forward + Reverse</span>
+                </td>
+                <td>
+                  "What event caused X?" and "What were three consequences of
+                  X?" — cause + effect both directions
+                </td>
+                <td>Dates without causal chains</td>
+              </tr>
+              <tr>
+                <td>Language Learning</td>
+                <td>
+                  <span class="badge badge-teal">Forward + Reverse</span>
+                  <span class="badge badge-teal">Cloze</span>
+                </td>
+                <td>
+                  Always bidirectional. Sentence context beats isolated
+                  vocabulary. "The word in this sentence is ___"
+                </td>
+                <td>Isolated word pairs with no sentence context</td>
+              </tr>
+              <tr>
+                <td>Systems Thinking</td>
+                <td>
+                  <span class="badge badge-amber">Application</span>
+                  <span class="badge badge-violet">Explain Simply</span>
+                </td>
+                <td>
+                  "You see [feedback loop pattern]. What does this predict about
+                  the system's behavior over time?"
+                </td>
+                <td>
+                  Memorizing definitions of loops without applying to real
+                  systems
+                </td>
+              </tr>
+              <tr>
+                <td>Neuroscience</td>
+                <td>
+                  <span class="badge badge-green">Image Occlusion</span>
+                  <span class="badge badge-violet">Explain Simply</span>
+                </td>
+                <td>
+                  Anatomy + mechanism together. "This region is damaged — what
+                  behavior change do you predict and why?"
+                </td>
+                <td>
+                  Memorizing region names without knowing what each region does
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- SECTION: SPACED REPETITION -->
+        <section class="section" id="spaced-rep">
+          <div class="section-eyebrow">Algorithm</div>
+          <h2>Understanding Spaced Repetition</h2>
+          <p>
+            Anki uses the SM-2 algorithm. Your only job is to rate honestly.
+            Here's how the intervals work and how your ratings shape them.
+          </p>
+
+          <h3>The Forgetting Curve</h3>
+          <p>
+            Without review, retention drops exponentially. Anki schedules each
+            card so you review it just before it drops below ~70%. Every
+            successful review doubles (approximately) the interval until the
+            next review.
+          </p>
+
+          <div
+            style="
+              background: var(--bg3);
+              border: 1px solid var(--border);
+              border-radius: var(--r-lg);
+              padding: 1.5rem;
+              margin: 1.5rem 0;
+            "
+          >
+            <div
+              style="
+                font-size: 11px;
+                color: var(--subtle);
+                margin-bottom: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+              "
+            >
+              Typical interval progression for a well-rated card
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  Day 0
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">Learn</div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  color: var(--subtle);
+                  font-size: 0.8rem;
+                "
+              >
+                →
+              </div>
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  +1d
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">
+                  Review 1
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  color: var(--subtle);
+                  font-size: 0.8rem;
+                "
+              >
+                →
+              </div>
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  +3d
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">
+                  Review 2
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  color: var(--subtle);
+                  font-size: 0.8rem;
+                "
+              >
+                →
+              </div>
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  +8d
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">
+                  Review 3
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  color: var(--subtle);
+                  font-size: 0.8rem;
+                "
+              >
+                →
+              </div>
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  +21d
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">
+                  Review 4
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  color: var(--subtle);
+                  font-size: 0.8rem;
+                "
+              >
+                →
+              </div>
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  +60d
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">
+                  Review 5
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  color: var(--subtle);
+                  font-size: 0.8rem;
+                "
+              >
+                →
+              </div>
+              <div
+                style="
+                  background: var(--amber-bg);
+                  border: 1px solid var(--amber-border);
+                  border-radius: var(--r-md);
+                  padding: 0.5rem 0.85rem;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-family: var(--font-display);
+                    font-size: 1.1rem;
+                    color: var(--amber);
+                  "
+                >
+                  ∞
+                </div>
+                <div style="font-size: 11px; color: var(--subtle)">
+                  Long-term
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Rating Your Cards Correctly</h3>
+          <p>
+            Honest rating is the single highest-leverage Anki skill. Most users
+            rate too generously, which inflates intervals and causes cards to be
+            shown when they're actually forgotten.
+          </p>
+
+          <table class="type-table">
+            <thead>
+              <tr>
+                <th>Rating</th>
+                <th>When to use it</th>
+                <th>Effect</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color: var(--rose)">Again (1)</td>
+                <td>You forgot it completely, or remembered it wrong</td>
+                <td>Resets to learning phase. Interval back to minutes.</td>
+              </tr>
+              <tr>
+                <td style="color: var(--amber)">Hard (2)</td>
+                <td>You got it but it took significant effort or hesitation</td>
+                <td>Interval multiplied by ~1.2</td>
+              </tr>
+              <tr>
+                <td style="color: var(--green)">Good (3)</td>
+                <td>You recalled correctly with minor effort</td>
+                <td>Interval multiplied by ease factor (~2.5)</td>
+              </tr>
+              <tr>
+                <td style="color: var(--blue)">Easy (4)</td>
+                <td>You recalled instantly with zero effort</td>
+                <td>Large interval jump. Consider making the card harder.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-amber">
+            <div class="callout-label">Golden rule</div>
+            If "Easy" comes up more than 20% of the time across your deck, your
+            cards are too simple. Rebuild them at a higher Bloom level.
+          </div>
+        </section>
+
+        <!-- SECTION: WORKFLOW -->
+        <section class="section" id="workflow">
+          <div class="section-eyebrow">Habit Design</div>
+          <h2>Daily Workflow</h2>
+          <p>
+            A world-class card deck is useless without a sustainable daily
+            practice. Design the system for your worst day, not your best.
+          </p>
+
+          <h3>The Minimum Viable Day</h3>
+          <p>
+            Define your MVD for Anki:
+            <strong>10 minutes of reviews, no new cards</strong>. This is the
+            non-negotiable minimum that preserves your work. On hard days, do
+            only this. The streak lives. The deck stays current.
+          </p>
+
+          <div class="callout callout-teal">
+            <div class="callout-label">System design insight</div>
+            New cards are optional. Reviews are mandatory. Reviews prevent
+            decay. New cards increase load. When overwhelmed, stop adding cards
+            — never stop reviewing.
+          </div>
+
+          <h3>The Daily Flow</h3>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">☀</div>
+              <div class="step-content">
+                <div class="step-title">Morning review (10–20 min)</div>
+                <div class="step-desc">
+                  Review due cards first thing. Do not check your phone, email,
+                  or news first. Fresh cognitive resources for retrieval
+                  practice. This is the highest ROI time for review.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">📖</div>
+              <div class="step-content">
+                <div class="step-title">Learn, filter, card (during study)</div>
+                <div class="step-desc">
+                  When you finish a chapter, article, or learning session —
+                  spend 5 min filtering and creating cards. Don't batch it to
+                  the end of the week. Memory fades fast; card while the context
+                  is warm.
+                </div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">🌙</div>
+              <div class="step-content">
+                <div class="step-title">Evening quality check (weekly)</div>
+                <div class="step-desc">
+                  Once per week, browse flagged/leeched cards. A leech (failed
+                  8+ times) is a design problem, not a memory problem. Redesign
+                  the card, not your brain.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Managing Leech Cards</h3>
+          <p>
+            A <strong>leech</strong> is a card you keep failing. This is never a
+            memory failure — it is always a card design failure. For every
+            leech, ask:
+          </p>
+          <ul class="checklist">
+            <li>
+              <strong>Is it two facts disguised as one?</strong> Split it.
+            </li>
+            <li>
+              <strong>Is the front too vague?</strong> Add context, scenario, or
+              constraint.
+            </li>
+            <li>
+              <strong>Do I not actually understand the concept?</strong> Study
+              first. Delete the card. Rebuild after understanding.
+            </li>
+            <li>
+              <strong>Is the answer too long to reliably produce?</strong>
+              Shorten to the core insight.
+            </li>
+            <li>
+              <strong>Is it something I never actually use?</strong> Delete it
+              without guilt.
+            </li>
+          </ul>
+        </section>
+
+        <!-- SECTION: REVIEW RITUAL -->
+        <section class="section" id="review">
+          <div class="section-eyebrow">Mastery</div>
+          <h2>The Review Ritual</h2>
+          <p>
+            How you review matters as much as whether you review. These
+            practices turn Anki from passive repetition into active mastery.
+          </p>
+
+          <h3>Active Recall Mode</h3>
+          <p>
+            Before flipping the card, say the answer out loud (or write it). The
+            act of production — not just recognition — is what drives the
+            testing effect. If you can only vaguely recall the answer, rate it
+            Again or Hard, even if you were technically correct.
+          </p>
+
+          <h3>The Generative Variation</h3>
+          <p>
+            When reviewing an application card, before reading your pre-written
+            answer — try to generate a <em>different example</em> than the one
+            on the card. This trains flexible application rather than memorized
+            answer playback.
+          </p>
+
+          <h3>Interleaving</h3>
+          <p>
+            Anki's algorithm naturally interleaves topics. Resist the urge to
+            review only one deck at a time. The context-switching between topics
+            (physics card, then biology card, then CS card) feels harder — and
+            produces 40–50% better long-term retention (Rohrer & Taylor, 2007).
+          </p>
+
+          <blockquote>
+            <p>
+              "The feeling of not knowing is the signal that learning is
+              happening. The feeling of ease is the signal that you're in your
+              comfort zone."
+            </p>
+            <cite>— Robert Bjork, on desirable difficulties in learning</cite>
+          </blockquote>
+
+          <h3>Pre-Review Priming</h3>
+          <p>
+            Before beginning a review session, spend 60 seconds mentally
+            activating the domains you'll be reviewing. Think: "What did I learn
+            about distributed systems last week? What was confusing about TCP?"
+            This pre-activation primes related memory networks and improves
+            retrieval success during the session.
+          </p>
+
+          <footer>
+            <p>
+              Anki Masterclass · Personal Knowledge Hub · Based on research by
+              Ebbinghaus, Roediger, Bjork, Cepeda, Kornell, and Wozniak · Built
+              for lifelong learning
+            </p>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <!-- ─── CARD DATA + INTERACTION ────────────────────────────────────────────── -->
+    <script>
+      const CARDS = [
+        // ── COMPUTER SCIENCE ──────────────────────────────────────────────────
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You have 1 million sorted integers. You need to find one value. You need the answer in microseconds, not milliseconds. Which algorithm — and what is its Big-O vs linear search?",
+          a: "<strong>Binary search — O(log n).</strong> For n=1,000,000: binary search takes ~20 comparisons. Linear search takes up to 1,000,000. At microseconds-per-comparison, that is the difference between ~20μs and ~1 second.",
+          note: "Tests: understanding Big-O in real consequence terms, not just the formula.",
+        },
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "A hash table achieves O(1) average lookup by trading [memory] for [time], assuming a [good hash function] that minimizes [collisions].",
+          a: "<strong>memory / time / good hash function / collisions.</strong> The trade-off: pre-compute a mapping so lookup is direct addressing, not sequential search. Worst case (all keys collide) degrades to O(n).",
+          note: "4 cloze deletions → 4 cards, each testing a different dimension of the same concept.",
+        },
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Explain recursion to someone who has never programmed. Use one everyday analogy. No technical jargon. Max 3 sentences.",
+          a: "<strong>Possible answer:</strong> To look up a word in a dictionary, you sometimes find it defined using another word you don't know, so you look that up, which sends you to another word. Recursion is a function that solves a problem by calling a smaller version of itself — it keeps going until it hits a case simple enough to answer directly.",
+          note: 'Rate strictly: could a non-programmer follow this? If you used the word "stack" or "call", you failed.',
+        },
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Forward + Reverse",
+          typeBadge: "badge-teal",
+          q: "FORWARD: What data structure gives O(1) push, pop, and peek?\nREVERSE: A browser's back button remembers pages in last-in-first-out order. What data structure models this?",
+          a: "Both → <strong>Stack (LIFO).</strong>\n\nForward: A stack. Push = add to top, Pop = remove from top, Peek = see top without removing.\nReverse: A stack. The last page you visited is the first you go back to.",
+          note: "Recognition in context (reverse) is harder than recall by name (forward). Both are required for real mastery.",
+        },
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You are designing a system where multiple producers write to a queue and multiple consumers read from it. Consumers must each receive EVERY message, not just one. Queue or Pub/Sub — which and why?",
+          a: "<strong>Pub/Sub (publish-subscribe).</strong> A queue distributes each message to one consumer. Pub/Sub fans each message out to all subscribers. Example: Kafka topics, AWS SNS. If you want one consumer per message — queue. If you want all consumers to see all messages — pub/sub.",
+          note: "The wrong default (queue) is reasonable. The card tests whether you know the deciding criterion.",
+        },
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Basic Q&A",
+          typeBadge: "badge-blue",
+          q: "A DFS and BFS both explore a graph. They find the same nodes. What does BFS guarantee that DFS does not — and what does that cost?",
+          a: "<strong>BFS guarantees the shortest path</strong> (fewest edges) in an unweighted graph. DFS does not. Cost: BFS requires O(V) memory to store the frontier queue. DFS requires only O(depth) memory. Trade-off: correctness (BFS) vs memory efficiency (DFS).",
+          note: 'The "what does it cost" suffix forces trade-off reasoning, not just definition recall.',
+        },
+        // ── SOFTWARE ENGINEERING ──────────────────────────────────────────────
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You're reviewing code and see a 400-line function with 8 parameters, 3 nested loops, and comments like \"// don't touch this\". Name the specific code smells and your refactoring priorities.",
+          a: "Smells: <strong>Long Method, Long Parameter List, Deep Nesting, Mystery Code.</strong>\n\nPriority 1: Extract Method — break into 5–10 named functions, each doing one thing.\nPriority 2: Introduce Parameter Object — group related params.\nPriority 3: Replace comment with intention-revealing name.\nDeep nesting → early returns (guard clauses) + extracted methods.",
+          note: "Tests pattern recognition, not memorization of refactoring names. Must map observation to action.",
+        },
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "The CAP theorem states that a distributed system can guarantee at most [two] of three properties: [Consistency], [Availability], and [Partition Tolerance] — and during a network partition, you must choose between [C and A].",
+          a: "<strong>two / Consistency / Availability / Partition Tolerance / C and A.</strong>\n\nC: every read gets the latest write. A: every request gets a response. P: the system works despite network partitions. P is not optional (networks do partition), so the real choice is C vs A.",
+          note: "The last cloze (C and A) is the hardest — most people know CAP but not that P is unavoidable, making the real trade-off C vs A.",
+        },
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "Your team's microservices are tightly coupled — Service A directly calls B which calls C. One failure cascades to all. What architectural pattern fixes this — and what does it trade away?",
+          a: "<strong>Event-driven architecture with a message broker (Kafka, RabbitMQ).</strong> Services emit events; others subscribe and react. A's failure doesn't block B.\n\nTrades away: simplicity, synchronous debugging, exact ordering guarantees. Gains: resilience, independent deployability, scalability per service.",
+          note: 'Real trade-off is the test. Anyone can say "use events". Naming what you lose is mastery.',
+        },
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Forward + Reverse",
+          typeBadge: "badge-teal",
+          q: "FORWARD: What SOLID principle says a class should have only one reason to change?\nREVERSE: You see a UserService that handles authentication, sends emails, and formats user profiles. Which SOLID principle is this violating?",
+          a: "Both → <strong>Single Responsibility Principle (SRP).</strong>\n\nForward: SRP.\nReverse: SRP — three distinct reasons to change (auth logic, email provider, profile formatting). Split into AuthService, EmailService, ProfileFormatter.",
+          note: "The reverse card (recognizing the violation) is far more practically valuable than knowing the principle's name.",
+        },
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Explain dependency injection to a junior developer who just learned what a class is. One analogy, no jargon, max 3 sentences.",
+          a: "Instead of a coffee maker building its own cup, you hand the cup to it before it starts brewing. Dependency injection means a class receives the things it needs from outside, rather than creating them internally. This makes the class testable (hand it a fake cup) and flexible (hand it any cup).",
+          note: 'If your answer required the word "interface" or "IoC container" — you haven\'t simplified enough.',
+        },
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "A SQL query takes 4 seconds on 100K rows. EXPLAIN shows a full table scan on user_email. What are your first three actions — in order — and why that order?",
+          a: "1. <strong>Add index on user_email</strong> — highest impact, non-destructive, instant to try.\n2. <strong>Re-run EXPLAIN</strong> — confirm index is being used. Optimizer sometimes ignores indexes (statistics issue).\n3. <strong>Check query structure</strong> — is there a leading wildcard LIKE '%value'? Negation? Function on the indexed column? These defeat indexes even when present.",
+          note: "Order matters. Many engineers jump to query rewriting before confirming the index is used. Sequence is the knowledge.",
+        },
+        // ── PHYSICS ───────────────────────────────────────────────────────────
+        {
+          domain: "physics",
+          domainLabel: "Physics",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Explain why objects in orbit are in freefall — and why they don't hit the ground — using only concepts a 14-year-old knows.",
+          a: "Throw a ball and it curves down and hits the ground. Throw it faster and it lands farther. Now throw it so fast that by the time it curves down, the Earth has curved away by the same amount. That's orbit — you're always falling but the ground keeps moving out from under you.",
+          note: 'Newton\'s original "cannon on a mountain" thought experiment. The test: can you derive this from first principles, not recall the metaphor?',
+        },
+        {
+          domain: "physics",
+          domainLabel: "Physics",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You're given F = ma. You need to find the units of force from first principles, with no memorization. Walk through the dimensional analysis.",
+          a: 'F = ma. [m] = kg. [a] = m/s². So [F] = kg × m/s² = <strong>kg⋅m/s²</strong> — which we name the Newton (N).\n\nThis is why F=ma is profound: it defines force as "the rate of change of momentum" — not a primitive but a derived quantity.',
+          note: "Dimensional analysis cards train you to derive rather than memorize. Far more durable and transferable.",
+        },
+        {
+          domain: "physics",
+          domainLabel: "Physics",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "The second law of thermodynamics says entropy of an [isolated system] always [increases or stays the same] — meaning heat never spontaneously flows from [cold to hot], making it a [time-asymmetric] law.",
+          a: "<strong>isolated system / increases or stays the same / cold to hot / time-asymmetric.</strong>\n\nThe time asymmetry is profound: all other fundamental physics laws work the same forward and backward in time. The 2nd law is the arrow of time.",
+          note: "The last cloze (time-asymmetric) encodes the philosophically important insight, not just the textbook statement.",
+        },
+        {
+          domain: "physics",
+          domainLabel: "Physics",
+          type: "Basic Q&A",
+          typeBadge: "badge-blue",
+          q: "Special relativity says nothing travels faster than light. But if two spaceships travel apart at 0.8c each, why can't an observer on one measure the other moving at 1.6c?",
+          a: "Velocities don't add by simple arithmetic at relativistic speeds. The relativistic velocity addition formula gives: <strong>v = (0.8c + 0.8c) / (1 + 0.8×0.8) = 1.6c/1.64 ≈ 0.976c</strong>. The result is always less than c. The universe enforces this through time dilation and length contraction.",
+          note: 'This card tests that you can explain the "paradox" rather than just state the rule. The paradox dissolves with the formula.',
+        },
+        {
+          domain: "physics",
+          domainLabel: "Physics",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: 'A quantum particle is described by a wave function. What does "measurement collapses the wave function" actually mean in physical terms — and what is the measurement problem?',
+          a: "Before measurement: particle exists in superposition (all possible states simultaneously). Measurement forces the system into one definite state. The wave function, which encoded all probabilities, is replaced by a definite outcome.\n\n<strong>The measurement problem:</strong> the wave function evolves deterministically via Schrödinger's equation, but measurement produces a random, irreversible outcome. No consensus exists on why or how this transition occurs.",
+          note: 'Tests depth: "collapse" is easy to say; explaining WHY it is a problem distinguishes real understanding.',
+        },
+        // ── BIOLOGY ───────────────────────────────────────────────────────────
+        {
+          domain: "biology",
+          domainLabel: "Biology",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "DNA replication is [semi-conservative]: each new double helix contains [one original strand and one new strand], ensured by [DNA polymerase] reading 3′ to 5′ and synthesizing 5′ to [3′].",
+          a: "<strong>semi-conservative / one original strand and one new strand / DNA polymerase / 3′.</strong>\n\nProved by Meselson & Stahl (1958) using heavy nitrogen (¹⁵N) labeling. The semi-conservative mechanism ensures error correction because both strands carry the template information.",
+          note: "The directionality cloze (3′) is the hardest and most tested detail. Cards on directionality prevent the common confusion.",
+        },
+        {
+          domain: "biology",
+          domainLabel: "Biology",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "A patient has a mutation in the gene for RNA polymerase II. What processes are disrupted — and what cellular outcomes would you predict?",
+          a: "RNA Pol II transcribes <strong>all mRNA and most snRNA</strong>. A loss-of-function mutation would disrupt: protein synthesis (no mRNA), pre-mRNA splicing (no snRNA), gene regulation. Predicted outcomes: cell death (most proteins can't be made), or if partial loss: dramatically reduced protein production, unresponsive gene expression. Embryonic lethal in complete knockouts.",
+          note: "Mechanism-to-consequence reasoning. You cannot answer this from a definition card alone — you need to understand the role of the target.",
+        },
+        {
+          domain: "biology",
+          domainLabel: "Biology",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: 'Explain the action potential — why it\'s "all-or-nothing" — using a simple physical analogy.',
+          a: "Think of a mousetrap. You can press it gently a hundred times with no result. But one touch past threshold — snap. The action potential is the neuron's mousetrap. Weak input: nothing. Input past threshold: full electrical spike, same size every time regardless of how much you exceeded the threshold.",
+          note: "The all-or-nothing property is the key insight, not the ion channels. The mousetrap makes the property intuitive and memorable.",
+        },
+        {
+          domain: "biology",
+          domainLabel: "Biology",
+          type: "Basic Q&A",
+          typeBadge: "badge-blue",
+          q: "Natural selection requires three conditions. What are they — and why does the absence of any one of them prevent evolution from occurring?",
+          a: "<strong>1. Variation</strong> — individuals differ in traits. Without variation, nothing to select from.\n<strong>2. Heritability</strong> — variation is passed to offspring. Without heritability, selection can't propagate changes.\n<strong>3. Differential reproduction</strong> — some variants survive/reproduce more. Without this, no selection pressure.\n\nAll three are necessary. Remove any one: no evolution.",
+          note: 'The "why does absence prevent it" forces you to understand each condition mechanistically, not just list them.',
+        },
+        {
+          domain: "biology",
+          domainLabel: "Biology",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: 'CRISPR-Cas9 is described as "molecular scissors." A patient has a dominant gain-of-function mutation causing disease. Why is CRISPR more straightforward here than in a loss-of-function recessive disease?',
+          a: "In a <strong>dominant gain-of-function</strong> mutation: the mutant allele is actively causing harm. Cutting/disrupting it silences the problem. CRISPR's simplest operation (cut + disrupt) is exactly what's needed.\n\nIn a <strong>recessive loss-of-function</strong> disease: you need to ADD a working copy, or precisely correct the sequence. This requires HDR (homology-directed repair), which is far less efficient and cell-type dependent than simple disruption.",
+          note: "Tests nuanced understanding of CRISPR mechanism, not just the metaphor. The difference in strategy reveals deep molecular biology knowledge.",
+        },
+        // ── MATHEMATICS ───────────────────────────────────────────────────────
+        {
+          domain: "math",
+          domainLabel: "Mathematics",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Why is the derivative of sin(x) equal to cos(x)? Give an intuitive geometric argument — no calculus machinery.",
+          a: "On a unit circle, sin(x) is your height as you move around the circle. As you move, how fast does your height change? At the top (sin=1, x=π/2) you're moving horizontally — height changing slowest. At x=0 (sin=0) you're moving straight up — height changing fastest. The rate of height change traces a new wave — which is exactly cos(x).",
+          note: "The geometric argument survives forgetting the formula. If you only know d/dx[sin(x)]=cos(x), you know less than someone who knows why.",
+        },
+        {
+          domain: "math",
+          domainLabel: "Mathematics",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You have 52 playing cards. You draw 5. How do you set up the calculation for the number of distinct hands — and why is order irrelevant?",
+          a: "Combinations: C(52,5) = 52! / (5! × 47!) = <strong>2,598,960.</strong>\n\nOrder is irrelevant because {A♠, K♠, Q♠, J♠, 10♠} is the same hand regardless of draw order. If order mattered (permutations), we'd multiply by 5! = 120. We divide by 5! to collapse all orderings of each hand into one.",
+          note: 'The "why divide by 5!" is the conceptual insight. Most errors come from not knowing when order matters.',
+        },
+        {
+          domain: "math",
+          domainLabel: "Mathematics",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "Bayes' theorem: P(A|B) = [P(B|A) × P(A)] / [P(B)], where P(A) is the [prior], P(A|B) is the [posterior], and P(B|A) is the [likelihood].",
+          a: "<strong>P(B|A) × P(A) / P(B) / prior / posterior / likelihood.</strong>\n\nIntuition: start with your prior belief. Update it based on how likely the evidence is under each hypothesis. The result is your revised belief (posterior).",
+          note: "The vocabulary clozes (prior, posterior, likelihood) are necessary for reading literature and communicating with statisticians.",
+        },
+        {
+          domain: "math",
+          domainLabel: "Mathematics",
+          type: "Basic Q&A",
+          typeBadge: "badge-blue",
+          q: 'Euler\'s identity is e^(iπ) + 1 = 0. Why is this considered beautiful — beyond "it connects five constants"?',
+          a: "It connects the <strong>five most fundamental constants</strong> (e, i, π, 1, 0) using only addition, multiplication, and exponentiation — the three fundamental operations. More deeply: it reveals that rotating in the complex plane by π radians (half a turn) using e^(iθ) lands you exactly at -1. The exponential function and circles are the same thing in complex arithmetic.",
+          note: 'The "why beautiful" constraint tests depth. "It uses five constants" is trivia. The rotation insight is understanding.',
+        },
+        {
+          domain: "math",
+          domainLabel: "Mathematics",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Explain the Monty Hall problem — and why switching wins 2/3 of the time — to someone who refuses to believe it.",
+          a: "You pick 1 of 3 doors. I open a losing door. Should you switch?\n\nKey: you LOCKED IN a 1/3 chance. My opening a door doesn't help your original pick. The other 2 doors had 2/3 probability combined. Now that 2/3 is concentrated on the ONE remaining unchosen door.\n\nExtreme case: 1000 doors, you pick one, I open 998 losers. Should you switch to the one door I left closed? Obviously yes.",
+          note: "The extreme case (1000 doors) is the persuasion tool. If someone still disagrees, have them simulate it 30 times.",
+        },
+        // ── CHEMISTRY ─────────────────────────────────────────────────────────
+        {
+          domain: "chemistry",
+          domainLabel: "Chemistry",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "A nucleophile attacks a carbonyl carbon. The carbon is attached to a leaving group. What reaction type is this — and what determines whether the nucleophile attacks or the leaving group leaves first?",
+          a: "<strong>Nucleophilic acyl substitution.</strong> The mechanism depends on conditions:\n\nElectrophilic acyl chlorides: nucleophile attacks first (addition), then leaving group (Cl⁻) departs (elimination) = addition-elimination mechanism.\n\nSN2 never occurs at carbonyl because the tetrahedral intermediate collapses before backside attack geometry forms.\n\nKey: the leaving group's ability to stabilize negative charge determines the rate of the second step.",
+          note: "Mechanism reasoning, not name memorization. The distinction from SN2 is the deep knowledge.",
+        },
+        {
+          domain: "chemistry",
+          domainLabel: "Chemistry",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "Le Chatelier's principle: when a system at equilibrium is [disturbed], it shifts to [oppose] the disturbance. Adding product shifts equilibrium [left]; increasing temperature in an endothermic reaction shifts it [right].",
+          a: "<strong>disturbed / oppose / left / right.</strong>\n\nIntuition: the equilibrium is a self-correcting balance. Push it, it pushes back. This is why increasing pressure in the Haber process (N₂ + 3H₂ → 2NH₃) drives the reaction right — fewer moles of gas on the product side.",
+          note: "The temperature cloze requires knowing whether the reaction is endothermic — linking thermodynamics and equilibrium.",
+        },
+        {
+          domain: "chemistry",
+          domainLabel: "Chemistry",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Explain why water has a higher boiling point than hydrogen sulfide (H₂S), despite H₂S being heavier.",
+          a: "In a race between weight and attraction, attraction wins here. Water (H₂O) forms hydrogen bonds — unusually strong dipole attractions between the δ+ hydrogen of one molecule and the lone pair on the oxygen of another. H₂S forms only weak van der Waals forces. Water molecules cling to each other so strongly that it takes more energy to separate them, despite water being lighter.",
+          note: "Intermolecular forces > molecular weight. This principle extends to boiling point anomalies across all of chemistry.",
+        },
+        // ── SYSTEMS THINKING ──────────────────────────────────────────────────
+        {
+          domain: "systems",
+          domainLabel: "Systems Thinking",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "A software team adds engineers to a late project. It gets later. Name the system archetype at work — and explain the feedback loops causing it.",
+          a: "<strong>Brooks's Law / \"Loads on a Late Train\" archetype.</strong>\n\nFeedback loops:\n1. New engineers need training → existing engineers context-switch to teach → productivity drops.\n2. More people = more communication channels (n(n-1)/2) → coordination cost grows quadratically.\n3. Training time delays new-engineer contributions by weeks.\n\nThe intervention (adding engineers) increases the very thing you're trying to reduce (lateness) through these reinforcing feedback loops.",
+          note: "The feedback loop identification IS the answer. Knowing Brooks's Law by name without the loops is trivia.",
+        },
+        {
+          domain: "systems",
+          domainLabel: "Systems Thinking",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "In systems thinking, a [reinforcing] feedback loop amplifies change (like compound interest), while a [balancing] loop resists change and seeks [equilibrium]. Most stable systems require [both] types.",
+          a: "<strong>reinforcing / balancing / equilibrium / both.</strong>\n\nExamples:\nReinforcing: viral spread (more sick → more spreading), investment returns, word-of-mouth growth.\nBalancing: thermostat (temperature deviates → heating corrects), predator-prey cycles.\nBoth: a healthy economy or ecosystem has growth loops balanced by resource constraints.",
+          note: 'The last cloze (both) prevents the error of thinking one type is "good" and one is "bad". Both are necessary for system health.',
+        },
+        {
+          domain: "systems",
+          domainLabel: "Systems Thinking",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: "Explain second-order effects to a product manager launching a new feature.",
+          a: 'First-order effect: users can now share posts publicly → more sharing.\nSecond-order effect: public sharing → users post more performatively → authenticity drops → power users leave.\nThird-order: power users who leave were the people new users came to see → growth stalls.\n\nA second-order effect is what happens to the people affected by the people you affected. Always ask: "And then what?"',
+          note: '"And then what?" is the heuristic to take away. The product example makes it immediately applicable.',
+        },
+        {
+          domain: "systems",
+          domainLabel: "Systems Thinking",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: 'A country lowers interest rates to stimulate the economy. Growth increases. Inflation rises. Rates are raised. Growth slows. Inflation falls. Rates are cut again. Name the system structure and why it prevents the policy from "fixing" the economy.',
+          a: '<strong>Balancing loop with delay</strong> (policy resistance / oscillation archetype).\n\nThe delay between action and effect means policymakers overshoot: rates cut → wait 18 months for effect → economy seems unresponsive → cut more → 18 months later, economy overheats → rates raised → overshoot the other way.\n\nThe loop is not broken. The system is oscillating around equilibrium. The "fix" is reducing the lag, not the magnitude of intervention.',
+          note: "The insight is the delay — not the loop itself. Most systems problems come from delays making feedback look absent when it's just slow.",
+        },
+        // ── NEUROSCIENCE ──────────────────────────────────────────────────────
+        {
+          domain: "neuroscience",
+          domainLabel: "Neuroscience",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "Patient H.M. had his hippocampus removed and could form no new long-term memories — but he could still learn new motor skills. What does this tell us about memory systems in the brain?",
+          a: 'Memory is not a single system. H.M. revealed at least two dissociable systems:\n\n<strong>Declarative (hippocampus-dependent):</strong> conscious recall of facts and events. H.M. couldn\'t form new declarative memories.\n\n<strong>Procedural (striatum/cerebellum-dependent):</strong> motor skills, habits. H.M. could learn to draw a star while looking in a mirror — and improved over sessions — but had no conscious memory of the practice sessions.\n\nImplication: knowing "what" and knowing "how" are stored in separate circuits.',
+          note: "This is the most important case study in memory research. The insight (two systems) should be the lasting takeaway.",
+        },
+        {
+          domain: "neuroscience",
+          domainLabel: "Neuroscience",
+          type: "Explain Simply",
+          typeBadge: "badge-violet",
+          q: 'Explain long-term potentiation (LTP) using a simple analogy that captures both the "use it to strengthen it" principle and the Hebbian rule.',
+          a: 'Two neurons that fire together repeatedly build a stronger connection — like a path through grass. Walk it once: no path. Walk it a thousand times: a trail forms. Walk it a million times: a paved road.\n\nLTP is the cellular mechanism: repeated co-activation causes the receiving neuron to insert more AMPA receptors and grow more dendritic spines. "Neurons that fire together, wire together" (Hebb, 1949).',
+          note: "The path analogy captures the key property (repeated use = stronger connection). The AMPA receptor detail is the molecular mechanism that earns deeper review cards.",
+        },
+        {
+          domain: "neuroscience",
+          domainLabel: "Neuroscience",
+          type: "Cloze",
+          typeBadge: "badge-teal",
+          q: "The prefrontal cortex is responsible for [executive function] — including [working memory], [impulse control], and [planning]. It is the [last] brain region to fully mature, completing development around age [25].",
+          a: "<strong>executive function / working memory / impulse control / planning / last / 25.</strong>\n\nThis is why adolescent risk-taking is structural, not characterological — the inhibitory control system is literally incomplete. It also explains why early-life adversity has lasting effects: it sculpts a still-developing system.",
+          note: "The age-25 cloze is the most surprising and practically important detail — it reframes adolescent behavior entirely.",
+        },
+        // ── ADDITIONAL CROSS-DOMAIN ───────────────────────────────────────────
+        {
+          domain: "software",
+          domainLabel: "Software Engineering",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You need to design an API endpoint for fetching a user's order history. Orders can be 0–10,000 items. What pagination strategy and why — offset, cursor, or keyset?",
+          a: "<strong>Keyset (cursor) pagination</strong> for large datasets.\n\nOffset pagination: SELECT * FROM orders OFFSET 5000 — the DB still scans 5000 rows to discard them. Slows with dataset size.\n\nKeyset: WHERE id > last_seen_id LIMIT 20 — uses the index, constant performance regardless of position.\n\nOffset is fine for small datasets or when you need page numbers. For infinite scroll or large tables: keyset pagination.",
+          note: "Most engineers default to offset. This card ensures you can defend the choice with performance reasoning.",
+        },
+        {
+          domain: "cs",
+          domainLabel: "Computer Science",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You have a graph of flight routes. You need to find the cheapest flight between two cities. BFS? Dijkstra? Bellman-Ford? Which and why?",
+          a: "<strong>Dijkstra's algorithm</strong> — assuming no negative edge weights (prices are always positive).\n\nBFS: works for unweighted shortest path only. Ignores edge weights (prices).\nDijkstra: optimal for weighted graphs with non-negative weights. O((V+E) log V) with a priority queue.\nBellman-Ford: handles negative weights (unnecessary here), but O(VE) — slower than needed.\n\nIf airlines could pay you to fly (negative prices): Bellman-Ford.",
+          note: "Knowing which algorithm and why requires knowing all three. The negative-weight joke tests whether you understand Bellman-Ford's purpose.",
+        },
+        {
+          domain: "physics",
+          domainLabel: "Physics",
+          type: "Basic Q&A",
+          typeBadge: "badge-blue",
+          q: "A photon has no rest mass. Yet it has momentum. How — and what equation describes it?",
+          a: "In Newtonian mechanics, p = mv. At zero mass, this gives zero momentum regardless of velocity. But this is wrong for photons.\n\nRelativity: <strong>E = pc for massless particles</strong> (derived from E² = (pc)² + (mc²)² with m=0).\n\nSo p = E/c = hf/c = h/λ. A photon's momentum comes entirely from its energy, not its mass. This is why light pressure exists and solar sails work.",
+          note: "The Newtonian intuition is wrong. The card tests whether you know the correct equation AND can explain why the naive approach fails.",
+        },
+        {
+          domain: "biology",
+          domainLabel: "Biology",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "A drug inhibits topoisomerase II. What specific cellular process is disrupted — and in what type of cells would you predict the most harm?",
+          a: "Topoisomerase II relieves <strong>topological stress during DNA replication and transcription</strong> by cutting both strands, passing another strand through, and religating.\n\nInhibition → DNA supercoiling → replication fork stalls → double-strand breaks accumulate.\n\nCells most affected: <strong>rapidly dividing cells</strong> (cancer cells, immune cells, gut epithelium) — because they replicate DNA most frequently. This is why topoisomerase II inhibitors (e.g., etoposide, doxorubicin) are used in chemotherapy: cancer cells replicate faster and accumulate damage faster.",
+          note: "Mechanism → consequence → clinical application. Three levels of understanding in one card.",
+        },
+        {
+          domain: "math",
+          domainLabel: "Mathematics",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "You're A/B testing a new checkout flow. After 200 users per variant, conversion is 12% (A) vs 15% (B). Your PM says \"ship B — it's 25% better!\" What questions must you ask before agreeing?",
+          a: "1. <strong>Statistical significance</strong>: with n=200 per group, this difference may not be significant. At 12% vs 15%, you need ~n=800+ per group for 80% power at α=0.05.\n2. <strong>Practical significance</strong>: 3% absolute improvement. Is that worth the implementation cost?\n3. <strong>Segment breakdown</strong>: does B win for all user segments or just one? Could hurt others.\n4. <strong>Novelty effect</strong>: new UI often gets temporary lift. How long has the test run?\n5. <strong>Multiple comparisons</strong>: is this the only metric you looked at?",
+          note: "Statistics-in-practice is more important than formulas. The PM scenario is exactly the real-world trigger for this knowledge.",
+        },
+        {
+          domain: "systems",
+          domainLabel: "Systems Thinking",
+          type: "Application",
+          typeBadge: "badge-amber",
+          q: "A company improves its hiring process to get better candidates. Better candidates deliver better work. Revenue grows. They hire more. Name and explain the system archetype — and the failure mode.",
+          a: "<strong>Reinforcing loop (virtuous cycle / success to the successful archetype).</strong>\n\nThe loop: quality → results → resources → quality → …\n\nFailure mode: <strong>Winner-take-all / resource allocation trap.</strong> If two divisions both exhibit this loop, the one that wins early gets more resources, reinforcing its lead — starving the other. The system selects for early winners, not long-term best performers. Also: the loop reverses when quality drops (vicious cycle) — small declines compound.",
+          note: "Identifying the failure mode is the senior-level insight. Anyone can spot a virtuous cycle; anticipating its failure mode is systems mastery.",
+        },
+      ];
+
+      // ─── RENDER CARDS ─────────────────────────────────────────────────────────
+      function renderCards(filter = "all") {
+        const grid = document.getElementById("cards-grid");
+        grid.innerHTML = "";
+
+        const filtered =
+          filter === "all" ? CARDS : CARDS.filter((c) => c.domain === filter);
+
+        filtered.forEach((card, i) => {
+          const wrap = document.createElement("div");
+          wrap.className = "flip-wrap";
+          wrap.dataset.domain = card.domain;
+          wrap.dataset.idx = i;
+
+          wrap.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-type-label">
+            <span class="badge ${card.typeBadge}">${card.type}</span>
+            &nbsp;·&nbsp; <span style="color:var(--subtle)">${card.domainLabel}</span>
+          </div>
+          <div class="flip-q">${card.q.replace(/\n/g, "<br>")}</div>
+          <div class="flip-cta">Tap to reveal answer</div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-back-label">Answer</div>
+          <div class="flip-a">${card.a.replace(/\n/g, "<br>")}</div>
+          <div class="flip-note">${card.note}</div>
+        </div>
+      </div>`;
+
+          wrap.addEventListener("click", () =>
+            wrap.classList.toggle("flipped"),
+          );
+          grid.appendChild(wrap);
+        });
+      }
+
+      // ─── DOMAIN TABS ──────────────────────────────────────────────────────────
+      document.getElementById("domain-tabs").addEventListener("click", (e) => {
+        const btn = e.target.closest(".domain-tab");
+        if (!btn) return;
+        document
+          .querySelectorAll(".domain-tab")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderCards(btn.dataset.filter);
+      });
+
+      // ─── SCROLL PROGRESS ──────────────────────────────────────────────────────
+      const fill = document.getElementById("progress-fill");
+      window.addEventListener("scroll", () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        fill.style.width = Math.min(100, (window.scrollY / max) * 100) + "%";
+      });
+
+      // ─── TOC ACTIVE STATE ─────────────────────────────────────────────────────
+      const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute("id");
+              tocLinks.forEach((a) => {
+                a.classList.toggle(
+                  "active",
+                  a.getAttribute("href") === "#" + id,
+                );
+              });
+            }
+          });
+        },
+        { rootMargin: "-20% 0px -70% 0px" },
+      );
+
+      document
+        .querySelectorAll("section[id], div[id]")
+        .forEach((el) => observer.observe(el));
+
+      // ─── INIT ──────────────────────────────────────────────────────────────────
+      renderCards("all");
+    </script>
+  </body>
+</html>
