@@ -1,1618 +1,1671 @@
-<!doctype html>
+HTMLEOF'
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PKH Design System — shell.css Reference</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PKH Design System — Complete Reference & User Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & tokens (mirrors shell.css) ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip;scrollbar-gutter:stable}
+body{font-family:"Inter",-apple-system,sans-serif;font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+ul,ol{list-style:none}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit;font-size:inherit}
 
-    <style>
-      /* Inline the full shell.css here for self-contained preview */
-      /* ---- TOKENS ---- */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+:root {
+  --bg:#f8f7f5;--bg-2:#f0ede8;--bg-3:#e8e4dd;--bg-4:#dedad3;
+  --surface:#ffffff;--surface-2:#faf9f8;
+  --border:#e4e0d8;--border-2:#cdc8bf;--border-3:#b8b2a7;
+  --text-1:#1c1917;--text-2:#3d3935;--text-3:#706b62;--text-4:#a39e95;
+  --indigo:#4f46e5;--indigo-mid:#6d64f0;--indigo-dk:#3730a3;
+  --indigo-lt:#eef2ff;--indigo-bg:#f5f3ff;--indigo-ring:rgba(79,70,229,.22);
+  --teal:#0d9373;--teal-lt:#ecfdf5;--teal-dk:#065f46;
+  --amber:#b45309;--amber-lt:#fffbeb;--amber-dk:#78350f;
+  --coral:#dc2626;--coral-lt:#fef2f2;--coral-dk:#991b1b;
+  --sage:#4a7c59;--sage-lt:#f0fdf4;--sage-dk:#166534;
+  --violet:#7c3aed;--violet-lt:#f5f3ff;--violet-dk:#4c1d95;
+  --font:"Inter",-apple-system,sans-serif;
+  --font-mono:"JetBrains Mono","Fira Code",ui-monospace,monospace;
+  --text-xs:11px;--text-sm:12.5px;--text-base:15px;--text-md:17px;
+  --text-lg:20px;--text-xl:24px;--text-2xl:30px;--text-3xl:38px;
+  --leading-tight:1.2;--leading-snug:1.35;--leading-normal:1.6;--leading-relaxed:1.75;
+  --tracking-tight:-0.025em;--tracking-normal:0;--tracking-wide:0.04em;--tracking-caps:0.08em;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;
+  --space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;--space-16:64px;--space-20:80px;
+  --sidebar-w:268px;--topbar-h:52px;--bottom-nav-h:60px;--content-max:740px;--content-wide:1060px;
+  --radius-xs:3px;--radius-sm:5px;--radius:8px;--radius-md:10px;
+  --radius-lg:14px;--radius-xl:20px;--radius-pill:999px;
+  --ease:cubic-bezier(.22,1,.36,1);--ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-in:cubic-bezier(.64,0,.78,0);--dur-fast:.1s;--dur:.2s;--dur-slow:.35s;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.05);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 4px 16px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.10),0 4px 12px rgba(0,0,0,.05);
+  --shadow-xl:0 24px 64px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.06);
+  --shadow-sidebar:4px 0 24px rgba(0,0,0,.08);
+}
+.dark {
+  --bg:#161412;--bg-2:#1e1c19;--bg-3:#272421;--bg-4:#302d29;
+  --surface:#1e1c19;--surface-2:#252220;
+  --border:#302d29;--border-2:#413d38;--border-3:#524e48;
+  --text-1:#f2ede8;--text-2:#c4bdb5;--text-3:#7d7870;--text-4:#504c47;
+  --indigo:#818cf8;--indigo-mid:#a5b4fc;--indigo-dk:#4f46e5;
+  --indigo-lt:#1e1b4b;--indigo-bg:#1a1740;--indigo-ring:rgba(129,140,248,.25);
+  --teal-lt:#022c22;--teal-dk:#34d399;
+  --amber-lt:#1c0a00;--amber-dk:#fbbf24;
+  --coral-lt:#1c0808;--coral-dk:#f87171;
+  --sage-lt:#052e16;--sage-dk:#4ade80;
+  --violet-lt:#1e0a3c;--violet-dk:#a78bfa;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.3);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.25);
+  --shadow:0 4px 16px rgba(0,0,0,.4),0 2px 4px rgba(0,0,0,.25);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.5),0 4px 12px rgba(0,0,0,.3);
+  --shadow-sidebar:4px 0 24px rgba(0,0,0,.4);
+}
 
-      :root {
-        --bg: #f7f5f0;
-        --bg-2: #efece5;
-        --bg-3: #e6e2d8;
-        --surface: #ffffff;
-        --border: #dedad0;
-        --border-2: #c8c3b5;
-        --text-1: #1a1814;
-        --text-2: #3b3830;
-        --text-3: #756f65;
-        --text-4: #a09890;
-        --indigo: #4340c8;
-        --indigo-mid: #6460d8;
-        --indigo-dk: #2a2880;
-        --indigo-lt: #eeedfa;
-        --teal: #1a8c6a;
-        --teal-lt: #e0f5ec;
-        --teal-dk: #0d5c45;
-        --amber: #a86310;
-        --amber-lt: #faf0dd;
-        --amber-dk: #6b3f08;
-        --coral: #c44428;
-        --coral-lt: #faebe5;
-        --coral-dk: #7d2a18;
-        --sage: #567856;
-        --sage-lt: #e6f0e6;
-        --sage-dk: #2f4f2f;
-        --violet: #7c4dbe;
-        --violet-lt: #f2ecfa;
-        --violet-dk: #4a2880;
-        --font: "Inter", -apple-system, sans-serif;
-        --font-mono: "JetBrains Mono", monospace;
-        --radius: 8px;
-        --radius-sm: 4px;
-        --radius-lg: 14px;
-        --radius-pill: 999px;
-        --shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.05);
-        --dur: 0.22s;
-        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .dark {
-        --bg: #141210;
-        --bg-2: #1d1b18;
-        --bg-3: #252320;
-        --surface: #1d1b18;
-        --border: #2e2b27;
-        --border-2: #3e3b36;
-        --text-1: #f0ece4;
-        --text-2: #bdb8ae;
-        --text-3: #7d7870;
-        --text-4: #4e4b46;
-        --indigo: #7572e8;
-        --indigo-mid: #8f8df0;
-        --indigo-dk: #4340c8;
-        --indigo-lt: #1e1c40;
-        --teal-lt: #0b241c;
-        --amber-lt: #241800;
-        --coral-lt: #240e08;
-        --sage-lt: #101e10;
-        --violet-lt: #1c1030;
-      }
+body { background:var(--bg); color:var(--text-2); }
+h1,h2,h3,h4,h5,h6{color:var(--text-1);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:700}
+::selection{background:var(--indigo-lt);color:var(--indigo-dk)}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:2px;border-radius:var(--radius-sm)}
+:focus:not(:focus-visible){outline:none}
 
-      html {
-        height: 100%;
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: var(--font);
-        font-size: 15px;
-        line-height: 1.7;
-        background: var(--bg);
-        color: var(--text-2);
-        -webkit-font-smoothing: antialiased;
-        transition:
-          background 0.22s,
-          color 0.22s;
-        overflow-x: hidden;
-      }
+/* ── Preview shell ── */
+.preview-shell { display:flex; min-height:100vh; }
 
-      /* Preview layout */
-      .preview-topbar {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(247, 245, 240, 0.92);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border);
-        padding: 0 2rem;
-        height: 52px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        transition: background 0.22s;
-      }
-      .dark .preview-topbar {
-        background: rgba(20, 18, 16, 0.92);
-      }
-      .preview-topbar-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--text-1);
-        letter-spacing: -0.015em;
-      }
-      .preview-topbar-right {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
+/* Sidebar */
+.preview-sidebar {
+  width:240px; flex-shrink:0;
+  background:var(--bg-2); border-right:1px solid var(--border);
+  position:fixed; inset:0 auto 0 0;
+  overflow-y:auto; z-index:300;
+  display:flex; flex-direction:column;
+  scrollbar-width:thin; scrollbar-color:var(--border-2) transparent;
+}
+.preview-sidebar::-webkit-scrollbar{width:3px}
+.preview-sidebar::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:2px}
 
-      .theme-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--text-3);
-        background: var(--bg-2);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-pill);
-        padding: 5px 14px;
-        cursor: pointer;
-        transition: all 0.22s;
-      }
-      .theme-toggle:hover {
-        border-color: var(--indigo-mid);
-        color: var(--indigo);
-      }
+.sidebar-header {
+  padding:16px; border-bottom:1px solid var(--border);
+  position:sticky; top:0; background:var(--bg-2); z-index:10;
+}
+.sidebar-logo {
+  display:flex; align-items:center; gap:10px;
+}
+.logo-mark {
+  width:28px; height:28px; border-radius:7px;
+  background:var(--indigo); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:800; flex-shrink:0;
+}
+.logo-text { font-size:13px; font-weight:700; color:var(--text-1); letter-spacing:-.02em; line-height:1.2; }
+.logo-sub  { font-size:10px; font-weight:400; color:var(--text-4); margin-top:1px; }
 
-      .preview-wrap {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2.5rem 2rem 6rem;
-      }
+.sidenav-group { padding:8px 0; }
+.sidenav-label {
+  display:block; padding:10px 16px 4px;
+  font-size:9px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-4);
+}
+.sidenav-item {
+  display:flex; align-items:center; gap:8px;
+  padding:6px 16px; font-size:12.5px; color:var(--text-3);
+  text-decoration:none; border-right:2px solid transparent;
+  min-height:34px; transition:background var(--dur),color var(--dur);
+  cursor:pointer; border:none; background:none; width:100%; text-align:left;
+}
+.sidenav-item:hover { background:var(--bg-3); color:var(--text-1); }
+.sidenav-item.active { background:var(--indigo-lt); color:var(--indigo); font-weight:600; border-right-color:var(--indigo); }
+.sidenav-dot { width:4px; height:4px; border-radius:50%; background:var(--border-3); flex-shrink:0; }
+.sidenav-item.active .sidenav-dot { background:var(--indigo); }
 
-      /* Sections */
-      .ds-section {
-        margin-bottom: 3.5rem;
-        scroll-margin-top: 70px;
-      }
-      .ds-section-title {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-4);
-        margin-bottom: 1.25rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .ds-section-title::before {
-        content: "";
-        width: 20px;
-        height: 2px;
-        background: var(--indigo);
-        border-radius: 1px;
-      }
-      .ds-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 0.5rem;
-      }
-      .ds-grid-2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-      .ds-row {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        margin-bottom: 0.75rem;
-      }
+/* Topbar */
+.preview-topbar {
+  position:sticky; top:0; z-index:200;
+  height:52px;
+  background:rgba(248,247,245,.94);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  padding:0 24px; display:flex; align-items:center;
+  justify-content:space-between; gap:12px;
+}
+.dark .preview-topbar { background:rgba(22,20,18,.94); }
+.topbar-title { font-size:13px; font-weight:600; color:var(--text-1); }
+.topbar-right { display:flex; align-items:center; gap:6px; }
 
-      /* Color swatches */
-      .swatch {
-        border-radius: var(--radius-sm);
-        height: 48px;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        position: relative;
-      }
-      .swatch-label {
-        font-size: 10px;
-        font-weight: 600;
-        color: var(--text-3);
-        margin-top: 0.35rem;
-        letter-spacing: 0.03em;
-      }
-      .swatch-hex {
-        font-family: var(--font-mono);
-        font-size: 9.5px;
-        color: var(--text-4);
-      }
+/* Theme toggle */
+.theme-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; font-weight:500; color:var(--text-3);
+  background:var(--surface); border:1px solid var(--border-2);
+  border-radius:var(--radius-pill); padding:5px 14px;
+  transition:all var(--dur);
+}
+.theme-btn:hover { border-color:var(--indigo); color:var(--indigo); }
 
-      /* Typography specimens */
-      .type-specimen {
-        margin-bottom: 1.25rem;
-      }
-      .type-label {
-        font-size: 9.5px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-4);
-        margin-bottom: 0.25rem;
-      }
+/* Copy btn */
+.copy-btn {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:11px; font-weight:500; color:var(--text-3);
+  background:none; border:none; padding:3px 6px;
+  border-radius:var(--radius-sm); transition:all var(--dur);
+}
+.copy-btn:hover { background:var(--bg-3); color:var(--text-1); }
+.copy-btn.copied { color:var(--teal); }
 
-      /* Component: callout */
-      .ms-callout {
-        border-left: 3px solid var(--indigo-mid);
-        border-radius: 0 var(--radius) var(--radius) 0;
-        background: var(--indigo-lt);
-        padding: 1rem 1.25rem;
-        margin: 0.75rem 0;
-        font-size: 14.5px;
-        color: var(--text-1);
-        line-height: 1.7;
-      }
-      .ms-callout.teal {
-        border-left-color: var(--teal);
-        background: var(--teal-lt);
-      }
-      .ms-callout.amber {
-        border-left-color: var(--amber);
-        background: var(--amber-lt);
-      }
-      .ms-callout.coral {
-        border-left-color: var(--coral);
-        background: var(--coral-lt);
-      }
-      .ms-callout.sage {
-        border-left-color: var(--sage);
-        background: var(--sage-lt);
-      }
-      .ms-callout-label {
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--indigo);
-        display: block;
-        margin-bottom: 0.25rem;
-      }
-      .ms-callout.teal .ms-callout-label {
-        color: var(--teal);
-      }
-      .ms-callout.amber .ms-callout-label {
-        color: var(--amber);
-      }
-      .ms-callout.coral .ms-callout-label {
-        color: var(--coral);
-      }
-      .ms-callout.sage .ms-callout-label {
-        color: var(--sage);
-      }
+/* Main content */
+.preview-main {
+  margin-left:240px; flex:1; min-width:0;
+  display:flex; flex-direction:column;
+}
+.preview-content {
+  flex:1; max-width:900px; width:100%;
+  margin:0 auto; padding:40px 32px 80px;
+}
 
-      /* Component: badge */
-      .ms-badge {
-        display: inline-flex;
-        align-items: center;
-        font-size: 11px;
-        font-weight: 600;
-        padding: 2px 10px;
-        border-radius: var(--radius-pill);
-        white-space: nowrap;
-        line-height: 1.6;
-      }
-      .ms-badge.indigo {
-        background: var(--indigo-lt);
-        color: var(--indigo-dk);
-      }
-      .ms-badge.teal {
-        background: var(--teal-lt);
-        color: var(--teal-dk);
-      }
-      .ms-badge.amber {
-        background: var(--amber-lt);
-        color: var(--amber-dk);
-      }
-      .ms-badge.coral {
-        background: var(--coral-lt);
-        color: var(--coral-dk);
-      }
-      .ms-badge.sage {
-        background: var(--sage-lt);
-        color: var(--sage-dk);
-      }
-      .ms-badge.neutral {
-        background: var(--bg-3);
-        color: var(--text-2);
-      }
+/* DS Section wrapper */
+.ds-page { display:none; }
+.ds-page.active { display:block; }
 
-      /* Component: card */
-      .ms-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1rem 1.25rem;
-        transition:
-          box-shadow 0.22s,
-          border-color 0.22s;
-      }
-      .ms-card:hover {
-        box-shadow: var(--shadow);
-        border-color: var(--border-2);
-      }
-      .ms-card.indigo {
-        border-left: 3px solid var(--indigo);
-        border-radius: 0 var(--radius) var(--radius) 0;
-      }
-      .ms-card.teal {
-        border-left: 3px solid var(--teal);
-        border-radius: 0 var(--radius) var(--radius) 0;
-      }
-      .ms-card.flat {
-        background: var(--bg-2);
-      }
-      .ms-card-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--text-1);
-        margin-bottom: 0.25rem;
-      }
-      .ms-card-body {
-        font-size: 13px;
-        color: var(--text-2);
-        line-height: 1.65;
-      }
+/* Section heading */
+.ds-heading {
+  margin-bottom:24px; padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.ds-heading h1 { font-size:clamp(22px,4vw,30px); color:var(--text-1); margin-bottom:8px; }
+.ds-heading p { font-size:15px; color:var(--text-2); line-height:1.75; max-width:640px; }
 
-      /* Component: steps */
-      .ms-steps {
-        counter-reset: step;
-        list-style: none;
-      }
-      .ms-steps li {
-        counter-increment: step;
-        display: flex;
-        gap: 0.75rem;
-        align-items: flex-start;
-        padding: 0.6rem 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 14px;
-        color: var(--text-2);
-        line-height: 1.65;
-      }
-      .ms-steps li:last-child {
-        border-bottom: none;
-      }
-      .ms-steps li::before {
-        content: counter(step);
-        background: var(--indigo-lt);
-        color: var(--indigo);
-        font-size: 10.5px;
-        font-weight: 700;
-        min-width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        margin-top: 2px;
-      }
+.ds-section { margin-bottom:48px; }
+.ds-section-title {
+  font-size:10px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--text-4);
+  margin-bottom:16px; display:flex; align-items:center; gap:10px;
+  padding-bottom:8px; border-bottom:1px solid var(--border);
+}
+.ds-section-title::before {
+  content:""; width:16px; height:2px;
+  background:var(--indigo); border-radius:1px;
+}
+.ds-section-title .section-num {
+  font-family:var(--font-mono); font-size:9px;
+  background:var(--indigo-lt); color:var(--indigo);
+  padding:1px 6px; border-radius:var(--radius-pill);
+}
 
-      /* Component: progress */
-      .prog-bar {
-        height: 5px;
-        background: var(--bg-3);
-        border-radius: 999px;
-        overflow: hidden;
-      }
-      .prog-fill {
-        height: 100%;
-        background: var(--teal);
-        border-radius: 999px;
-        transition: width 0.4s;
-      }
-      .prog-label {
-        font-size: 11px;
-        color: var(--text-3);
-        margin-top: 0.25rem;
-      }
+/* Code snippet */
+.ds-code {
+  background:#1a1917; color:#e6e1d9;
+  border-radius:var(--radius); padding:14px 18px;
+  font-family:var(--font-mono); font-size:12px; line-height:1.8;
+  overflow-x:auto; margin:10px 0; position:relative;
+}
+.ds-code-header {
+  background:var(--bg-2); border:1px solid var(--border);
+  border-bottom:none; border-radius:var(--radius) var(--radius) 0 0;
+  padding:6px 14px; display:flex; align-items:center;
+  justify-content:space-between; font-size:11px; color:var(--text-4);
+  font-family:var(--font-mono);
+}
+.ds-code-header + .ds-code { border-radius:0 0 var(--radius) var(--radius); }
+.ds-inline { font-family:var(--font-mono); font-size:12.5px; background:var(--bg-3); border:1px solid var(--border-2); border-radius:var(--radius-xs); padding:1px 5px; color:var(--indigo); }
 
-      /* Component: stat */
-      .ms-stat-card {
-        background: var(--bg-2);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1rem;
-      }
-      .ms-stat-num {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--teal);
-        line-height: 1;
-        letter-spacing: -0.02em;
-      }
-      .ms-stat-label {
-        font-size: 11px;
-        color: var(--text-3);
-        margin-top: 0.25rem;
-      }
+/* Token table */
+.token-table { width:100%; border-collapse:collapse; font-size:13px; margin:8px 0; }
+.token-table th { background:var(--bg-2); padding:8px 12px; text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); border-bottom:1px solid var(--border-2); }
+.token-table td { padding:8px 12px; border-bottom:1px solid var(--border); vertical-align:middle; line-height:1.4; }
+.token-table tr:last-child td { border-bottom:none; }
+.token-table tbody tr:hover td { background:var(--bg-2); }
+.token-name { font-family:var(--font-mono); font-size:11.5px; color:var(--indigo); font-weight:500; }
+.token-value { font-family:var(--font-mono); font-size:11px; color:var(--text-3); }
+.token-desc { font-size:12px; color:var(--text-2); }
+.swatch-cell { display:flex; align-items:center; gap:8px; }
+.swatch { width:28px; height:28px; border-radius:5px; border:1px solid rgba(0,0,0,.08); flex-shrink:0; }
 
-      /* Component: quote */
-      .ms-quote {
-        border-left: 3px solid var(--border-2);
-        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-        background: var(--bg-2);
-        padding: 1rem 1.25rem;
-        font-size: 16px;
-        font-style: italic;
-        font-weight: 300;
-        color: var(--text-2);
-        line-height: 1.75;
-        margin: 0.75rem 0;
-      }
-      .ms-quote cite {
-        display: block;
-        margin-top: 0.5rem;
-        font-size: 12px;
-        font-style: normal;
-        color: var(--text-4);
-        font-weight: 500;
-      }
+/* Demo grid */
+.demo-grid { display:grid; gap:12px; }
+.demo-grid.col-2 { grid-template-columns:1fr 1fr; }
+.demo-grid.col-3 { grid-template-columns:1fr 1fr 1fr; }
+.demo-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
 
-      /* Component: checklist */
-      .ms-checklist {
-        list-style: none;
-      }
-      .ms-checklist li {
-        display: flex;
-        gap: 0.75rem;
-        align-items: flex-start;
-        padding: 0.5rem 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 14px;
-        color: var(--text-2);
-        line-height: 1.55;
-        min-height: 44px;
-      }
-      .ms-checklist li:last-child {
-        border-bottom: none;
-      }
-      .ms-checklist li::before {
-        content: "□";
-        font-size: 15px;
-        color: var(--text-4);
-        flex-shrink: 0;
-        margin-top: 1px;
-      }
+/* Usage note */
+.usage-note {
+  background:var(--indigo-lt); border-left:3px solid var(--indigo);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:12px 16px; font-size:13px; color:var(--text-2);
+  line-height:1.65; margin:12px 0;
+}
+.usage-note strong { color:var(--indigo); font-weight:600; }
+.warning-note {
+  background:var(--amber-lt); border-left:3px solid var(--amber);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:12px 16px; font-size:13px; color:var(--amber-dk);
+  line-height:1.65; margin:12px 0;
+}
 
-      /* Component: drill */
-      .ms-drill {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--indigo-mid);
-        border-radius: 0 var(--radius) var(--radius) 0;
-        padding: 0.9rem 1.1rem;
-      }
-      .ms-drill-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--text-1);
-        margin-bottom: 0.35rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .ms-drill-time {
-        font-size: 11px;
-        background: var(--bg-2);
-        color: var(--text-3);
-        padding: 1px 8px;
-        border-radius: 999px;
-        margin-left: auto;
-        white-space: nowrap;
-      }
-      .ms-drill p {
-        font-size: 13.5px;
-        color: var(--text-2);
-        line-height: 1.65;
-      }
+/* Props badge */
+.prop-tag { display:inline-block; font-size:10px; font-weight:600; padding:2px 7px; border-radius:var(--radius-pill); margin:2px; }
+.prop-req  { background:var(--coral-lt); color:var(--coral-dk); }
+.prop-opt  { background:var(--bg-3); color:var(--text-3); }
+.prop-mod  { background:var(--indigo-lt); color:var(--indigo-dk); }
 
-      /* Component: alert */
-      .ms-alert {
-        border-radius: var(--radius-sm);
-        padding: 0.75rem 1rem;
-        font-size: 13px;
-        line-height: 1.65;
-        margin: 0.5rem 0;
-      }
-      .ms-alert.teal {
-        background: var(--teal-lt);
-        color: var(--teal-dk);
-        border: 1px solid var(--teal);
-      }
-      .ms-alert.indigo {
-        background: var(--indigo-lt);
-        color: var(--indigo-dk);
-        border: 1px solid var(--indigo-mid);
-      }
-      .ms-alert.amber {
-        background: var(--amber-lt);
-        color: var(--amber-dk);
-        border: 1px solid var(--amber);
-      }
+/* Anatomy diagram */
+.anatomy { position:relative; border:1px dashed var(--border-2); border-radius:var(--radius); padding:20px; margin:12px 0; background:var(--surface); }
+.anatomy-label { position:absolute; font-size:10px; font-weight:600; color:var(--indigo); background:var(--indigo-lt); padding:2px 7px; border-radius:var(--radius-pill); white-space:nowrap; }
 
-      /* Component: table */
-      .ms-table-wrap {
-        overflow-x: auto;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-      }
-      .ms-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13.5px;
-        color: var(--text-2);
-      }
-      .ms-table th {
-        background: var(--bg-2);
-        font-weight: 600;
-        font-size: 10.5px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--text-3);
-        padding: 0.5rem 0.75rem;
-        text-align: left;
-        border-bottom: 1px solid var(--border);
-      }
-      .ms-table td {
-        padding: 0.5rem 0.75rem;
-        border-bottom: 1px solid var(--border);
-        vertical-align: top;
-        line-height: 1.5;
-      }
-      .ms-table tr:last-child td {
-        border-bottom: none;
-      }
-      .ms-table tbody tr:hover td {
-        background: var(--bg-2);
-      }
+/* ───────── All shell.css component previews ───────── */
 
-      /* Component: code */
-      pre.ms-pre {
-        background: #1a1814;
-        color: #e8e4d8;
-        border-radius: var(--radius);
-        padding: 1rem;
-        font-family: var(--font-mono);
-        font-size: 12.5px;
-        line-height: 1.7;
-        overflow-x: auto;
-      }
-      .ms-inline-code {
-        font-family: var(--font-mono);
-        font-size: 13px;
-        background: var(--bg-3);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 1px 5px;
-        color: var(--indigo);
-      }
+/* Badges */
+.ms-badge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:2px 10px;border-radius:var(--radius-pill);white-space:nowrap;line-height:1.6;letter-spacing:.01em}
+.ms-badge.indigo{background:var(--indigo-lt);color:var(--indigo-dk)}
+.ms-badge.teal{background:var(--teal-lt);color:var(--teal-dk)}
+.ms-badge.amber{background:var(--amber-lt);color:var(--amber-dk)}
+.ms-badge.coral{background:var(--coral-lt);color:var(--coral-dk)}
+.ms-badge.sage{background:var(--sage-lt);color:var(--sage-dk)}
+.ms-badge.violet{background:var(--violet-lt);color:var(--violet-dk)}
+.ms-badge.neutral{background:var(--bg-3);color:var(--text-2)}
 
-      /* Component: nav items */
-      .demo-nav {
-        background: var(--bg-2);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        overflow: hidden;
-        width: 260px;
-      }
-      .ms-nav-label {
-        font-size: 9.5px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-4);
-        padding: 0.7rem 1rem 0.2rem;
-        display: block;
-      }
-      .ms-nav-item {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        padding: 7px 1rem;
-        font-size: 12.5px;
-        font-weight: 400;
-        color: var(--text-3);
-        text-decoration: none;
-        border-right: 2px solid transparent;
-        min-height: 36px;
-        transition:
-          background 0.22s,
-          color 0.22s;
-      }
-      .ms-nav-item:hover {
-        background: var(--bg-3);
-        color: var(--text-1);
-      }
-      .ms-nav-item.active {
-        background: var(--indigo-lt);
-        color: var(--indigo);
-        font-weight: 600;
-        border-right-color: var(--indigo);
-      }
-      .ms-nav-dot {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: var(--border-2);
-        flex-shrink: 0;
-      }
-      .ms-nav-item.active .ms-nav-dot {
-        background: var(--indigo);
-      }
+/* Buttons */
+.ms-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);font-size:13.5px;font-weight:600;padding:0 20px;height:38px;border-radius:var(--radius);border:1px solid transparent;text-decoration:none;white-space:nowrap;transition:background var(--dur),color var(--dur),border-color var(--dur),box-shadow var(--dur),transform var(--dur-fast)}
+.ms-btn:active{transform:scale(.98)}
+.ms-btn.primary{background:var(--indigo);color:#fff;border-color:var(--indigo-dk)}
+.ms-btn.primary:hover{background:var(--indigo-dk);box-shadow:0 4px 12px rgba(79,70,229,.3)}
+.ms-btn.secondary{background:var(--surface);color:var(--text-1);border-color:var(--border-2);box-shadow:var(--shadow-xs)}
+.ms-btn.secondary:hover{background:var(--bg-2);border-color:var(--border-3);box-shadow:var(--shadow-sm)}
+.ms-btn.ghost{background:transparent;color:var(--text-2);border-color:transparent}
+.ms-btn.ghost:hover{background:var(--bg-3);color:var(--text-1)}
+.ms-btn.danger{background:var(--coral);color:#fff;border-color:var(--coral-dk)}
+.ms-btn.danger:hover{background:var(--coral-dk)}
+.ms-btn.sm{height:30px;font-size:12px;padding:0 12px}
+.ms-btn.lg{height:46px;font-size:15px;padding:0 24px;border-radius:var(--radius-md)}
 
-      /* Component: day grid */
-      .day-grid {
-        display: grid;
-        grid-template-columns: repeat(10, 1fr);
-        gap: 4px;
-      }
-      .day-cell {
-        aspect-ratio: 1;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-weight: 500;
-        border: 1px solid var(--border);
-        background: var(--bg-2);
-        color: var(--text-3);
-        cursor: pointer;
-        min-height: 28px;
-        transition: all 0.12s;
-      }
-      .day-cell.done {
-        background: var(--teal);
-        border-color: var(--teal);
-        color: #fff;
-      }
-      .day-cell.missed {
-        background: var(--coral-lt);
-        border-color: var(--coral);
-        color: var(--coral);
-      }
+/* Cards */
+.ms-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;transition:box-shadow var(--dur),border-color var(--dur);box-shadow:var(--shadow-xs)}
+.ms-card:hover{box-shadow:var(--shadow-sm);border-color:var(--border-2)}
+.ms-card.flat{background:var(--bg-2);box-shadow:none}
+.ms-card.indigo{border-left:3px solid var(--indigo);border-radius:0 var(--radius) var(--radius) 0}
+.ms-card.teal{border-left:3px solid var(--teal);border-radius:0 var(--radius) var(--radius) 0}
+.ms-card.amber{border-left:3px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0}
+.ms-card.coral{border-left:3px solid var(--coral);border-radius:0 var(--radius) var(--radius) 0}
+.ms-card.sage{border-left:3px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0}
+.ms-card.violet{border-left:3px solid var(--violet);border-radius:0 var(--radius) var(--radius) 0}
+.ms-card-title{font-size:14px;font-weight:600;color:var(--text-1);margin-bottom:4px;line-height:var(--leading-snug)}
+.ms-card-body{font-size:13px;color:var(--text-2);line-height:1.65}
+.ms-card-meta{font-size:11px;color:var(--text-4);margin-top:8px;display:flex;align-items:center;gap:8px}
 
-      /* Component: progress reading bar */
-      .demo-progress {
-        height: 2px;
-        background: var(--border);
-        border-radius: 1px;
-        overflow: hidden;
-      }
-      .demo-progress-fill {
-        height: 100%;
-        width: 62%;
-        background: linear-gradient(90deg, var(--indigo), var(--indigo-mid));
-        border-radius: 1px;
-      }
+/* Callouts */
+.ms-callout{border-left:3px solid var(--indigo);border-radius:0 var(--radius) var(--radius) 0;background:var(--indigo-lt);padding:14px 18px;margin:16px 0;font-size:14px;color:var(--text-2);line-height:1.7}
+.ms-callout-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);margin-bottom:4px;display:block}
+.ms-callout.teal{border-left-color:var(--teal);background:var(--teal-lt)}
+.ms-callout.amber{border-left-color:var(--amber);background:var(--amber-lt)}
+.ms-callout.coral{border-left-color:var(--coral);background:var(--coral-lt)}
+.ms-callout.sage{border-left-color:var(--sage);background:var(--sage-lt)}
+.ms-callout.violet{border-left-color:var(--violet);background:var(--violet-lt)}
+.ms-callout.teal .ms-callout-label{color:var(--teal)}
+.ms-callout.amber .ms-callout-label{color:var(--amber)}
+.ms-callout.coral .ms-callout-label{color:var(--coral)}
+.ms-callout.sage .ms-callout-label{color:var(--sage)}
+.ms-callout.violet .ms-callout-label{color:var(--violet)}
 
-      /* Icon button */
-      .ms-icon-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        background: none;
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        color: var(--text-3);
-        font-size: 15px;
-        transition:
-          background 0.22s,
-          border-color 0.22s,
-          color 0.22s;
-      }
-      .ms-icon-btn:hover {
-        background: var(--bg-3);
-        border-color: var(--border-2);
-        color: var(--text-1);
-      }
+/* Alerts */
+.ms-alert{border-radius:var(--radius);padding:12px 16px;font-size:13.5px;line-height:1.65;display:flex;align-items:flex-start;gap:10px;margin:6px 0}
+.ms-alert-icon{flex-shrink:0;margin-top:1px;font-size:15px}
+.ms-alert.teal{background:var(--teal-lt);color:var(--teal-dk);border:1px solid rgba(13,147,115,.2)}
+.ms-alert.indigo{background:var(--indigo-lt);color:var(--indigo-dk);border:1px solid rgba(79,70,229,.2)}
+.ms-alert.amber{background:var(--amber-lt);color:var(--amber-dk);border:1px solid rgba(180,83,9,.2)}
+.ms-alert.coral{background:var(--coral-lt);color:var(--coral-dk);border:1px solid rgba(220,38,38,.2)}
 
-      /* Part pills */
-      .ms-part-nav {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-      }
-      .ms-part-pill {
-        font-size: 12px;
-        font-weight: 500;
-        padding: 5px 14px;
-        border-radius: 999px;
-        border: 1px solid var(--border-2);
-        background: var(--surface);
-        color: var(--text-3);
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.22s;
-      }
-      .ms-part-pill.active {
-        background: var(--indigo-lt);
-        color: var(--indigo);
-        border-color: var(--indigo-mid);
-        font-weight: 600;
-      }
-      .ms-part-pill:hover:not(.active) {
-        border-color: var(--indigo-mid);
-        color: var(--indigo);
-      }
+/* Stats */
+.ms-stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 20px;box-shadow:var(--shadow-xs)}
+.ms-stat-num{font-size:30px;font-weight:700;color:var(--text-1);line-height:1;letter-spacing:var(--tracking-tight)}
+.ms-stat-num.teal{color:var(--teal)}.ms-stat-num.indigo{color:var(--indigo)}
+.ms-stat-num.amber{color:var(--amber)}.ms-stat-num.coral{color:var(--coral)}
+.ms-stat-label{font-size:11px;color:var(--text-3);margin-top:4px;font-weight:500}
+.ms-stat-delta{font-size:12px;font-weight:600;margin-top:4px}
+.ms-stat-delta.up{color:var(--teal)}.ms-stat-delta.down{color:var(--coral)}
 
-      /* Timeline */
-      .ms-timeline {
-        position: relative;
-        padding-left: 1.5rem;
-      }
-      .ms-timeline::before {
-        content: "";
-        position: absolute;
-        left: 7px;
-        top: 8px;
-        bottom: 8px;
-        width: 2px;
-        background: var(--border-2);
-      }
-      .ms-timeline-item {
-        position: relative;
-        margin-bottom: 1rem;
-        font-size: 14px;
-        color: var(--text-2);
-        line-height: 1.65;
-      }
-      .ms-timeline-item::before {
-        content: "";
-        position: absolute;
-        left: -1.5rem;
-        top: 7px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--indigo);
-        border: 2px solid var(--bg);
-      }
-      .ms-timeline-item strong {
-        color: var(--text-1);
-      }
+/* Steps */
+.ms-steps{counter-reset:step;list-style:none}
+.ms-steps li{counter-increment:step;display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-2);line-height:1.65}
+.ms-steps li:last-child{border-bottom:none}
+.ms-steps li::before{content:counter(step);background:var(--indigo-lt);color:var(--indigo);font-size:11px;font-weight:700;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 
-      /* Skeleton */
-      .ms-skeleton {
-        background: linear-gradient(
-          90deg,
-          var(--bg-2) 25%,
-          var(--bg-3) 37%,
-          var(--bg-2) 63%
-        );
-        background-size: 400% 100%;
-        animation: shimmer 1.4s ease infinite;
-        border-radius: var(--radius);
-      }
-      @keyframes shimmer {
-        0% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0 50%;
-        }
-      }
+/* Timeline */
+.ms-timeline{position:relative;padding-left:24px}
+.ms-timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--border-2);border-radius:1px}
+.ms-timeline-item{position:relative;margin-bottom:20px;font-size:14px;color:var(--text-2);line-height:1.65}
+.ms-timeline-item::before{content:"";position:absolute;left:-24px;top:7px;width:8px;height:8px;border-radius:50%;background:var(--indigo);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--indigo)}
+.ms-timeline-item strong{color:var(--text-1)}
 
-      /* Focus ring demo */
-      .focus-demo {
-        outline: 2px solid var(--indigo);
-        outline-offset: 2px;
-        border-radius: var(--radius-sm);
-      }
+/* Checklist */
+.ms-checklist{list-style:none}
+.ms-checklist li{display:flex;gap:12px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-2);min-height:44px}
+.ms-checklist li:last-child{border-bottom:none}
+.ms-checklist li::before{content:"□";font-size:15px;color:var(--text-4);flex-shrink:0;margin-top:1px}
 
-      /* Spacing scale display */
-      .space-block {
-        background: var(--indigo-lt);
-        border-radius: var(--radius-sm);
-        display: flex;
-        align-items: center;
-      }
+/* Accordion */
+.ms-accordion summary{list-style:none;cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;padding:12px 0;font-size:15px;font-weight:600;color:var(--text-1);border-bottom:1px solid var(--border)}
+.ms-accordion summary::-webkit-details-marker{display:none}
+.ms-accordion summary::after{content:"+";font-size:18px;color:var(--text-3);transition:transform var(--dur);line-height:1;flex-shrink:0;font-weight:300}
+.ms-accordion[open] summary::after{transform:rotate(45deg)}
+.ms-accordion[open] summary{border-bottom-color:transparent}
+.ms-accordion-body{padding:12px 0 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-2);line-height:1.65}
 
-      /* Typography scale */
-      h1.ds-h1 {
-        font-size: clamp(22px, 4.5vw, 32px);
-        font-weight: 700;
-        letter-spacing: -0.025em;
-        line-height: 1.2;
-        color: var(--text-1);
-      }
-      h2.ds-h2 {
-        font-size: clamp(18px, 3.5vw, 24px);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: var(--text-1);
-      }
-      h3.ds-h3 {
-        font-size: 17px;
-        font-weight: 600;
-        color: var(--text-1);
-      }
-      h4.ds-h4 {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--text-3);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
+/* Quote */
+.ms-quote{border-left:3px solid var(--border-2);border-radius:0 5px 5px 0;background:var(--surface-2);padding:20px 24px;font-size:17px;font-style:italic;font-weight:300;color:var(--text-2);line-height:1.7}
+.ms-quote cite{display:block;margin-top:8px;font-size:12px;font-style:normal;color:var(--text-4);font-weight:500}
 
-      /* Selection */
-      ::selection {
-        background: var(--indigo-lt);
-        color: var(--indigo-dk);
-      }
-      :focus-visible {
-        outline: 2px solid var(--indigo);
-        outline-offset: 2px;
-      }
+/* Row layout */
+.ms-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);min-height:44px}
+.ms-row:last-child{border-bottom:none}
+.ms-row-num{font-size:11px;font-weight:600;color:var(--text-3);min-width:36px;padding-top:2px;flex-shrink:0}
+.ms-row-main{font-size:13.5px;color:var(--text-1);line-height:1.55;flex:1}
+.ms-row-sub{font-size:12px;color:var(--text-3);margin-top:3px}
+.ms-row-meta{font-size:11px;color:var(--text-3);margin-left:auto;flex-shrink:0;white-space:nowrap}
 
-      @media (max-width: 640px) {
-        .preview-wrap {
-          padding: 1.25rem 1rem 5rem;
-        }
-        .ds-grid-2 {
-          grid-template-columns: 1fr;
-        }
-        .ds-grid {
-          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        }
-        .preview-topbar {
-          padding: 0 1rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Top bar -->
-    <div class="preview-topbar">
-      <span class="preview-topbar-title">PKH Design System · shell.css</span>
-      <div class="preview-topbar-right">
-        <button
-          class="theme-toggle"
-          onclick="document.documentElement.classList.toggle('dark')"
-          title="Toggle dark mode"
-        >
-          ◑ Theme
-        </button>
+/* Tables */
+.ms-table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-xs)}
+.ms-table{width:100%;border-collapse:collapse;font-size:13.5px;color:var(--text-2)}
+.ms-table th{background:var(--bg-2);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);padding:8px 16px;text-align:left;border-bottom:1px solid var(--border-2)}
+.ms-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55}
+.ms-table tr:last-child td{border-bottom:none}
+.ms-table tbody tr:hover td{background:var(--bg-2)}
+.ms-table td strong{color:var(--text-1)}
+.ms-table .hi{color:var(--teal);font-weight:600}
+.ms-table .lo{color:var(--text-4)}
+.ms-table .med{color:var(--amber);font-weight:500}
+.ms-table .bad{color:var(--coral);font-weight:500}
+
+/* Tags */
+.ms-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:var(--text-3);background:var(--bg-3);border:1px solid var(--border-2);border-radius:var(--radius-pill);padding:2px 9px;white-space:nowrap;transition:all var(--dur)}
+.ms-tag:hover{background:var(--bg-4);color:var(--text-1);border-color:var(--border-3)}
+
+/* Pill selector */
+.ms-pill-selector{display:flex;gap:3px;background:var(--bg-3);border-radius:var(--radius-pill);padding:3px;width:fit-content}
+.ms-pill-option{font-size:12.5px;font-weight:500;padding:4px 14px;border-radius:var(--radius-pill);background:transparent;border:none;color:var(--text-3);cursor:pointer;transition:all var(--dur);white-space:nowrap;min-height:30px}
+.ms-pill-option.active{background:var(--surface);color:var(--text-1);box-shadow:var(--shadow-sm)}
+.ms-pill-option:hover:not(.active){color:var(--text-1)}
+
+/* Progress */
+.prog-wrap{margin:6px 0}
+.prog-bar{height:6px;background:var(--bg-3);border-radius:var(--radius-pill);overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),#34d399);border-radius:var(--radius-pill);transition:width .5s var(--ease-out)}
+.prog-label{font-size:11px;color:var(--text-3);margin-top:5px}
+
+/* Skeleton */
+.ms-skeleton{background:linear-gradient(90deg,var(--bg-2) 25%,var(--bg-3) 50%,var(--bg-2) 75%);background-size:200% 100%;animation:shimmer 1.6s ease infinite;border-radius:var(--radius-sm)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Doc-link */
+.ms-doc-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--indigo);background:var(--indigo-lt);padding:4px 12px;border-radius:var(--radius-pill);text-decoration:none;margin-bottom:12px;transition:all var(--dur);border:1px solid transparent}
+.ms-doc-link:hover{background:var(--indigo);color:#fff}
+.ms-doc-link::before{content:"📖";font-size:11px}
+
+/* Divider label */
+.ms-divider-label{display:flex;align-items:center;gap:12px;color:var(--text-4);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.ms-divider-label::before,.ms-divider-label::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* Tooltip */
+.ms-tooltip{position:relative;display:inline-flex}
+.ms-tooltip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text-1);color:var(--bg);font-size:11px;font-weight:500;white-space:nowrap;padding:4px 10px;border-radius:var(--radius-sm);pointer-events:none;opacity:0;transition:opacity var(--dur-fast);z-index:999}
+.ms-tooltip:hover::after{opacity:1}
+
+/* Form inputs */
+.ms-input,.ms-textarea,.ms-select{width:100%;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--radius);padding:0 16px;height:40px;font-size:var(--text-base);font-family:var(--font);color:var(--text-1);outline:none;transition:border-color var(--dur),box-shadow var(--dur);-webkit-appearance:none;appearance:none}
+.ms-input:focus,.ms-textarea:focus,.ms-select:focus{border-color:var(--indigo);box-shadow:0 0 0 3px var(--indigo-ring)}
+.ms-input::placeholder,.ms-textarea::placeholder{color:var(--text-4)}
+.ms-input.error{border-color:var(--coral)}
+.ms-textarea{height:auto;padding:12px 16px;resize:vertical;min-height:100px;line-height:1.75}
+.ms-label{display:block;font-size:13px;font-weight:600;color:var(--text-1);margin-bottom:6px}
+.ms-field{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.ms-field-hint{font-size:12px;color:var(--text-3);line-height:1.5}
+.ms-field-error{font-size:12px;color:var(--coral);font-weight:500}
+
+/* Check rows */
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:12px 4px;border-bottom:1px solid var(--border);cursor:pointer;border-radius:var(--radius-sm);transition:background var(--dur);min-height:44px}
+.check-row:hover{background:var(--bg-2)}
+.chk{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border-3);background:var(--surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--dur);margin-top:1px}
+.chk.on{background:var(--teal);border-color:var(--teal)}
+.chk-icon{display:none;color:#fff;font-size:11px;font-weight:700}
+.chk.on .chk-icon{display:block}
+.chk-label{font-size:13.5px;color:var(--text-1);flex:1;line-height:1.5}
+.chk-sub{font-size:12px;color:var(--text-3);margin-top:2px}
+.chk-time{font-size:11px;color:var(--text-3);flex-shrink:0;padding-top:2px;white-space:nowrap}
+
+/* Day grid */
+.day-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.day-cell{aspect-ratio:1;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg-2);color:var(--text-4);transition:all .12s;user-select:none;min-height:28px}
+.day-cell:hover{border-color:var(--indigo);color:var(--indigo);background:var(--indigo-lt)}
+.day-cell.done{background:var(--teal);border-color:var(--teal);color:#fff}
+.day-cell.missed{background:var(--coral-lt);border-color:var(--coral);color:var(--coral)}
+
+/* Hero preview */
+.ms-hero-preview{padding:24px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.ms-hero-eyebrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-4);margin-bottom:12px}
+.ms-hero-eyebrow-dot{width:4px;height:4px;border-radius:50%;background:var(--border-2)}
+.ms-hero-h1{font-size:28px;font-weight:700;letter-spacing:-.025em;line-height:1.2;color:var(--text-1);margin-bottom:12px}
+.ms-hero-lead{font-size:16px;color:var(--text-2);line-height:1.75;max-width:560px}
+.ms-hero-meta-row{display:flex;align-items:center;gap:12px;margin-top:16px;font-size:11px;color:var(--text-4);flex-wrap:wrap}
+
+/* Grids demo */
+.ms-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ms-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ms-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ms-grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.grid-demo-cell{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;font-size:12px;color:var(--text-3);box-shadow:var(--shadow-xs)}
+
+/* Empty state */
+.ms-empty-state{text-align:center;padding:48px 24px;color:var(--text-3);font-size:14px;border:1px dashed var(--border-2);border-radius:var(--radius-lg);line-height:1.75}
+.ms-empty-state strong{color:var(--text-1);display:block;font-size:16px;margin-bottom:8px}
+
+/* Drill */
+.ms-drill{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--indigo);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;box-shadow:var(--shadow-xs)}
+.ms-drill-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ms-drill-title{font-size:13px;font-weight:700;color:var(--text-1);flex:1}
+.ms-drill-time{font-size:11px;font-weight:500;background:var(--bg-3);color:var(--text-3);padding:2px 9px;border-radius:var(--radius-pill)}
+.ms-drill p{font-size:13.5px;color:var(--text-2);line-height:1.65;margin:0}
+
+/* Model card */
+.ms-model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:box-shadow var(--dur),border-color var(--dur),transform var(--dur)}
+.ms-model-card:hover{box-shadow:var(--shadow);border-color:var(--indigo);transform:translateY(-1px)}
+.ms-model-num{font-size:10px;font-weight:700;color:var(--text-4);margin-bottom:4px}
+.ms-model-name{font-size:13px;font-weight:700;color:var(--text-1);margin-bottom:4px;line-height:1.35}
+.ms-model-def{font-size:12px;color:var(--text-3);line-height:1.55}
+.ms-model-example{font-size:11px;color:var(--indigo);margin-top:8px;font-style:italic}
+
+/* Summary card */
+.ms-summary{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;box-shadow:var(--shadow-xs)}
+.ms-summary-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-4);margin-bottom:12px}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Page nav */
+.ms-page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);gap:16px;flex-wrap:wrap}
+.ms-page-nav-btn{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;text-decoration:none;padding:8px 20px;border-radius:var(--radius);border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);transition:all var(--dur);min-height:44px;box-shadow:var(--shadow-xs)}
+.ms-page-nav-btn:hover{border-color:var(--indigo);color:var(--indigo)}
+.ms-page-nav-btn.next{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.ms-page-nav-btn.next:hover{background:var(--indigo-dk);border-color:var(--indigo-dk)}
+
+/* Spinner */
+.ms-spinner{width:18px;height:18px;border:2px solid var(--border-2);border-top-color:var(--indigo);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Breadcrumbs preview */
+.ms-breadcrumbs-demo{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-4)}
+.ms-breadcrumbs-demo a{color:var(--text-3);text-decoration:none;white-space:nowrap;transition:color var(--dur)}
+.ms-breadcrumbs-demo a:hover{color:var(--indigo)}
+.ms-breadcrumbs-demo .sep{color:var(--border-2)}
+.ms-breadcrumbs-demo .current{color:var(--text-2);font-weight:500}
+
+/* Responsive */
+@media(max-width:860px){
+  .preview-sidebar{display:none}
+  .preview-main{margin-left:0}
+  .demo-grid.col-3{grid-template-columns:1fr 1fr}
+  .ms-grid-4{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .preview-content{padding:20px 16px 60px}
+  .demo-grid.col-2{grid-template-columns:1fr}
+  .demo-grid.col-3{grid-template-columns:1fr}
+  .ms-grid-2,.ms-grid-3,.ms-grid-4{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="preview-shell">
+
+<!-- ═══════ SIDEBAR ═══════ -->
+<nav class="preview-sidebar" aria-label="Design system navigation">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-mark">P</div>
+      <div>
+        <div class="logo-text">PKH Design System</div>
+        <div class="logo-sub">shell.css v3 · Reference</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidenav-group">
+    <span class="sidenav-label">Getting Started</span>
+    <button class="sidenav-item active" onclick="showPage('intro')"><span class="sidenav-dot"></span>Overview & Setup</button>
+    <button class="sidenav-item" onclick="showPage('tokens')"><span class="sidenav-dot"></span>Design Tokens</button>
+  </div>
+
+  <div class="sidenav-group">
+    <span class="sidenav-label">Foundation</span>
+    <button class="sidenav-item" onclick="showPage('colors')"><span class="sidenav-dot"></span>Color Palette</button>
+    <button class="sidenav-item" onclick="showPage('typography')"><span class="sidenav-dot"></span>Typography</button>
+    <button class="sidenav-item" onclick="showPage('spacing')"><span class="sidenav-dot"></span>Spacing & Layout</button>
+    <button class="sidenav-item" onclick="showPage('shadows')"><span class="sidenav-dot"></span>Shadows & Radius</button>
+    <button class="sidenav-item" onclick="showPage('motion')"><span class="sidenav-dot"></span>Motion</button>
+  </div>
+
+  <div class="sidenav-group">
+    <span class="sidenav-label">Components</span>
+    <button class="sidenav-item" onclick="showPage('badges')"><span class="sidenav-dot"></span>Badges</button>
+    <button class="sidenav-item" onclick="showPage('buttons')"><span class="sidenav-dot"></span>Buttons</button>
+    <button class="sidenav-item" onclick="showPage('cards')"><span class="sidenav-dot"></span>Cards</button>
+    <button class="sidenav-item" onclick="showPage('callouts')"><span class="sidenav-dot"></span>Callouts & Alerts</button>
+    <button class="sidenav-item" onclick="showPage('forms')"><span class="sidenav-dot"></span>Form Inputs</button>
+    <button class="sidenav-item" onclick="showPage('nav')"><span class="sidenav-dot"></span>Navigation</button>
+    <button class="sidenav-item" onclick="showPage('tables')"><span class="sidenav-dot"></span>Tables</button>
+    <button class="sidenav-item" onclick="showPage('stats')"><span class="sidenav-dot"></span>Stats & Progress</button>
+    <button class="sidenav-item" onclick="showPage('feedback')"><span class="sidenav-dot"></span>Feedback & States</button>
+  </div>
+
+  <div class="sidenav-group">
+    <span class="sidenav-label">Content</span>
+    <button class="sidenav-item" onclick="showPage('hero')"><span class="sidenav-dot"></span>Hero</button>
+    <button class="sidenav-item" onclick="showPage('sections')"><span class="sidenav-dot"></span>Sections & Text</button>
+    <button class="sidenav-item" onclick="showPage('lists')"><span class="sidenav-dot"></span>Lists & Steps</button>
+    <button class="sidenav-item" onclick="showPage('learning')"><span class="sidenav-dot"></span>Learning Components</button>
+    <button class="sidenav-item" onclick="showPage('grids')"><span class="sidenav-dot"></span>Grid Layouts</button>
+  </div>
+
+  <div class="sidenav-group">
+    <span class="sidenav-label">Tracker Layer</span>
+    <button class="sidenav-item" onclick="showPage('tracker')"><span class="sidenav-dot"></span>Tracker Components</button>
+  </div>
+
+  <div class="sidenav-group">
+    <span class="sidenav-label">Guides</span>
+    <button class="sidenav-item" onclick="showPage('guide-page')"><span class="sidenav-dot"></span>Building a Page</button>
+    <button class="sidenav-item" onclick="showPage('guide-rules')"><span class="sidenav-dot"></span>Rules & Patterns</button>
+  </div>
+</nav>
+
+<!-- ═══════ MAIN ═══════ -->
+<div class="preview-main">
+
+  <!-- Topbar -->
+  <div class="preview-topbar">
+    <span class="topbar-title" id="page-title">Overview & Setup</span>
+    <div class="topbar-right">
+      <button class="theme-btn" onclick="toggleTheme()">◑ Theme</button>
+    </div>
+  </div>
+
+  <div class="preview-content">
+
+  <!-- ═══ INTRO ═══ -->
+  <div class="ds-page active" id="page-intro">
+    <div class="ds-heading">
+      <h1>PKH Design System</h1>
+      <p>A complete living reference for <strong>shell.css v3</strong> — every token, component, and usage pattern for the Personal Knowledge Hub. One file powers every page.</p>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>What is shell.css?</div>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px;">A single shared CSS file that defines the design language for every page in the PKH. It contains all tokens, layout primitives, navigation chrome, and reusable components. Pages add a <code class="ds-inline">&lt;link&gt;</code> to it and focus only on their own content.</p>
+      <div class="usage-note">
+        <strong>Core principle:</strong> The UI disappears behind the content. Ground is paper. Text is ink. Chrome is invisible.
       </div>
     </div>
 
-    <div class="preview-wrap">
-      <!-- INTRO -->
-      <div
-        style="
-          margin-bottom: 3rem;
-          padding-bottom: 2rem;
-          border-bottom: 1px solid var(--border);
-        "
-      >
-        <div
-          style="
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-4);
-            margin-bottom: 0.75rem;
-          "
-        >
-          Personal Knowledge Hub
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Quick setup — any page</div>
+      <div class="ds-code-header"><span>HTML boilerplate</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body
+  data-layout="full"
+  data-title="Page Title"
+  data-badge="Category"
+  data-badge-color="indigo"
+  data-toc="true"&gt;
+
+  &lt;script src="../../core/init.js"&gt;&lt;/script&gt;
+
+  &lt;div id="page-content"&gt;
+    &lt;!-- Your content here --&gt;
+  &lt;/div&gt;
+
+  &lt;style&gt;
+    /* Page-specific styles ONLY — never fork shell.css */
+  &lt;/style&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Layout modes via data-layout</div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr><th>Value</th><th>What it includes</th><th>Use for</th></tr></thead>
+          <tbody>
+            <tr><td><code class="ds-inline">full</code> <em style="font-size:11px;color:var(--text-4)">(default)</em></td><td>Sidebar + Topbar + Bottom nav</td><td>Documentation, mastery pages, long-form content</td></tr>
+            <tr><td><code class="ds-inline">mixed</code></td><td>Topbar + Bottom nav, no sidebar</td><td>Tools, dashboards, utilities</td></tr>
+            <tr><td><code class="ds-inline">none</code></td><td>Fully self-contained</td><td>Experimental pages, custom apps. Use sparingly.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">04</span>Dark mode</div>
+      <p style="font-size:14px;color:var(--text-2);line-height:1.75;margin-bottom:12px;">Dark mode is activated by adding the <code class="ds-inline">.dark</code> class to <code class="ds-inline">&lt;html&gt;</code> or <code class="ds-inline">&lt;body&gt;</code>. <code>init.js</code> handles this before first paint to prevent flash. All tokens cascade automatically — no per-component overrides needed.</p>
+      <div class="ds-code-header"><span>js</span></div>
+      <pre class="ds-code">// Toggle dark mode
+document.documentElement.classList.toggle('dark');
+
+// Set on load (init.js does this automatically)
+if (localStorage.getItem('theme') === 'dark')
+  document.documentElement.classList.add('dark');</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">05</span>Event delegation rule (critical)</div>
+      <div class="warning-note">
+        <strong>⚠ Always use event delegation.</strong> Because <code>init.js</code> rebuilds body.innerHTML after page scripts first parse, upfront NodeList queries point to detached nodes. Always use <code>document.addEventListener('click', e =&gt; e.target.closest('.selector'))</code> — never <code>querySelectorAll</code> at parse time.
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">06</span>File metrics</div>
+      <div class="ms-grid-4" style="gap:12px">
+        <div class="ms-stat-card"><div class="ms-stat-num indigo">129</div><div class="ms-stat-label">CSS custom properties</div></div>
+        <div class="ms-stat-card"><div class="ms-stat-num teal">414</div><div class="ms-stat-label">Class selectors</div></div>
+        <div class="ms-stat-card"><div class="ms-stat-num amber">15</div><div class="ms-stat-label">Sections</div></div>
+        <div class="ms-stat-card"><div class="ms-stat-num">23</div><div class="ms-stat-label">Components</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DESIGN TOKENS ═══ -->
+  <div class="ds-page" id="page-tokens">
+    <div class="ds-heading"><h1>Design Tokens</h1><p>Every visual decision is a CSS custom property. Change a token here and it cascades through every component automatically.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Ground / Surface</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Swatch</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--bg</td><td class="token-value">#f8f7f5</td><td><div class="swatch" style="background:#f8f7f5"></div></td><td class="token-desc">Page ground — warm near-white</td></tr>
+          <tr><td class="token-name">--bg-2</td><td class="token-value">#f0ede8</td><td><div class="swatch" style="background:#f0ede8"></div></td><td class="token-desc">Sidebar — distinct from page</td></tr>
+          <tr><td class="token-name">--bg-3</td><td class="token-value">#e8e4dd</td><td><div class="swatch" style="background:#e8e4dd"></div></td><td class="token-desc">Hover / active / input ground</td></tr>
+          <tr><td class="token-name">--bg-4</td><td class="token-value">#dedad3</td><td><div class="swatch" style="background:#dedad3"></div></td><td class="token-desc">Pressed / stronger ground</td></tr>
+          <tr><td class="token-name">--surface</td><td class="token-value">#ffffff</td><td><div class="swatch" style="background:#ffffff;border:1px solid #e4e0d8"></div></td><td class="token-desc">Cards, modals — brightest layer</td></tr>
+          <tr><td class="token-name">--surface-2</td><td class="token-value">#faf9f8</td><td><div class="swatch" style="background:#faf9f8;border:1px solid #e4e0d8"></div></td><td class="token-desc">Slightly-off-white card variant</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Borders</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Swatch</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--border</td><td class="token-value">#e4e0d8</td><td><div class="swatch" style="background:#e4e0d8"></div></td><td class="token-desc">Default hairline — very subtle</td></tr>
+          <tr><td class="token-name">--border-2</td><td class="token-value">#cdc8bf</td><td><div class="swatch" style="background:#cdc8bf"></div></td><td class="token-desc">Prominent rule / divider</td></tr>
+          <tr><td class="token-name">--border-3</td><td class="token-value">#b8b2a7</td><td><div class="swatch" style="background:#b8b2a7"></div></td><td class="token-desc">Strong emphasis border</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Text Hierarchy</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Swatch</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--text-1</td><td class="token-value">#1c1917</td><td><div class="swatch" style="background:#1c1917"></div></td><td class="token-desc">Headings — warm near-black</td></tr>
+          <tr><td class="token-name">--text-2</td><td class="token-value">#3d3935</td><td><div class="swatch" style="background:#3d3935"></div></td><td class="token-desc">Body — readable warm dark</td></tr>
+          <tr><td class="token-name">--text-3</td><td class="token-value">#706b62</td><td><div class="swatch" style="background:#706b62"></div></td><td class="token-desc">Meta / secondary info</td></tr>
+          <tr><td class="token-name">--text-4</td><td class="token-value">#a39e95</td><td><div class="swatch" style="background:#a39e95"></div></td><td class="token-desc">Placeholder / disabled</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ COLORS ═══ -->
+  <div class="ds-page" id="page-colors">
+    <div class="ds-heading"><h1>Color Palette</h1><p>Warm-neutral ground with cool-indigo accent. Semantic colors are editorial — muted enough to inform, never alarming.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Brand — Indigo</div>
+      <div class="demo-grid col-3" style="margin-bottom:16px">
+        <div style="background:#4f46e5;height:64px;border-radius:8px;display:flex;align-items:flex-end;padding:8px"><span style="color:#fff;font-size:10px;font-family:var(--font-mono)">--indigo #4f46e5</span></div>
+        <div style="background:#eef2ff;height:64px;border-radius:8px;border:1px solid #cac4f4;display:flex;align-items:flex-end;padding:8px"><span style="color:#3730a3;font-size:10px;font-family:var(--font-mono)">--indigo-lt #eef2ff</span></div>
+        <div style="background:#3730a3;height:64px;border-radius:8px;display:flex;align-items:flex-end;padding:8px"><span style="color:#fff;font-size:10px;font-family:var(--font-mono)">--indigo-dk #3730a3</span></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Semantic Palette</div>
+      <table class="token-table">
+        <thead><tr><th>Name</th><th>Foreground</th><th>Light BG</th><th>Dark Text</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Teal</strong></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#0d9373"></div><code class="ds-inline">--teal</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#ecfdf5;border:1px solid #ccc"></div><code class="ds-inline">--teal-lt</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#065f46"></div><code class="ds-inline">--teal-dk</code></div></td>
+            <td class="token-desc">Success · achievement · health</td>
+          </tr>
+          <tr>
+            <td><strong>Amber</strong></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#b45309"></div><code class="ds-inline">--amber</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#fffbeb;border:1px solid #ccc"></div><code class="ds-inline">--amber-lt</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#78350f"></div><code class="ds-inline">--amber-dk</code></div></td>
+            <td class="token-desc">Warning · attention · schedule</td>
+          </tr>
+          <tr>
+            <td><strong>Coral</strong></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#dc2626"></div><code class="ds-inline">--coral</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#fef2f2;border:1px solid #ccc"></div><code class="ds-inline">--coral-lt</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#991b1b"></div><code class="ds-inline">--coral-dk</code></div></td>
+            <td class="token-desc">Danger · error · deadline</td>
+          </tr>
+          <tr>
+            <td><strong>Sage</strong></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#4a7c59"></div><code class="ds-inline">--sage</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#f0fdf4;border:1px solid #ccc"></div><code class="ds-inline">--sage-lt</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#166534"></div><code class="ds-inline">--sage-dk</code></div></td>
+            <td class="token-desc">Positive · nature · rest</td>
+          </tr>
+          <tr>
+            <td><strong>Violet</strong></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#7c3aed"></div><code class="ds-inline">--violet</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#f5f3ff;border:1px solid #ccc"></div><code class="ds-inline">--violet-lt</code></div></td>
+            <td><div class="swatch-cell"><div class="swatch" style="background:#4c1d95"></div><code class="ds-inline">--violet-dk</code></div></td>
+            <td class="token-desc">Creativity · insight · special</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="usage-note" style="margin-top:16px"><strong>Usage pattern:</strong> Use <code class="ds-inline">--teal</code> for text/icons. Use <code class="ds-inline">--teal-lt</code> as the background of callouts/alerts. Use <code class="ds-inline">--teal-dk</code> for text on that light background (ensures WCAG AA contrast).</div>
+    </div>
+  </div>
+
+  <!-- ═══ TYPOGRAPHY ═══ -->
+  <div class="ds-page" id="page-typography">
+    <div class="ds-heading"><h1>Typography</h1><p>Inter for all text. JetBrains Mono for code only. Optical sizing enabled on Inter for sharper rendering at small sizes.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Type scale</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Preview</th><th>Use for</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--text-xs</td><td class="token-value">11px</td><td><span style="font-size:11px;color:var(--text-2)">Labels, caps, badges</span></td><td class="token-desc">Labels, caps, meta</td></tr>
+          <tr><td class="token-name">--text-sm</td><td class="token-value">12.5px</td><td><span style="font-size:12.5px;color:var(--text-2)">Secondary copy, nav items</span></td><td class="token-desc">Nav, secondary copy</td></tr>
+          <tr><td class="token-name">--text-base</td><td class="token-value">15px</td><td><span style="font-size:15px;color:var(--text-2)">Body copy paragraph text</span></td><td class="token-desc">Body text — default</td></tr>
+          <tr><td class="token-name">--text-md</td><td class="token-value">17px</td><td><span style="font-size:17px;color:var(--text-2)">Lead paragraph intro</span></td><td class="token-desc">Hero lead, intro</td></tr>
+          <tr><td class="token-name">--text-lg</td><td class="token-value">20px</td><td><span style="font-size:20px;font-weight:600;color:var(--text-1)">Sub-heading</span></td><td class="token-desc">h3 / sub-heading</td></tr>
+          <tr><td class="token-name">--text-xl</td><td class="token-value">24px</td><td><span style="font-size:24px;font-weight:700;color:var(--text-1)">Section h2</span></td><td class="token-desc">h2 / section</td></tr>
+          <tr><td class="token-name">--text-2xl</td><td class="token-value">30px</td><td><span style="font-size:30px;font-weight:700;color:var(--text-1)">Page h1</span></td><td class="token-desc">h1 / hero</td></tr>
+          <tr><td class="token-name">--text-3xl</td><td class="token-value">38px</td><td><span style="font-size:38px;font-weight:700;color:var(--text-1)">Display</span></td><td class="token-desc">Homepage display only</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Utility classes</div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr><th>Class</th><th>Result</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td><code class="ds-inline">.label-caps</code></td><td><span class="label-caps">Navigation · Section</span></td><td>Nav labels, card eyebrows, table headers</td></tr>
+            <tr><td><code class="ds-inline">.truncate</code></td><td><div style="width:120px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:13px;color:var(--text-2)">Long text that gets cut off</div></td><td>Single-line overflow with ellipsis</td></tr>
+            <tr><td><code class="ds-inline">.text-muted</code></td><td><span style="color:var(--text-4)">Muted text</span></td><td>Placeholder / disabled</td></tr>
+            <tr><td><code class="ds-inline">.text-accent</code></td><td><span style="color:var(--indigo)">Accent text</span></td><td>Brand highlight</td></tr>
+            <tr><td><code class="ds-inline">.text-success</code></td><td><span style="color:var(--teal)">Success text</span></td><td>Positive state</td></tr>
+            <tr><td><code class="ds-inline">.text-warning</code></td><td><span style="color:var(--amber)">Warning text</span></td><td>Attention needed</td></tr>
+            <tr><td><code class="ds-inline">.text-danger</code></td><td><span style="color:var(--coral)">Danger text</span></td><td>Error / destructive</td></tr>
+            <tr><td><code class="ds-inline">.sr-only</code></td><td><em style="font-size:12px;color:var(--text-4)">Invisible (screen reader only)</em></td><td>Accessibility — hidden labels</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SPACING ═══ -->
+  <div class="ds-page" id="page-spacing">
+    <div class="ds-heading"><h1>Spacing & Layout</h1><p>4px base unit. All spacing in the system derives from this scale. Layout constants control sidebar, topbar, and reading widths.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Spacing scale</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Visual</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--space-1</td><td class="token-value">4px</td><td><div style="width:4px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-2</td><td class="token-value">8px</td><td><div style="width:8px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-3</td><td class="token-value">12px</td><td><div style="width:12px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-4</td><td class="token-value">16px</td><td><div style="width:16px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-5</td><td class="token-value">20px</td><td><div style="width:20px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-6</td><td class="token-value">24px</td><td><div style="width:24px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-8</td><td class="token-value">32px</td><td><div style="width:32px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-10</td><td class="token-value">40px</td><td><div style="width:40px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-12</td><td class="token-value">48px</td><td><div style="width:48px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+          <tr><td class="token-name">--space-16</td><td class="token-value">64px</td><td><div style="width:64px;height:20px;background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:2px"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Layout constants</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--sidebar-w</td><td class="token-value">268px</td><td class="token-desc">Fixed sidebar width on desktop</td></tr>
+          <tr><td class="token-name">--topbar-h</td><td class="token-value">52px</td><td class="token-desc">Sticky topbar height</td></tr>
+          <tr><td class="token-name">--bottom-nav-h</td><td class="token-value">60px</td><td class="token-desc">Mobile bottom nav height</td></tr>
+          <tr><td class="token-name">--content-max</td><td class="token-value">740px</td><td class="token-desc">Comfortable reading width</td></tr>
+          <tr><td class="token-name">--content-wide</td><td class="token-value">1060px</td><td class="token-desc">Dashboard / wide pages</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ SHADOWS ═══ -->
+  <div class="ds-page" id="page-shadows">
+    <div class="ds-heading"><h1>Shadows & Border Radius</h1><p>Shadows are warm-toned (not cold blue). Elevation levels are subtle — this is a reading platform, not an app dashboard.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Shadows</div>
+      <div class="demo-grid col-3">
+        <div style="background:var(--surface);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-xs)"><div class="ds-inline" style="font-size:11px">--shadow-xs</div><div style="font-size:11px;color:var(--text-4);margin-top:4px">Subtle lift</div></div>
+        <div style="background:var(--surface);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-sm)"><div class="ds-inline" style="font-size:11px">--shadow-sm</div><div style="font-size:11px;color:var(--text-4);margin-top:4px">Cards</div></div>
+        <div style="background:var(--surface);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow)"><div class="ds-inline" style="font-size:11px">--shadow</div><div style="font-size:11px;color:var(--text-4);margin-top:4px">Hover state</div></div>
+        <div style="background:var(--surface);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-lg)"><div class="ds-inline" style="font-size:11px">--shadow-lg</div><div style="font-size:11px;color:var(--text-4);margin-top:4px">Dropdowns</div></div>
+        <div style="background:var(--surface);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow-xl)"><div class="ds-inline" style="font-size:11px">--shadow-xl</div><div style="font-size:11px;color:var(--text-4);margin-top:4px">Modals</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Border radius</div>
+      <div class="demo-grid col-3">
+        <div style="background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:3px;padding:14px;text-align:center;font-size:12px;color:var(--indigo)">--radius-xs (3px)</div>
+        <div style="background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:5px;padding:14px;text-align:center;font-size:12px;color:var(--indigo)">--radius-sm (5px)</div>
+        <div style="background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:8px;padding:14px;text-align:center;font-size:12px;color:var(--indigo)">--radius (8px)</div>
+        <div style="background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:10px;padding:14px;text-align:center;font-size:12px;color:var(--indigo)">--radius-md (10px)</div>
+        <div style="background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:14px;padding:14px;text-align:center;font-size:12px;color:var(--indigo)">--radius-lg (14px)</div>
+        <div style="background:var(--indigo-lt);border:1px solid var(--indigo);border-radius:999px;padding:14px;text-align:center;font-size:12px;color:var(--indigo)">--radius-pill (999px)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MOTION ═══ -->
+  <div class="ds-page" id="page-motion">
+    <div class="ds-heading"><h1>Motion</h1><p>Meaningful, not decorative. Fast enough to feel snappy, slow enough to feel intentional. Always respects prefers-reduced-motion.</p></div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Duration tokens</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--dur-fast</td><td class="token-value">0.1s</td><td class="token-desc">Micro-interactions: toggles, checkbox, button press</td></tr>
+          <tr><td class="token-name">--dur</td><td class="token-value">0.2s</td><td class="token-desc">Default: hover states, color transitions, most things</td></tr>
+          <tr><td class="token-name">--dur-slow</td><td class="token-value">0.35s</td><td class="token-desc">Page reveals, modals entering, sidebar open</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Easing tokens</div>
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Curve</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">--ease-out</td><td class="token-value">cubic-bezier(.22,1,.36,1)</td><td class="token-desc">Elements entering the screen (fast start, gentle settle)</td></tr>
+          <tr><td class="token-name">--ease-in</td><td class="token-value">cubic-bezier(.64,0,.78,0)</td><td class="token-desc">Elements leaving (gentle start, fast exit)</td></tr>
+          <tr><td class="token-name">--ease-io</td><td class="token-value">cubic-bezier(.45,0,.55,1)</td><td class="token-desc">Elements moving across (equal ease in and out)</td></tr>
+          <tr><td class="token-name">--ease</td><td class="token-value">alias of ease-out</td><td class="token-desc">Default shorthand</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Named animations</div>
+      <table class="token-table">
+        <thead><tr><th>Keyframe</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="token-name">fadeUp</td><td class="token-desc">Page sections, hero, plan pages entering — opacity 0→1 + translateY 10→0</td></tr>
+          <tr><td class="token-name">fadeIn</td><td class="token-desc">Overlays, modals, tooltips</td></tr>
+          <tr><td class="token-name">slideInLeft</td><td class="token-desc">Sidebar drawer opening</td></tr>
+          <tr><td class="token-name">slideInRight</td><td class="token-desc">Right panel entering</td></tr>
+          <tr><td class="token-name">targetPulse</td><td class="token-desc">Deep-link highlight on anchor arrival</td></tr>
+          <tr><td class="token-name">skeletonShimmer</td><td class="token-desc">Loading skeleton gradient sweep</td></tr>
+          <tr><td class="token-name">spin</td><td class="token-desc">.ms-spinner loading indicator</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ BADGES ═══ -->
+  <div class="ds-page" id="page-badges">
+    <div class="ds-heading"><h1>Badges</h1><p>Small status indicators. 7 semantic variants. Always inline-flex, always readable.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Live preview</div>
+      <div class="demo-row" style="margin-bottom:20px">
+        <span class="ms-badge indigo">Indigo</span>
+        <span class="ms-badge teal">Teal</span>
+        <span class="ms-badge amber">Amber</span>
+        <span class="ms-badge coral">Coral</span>
+        <span class="ms-badge sage">Sage</span>
+        <span class="ms-badge violet">Violet</span>
+        <span class="ms-badge neutral">Neutral</span>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!-- Base class + color modifier --&gt;
+&lt;span class="ms-badge indigo"&gt;Foundation&lt;/span&gt;
+&lt;span class="ms-badge teal"&gt;Active&lt;/span&gt;
+&lt;span class="ms-badge amber"&gt;Scheduled&lt;/span&gt;
+&lt;span class="ms-badge coral"&gt;Overdue&lt;/span&gt;
+&lt;span class="ms-badge sage"&gt;Complete&lt;/span&gt;
+&lt;span class="ms-badge violet"&gt;Special&lt;/span&gt;
+&lt;span class="ms-badge neutral"&gt;Reference&lt;/span&gt;</pre>
+      <div class="usage-note"><strong>Anatomy:</strong> <code class="ds-inline">.ms-badge</code> (base) + one color modifier class. Never use without a color class.</div>
+    </div>
+  </div>
+
+  <!-- ═══ BUTTONS ═══ -->
+  <div class="ds-page" id="page-buttons">
+    <div class="ds-heading"><h1>Buttons</h1><p>4 semantic variants, 3 sizes. Use primary for the single most important action per view. Ghost for secondary actions in dense UIs.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Variants</div>
+      <div class="demo-row">
+        <button class="ms-btn primary">Primary</button>
+        <button class="ms-btn secondary">Secondary</button>
+        <button class="ms-btn ghost">Ghost</button>
+        <button class="ms-btn danger">Danger</button>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Sizes</div>
+      <div class="demo-row" style="align-items:center">
+        <button class="ms-btn primary sm">Small</button>
+        <button class="ms-btn primary">Default</button>
+        <button class="ms-btn primary lg">Large</button>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!-- Works as button or anchor --&gt;
+&lt;button class="ms-btn primary"&gt;Save changes&lt;/button&gt;
+&lt;a href="/next" class="ms-btn secondary"&gt;Continue&lt;/a&gt;
+&lt;button class="ms-btn ghost"&gt;Cancel&lt;/button&gt;
+&lt;button class="ms-btn danger"&gt;Delete&lt;/button&gt;
+
+&lt;!-- Sizes: add .sm or .lg --&gt;
+&lt;button class="ms-btn primary sm"&gt;Small action&lt;/button&gt;
+&lt;button class="ms-btn primary lg"&gt;Large CTA&lt;/button&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ CARDS ═══ -->
+  <div class="ds-page" id="page-cards">
+    <div class="ds-heading"><h1>Cards</h1><p>The primary surface for grouping related content. 7 accent variants via left-border color. Default card hovers to show shadow.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Base & flat</div>
+      <div class="demo-grid col-2">
+        <div class="ms-card"><div class="ms-card-title">Default Card</div><div class="ms-card-body">White surface, border, subtle shadow. Hover to see elevation.</div><div class="ms-card-meta">Meta info · Tag</div></div>
+        <div class="ms-card flat"><div class="ms-card-title">Flat Card</div><div class="ms-card-body">Uses --bg-2. For secondary info without visual weight.</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Accent variants</div>
+      <div class="demo-grid col-3">
+        <div class="ms-card indigo"><div class="ms-card-title">Indigo</div><div class="ms-card-body">Primary brand accent</div></div>
+        <div class="ms-card teal"><div class="ms-card-title">Teal</div><div class="ms-card-body">Success / achievement</div></div>
+        <div class="ms-card amber"><div class="ms-card-title">Amber</div><div class="ms-card-body">Warning / attention</div></div>
+        <div class="ms-card coral"><div class="ms-card-title">Coral</div><div class="ms-card-body">Danger / deadline</div></div>
+        <div class="ms-card sage"><div class="ms-card-title">Sage</div><div class="ms-card-body">Positive / nature</div></div>
+        <div class="ms-card violet"><div class="ms-card-title">Violet</div><div class="ms-card-body">Creative / insight</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-card"&gt;
+  &lt;div class="ms-card-title"&gt;Card title&lt;/div&gt;
+  &lt;div class="ms-card-body"&gt;Card content goes here.&lt;/div&gt;
+  &lt;div class="ms-card-meta"&gt;Meta · info&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- With accent border: add color class --&gt;
+&lt;div class="ms-card indigo"&gt;...&lt;/div&gt;
+&lt;div class="ms-card teal"&gt;...&lt;/div&gt;
+
+&lt;!-- Flat (no white surface) --&gt;
+&lt;div class="ms-card flat"&gt;...&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ CALLOUTS ═══ -->
+  <div class="ds-page" id="page-callouts">
+    <div class="ds-heading"><h1>Callouts & Alerts</h1><p>Two styles for inline messages: Callouts (editorial, inside content flow) and Alerts (banners with icon support).</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Callouts — 5 colors</div>
+      <div class="ms-callout"><span class="ms-callout-label">Key Insight</span>Consistency beats intensity. Show up every day at 70% rather than once a month at 100%.</div>
+      <div class="ms-callout teal"><span class="ms-callout-label">Achievement</span>You've completed 30 consecutive days of deliberate practice.</div>
+      <div class="ms-callout amber"><span class="ms-callout-label">Notice</span>Schedule your weekly review before Sunday or it won't happen.</div>
+      <div class="ms-callout coral"><span class="ms-callout-label">Warning</span>Missing more than 2 days breaks neurological consolidation.</div>
+      <div class="ms-callout sage"><span class="ms-callout-label">Reflection</span>When was the last time you actually applied this?</div>
+      <div class="ms-callout violet"><span class="ms-callout-label">Insight</span>First principles thinking cuts through any complex problem.</div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Alerts — with icons</div>
+      <div class="ms-alert teal"><span class="ms-alert-icon">✓</span> Day 45 complete — you're past the halfway mark.</div>
+      <div class="ms-alert indigo"><span class="ms-alert-icon">ℹ</span> Spaced repetition review due in 2 days.</div>
+      <div class="ms-alert amber"><span class="ms-alert-icon">⚠</span> You've missed 2 days in a row — a gentle reset is better than waiting.</div>
+      <div class="ms-alert coral"><span class="ms-alert-icon">✕</span> This action cannot be undone.</div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!-- Callout: editorial, inside .ms-section --&gt;
+&lt;div class="ms-callout teal"&gt;
+  &lt;span class="ms-callout-label"&gt;Achievement&lt;/span&gt;
+  Content here.
+&lt;/div&gt;
+
+&lt;!-- Alert: status banner with icon --&gt;
+&lt;div class="ms-alert teal"&gt;
+  &lt;span class="ms-alert-icon"&gt;✓&lt;/span&gt;
+  Success message here.
+&lt;/div&gt;
+
+&lt;!-- Available colors: (none=indigo) teal amber coral sage violet --&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ FORMS ═══ -->
+  <div class="ds-page" id="page-forms">
+    <div class="ds-heading"><h1>Form Inputs</h1><p>Clean, accessible form elements. Focus ring uses the indigo ring token. Error state uses coral. All match the warm ground palette.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Input field</div>
+      <div style="max-width:400px">
+        <div class="ms-field">
+          <label class="ms-label">Name</label>
+          <input class="ms-input" type="text" placeholder="Enter your name">
+          <span class="ms-field-hint">This will appear on your profile.</span>
         </div>
-        <h1 class="ds-h1" style="margin-bottom: 0.75rem">
-          Design System Reference
-        </h1>
-        <p
-          style="
-            font-size: 16px;
-            color: var(--text-2);
-            line-height: 1.75;
-            max-width: 600px;
-          "
-        >
-          Every token, component, and pattern in
-          <code class="ms-inline-code">shell.css</code>. Use this page as a
-          living reference when building new pages or extending the platform.
-        </p>
-        <div
-          style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem"
-        >
-          <span class="ms-badge indigo">shell.css v2</span>
-          <span class="ms-badge teal">Mobile-First</span>
-          <span class="ms-badge neutral">Light + Dark</span>
-          <span class="ms-badge neutral">Accessible</span>
+        <div class="ms-field">
+          <label class="ms-label">Email (error state)</label>
+          <input class="ms-input error" type="email" value="not-an-email">
+          <span class="ms-field-error">Please enter a valid email address.</span>
+        </div>
+        <div class="ms-field">
+          <label class="ms-label">Notes</label>
+          <textarea class="ms-textarea" placeholder="Add notes here..." rows="3"></textarea>
         </div>
       </div>
+    </div>
 
-      <!-- 1. COLOR PALETTE -->
-      <div class="ds-section">
-        <div class="ds-section-title">1 · Color Palette</div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!-- Standard field pattern --&gt;
+&lt;div class="ms-field"&gt;
+  &lt;label class="ms-label"&gt;Name&lt;/label&gt;
+  &lt;input class="ms-input" type="text" placeholder="Enter your name"&gt;
+  &lt;span class="ms-field-hint"&gt;Hint text here.&lt;/span&gt;
+&lt;/div&gt;
 
-        <p
-          style="
-            font-size: 13px;
-            color: var(--text-3);
-            margin-bottom: 1.25rem;
-            line-height: 1.65;
-          "
-        >
-          Warm ivory ground + cool indigo accent. Semantic colors are muted to
-          support reference use rather than alarm.
-        </p>
+&lt;!-- Error state --&gt;
+&lt;div class="ms-field"&gt;
+  &lt;label class="ms-label"&gt;Email&lt;/label&gt;
+  &lt;input class="ms-input error" type="email"&gt;
+  &lt;span class="ms-field-error"&gt;Invalid email.&lt;/span&gt;
+&lt;/div&gt;
 
-        <div style="margin-bottom: 1.25rem">
-          <div class="type-label" style="margin-bottom: 0.5rem">
-            Ground / Surface
-          </div>
-          <div class="ds-grid">
-            <div>
-              <div class="swatch" style="background: var(--bg)"></div>
-              <div class="swatch-label">--bg</div>
-              <div class="swatch-hex">#f7f5f0</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--bg-2)"></div>
-              <div class="swatch-label">--bg-2</div>
-              <div class="swatch-hex">#efece5</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--bg-3)"></div>
-              <div class="swatch-label">--bg-3</div>
-              <div class="swatch-hex">#e6e2d8</div>
-            </div>
-            <div>
-              <div
-                class="swatch"
-                style="background: var(--surface); border-color: var(--border)"
-              ></div>
-              <div class="swatch-label">--surface</div>
-              <div class="swatch-hex">#ffffff</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--border)"></div>
-              <div class="swatch-label">--border</div>
-              <div class="swatch-hex">#dedad0</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--border-2)"></div>
-              <div class="swatch-label">--border-2</div>
-              <div class="swatch-hex">#c8c3b5</div>
-            </div>
-          </div>
-        </div>
+&lt;!-- Textarea --&gt;
+&lt;textarea class="ms-textarea" rows="4"&gt;&lt;/textarea&gt;</pre>
+    </div>
+  </div>
 
-        <div style="margin-bottom: 1.25rem">
-          <div class="type-label" style="margin-bottom: 0.5rem">
-            Text Hierarchy
-          </div>
-          <div class="ds-grid">
-            <div>
-              <div class="swatch" style="background: var(--text-1)"></div>
-              <div class="swatch-label">--text-1</div>
-              <div class="swatch-hex">Headings</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--text-2)"></div>
-              <div class="swatch-label">--text-2</div>
-              <div class="swatch-hex">Body</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--text-3)"></div>
-              <div class="swatch-label">--text-3</div>
-              <div class="swatch-hex">Secondary</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--text-4)"></div>
-              <div class="swatch-label">--text-4</div>
-              <div class="swatch-hex">Placeholder</div>
-            </div>
-          </div>
-        </div>
+  <!-- ═══ NAV ═══ -->
+  <div class="ds-page" id="page-nav">
+    <div class="ds-heading"><h1>Navigation</h1><p>All navigation components. Sidebar nav, breadcrumbs, part pills, page prev/next, and the pill selector.</p></div>
 
-        <div style="margin-bottom: 1.25rem">
-          <div class="type-label" style="margin-bottom: 0.5rem">
-            Brand — Indigo
-          </div>
-          <div class="ds-grid">
-            <div>
-              <div class="swatch" style="background: var(--indigo)"></div>
-              <div class="swatch-label">--indigo</div>
-              <div class="swatch-hex">Primary</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--indigo-mid)"></div>
-              <div class="swatch-label">--indigo-mid</div>
-              <div class="swatch-hex">Hover</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--indigo-dk)"></div>
-              <div class="swatch-label">--indigo-dk</div>
-              <div class="swatch-hex">Pressed</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--indigo-lt)"></div>
-              <div class="swatch-label">--indigo-lt</div>
-              <div class="swatch-hex">Tinted bg</div>
-            </div>
-          </div>
-        </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Breadcrumbs</div>
+      <div class="ms-breadcrumbs-demo"><a href="#">Home</a><span class="sep">/</span><a href="#">Mastery</a><span class="sep">/</span><span class="current">Communication</span></div>
+      <div class="ds-code-header" style="margin-top:12px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-breadcrumbs"&gt;
+  &lt;a href="/"&gt;Home&lt;/a&gt;
+  &lt;span class="ms-breadcrumbs-sep"&gt;/&lt;/span&gt;
+  &lt;a href="/mastery"&gt;Mastery&lt;/a&gt;
+  &lt;span class="ms-breadcrumbs-sep"&gt;/&lt;/span&gt;
+  &lt;span class="ms-breadcrumbs-current"&gt;Communication&lt;/span&gt;
+&lt;/div&gt;</pre>
+    </div>
 
-        <div>
-          <div class="type-label" style="margin-bottom: 0.5rem">Semantic</div>
-          <div class="ds-grid">
-            <div>
-              <div class="swatch" style="background: var(--teal)"></div>
-              <div class="swatch-label">--teal</div>
-              <div class="swatch-hex">Success</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--amber)"></div>
-              <div class="swatch-label">--amber</div>
-              <div class="swatch-hex">Warning</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--coral)"></div>
-              <div class="swatch-label">--coral</div>
-              <div class="swatch-hex">Danger</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--sage)"></div>
-              <div class="swatch-label">--sage</div>
-              <div class="swatch-hex">Positive</div>
-            </div>
-            <div>
-              <div class="swatch" style="background: var(--violet)"></div>
-              <div class="swatch-label">--violet</div>
-              <div class="swatch-hex">Creative</div>
-            </div>
-          </div>
-        </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Part nav pills</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+        <a href="#" class="ms-part-pill active" style="display:inline-flex;align-items:center;font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;border:1px solid var(--indigo);background:var(--indigo);color:#fff">Foundation</a>
+        <a href="#" class="ms-part-pill" style="display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:5px 14px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-3)">Practice</a>
+        <a href="#" class="ms-part-pill" style="display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:5px 14px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-3)">Mastery</a>
       </div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;nav class="ms-part-nav"&gt;
+  &lt;a href="#part-1" class="ms-part-pill active"&gt;Foundation&lt;/a&gt;
+  &lt;a href="#part-2" class="ms-part-pill"&gt;Practice&lt;/a&gt;
+  &lt;a href="#part-3" class="ms-part-pill"&gt;Mastery&lt;/a&gt;
+&lt;/nav&gt;</pre>
+    </div>
 
-      <!-- 2. TYPOGRAPHY -->
-      <div class="ds-section">
-        <div class="ds-section-title">2 · Typography Scale</div>
-
-        <div class="type-specimen">
-          <div class="type-label">
-            Display / H1 — 32px · weight 700 · tracking -.025em
-          </div>
-          <h1 class="ds-h1">The Mastery System</h1>
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">
-            Section / H2 — 24px · weight 700 · tracking -.02em
-          </div>
-          <h2 class="ds-h2">Communication & Thinking</h2>
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">Sub-section / H3 — 17px · weight 600</div>
-          <h3 class="ds-h3">Active Listening Framework</h3>
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">
-            Micro-label / H4 — 13px · 600 · uppercase · tracking .05em
-          </div>
-          <h4 class="ds-h4">Core Principles</h4>
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">Body — 15px · weight 400 · leading 1.8</div>
-          <p
-            style="
-              font-size: 15px;
-              color: var(--text-2);
-              line-height: 1.8;
-              max-width: 600px;
-            "
-          >
-            Consistency beats intensity every time. Small, deliberate actions
-            compounded over 90 days produce results that one intense sprint
-            never can. The system does the work, not the motivation.
-          </p>
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">Secondary / Meta — 12.5px · weight 400</div>
-          <p style="font-size: 12.5px; color: var(--text-3); line-height: 1.65">
-            Last updated · 12 min read · 7 sections
-          </p>
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">
-            Caps Label — 10px · weight 700 · uppercase · tracking .08em
-          </div>
-          <span
-            style="
-              font-size: 10px;
-              font-weight: 700;
-              letter-spacing: 0.08em;
-              text-transform: uppercase;
-              color: var(--text-4);
-            "
-            >Navigation · Mastery</span
-          >
-        </div>
-        <div class="type-specimen">
-          <div class="type-label">Monospace — JetBrains Mono 12.5px</div>
-          <code
-            style="
-              font-family: var(--font-mono);
-              font-size: 12.5px;
-              color: var(--text-2);
-            "
-            >const system = new MasterySystem({ consistency: true });</code
-          >
-        </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Pill selector (tab-like toggle)</div>
+      <div class="ms-pill-selector" style="margin-bottom:16px">
+        <button class="ms-pill-option active">Overview</button>
+        <button class="ms-pill-option">Details</button>
+        <button class="ms-pill-option">History</button>
       </div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-pill-selector"&gt;
+  &lt;button class="ms-pill-option active"&gt;Overview&lt;/button&gt;
+  &lt;button class="ms-pill-option"&gt;Details&lt;/button&gt;
+  &lt;button class="ms-pill-option"&gt;History&lt;/button&gt;
+&lt;/div&gt;</pre>
+    </div>
 
-      <!-- 3. SPACING -->
-      <div class="ds-section">
-        <div class="ds-section-title">3 · Spacing Scale (4px base)</div>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem">
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              font-size: 12px;
-              color: var(--text-3);
-            "
-          >
-            <span
-              style="
-                width: 80px;
-                font-family: var(--font-mono);
-                font-size: 11px;
-              "
-              >--space-1</span
-            >
-            <div class="space-block" style="width: 4px; height: 20px"></div>
-            <span>4px</span>
-          </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              font-size: 12px;
-              color: var(--text-3);
-            "
-          >
-            <span
-              style="
-                width: 80px;
-                font-family: var(--font-mono);
-                font-size: 11px;
-              "
-              >--space-2</span
-            >
-            <div class="space-block" style="width: 8px; height: 20px"></div>
-            <span>8px</span>
-          </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              font-size: 12px;
-              color: var(--text-3);
-            "
-          >
-            <span
-              style="
-                width: 80px;
-                font-family: var(--font-mono);
-                font-size: 11px;
-              "
-              >--space-4</span
-            >
-            <div class="space-block" style="width: 16px; height: 20px"></div>
-            <span>16px</span>
-          </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              font-size: 12px;
-              color: var(--text-3);
-            "
-          >
-            <span
-              style="
-                width: 80px;
-                font-family: var(--font-mono);
-                font-size: 11px;
-              "
-              >--space-6</span
-            >
-            <div class="space-block" style="width: 24px; height: 20px"></div>
-            <span>24px</span>
-          </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              font-size: 12px;
-              color: var(--text-3);
-            "
-          >
-            <span
-              style="
-                width: 80px;
-                font-family: var(--font-mono);
-                font-size: 11px;
-              "
-              >--space-8</span
-            >
-            <div class="space-block" style="width: 32px; height: 20px"></div>
-            <span>32px</span>
-          </div>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              gap: 1rem;
-              font-size: 12px;
-              color: var(--text-3);
-            "
-          >
-            <span
-              style="
-                width: 80px;
-                font-family: var(--font-mono);
-                font-size: 11px;
-              "
-              >--space-12</span
-            >
-            <div class="space-block" style="width: 48px; height: 20px"></div>
-            <span>48px</span>
-          </div>
-        </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">04</span>Page prev/next</div>
+      <div class="ms-page-nav">
+        <a href="#" class="ms-page-nav-btn">← Previous</a>
+        <a href="#" class="ms-page-nav-btn next">Next →</a>
       </div>
+      <div class="ds-code-header" style="margin-top:16px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;nav class="ms-page-nav"&gt;
+  &lt;a href="/prev" class="ms-page-nav-btn"&gt;← Previous&lt;/a&gt;
+  &lt;a href="/next" class="ms-page-nav-btn next"&gt;Next →&lt;/a&gt;
+&lt;/nav&gt;</pre>
+    </div>
 
-      <!-- 4. NAVIGATION COMPONENTS -->
-      <div class="ds-section">
-        <div class="ds-section-title">4 · Navigation</div>
-        <div class="ds-grid-2">
-          <!-- Sidebar nav -->
-          <div>
-            <div class="type-label" style="margin-bottom: 0.5rem">
-              Sidebar nav
-            </div>
-            <div class="demo-nav">
-              <span class="ms-nav-label">Mastery</span>
-              <a href="#" class="ms-nav-item active"
-                ><span class="ms-nav-dot"></span>Communication</a
-              >
-              <a href="#" class="ms-nav-item"
-                ><span class="ms-nav-dot"></span>Thinking Models</a
-              >
-              <a href="#" class="ms-nav-item"
-                ><span class="ms-nav-dot"></span>Mental Frameworks</a
-              >
-              <span class="ms-nav-label">Fitness</span>
-              <a href="#" class="ms-nav-item"
-                ><span class="ms-nav-dot"></span>Workout Plan</a
-              >
-            </div>
-          </div>
-          <!-- Part pills -->
-          <div>
-            <div class="type-label" style="margin-bottom: 0.5rem">
-              Part nav pills
-            </div>
-            <div
-              class="ms-part-nav"
-              style="flex-direction: column; align-items: flex-start"
-            >
-              <div class="ms-part-nav" style="flex-direction: row">
-                <a href="#" class="ms-part-pill active">Foundation</a>
-                <a href="#" class="ms-part-pill">Practice</a>
-                <a href="#" class="ms-part-pill">Mastery</a>
-              </div>
-            </div>
-            <div style="margin-top: 1rem">
-              <div class="type-label" style="margin-bottom: 0.5rem">
-                Reading progress (62%)
-              </div>
-              <div
-                class="demo-progress"
-                style="border-radius: 1px; background: var(--border)"
-              >
-                <div class="demo-progress-fill"></div>
-              </div>
-            </div>
-            <div style="margin-top: 1rem">
-              <div class="type-label" style="margin-bottom: 0.5rem">
-                Icon buttons
-              </div>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
-                <button class="ms-icon-btn">☀</button>
-                <button class="ms-icon-btn">⌕</button>
-                <button class="ms-icon-btn focus-demo">⋯</button>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">05</span>Doc-link chip</div>
+      <a href="#" class="ms-doc-link">Communication Mastery Guide</a>
+      <div class="ds-code-header" style="margin-top:8px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;a href="/path/to/guide" class="ms-doc-link"&gt;Guide name&lt;/a&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">06</span>Tags & Divider with label</div>
+      <div class="demo-row" style="margin-bottom:16px">
+        <span class="ms-tag">Habit</span>
+        <span class="ms-tag">Foundation</span>
+        <span class="ms-tag">Week 1</span>
       </div>
+      <div class="ms-divider-label">Or continue with</div>
+    </div>
+  </div>
 
-      <!-- 5. CALLOUTS -->
-      <div class="ds-section">
-        <div class="ds-section-title">5 · Callouts</div>
-        <div class="ms-callout">
-          <span class="ms-callout-label">Key Insight</span>
-          Consistency beats intensity. Show up every day at 70% rather than once
-          a month at 100%.
-        </div>
-        <div class="ms-callout teal">
-          <span class="ms-callout-label">Achievement</span>
-          You've completed 30 consecutive days of deliberate practice.
-        </div>
-        <div class="ms-callout amber">
-          <span class="ms-callout-label">Notice</span>
-          Schedule your weekly review before Sunday or it won't happen.
-        </div>
-        <div class="ms-callout coral">
-          <span class="ms-callout-label">Warning</span>
-          Missing more than 2 days in a row breaks neurological consolidation.
-        </div>
-        <div class="ms-callout sage">
-          <span class="ms-callout-label">Reflection</span>
-          When was the last time you actually applied this? Don't just re-read —
-          practice.
-        </div>
+  <!-- ═══ TABLES ═══ -->
+  <div class="ds-page" id="page-tables">
+    <div class="ds-heading"><h1>Tables</h1><p>Bordered, horizontally scrollable on mobile. Header uses uppercase caps. Row hover highlights. Semantic cell modifiers for status.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Live preview</div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr><th>Technique</th><th>Retention</th><th>Time cost</th><th>Priority</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Active recall</strong></td><td class="hi">High</td><td>Medium</td><td class="hi">Essential</td></tr>
+            <tr><td><strong>Spaced repetition</strong></td><td class="hi">High</td><td>Low</td><td class="hi">Essential</td></tr>
+            <tr><td><strong>Mind mapping</strong></td><td class="med">Medium</td><td>High</td><td class="med">Optional</td></tr>
+            <tr><td><strong>Highlighting</strong></td><td class="lo">Low</td><td>Low</td><td class="bad">Avoid</td></tr>
+          </tbody>
+        </table>
       </div>
+    </div>
 
-      <!-- 6. BADGES -->
-      <div class="ds-section">
-        <div class="ds-section-title">6 · Badges</div>
-        <div class="ds-row">
-          <span class="ms-badge indigo">Foundation</span>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Cell modifiers</div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr><th>Class</th><th>Color</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><code class="ds-inline">.hi</code></td><td class="hi">High / Good</td><td>Teal — positive, high value</td></tr>
+            <tr><td><code class="ds-inline">.med</code></td><td class="med">Medium</td><td>Amber — neutral, moderate</td></tr>
+            <tr><td><code class="ds-inline">.lo</code></td><td class="lo">Low</td><td>Muted — de-emphasized</td></tr>
+            <tr><td><code class="ds-inline">.bad</code></td><td class="bad">Avoid</td><td>Coral — negative, bad</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-table-wrap"&gt;
+  &lt;table class="ms-table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;strong&gt;Item A&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;42&lt;/td&gt;
+        &lt;td class="hi"&gt;High&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ STATS & PROGRESS ═══ -->
+  <div class="ds-page" id="page-stats">
+    <div class="ds-heading"><h1>Stats & Progress</h1><p>Stat cards for key numbers. Progress bars with gradient fill. Both support color variants via modifier classes.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Stat cards</div>
+      <div class="ms-grid-4" style="gap:12px;margin-bottom:16px">
+        <div class="ms-stat-card"><div class="ms-stat-num teal">62</div><div class="ms-stat-label">Days completed</div><div class="ms-stat-delta up">↑ +5 this week</div></div>
+        <div class="ms-stat-card"><div class="ms-stat-num indigo">14</div><div class="ms-stat-label">Current streak</div></div>
+        <div class="ms-stat-card"><div class="ms-stat-num amber">3</div><div class="ms-stat-label">Missed days</div><div class="ms-stat-delta down">↓ vs last month</div></div>
+        <div class="ms-stat-card"><div class="ms-stat-num">89%</div><div class="ms-stat-label">Completion rate</div></div>
+      </div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-stat-card"&gt;
+  &lt;div class="ms-stat-num teal"&gt;62&lt;/div&gt;
+  &lt;div class="ms-stat-label"&gt;Days completed&lt;/div&gt;
+  &lt;div class="ms-stat-delta up"&gt;↑ +5 this week&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- .ms-stat-num colors: teal indigo amber coral (default=text-1) --&gt;
+&lt;!-- .ms-stat-delta: up (teal) or down (coral) --&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Progress bars</div>
+      <div style="max-width:400px">
+        <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" style="width:62%"></div></div><div class="prog-label">62 of 90 days · 69%</div></div>
+        <div class="prog-wrap" style="margin-top:12px"><div class="prog-bar"><div class="prog-fill" style="width:30%"></div></div><div class="prog-label">Phase 1 · 30%</div></div>
+      </div>
+      <div class="ds-code-header" style="margin-top:12px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="prog-wrap"&gt;
+  &lt;div class="prog-bar"&gt;
+    &lt;div class="prog-fill" style="width: 62%"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="prog-label"&gt;62 of 90 days&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ FEEDBACK ═══ -->
+  <div class="ds-page" id="page-feedback">
+    <div class="ds-heading"><h1>Feedback & States</h1><p>Loading skeletons, spinner, empty state, tooltip, and the pull quote. All handle graceful degradation.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Skeleton loading</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+        <div class="ms-skeleton" style="height:20px;width:200px"></div>
+        <div class="ms-skeleton" style="height:14px;width:100%"></div>
+        <div class="ms-skeleton" style="height:14px;width:80%"></div>
+        <div class="ms-skeleton" style="height:14px;width:60%"></div>
+      </div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!-- Add .ms-skeleton to any element while loading --&gt;
+&lt;div class="ms-skeleton" style="height: 20px; width: 200px"&gt;&lt;/div&gt;
+&lt;div class="ms-skeleton" style="height: 14px; width: 100%"&gt;&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Spinner</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <div class="ms-spinner"></div>
+        <span style="font-size:13px;color:var(--text-3)">Loading content…</span>
+      </div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-spinner"&gt;&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Empty state</div>
+      <div class="ms-empty-state"><strong>No pages found</strong>Add pages to <code class="ds-inline">registry.json</code> and they'll appear here automatically.</div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">04</span>Tooltip</div>
+      <div style="margin-bottom:16px;padding:24px 0">
+        <span class="ms-tooltip" data-tip="This is a tooltip — hover me"><button class="ms-btn secondary sm">Hover for tooltip</button></span>
+      </div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;span class="ms-tooltip" data-tip="Tooltip content"&gt;
+  &lt;button&gt;Hover me&lt;/button&gt;
+&lt;/span&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">05</span>Pull quote</div>
+      <div class="ms-quote">We are what we repeatedly do. Excellence, then, is not an act but a habit.<cite>— Aristotle</cite></div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-quote"&gt;
+  Quote text goes here.
+  &lt;cite&gt;— Source&lt;/cite&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="ds-page" id="page-hero">
+    <div class="ds-heading"><h1>Hero</h1><p>The page entry point. Always at the top of content. Supports eyebrow label, h1, lead paragraph, and meta row.</p></div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Live preview</div>
+      <div class="ms-hero-preview">
+        <div class="ms-hero-eyebrow"><div class="ms-hero-eyebrow-dot"></div>Mastery System · Part 1</div>
+        <h1 class="ms-hero-h1">Communication Mastery</h1>
+        <p class="ms-hero-lead">The complete guide to becoming a world-class communicator. Active listening, clear expression, and persuasive frameworks.</p>
+        <div class="ms-hero-meta-row">
+          <span>7 sections</span>
+          <span style="color:var(--border-2)">·</span>
+          <span>28 min read</span>
+          <span style="color:var(--border-2)">·</span>
           <span class="ms-badge teal">Active</span>
-          <span class="ms-badge amber">Scheduled</span>
-          <span class="ms-badge coral">Overdue</span>
-          <span class="ms-badge sage">Complete</span>
-          <span class="ms-badge neutral">Reference</span>
         </div>
       </div>
+    </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Usage</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-hero"&gt;
+  &lt;div class="ms-hero-eyebrow"&gt;
+    &lt;div class="ms-hero-eyebrow-dot"&gt;&lt;/div&gt;
+    Category · Subcategory
+  &lt;/div&gt;
+  &lt;h1&gt;Page Title&lt;/h1&gt;
+  &lt;p class="ms-hero-lead"&gt;Lead paragraph — one sentence overview.&lt;/p&gt;
+  &lt;div class="ms-hero-meta"&gt;
+    &lt;span&gt;7 sections&lt;/span&gt;
+    &lt;span class="ms-hero-meta-sep"&gt;·&lt;/span&gt;
+    &lt;span&gt;28 min read&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
 
-      <!-- 7. CARDS -->
-      <div class="ds-section">
-        <div class="ds-section-title">7 · Cards</div>
-        <div class="ds-grid-2" style="margin-bottom: 1rem">
-          <div class="ms-card">
-            <div class="ms-card-title">Default Card</div>
-            <div class="ms-card-body">
-              A clean surface for housing related content. Hover for a subtle
-              elevation lift.
-            </div>
-          </div>
-          <div class="ms-card flat">
-            <div class="ms-card-title">Flat Card</div>
-            <div class="ms-card-body">
-              Uses the --bg-2 ground, no visual shadow. Good for secondary info.
-            </div>
-          </div>
+  <!-- ═══ SECTIONS ═══ -->
+  <div class="ds-page" id="page-sections">
+    <div class="ds-heading"><h1>Sections & Text</h1><p>Content is wrapped in .ms-section. This handles scroll-margin-top, heading styles, link colors, and list styling automatically.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Section structure</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-section" id="s1"&gt;
+  &lt;h2&gt;&lt;span class="ms-section-num"&gt;01&lt;/span&gt;Section Title&lt;/h2&gt;
+  &lt;p&gt;Body paragraph text...&lt;/p&gt;
+
+  &lt;h3&gt;Sub-section&lt;/h3&gt;
+  &lt;p&gt;More content...&lt;/p&gt;
+
+  &lt;h4&gt;Micro label&lt;/h4&gt;
+  &lt;ul&gt;
+    &lt;li&gt;List item one&lt;/li&gt;
+    &lt;li&gt;List item two&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;!-- Divider between sections --&gt;
+  &lt;hr class="ms-divider"&gt;
+&lt;/div&gt;</pre>
+      <div class="usage-note"><strong>Note:</strong> Links, lists, <code class="ds-inline">code</code>, <code class="ds-inline">strong</code>, and <code class="ds-inline">em</code> inside <code class="ds-inline">.ms-section</code> are all automatically styled. No extra classes needed.</div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Summary card</div>
+      <div class="ms-summary"><div class="ms-summary-title">Key Takeaways</div><p style="font-size:14px;color:var(--text-2);line-height:1.75">Active recall beats re-reading by 3×. Spaced repetition beats cramming by 5×. Consistency over intensity — always.</p></div>
+      <div class="ds-code-header" style="margin-top:12px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-summary"&gt;
+  &lt;div class="ms-summary-title"&gt;Key Takeaways&lt;/div&gt;
+  &lt;p&gt;Summary content...&lt;/p&gt;
+&lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <!-- ═══ LISTS ═══ -->
+  <div class="ds-page" id="page-lists">
+    <div class="ds-heading"><h1>Lists & Steps</h1><p>Numbered steps with auto-counter, checklists, row layouts, and timelines for sequential or structured content.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Numbered steps</div>
+      <ol class="ms-steps">
+        <li><strong>Prepare context</strong> — Read the section once without notes. Let ideas land.</li>
+        <li><strong>Retrieval practice</strong> — Close the page, write everything you remember.</li>
+        <li><strong>Compare and correct</strong> — Open, find gaps, mark what you missed.</li>
+        <li><strong>Apply today</strong> — Find one real situation to use this before end of day.</li>
+      </ol>
+      <div class="ds-code-header" style="margin-top:12px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;ol class="ms-steps"&gt;
+  &lt;li&gt;&lt;strong&gt;Step title&lt;/strong&gt; — Description.&lt;/li&gt;
+  &lt;li&gt;Another step.&lt;/li&gt;
+&lt;/ol&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Checklist</div>
+      <ul class="ms-checklist">
+        <li>Define your Minimum Viable Day — the 3 non-negotiables</li>
+        <li>Block deep work window before anything else</li>
+        <li>End each session with a 5-minute written reflection</li>
+      </ul>
+      <div class="ds-code-header" style="margin-top:12px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;ul class="ms-checklist"&gt;
+  &lt;li&gt;Checklist item one&lt;/li&gt;
+  &lt;li&gt;Checklist item two&lt;/li&gt;
+&lt;/ul&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Timeline</div>
+      <div class="ms-timeline">
+        <div class="ms-timeline-item"><strong>Days 1–30 · Foundation</strong> — Build the daily habit and baseline systems.</div>
+        <div class="ms-timeline-item"><strong>Days 31–60 · Depth</strong> — Layer deliberate practice on the foundation.</div>
+        <div class="ms-timeline-item"><strong>Days 61–90 · Integration</strong> — Merge skills and set the next cycle's direction.</div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">04</span>Row layout</div>
+      <div>
+        <div class="ms-row"><div class="ms-row-num">01</div><div><div class="ms-row-main">Active recall — self-testing from memory</div><div class="ms-row-sub">Most effective retention technique</div></div><div class="ms-row-meta">Daily</div></div>
+        <div class="ms-row"><div class="ms-row-num">02</div><div><div class="ms-row-main">Spaced repetition — review at intervals</div><div class="ms-row-sub">Anki or manual schedule</div></div><div class="ms-row-meta">Weekly</div></div>
+        <div class="ms-row"><div class="ms-row-num">03</div><div><div class="ms-row-main">Teach the concept to someone else</div><div class="ms-row-sub">Feynman technique</div></div><div class="ms-row-meta">Monthly</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">05</span>Accordion</div>
+      <details class="ms-accordion">
+        <summary>What is the most effective learning technique?</summary>
+        <div class="ms-accordion-body">Active recall — forcing yourself to retrieve information from memory — is consistently the most effective technique across decades of cognitive science research. It outperforms re-reading, highlighting, and summarizing by a factor of 3×.</div>
+      </details>
+      <details class="ms-accordion">
+        <summary>How does spaced repetition work?</summary>
+        <div class="ms-accordion-body">Spaced repetition exploits the spacing effect — information reviewed at increasing intervals is retained far longer than information reviewed multiple times in a single session.</div>
+      </details>
+    </div>
+  </div>
+
+  <!-- ═══ LEARNING ═══ -->
+  <div class="ds-page" id="page-learning">
+    <div class="ds-heading"><h1>Learning Components</h1><p>Specialized components for the mastery system: drill cards, framework cards, model grid cards.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Drill / exercise card</div>
+      <div class="ms-drill">
+        <div class="ms-drill-header"><span class="ms-drill-title">Active Listening Sprint</span><span class="ms-drill-time">5 min</span></div>
+        <p>In your next conversation, resist the urge to respond for the first 30 seconds. Take a mental note of one surprising thing, then reference it when you respond.</p>
+      </div>
+      <div class="ds-code-header" style="margin-top:12px"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="ms-drill"&gt;
+  &lt;div class="ms-drill-header"&gt;
+    &lt;span class="ms-drill-title"&gt;Drill name&lt;/span&gt;
+    &lt;span class="ms-drill-time"&gt;5 min&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p&gt;Drill instructions.&lt;/p&gt;
+&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Model grid cards</div>
+      <div class="ms-grid-3" style="gap:10px">
+        <div class="ms-model-card"><div class="ms-model-num">01</div><div class="ms-model-name">First Principles</div><div class="ms-model-def">Break problems into fundamental components.</div><div class="ms-model-example">Elon Musk on rocket design</div></div>
+        <div class="ms-model-card"><div class="ms-model-num">02</div><div class="ms-model-name">Inversion</div><div class="ms-model-def">Avoid the opposite of what you want.</div><div class="ms-model-example">What would make this fail?</div></div>
+        <div class="ms-model-card"><div class="ms-model-num">03</div><div class="ms-model-name">Occam's Razor</div><div class="ms-model-def">Simpler explanations are usually correct.</div><div class="ms-model-example">Pick the fewer assumptions path</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Summary card</div>
+      <div class="ms-summary"><div class="ms-summary-title">Section Summary</div><p style="font-size:14px;color:var(--text-2);line-height:1.75">Active recall beats re-reading by 3×. Spaced repetition beats cramming by 5×. Consistency over intensity — always. Small daily actions compound into expertise.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ GRIDS ═══ -->
+  <div class="ds-page" id="page-grids">
+    <div class="ds-heading"><h1>Grid Layouts</h1><p>4 responsive grid helpers. They collapse to fewer columns at breakpoints automatically.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>2-column</div>
+      <div class="ms-grid-2" style="margin-bottom:16px"><div class="grid-demo-cell">.ms-grid-2 col 1</div><div class="grid-demo-cell">.ms-grid-2 col 2</div></div>
+      <code class="ds-inline">&lt;div class="ms-grid-2"&gt;...&lt;/div&gt;</code>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>3-column</div>
+      <div class="ms-grid-3" style="margin-bottom:16px"><div class="grid-demo-cell">Col 1</div><div class="grid-demo-cell">Col 2</div><div class="grid-demo-cell">Col 3</div></div>
+      <code class="ds-inline">&lt;div class="ms-grid-3"&gt;...&lt;/div&gt;</code>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>4-column</div>
+      <div class="ms-grid-4" style="margin-bottom:16px"><div class="grid-demo-cell">A</div><div class="grid-demo-cell">B</div><div class="grid-demo-cell">C</div><div class="grid-demo-cell">D</div></div>
+      <code class="ds-inline">&lt;div class="ms-grid-4"&gt;...&lt;/div&gt;</code>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">04</span>Auto-fill</div>
+      <div class="ms-grid-auto" style="margin-bottom:16px"><div class="grid-demo-cell">Auto</div><div class="grid-demo-cell">Auto</div><div class="grid-demo-cell">Auto</div><div class="grid-demo-cell">Auto</div></div>
+      <code class="ds-inline">&lt;div class="ms-grid-auto"&gt;...&lt;/div&gt;</code>
+      <div class="usage-note" style="margin-top:12px"><strong>Auto-fill rule:</strong> Minimum column width 200px. Fills as many as fit, never fewer than 1. Good for card galleries where column count varies.</div>
+    </div>
+  </div>
+
+  <!-- ═══ TRACKER ═══ -->
+  <div class="ds-page" id="page-tracker">
+    <div class="ds-heading"><h1>Tracker Components</h1><p>Compatibility layer — these classes map legacy tracker names onto the current token system. All existing pages work without changes.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>Check rows</div>
+      <div>
+        <div class="check-row" onclick="this.querySelector('.chk').classList.toggle('on')">
+          <div class="chk"><span class="chk-icon">✓</span></div>
+          <div><div class="chk-label">Morning deep work block</div><div class="chk-sub">90 min focused session</div></div>
+          <span class="chk-time">9:00 AM</span>
         </div>
-        <div class="ds-grid-2">
-          <div class="ms-card indigo">
-            <div class="ms-card-title">Indigo Accent Card</div>
-            <div class="ms-card-body">
-              Left border signals category — here the primary brand.
-            </div>
-          </div>
-          <div class="ms-card teal">
-            <div class="ms-card-title">Teal Accent Card</div>
-            <div class="ms-card-body">
-              Success or achievement-related content.
-            </div>
-          </div>
+        <div class="check-row" onclick="this.querySelector('.chk').classList.toggle('on')">
+          <div class="chk on"><span class="chk-icon">✓</span></div>
+          <div><div class="chk-label" style="color:var(--text-4);text-decoration:line-through">Evening review</div><div class="chk-sub">Completed</div></div>
+          <span class="chk-time">Done</span>
         </div>
       </div>
+      <div class="usage-note" style="margin-top:12px"><strong>Interaction:</strong> Toggle <code class="ds-inline">.on</code> on the <code class="ds-inline">.chk</code> element to mark complete. Use event delegation — never inline onclick in production.</div>
+    </div>
 
-      <!-- 8. STEPS -->
-      <div class="ds-section">
-        <div class="ds-section-title">8 · Numbered Steps</div>
-        <ol class="ms-steps">
-          <li>
-            <strong>Prepare the context</strong> — Read the section once without
-            taking notes. Let the ideas land.
-          </li>
-          <li>
-            <strong>Retrieval practice</strong> — Close the page and write down
-            everything you remember.
-          </li>
-          <li>
-            <strong>Compare and correct</strong> — Open the page, find the gaps,
-            mark what you missed.
-          </li>
-          <li>
-            <strong>Apply it today</strong> — Find one real situation to apply
-            the concept before end of day.
-          </li>
-        </ol>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Day grid</div>
+      <div class="day-grid" style="margin-bottom:12px">
+        <div class="day-cell done">1</div><div class="day-cell done">2</div><div class="day-cell done">3</div>
+        <div class="day-cell done">4</div><div class="day-cell done">5</div><div class="day-cell missed">6</div>
+        <div class="day-cell done">7</div><div class="day-cell done">8</div><div class="day-cell done">9</div>
+        <div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div>
+        <div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div>
       </div>
-
-      <!-- 9. DRILL CARD -->
-      <div class="ds-section">
-        <div class="ds-section-title">9 · Drill Card (Exercise)</div>
-        <div class="ms-drill">
-          <div class="ms-drill-title">
-            Active Listening Sprint
-            <span class="ms-drill-time">5 min</span>
-          </div>
-          <p>
-            In your next conversation, resist the urge to respond for the first
-            30 seconds. Take a mental note of one thing the speaker said that
-            surprised you, then reference it when you do respond.
-          </p>
-        </div>
+      <div class="demo-row">
+        <span style="font-size:12px;color:var(--text-3)">Legend:</span>
+        <span class="day-cell done" style="width:28px;height:28px;min-height:auto">✓</span><span style="font-size:12px;color:var(--text-3)">Done</span>
+        <span class="day-cell missed" style="width:28px;height:28px;min-height:auto">✗</span><span style="font-size:12px;color:var(--text-3)">Missed</span>
+        <span class="day-cell" style="width:28px;height:28px;min-height:auto"></span><span style="font-size:12px;color:var(--text-3)">Upcoming</span>
       </div>
+    </div>
 
-      <!-- 10. QUOTE -->
-      <div class="ds-section">
-        <div class="ds-section-title">10 · Pull Quote</div>
-        <div class="ms-quote">
-          We are what we repeatedly do. Excellence, then, is not an act but a
-          habit.
-          <cite>— Aristotle</cite>
-        </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>Plan tabs</div>
+      <div style="display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap">
+        <button style="font-size:12px;font-weight:600;padding:6px 16px;border-radius:999px;border:1px solid var(--indigo);background:var(--indigo);color:#fff;min-height:32px">Day 1</button>
+        <button style="font-size:12px;font-weight:500;padding:6px 16px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);min-height:32px">Day 2</button>
+        <button style="font-size:12px;font-weight:500;padding:6px 16px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);min-height:32px">Day 3</button>
+        <button style="font-size:12px;font-weight:500;padding:6px 16px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);min-height:32px">Day 4</button>
+        <button style="font-size:12px;font-weight:500;padding:6px 16px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);min-height:32px">Day 5</button>
       </div>
+      <div class="ds-code-header"><span>html + js</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;div class="plan-tabs"&gt;
+  &lt;button class="plan-tab active" data-day="1"&gt;Day 1&lt;/button&gt;
+  &lt;button class="plan-tab" data-day="2"&gt;Day 2&lt;/button&gt;
+&lt;/div&gt;
 
-      <!-- 11. CHECKLIST -->
-      <div class="ds-section">
-        <div class="ds-section-title">11 · Checklist</div>
-        <ul class="ms-checklist">
-          <li>Define your Minimum Viable Day — the 3 non-negotiables</li>
-          <li>Block your deep work window before anything else</li>
-          <li>End each session with a 5-minute written reflection</li>
-          <li>Review your 90-day plan every Sunday evening</li>
-        </ul>
-      </div>
+&lt;div class="plan-page active" id="day-1"&gt;...&lt;/div&gt;
+&lt;div class="plan-page" id="day-2"&gt;...&lt;/div&gt;
 
-      <!-- 12. TIMELINE -->
-      <div class="ds-section">
-        <div class="ds-section-title">12 · Timeline</div>
-        <div class="ms-timeline">
-          <div class="ms-timeline-item">
-            <strong>Days 1–30 · Foundation</strong> — Build the daily habit and
-            baseline systems. Progress over perfection.
-          </div>
-          <div class="ms-timeline-item">
-            <strong>Days 31–60 · Depth</strong> — Layer deliberate practice on
-            top of the foundation. Increase intensity by 20%.
-          </div>
-          <div class="ms-timeline-item">
-            <strong>Days 61–90 · Integration</strong> — Merge skills, review
-            learnings, set the next cycle's direction.
-          </div>
-        </div>
-      </div>
+&lt;script&gt;
+// Always use event delegation
+document.addEventListener('click', e => {
+  const tab = e.target.closest('.plan-tab');
+  if (!tab) return;
+  document.querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.plan-page').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('day-' + tab.dataset.day).classList.add('active');
+});
+&lt;/script&gt;</pre>
+    </div>
+  </div>
 
-      <!-- 13. ALERTS -->
-      <div class="ds-section">
-        <div class="ds-section-title">13 · Alerts</div>
-        <div class="ms-alert teal">
-          ✓ Day 45 complete — you're past the halfway mark. Momentum is on your
-          side.
-        </div>
-        <div class="ms-alert indigo">
-          ℹ Spaced repetition review due in 2 days for Communication
-          fundamentals.
-        </div>
-        <div class="ms-alert amber">
-          ⚠ You've missed 2 days in a row — a gentle reset is better than
-          waiting for perfect conditions.
-        </div>
-      </div>
+  <!-- ═══ GUIDE: BUILDING A PAGE ═══ -->
+  <div class="ds-page" id="page-guide-page">
+    <div class="ds-heading"><h1>Building a Page</h1><p>Step-by-step walkthrough for adding any new page to the PKH. Follow this every time.</p></div>
 
-      <!-- 14. PROGRESS + STATS -->
-      <div class="ds-section">
-        <div class="ds-section-title">14 · Progress &amp; Stats</div>
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-          "
-        >
-          <div class="ms-stat-card">
-            <div class="ms-stat-num">62</div>
-            <div class="ms-stat-label">Days completed</div>
-          </div>
-          <div class="ms-stat-card">
-            <div class="ms-stat-num" style="color: var(--indigo)">14</div>
-            <div class="ms-stat-label">Current streak</div>
-          </div>
-        </div>
-        <div class="prog-bar" style="margin-bottom: 0.35rem">
-          <div class="prog-fill" style="width: 62%"></div>
-        </div>
-        <div class="prog-label">62 of 90 days · 69% complete</div>
-      </div>
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">Step 1</span>Create the file</div>
+      <p style="font-size:14px;color:var(--text-2);line-height:1.75;margin-bottom:12px">Place the file in the correct folder. The folder name becomes the category in the registry.</p>
+      <div class="ds-code-header"><span>File structure</span></div>
+      <pre class="ds-code">pages/
+  mastery/           → category: "mastery"
+    communication.html
+    thinking.html
+  fitness/           → category: "fitness"
+    workout-plan.html
+  guides/            → category: "guides"
+    my-new-guide.html</pre>
+    </div>
 
-      <!-- 15. DAY GRID (HABIT TRACKER) -->
-      <div class="ds-section">
-        <div class="ds-section-title">15 · Habit Tracker Day Grid</div>
-        <div class="day-grid">
-          <div class="day-cell done">1</div>
-          <div class="day-cell done">2</div>
-          <div class="day-cell done">3</div>
-          <div class="day-cell done">4</div>
-          <div class="day-cell done">5</div>
-          <div class="day-cell missed">6</div>
-          <div class="day-cell done">7</div>
-          <div class="day-cell done">8</div>
-          <div class="day-cell done">9</div>
-          <div class="day-cell">10</div>
-          <div class="day-cell">11</div>
-          <div class="day-cell">12</div>
-          <div class="day-cell">13</div>
-          <div class="day-cell">14</div>
-          <div class="day-cell">15</div>
-        </div>
-      </div>
-
-      <!-- 16. TABLE -->
-      <div class="ds-section">
-        <div class="ds-section-title">16 · Data Table</div>
-        <div class="ms-table-wrap">
-          <table class="ms-table">
-            <thead>
-              <tr>
-                <th>Technique</th>
-                <th>Retention</th>
-                <th>Time cost</th>
-                <th>Priority</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Active recall</strong></td>
-                <td class="hi">High</td>
-                <td>Medium</td>
-                <td class="hi">Essential</td>
-              </tr>
-              <tr>
-                <td><strong>Spaced repetition</strong></td>
-                <td class="hi">High</td>
-                <td>Low</td>
-                <td class="hi">Essential</td>
-              </tr>
-              <tr>
-                <td><strong>Mind mapping</strong></td>
-                <td class="med">Medium</td>
-                <td>High</td>
-                <td class="med">Optional</td>
-              </tr>
-              <tr>
-                <td><strong>Highlighting</strong></td>
-                <td class="lo">Low</td>
-                <td>Low</td>
-                <td class="bad">Avoid</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- 17. CODE -->
-      <div class="ds-section">
-        <div class="ds-section-title">17 · Code</div>
-        <p
-          style="font-size: 14px; color: var(--text-2); margin-bottom: 0.75rem"
-        >
-          Inline: use <code class="ms-inline-code">data-layout="full"</code> on
-          the body element.
-        </p>
-        <pre class="ms-pre">
-/* Page declaration — all a page needs to hook into the shell */
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">Step 2</span>Write the HTML</div>
+      <div class="ds-code-header"><span>html</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="ds-code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="page-category" content="mastery"&gt;  &lt;!-- optional override --&gt;
+  &lt;title&gt;Communication Mastery&lt;/title&gt;
+&lt;/head&gt;
 &lt;body
   data-layout="full"
   data-title="Communication Mastery"
@@ -1622,93 +1675,166 @@
 
   &lt;script src="../../core/init.js"&gt;&lt;/script&gt;
 
-  &lt;!-- Your content here --&gt;
-&lt;/body&gt;</pre
-        >
-      </div>
+  &lt;div id="page-content"&gt;
 
-      <!-- 18. SKELETON -->
-      <div class="ds-section">
-        <div class="ds-section-title">18 · Skeleton Loading</div>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem">
-          <div class="ms-skeleton" style="height: 20px; width: 200px"></div>
-          <div class="ms-skeleton" style="height: 14px; width: 100%"></div>
-          <div class="ms-skeleton" style="height: 14px; width: 85%"></div>
-          <div class="ms-skeleton" style="height: 14px; width: 70%"></div>
-        </div>
-      </div>
+    &lt;div class="ms-hero"&gt;
+      &lt;div class="ms-hero-eyebrow"&gt;
+        &lt;div class="ms-hero-eyebrow-dot"&gt;&lt;/div&gt;
+        Mastery System · Part 1
+      &lt;/div&gt;
+      &lt;h1&gt;Communication Mastery&lt;/h1&gt;
+      &lt;p class="ms-hero-lead"&gt;Lead sentence here.&lt;/p&gt;
+    &lt;/div&gt;
 
-      <!-- 19. FOCUS RING -->
-      <div class="ds-section">
-        <div class="ds-section-title">19 · Focus Ring (Accessibility)</div>
-        <p
-          style="font-size: 13px; color: var(--text-3); margin-bottom: 0.75rem"
-        >
-          All interactive elements get a 2px indigo outline on keyboard focus.
-          Uses <code class="ms-inline-code">:focus-visible</code> so mouse users
-          aren't affected.
-        </p>
-        <div
-          style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center"
-        >
-          <button
-            style="
-              padding: 8px 16px;
-              background: var(--surface);
-              border: 1px solid var(--border);
-              border-radius: var(--radius-sm);
-              font-family: var(--font);
-              font-size: 13px;
-              cursor: pointer;
-              color: var(--text-2);
-            "
-            class="focus-demo"
-          >
-            Focused button
-          </button>
-          <a
-            href="#"
-            style="color: var(--indigo); font-size: 13px"
-            class="focus-demo"
-            >Focused link</a
-          >
-        </div>
-      </div>
+    &lt;div class="ms-section" id="s1"&gt;
+      &lt;h2&gt;&lt;span class="ms-section-num"&gt;01&lt;/span&gt;First Section&lt;/h2&gt;
+      &lt;p&gt;Content here.&lt;/p&gt;
+    &lt;/div&gt;
 
-      <!-- 20. MOTION TOKENS -->
-      <div class="ds-section">
-        <div class="ds-section-title">20 · Motion Tokens</div>
-        <div
-          style="
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-2);
-            line-height: 2.2;
-          "
-        >
-          <div>
-            <span style="color: var(--indigo)">--dur-fast</span>: 0.12s — micro
-            interactions, toggles
-          </div>
-          <div>
-            <span style="color: var(--indigo)">--dur</span>: 0.22s — default
-            transitions
-          </div>
-          <div>
-            <span style="color: var(--indigo)">--dur-slow</span>: 0.38s —
-            page-level reveals, modals
-          </div>
-          <div>
-            <span style="color: var(--indigo)">--ease-out</span>:
-            cubic-bezier(0.22, 1, 0.36, 1) — elements entering
-          </div>
-          <div>
-            <span style="color: var(--indigo)">--ease-in</span>:
-            cubic-bezier(0.64, 0, 0.78, 0) — elements leaving
-          </div>
-        </div>
+    &lt;nav class="ms-page-nav"&gt;
+      &lt;a href="./prev.html" class="ms-page-nav-btn"&gt;← Previous&lt;/a&gt;
+      &lt;a href="./next.html" class="ms-page-nav-btn next"&gt;Next →&lt;/a&gt;
+    &lt;/nav&gt;
+
+  &lt;/div&gt;
+
+  &lt;style&gt;
+    /* Page-specific styles only. Never fork shell.css. */
+  &lt;/style&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">Step 3</span>Run registry generator</div>
+      <div class="ds-code-header"><span>bash</span></div>
+      <pre class="ds-code">python3 generate_registry.py</pre>
+      <p style="font-size:13px;color:var(--text-3);margin-top:8px">This scans all pages and updates <code class="ds-inline">core/registry.json</code>. The homepage and sidebar refresh automatically.</p>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">Step 4</span>Troubleshooting checklist</div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr><th>Symptom</th><th>Most likely cause</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td>Page has no styles</td><td>Missing shell.css link</td><td>init.js injects it — check init.js path is correct</td></tr>
+            <tr><td>Sidebar doesn't show</td><td>Wrong data-layout value</td><td>Set <code class="ds-inline">data-layout="full"</code> on body</td></tr>
+            <tr><td>JS event not firing</td><td>NodeList is detached</td><td>Use event delegation on document, not querySelectorAll</td></tr>
+            <tr><td>Horizontal scroll on mobile</td><td>Missing min-width:0 on flex child</td><td>Add <code class="ds-inline">min-width:0</code> to the overflowing flex item</td></tr>
+            <tr><td>Page not in registry</td><td>Generator not run</td><td>Run <code class="ds-inline">python3 generate_registry.py</code></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <!-- /preview-wrap -->
-  </body>
+  </div>
+
+  <!-- ═══ GUIDE: RULES ═══ -->
+  <div class="ds-page" id="page-guide-rules">
+    <div class="ds-heading"><h1>Rules & Patterns</h1><p>Non-negotiable rules that keep the system consistent as it grows to hundreds of pages.</p></div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">01</span>The golden rules</div>
+      <ol class="ms-steps">
+        <li><strong>Never fork shell.css.</strong> Page-specific styles go in a <code class="ds-inline">&lt;style&gt;</code> block on the page. No exceptions.</li>
+        <li><strong>Always use event delegation.</strong> <code class="ds-inline">document.addEventListener('click', e =&gt; e.target.closest('.sel'))</code> — never querySelectorAll at parse time.</li>
+        <li><strong>Use tokens, not hardcoded values.</strong> Write <code class="ds-inline">var(--indigo)</code>, never <code class="ds-inline">#4f46e5</code> in page styles.</li>
+        <li><strong>Mobile first.</strong> Every new component must work at 320px. Test at 320/375/430/768/desktop.</li>
+        <li><strong>No inline styles for layout.</strong> Use the grid and spacing token classes. Inline styles are only for demo/preview content.</li>
+        <li><strong>Run the registry generator</strong> after every new page or rename. The homepage is data-driven, not hardcoded.</li>
+        <li><strong>Add new tokens to section 2</strong> of shell.css and the header reference comment simultaneously.</li>
+      </ol>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">02</span>Naming conventions</div>
+      <div class="ms-table-wrap">
+        <table class="ms-table">
+          <thead><tr><th>Type</th><th>Pattern</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Shell classes</td><td><code class="ds-inline">.ms-</code> prefix</td><td><code class="ds-inline">.ms-card</code>, <code class="ds-inline">.ms-btn</code></td></tr>
+            <tr><td>CSS variables</td><td><code class="ds-inline">--</code> prefix, hyphen-separated</td><td><code class="ds-inline">--indigo-lt</code>, <code class="ds-inline">--space-4</code></td></tr>
+            <tr><td>Page IDs</td><td>Descriptive, lowercase hyphen</td><td><code class="ds-inline">id="s1-active-recall"</code></td></tr>
+            <tr><td>Data attributes</td><td><code class="ds-inline">data-</code> prefix on body</td><td><code class="ds-inline">data-layout="full"</code></td></tr>
+            <tr><td>Legacy (tracker)</td><td>No prefix</td><td><code class="ds-inline">.card</code>, <code class="ds-inline">.badge</code>, <code class="ds-inline">.check-row</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">03</span>When to extend vs. add to shell.css</div>
+      <div class="demo-grid col-2">
+        <div class="ms-card teal"><div class="ms-card-title">Extend in page &lt;style&gt;</div><div class="ms-card-body" style="font-size:13px">One-off layout tweaks. Page-specific hero patterns. Custom grid variations. Component sizing specific to one page.</div></div>
+        <div class="ms-card indigo"><div class="ms-card-title">Add to shell.css</div><div class="ms-card-body" style="font-size:13px">Components used on 2+ pages. New semantic color. New layout utility. New interactive pattern that will recur.</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section">
+      <div class="ds-section-title"><span class="section-num">04</span>Accessibility checklist</div>
+      <ul class="ms-checklist">
+        <li>Every interactive element has visible focus state (<code class="ds-inline">:focus-visible</code> is in shell.css)</li>
+        <li>All images have descriptive alt text</li>
+        <li>Heading hierarchy is correct: one h1, h2s for sections, h3 for sub-sections</li>
+        <li>Touch targets are at least 44×44px (check-rows, nav items, buttons)</li>
+        <li>Color is never the only differentiator (badges always have text labels)</li>
+        <li>Skip link present (init.js injects it automatically)</li>
+        <li>Page tested with keyboard navigation only</li>
+      </ul>
+    </div>
+  </div>
+
+  </div><!-- /preview-content -->
+</div><!-- /preview-main -->
+</div><!-- /preview-shell -->
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.ds-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidenav-item').forEach(b => b.classList.remove('active'));
+
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+
+  const btn = document.querySelector(`.sidenav-item[onclick="showPage('${id}')"]`);
+  if (btn) btn.classList.add('active');
+
+  const titles = {
+    'intro':'Overview & Setup','tokens':'Design Tokens','colors':'Color Palette',
+    'typography':'Typography','spacing':'Spacing & Layout','shadows':'Shadows & Radius',
+    'motion':'Motion','badges':'Badges','buttons':'Buttons','cards':'Cards',
+    'callouts':'Callouts & Alerts','forms':'Form Inputs','nav':'Navigation',
+    'tables':'Tables','stats':'Stats & Progress','feedback':'Feedback & States',
+    'hero':'Hero','sections':'Sections & Text','lists':'Lists & Steps',
+    'learning':'Learning Components','grids':'Grid Layouts','tracker':'Tracker Components',
+    'guide-page':'Building a Page','guide-rules':'Rules & Patterns'
+  };
+  const el = document.getElementById('page-title');
+  if (el) el.textContent = titles[id] || id;
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+}
+
+function copyCode(btn) {
+  const pre = btn.closest('.ds-code-header').nextElementSibling;
+  if (pre) {
+    navigator.clipboard.writeText(pre.textContent).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+}
+
+// Keyboard shortcut: press D to toggle dark mode
+document.addEventListener('keydown', e => {
+  if (e.key === 'd' && !e.target.matches('input, textarea')) toggleTheme();
+});
+</script>
+</body>
 </html>
