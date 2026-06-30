@@ -109,6 +109,15 @@
       "order": 1,
       "path": "pages/mastery/90day-plan.html",
       "modified": "2026-06-24"
+    },
+    {
+      "title": "45-Day Interview Prep Roadmap",
+      "description": "Your 45-Day Interview Roadmap",
+      "category": "Trackers & Tools",
+      "icon": "📅",
+      "order": 1,
+      "path": "pages/masterclass/interview-prep-roadmap.html",
+      "modified": "2026-06-24"
     }
   ]
 }
