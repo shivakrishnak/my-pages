@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-24T11:33:44Z",
-  "count": 12,
+  "generated": "2026-06-30T12:23:22Z",
+  "count": 13,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -9,7 +9,7 @@
       "icon": "🏋️",
       "order": 1,
       "path": "pages/fitness/workout-plan.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Sample Page",
@@ -18,7 +18,7 @@
       "icon": "📄",
       "order": 999,
       "path": "pages/general/sample-page.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "How to Add a New Page or Project",
@@ -27,16 +27,25 @@
       "icon": "🧭",
       "order": 1,
       "path": "pages/guides/how-to-add-a-page.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
-      "title": "PKH Design System — shell.css Reference",
+      "title": "PKH Design System — Complete Reference & User Guide",
       "description": "",
       "category": "Guides",
       "icon": "📄",
       "order": 999,
       "path": "pages/guides/design-system-preview.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
+    },
+    {
+      "title": "45-Day Interview Prep Roadmap · KSK",
+      "description": "",
+      "category": "Masterclass",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/masterclass/interview-prep-roadmap.html",
+      "modified": "2026-06-30"
     },
     {
       "title": "Anki Masterclass — Building Cards That Stick Forever",
@@ -45,7 +54,7 @@
       "icon": "📄",
       "order": 999,
       "path": "pages/masterclass/anki-masterclass.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Part I — The Science",
@@ -54,7 +63,7 @@
       "icon": "🧠",
       "order": 1,
       "path": "pages/mastery/part1.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Part II — Voice & Fluency §3-6",
@@ -63,7 +72,7 @@
       "icon": "🎙️",
       "order": 2,
       "path": "pages/mastery/part2a.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Part II — Thinking & Communication §7–16",
@@ -72,7 +81,7 @@
       "icon": "💬",
       "order": 3,
       "path": "pages/mastery/part2b.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Part II — Advanced Skills §17–27",
@@ -81,7 +90,7 @@
       "icon": "🎯",
       "order": 4,
       "path": "pages/mastery/part2c.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Part III & IV — Drills & Execution Plan",
@@ -90,7 +99,7 @@
       "icon": "📋",
       "order": 5,
       "path": "pages/mastery/part3-4.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "Part V — Resources",
@@ -99,7 +108,7 @@
       "icon": "📚",
       "order": 6,
       "path": "pages/mastery/part5.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     },
     {
       "title": "90-Day Action Plan",
@@ -108,16 +117,7 @@
       "icon": "📅",
       "order": 1,
       "path": "pages/mastery/90day-plan.html",
-      "modified": "2026-06-24"
-    },
-    {
-      "title": "45-Day Interview Prep Roadmap",
-      "description": "Your 45-Day Interview Roadmap",
-      "category": "Trackers & Tools",
-      "icon": "📅",
-      "order": 1,
-      "path": "pages/masterclass/interview-prep-roadmap.html",
-      "modified": "2026-06-24"
+      "modified": "2026-06-30"
     }
   ]
 }
