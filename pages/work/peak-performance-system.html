@@ -1,0 +1,2947 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Peak Performance System · Shiva Krishna K</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f8f7f5;
+        --bg-2: #f0ede8;
+        --bg-3: #e8e4dd;
+        --bg-4: #dedad3;
+        --surface: #ffffff;
+        --surface-2: #faf9f8;
+        --border: #e4e0d8;
+        --border-2: #cdc8bf;
+        --border-3: #b8b2a7;
+        --text-1: #1c1917;
+        --text-2: #3d3935;
+        --text-3: #706b62;
+        --text-4: #a39e95;
+        --indigo: #4f46e5;
+        --indigo-mid: #6d64f0;
+        --indigo-dk: #3730a3;
+        --indigo-lt: #eef2ff;
+        --teal: #0d9373;
+        --teal-lt: #ecfdf5;
+        --teal-dk: #065f46;
+        --amber: #b45309;
+        --amber-lt: #fffbeb;
+        --amber-dk: #78350f;
+        --coral: #dc2626;
+        --coral-lt: #fef2f2;
+        --coral-dk: #991b1b;
+        --sage: #4a7c59;
+        --sage-lt: #f0fdf4;
+        --sage-dk: #166534;
+        --violet: #7c3aed;
+        --violet-lt: #f5f3ff;
+        --violet-dk: #4c1d95;
+        --font:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+          sans-serif;
+        --sidebar-w: 280px;
+        --topbar-h: 52px;
+        --radius: 8px;
+        --radius-lg: 14px;
+        --radius-pill: 999px;
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-sm:
+          0 1px 4px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+        --dur: 0.2s;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .dark {
+        --bg: #161412;
+        --bg-2: #1e1c19;
+        --bg-3: #272421;
+        --bg-4: #302d29;
+        --surface: #1e1c19;
+        --surface-2: #252220;
+        --border: #302d29;
+        --border-2: #413d38;
+        --border-3: #524e48;
+        --text-1: #f2ede8;
+        --text-2: #c4bdb5;
+        --text-3: #7d7870;
+        --text-4: #504c47;
+        --indigo: #818cf8;
+        --indigo-mid: #a5b4fc;
+        --indigo-dk: #4f46e5;
+        --indigo-lt: #1e1b4b;
+        --teal-lt: #022c22;
+        --teal-dk: #34d399;
+        --amber-lt: #1c0a00;
+        --amber-dk: #fbbf24;
+        --coral-lt: #1c0808;
+        --coral-dk: #f87171;
+        --sage-lt: #052e16;
+        --sage-dk: #4ade80;
+        --violet-lt: #1e0a3c;
+        --violet-dk: #a78bfa;
+        --shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.25);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        overflow-x: clip;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font);
+        font-size: 15px;
+        line-height: 1.7;
+        background: var(--bg);
+        color: var(--text-2);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: clip;
+        transition:
+          background var(--dur),
+          color var(--dur);
+      }
+      a {
+        color: var(--indigo);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--text-1);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+      ul,
+      ol {
+        list-style: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+      ::selection {
+        background: var(--indigo-lt);
+        color: var(--indigo-dk);
+      }
+      :focus-visible {
+        outline: 2px solid var(--indigo);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      :focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        z-index: 700;
+        pointer-events: none;
+      }
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--indigo), var(--indigo-mid));
+        border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+        transition: width 0.08s linear;
+      }
+
+      .shell {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        background: var(--bg-2);
+        border-right: 1px solid var(--border);
+        position: fixed;
+        inset: 0 auto 0 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 300;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform var(--dur) var(--ease),
+          box-shadow var(--dur);
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-2) transparent;
+      }
+      .sidebar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background: var(--border-2);
+        border-radius: 2px;
+      }
+      .sb-header {
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: var(--bg-2);
+        z-index: 10;
+        flex-shrink: 0;
+      }
+      .sb-brand {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-1);
+        line-height: 1.3;
+      }
+      .sb-brand span {
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--text-4);
+        margin-top: 2px;
+      }
+      .sb-section {
+        padding: 6px 0;
+      }
+      .sb-label {
+        display: block;
+        padding: 10px 16px 3px;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-4);
+      }
+      .sb-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        font-size: 12.5px;
+        color: var(--text-3);
+        text-decoration: none;
+        border-right: 2px solid transparent;
+        min-height: 32px;
+        transition:
+          background var(--dur),
+          color var(--dur),
+          border-color var(--dur);
+      }
+      .sb-link:hover {
+        background: var(--bg-3);
+        color: var(--text-1);
+        text-decoration: none;
+      }
+      .sb-link.active {
+        background: var(--indigo-lt);
+        color: var(--indigo);
+        font-weight: 600;
+        border-right-color: var(--indigo);
+      }
+      .sb-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--border-2);
+        flex-shrink: 0;
+      }
+      .sb-link.active .sb-dot {
+        background: var(--indigo);
+      }
+      .sb-footer {
+        margin-top: auto;
+        padding: 12px 16px;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        color: var(--text-4);
+        flex-shrink: 0;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 250;
+      }
+      .overlay.active {
+        display: block;
+      }
+
+      .main {
+        margin-left: var(--sidebar-w);
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        height: var(--topbar-h);
+        background: rgba(248, 247, 245, 0.94);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        transition: background var(--dur);
+      }
+      .dark .topbar {
+        background: rgba(22, 20, 18, 0.94);
+      }
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+      }
+      .hamburger {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        color: var(--text-2);
+        border-radius: var(--radius);
+        transition: background var(--dur);
+        flex-shrink: 0;
+      }
+      .hamburger:hover {
+        background: var(--bg-3);
+      }
+      .topbar-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-1);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text-3);
+        font-size: 15px;
+        transition:
+          background var(--dur),
+          color var(--dur);
+      }
+      .icon-btn:hover {
+        background: var(--bg-3);
+        color: var(--text-1);
+      }
+
+      .content {
+        flex: 1;
+        max-width: 780px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 48px 32px 80px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 10px;
+        border-radius: var(--radius-pill);
+        white-space: nowrap;
+        line-height: 1.6;
+      }
+      .b-indigo {
+        background: var(--indigo-lt);
+        color: var(--indigo-dk);
+      }
+      .b-teal {
+        background: var(--teal-lt);
+        color: var(--teal-dk);
+      }
+      .b-amber {
+        background: var(--amber-lt);
+        color: var(--amber-dk);
+      }
+      .b-coral {
+        background: var(--coral-lt);
+        color: var(--coral-dk);
+      }
+      .b-sage {
+        background: var(--sage-lt);
+        color: var(--sage-dk);
+      }
+      .b-violet {
+        background: var(--violet-lt);
+        color: var(--violet-dk);
+      }
+      .b-gray {
+        background: var(--bg-3);
+        color: var(--text-2);
+      }
+
+      .hero {
+        padding: 40px 0 32px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 40px;
+        animation: fadeUp 0.4s var(--ease) both;
+      }
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .hero h1 {
+        font-size: clamp(22px, 4vw, 34px);
+        margin-bottom: 12px;
+      }
+      .hero-lead {
+        font-size: 16px;
+        color: var(--text-2);
+        line-height: 1.75;
+        max-width: 620px;
+      }
+      .hero-sub {
+        font-size: 13px;
+        color: var(--text-3);
+        margin-top: 10px;
+        line-height: 1.6;
+      }
+
+      .section {
+        margin-bottom: 56px;
+        scroll-margin-top: 72px;
+      }
+      .section h2 {
+        font-size: clamp(17px, 3vw, 22px);
+        margin-bottom: 8px;
+      }
+      .section h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 28px 0 10px;
+        color: var(--text-1);
+      }
+      .section p {
+        color: var(--text-2);
+        margin-bottom: 12px;
+        font-size: 14.5px;
+        line-height: 1.75;
+      }
+      .section p:last-child {
+        margin-bottom: 0;
+      }
+      .section strong {
+        color: var(--text-1);
+        font-weight: 600;
+      }
+      .s-num {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-4);
+        margin-right: 6px;
+      }
+      hr.div {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 44px 0;
+      }
+
+      .callout {
+        border-left: 3px solid var(--indigo);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        background: var(--indigo-lt);
+        padding: 14px 18px;
+        margin: 18px 0;
+        font-size: 14px;
+        color: var(--text-2);
+        line-height: 1.7;
+      }
+      .callout.teal {
+        border-color: var(--teal);
+        background: var(--teal-lt);
+      }
+      .callout.amber {
+        border-color: var(--amber);
+        background: var(--amber-lt);
+      }
+      .callout.coral {
+        border-color: var(--coral);
+        background: var(--coral-lt);
+      }
+      .callout.sage {
+        border-color: var(--sage);
+        background: var(--sage-lt);
+      }
+      .callout.violet {
+        border-color: var(--violet);
+        background: var(--violet-lt);
+      }
+      .callout-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+        color: var(--indigo);
+      }
+      .callout.teal .callout-label {
+        color: var(--teal);
+      }
+      .callout.amber .callout-label {
+        color: var(--amber);
+      }
+      .callout.coral .callout-label {
+        color: var(--coral);
+      }
+      .callout.sage .callout-label {
+        color: var(--sage);
+      }
+      .callout.violet .callout-label {
+        color: var(--violet);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 18px 20px;
+        margin-bottom: 10px;
+        box-shadow: var(--shadow-xs);
+        transition:
+          box-shadow var(--dur),
+          border-color var(--dur);
+      }
+      .card:hover {
+        box-shadow: var(--shadow-sm);
+        border-color: var(--border-2);
+      }
+      .card.indigo {
+        border-left: 3px solid var(--indigo);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.teal {
+        border-left: 3px solid var(--teal);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.amber {
+        border-left: 3px solid var(--amber);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.coral {
+        border-left: 3px solid var(--coral);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.sage {
+        border-left: 3px solid var(--sage);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.violet {
+        border-left: 3px solid var(--violet);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-1);
+        margin-bottom: 6px;
+        line-height: 1.35;
+      }
+      .card-body {
+        font-size: 13.5px;
+        color: var(--text-2);
+        line-height: 1.65;
+      }
+      .card-icon {
+        font-size: 22px;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+
+      .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .g3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 32px;
+      }
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        box-shadow: var(--shadow-xs);
+      }
+      .stat-num {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--indigo);
+        letter-spacing: -0.03em;
+      }
+      .stat-num.teal {
+        color: var(--teal);
+      }
+      .stat-num.amber {
+        color: var(--amber);
+      }
+      .stat-num.violet {
+        color: var(--violet);
+      }
+      .stat-label {
+        font-size: 11px;
+        color: var(--text-3);
+        margin-top: 2px;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      .t-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xs);
+        margin: 16px 0;
+      }
+      .ft {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .ft th {
+        background: var(--bg-2);
+        text-align: left;
+        padding: 9px 14px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--text-3);
+        border-bottom: 1px solid var(--border-2);
+        white-space: nowrap;
+      }
+      .ft td {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-2);
+        vertical-align: top;
+        line-height: 1.55;
+      }
+      .ft tr:last-child td {
+        border-bottom: none;
+      }
+      .ft tbody tr:hover td {
+        background: var(--bg-2);
+      }
+      .ft td strong {
+        color: var(--text-1);
+      }
+      .ft td.hi {
+        color: var(--teal);
+        font-weight: 600;
+      }
+      .ft td.warn {
+        color: var(--amber);
+        font-weight: 500;
+      }
+      .ft td.bad {
+        color: var(--coral);
+        font-weight: 500;
+      }
+
+      .habit-row {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        min-height: 52px;
+      }
+      .habit-row:last-child {
+        border-bottom: none;
+      }
+      .habit-icon {
+        font-size: 22px;
+        width: 36px;
+        flex-shrink: 0;
+        text-align: center;
+        margin-top: 1px;
+      }
+      .habit-main {
+        flex: 1;
+      }
+      .habit-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-1);
+        margin-bottom: 3px;
+      }
+      .habit-desc {
+        font-size: 13px;
+        color: var(--text-2);
+        line-height: 1.65;
+      }
+      .habit-tag {
+        margin-top: 6px;
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .htag {
+        font-size: 10.5px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: var(--radius-pill);
+        background: var(--bg-3);
+        color: var(--text-3);
+        white-space: nowrap;
+      }
+      .htag.brain {
+        background: var(--violet-lt);
+        color: var(--violet-dk);
+      }
+      .htag.body {
+        background: var(--teal-lt);
+        color: var(--teal-dk);
+      }
+      .htag.mood {
+        background: var(--amber-lt);
+        color: var(--amber-dk);
+      }
+      .htag.deep {
+        background: var(--indigo-lt);
+        color: var(--indigo-dk);
+      }
+
+      .impact-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: var(--shadow-xs);
+        transition:
+          box-shadow var(--dur),
+          border-color var(--dur);
+      }
+      .impact-card:hover {
+        box-shadow: var(--shadow);
+        border-color: var(--border-2);
+      }
+      .impact-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        flex-wrap: wrap;
+      }
+      .impact-rank {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .r1 {
+        background: var(--coral-lt);
+        color: var(--coral);
+      }
+      .r2 {
+        background: var(--amber-lt);
+        color: var(--amber);
+      }
+      .r3 {
+        background: var(--teal-lt);
+        color: var(--teal);
+      }
+      .impact-title {
+        flex: 1;
+        min-width: 200px;
+      }
+      .impact-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-1);
+      }
+      .impact-sub {
+        font-size: 12px;
+        color: var(--text-3);
+        margin-top: 2px;
+      }
+      .impact-body {
+        padding: 14px 20px;
+        font-size: 13.5px;
+        color: var(--text-2);
+        line-height: 1.7;
+      }
+      .impact-science {
+        background: var(--bg-2);
+        border-top: 1px solid var(--border);
+        padding: 10px 20px;
+        font-size: 12px;
+        color: var(--text-3);
+        font-style: italic;
+        line-height: 1.55;
+      }
+
+      .ritual-block {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        margin-bottom: 10px;
+        box-shadow: var(--shadow-xs);
+      }
+      .ritual-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        background: var(--bg-2);
+        border-bottom: 1px solid var(--border);
+      }
+      .ritual-time-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-4);
+        min-width: 80px;
+      }
+      .ritual-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-1);
+      }
+      .ritual-item {
+        display: flex;
+        gap: 12px;
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border);
+        font-size: 13.5px;
+      }
+      .ritual-item:last-child {
+        border-bottom: none;
+      }
+      .ritual-t {
+        font-size: 11px;
+        color: var(--text-4);
+        min-width: 80px;
+        flex-shrink: 0;
+        font-variant-numeric: tabular-nums;
+        padding-top: 1px;
+        font-weight: 600;
+      }
+      .ritual-content {
+        flex: 1;
+      }
+      .ritual-main {
+        font-weight: 600;
+        color: var(--text-1);
+        margin-bottom: 2px;
+      }
+      .ritual-detail {
+        font-size: 12.5px;
+        color: var(--text-3);
+        line-height: 1.6;
+      }
+
+      .motivation-block {
+        background: linear-gradient(
+          135deg,
+          #1e1b4b 0%,
+          #3730a3 50%,
+          #4f46e5 100%
+        );
+        border-radius: var(--radius-lg);
+        padding: 32px 28px;
+        color: #fff;
+        margin-bottom: 0;
+      }
+      .motivation-block h2 {
+        color: #fff;
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+      .motivation-block p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 10px;
+      }
+      .motivation-block .quote {
+        background: rgba(255, 255, 255, 0.1);
+        border-left: 3px solid rgba(255, 255, 255, 0.4);
+        border-radius: 0 8px 8px 0;
+        padding: 12px 16px;
+        margin: 14px 0;
+        font-size: 15px;
+        font-weight: 500;
+        font-style: italic;
+        color: #fff;
+      }
+      .motivation-block p:last-child {
+        margin-bottom: 0;
+      }
+
+      .checklist {
+        list-style: none;
+        margin: 8px 0;
+      }
+      .checklist li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13.5px;
+        color: var(--text-2);
+        line-height: 1.6;
+        min-height: 40px;
+      }
+      .checklist li:last-child {
+        border-bottom: none;
+      }
+      .checklist li::before {
+        content: "□";
+        font-size: 15px;
+        color: var(--text-4);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .do-dont {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .do-dont .card {
+        padding: 20px;
+      }
+      .do-dont ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        font-size: 13px;
+        color: var(--text-2);
+      }
+      .do-dont ul li {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        line-height: 1.5;
+      }
+
+      .bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 200;
+        background: rgba(248, 247, 245, 0.97);
+        backdrop-filter: blur(24px);
+        border-top: 1px solid var(--border);
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 4px;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+      .dark .bottom-nav {
+        background: rgba(22, 20, 18, 0.97);
+      }
+      .bnav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 6px 10px;
+        min-width: 52px;
+        min-height: 44px;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text-4);
+        font-size: 10px;
+        font-weight: 500;
+        background: none;
+        border: none;
+        border-radius: var(--radius);
+        transition: color var(--dur);
+      }
+      .bnav-item.active {
+        color: var(--indigo);
+      }
+      .bnav-item svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 960px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+        .sidebar.open {
+          transform: translateX(0);
+          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+        .main {
+          margin-left: 0;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .content {
+          padding: 24px 20px 80px;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .g3 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .bottom-nav {
+          display: flex;
+        }
+        .g2 {
+          grid-template-columns: 1fr;
+        }
+        .g3 {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .do-dont {
+          grid-template-columns: 1fr;
+        }
+        .hero h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress"><div class="progress-bar" id="pbar"></div></div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sb-header">
+          <div class="sb-brand">
+            Peak Performance System<span>Shiva Krishna K · 2026</span>
+          </div>
+        </div>
+        <nav>
+          <div class="sb-section">
+            <span class="sb-label">Foundation</span>
+            <a href="#pareto" class="sb-link"
+              ><span class="sb-dot"></span>The 20% That Drives 80%</a
+            >
+            <a href="#sleep" class="sb-link"
+              ><span class="sb-dot"></span>Sleep — The Master Variable</a
+            >
+            <a href="#movement" class="sb-link"
+              ><span class="sb-dot"></span>Movement &amp; Exercise</a
+            >
+          </div>
+          <div class="sb-section">
+            <span class="sb-label">Brain &amp; Memory</span>
+            <a href="#brain-food" class="sb-link"
+              ><span class="sb-dot"></span>Brain Foods &amp; Nutrition</a
+            >
+            <a href="#avoid-food" class="sb-link"
+              ><span class="sb-dot"></span>What Hurts Performance</a
+            >
+            <a href="#hydration" class="sb-link"
+              ><span class="sb-dot"></span>Hydration &amp; Caffeine</a
+            >
+            <a href="#memory" class="sb-link"
+              ><span class="sb-dot"></span>Memory &amp; Retention Science</a
+            >
+            <a href="#focus" class="sb-link"
+              ><span class="sb-dot"></span>Deep Focus</a
+            >
+          </div>
+          <div class="sb-section">
+            <span class="sb-label">Habits &amp; Discipline</span>
+            <a href="#habits" class="sb-link"
+              ><span class="sb-dot"></span>Daily Non-Negotiables</a
+            >
+            <a href="#ritual" class="sb-link"
+              ><span class="sb-dot"></span>Morning &amp; Evening Ritual</a
+            >
+            <a href="#discipline" class="sb-link"
+              ><span class="sb-dot"></span>Building Discipline</a
+            >
+          </div>
+          <div class="sb-section">
+            <span class="sb-label">Mindset</span>
+            <a href="#stress" class="sb-link"
+              ><span class="sb-dot"></span>Stress &amp; Nervous System</a
+            >
+            <a href="#confidence" class="sb-link"
+              ><span class="sb-dot"></span>Confidence &amp; Self-Belief</a
+            >
+            <a href="#environment" class="sb-link"
+              ><span class="sb-dot"></span>Environment Design</a
+            >
+            <a href="#eliminate" class="sb-link"
+              ><span class="sb-dot"></span>What to Eliminate</a
+            >
+          </div>
+          <div class="sb-section">
+            <span class="sb-label">Summary</span>
+            <a href="#protocol" class="sb-link"
+              ><span class="sb-dot"></span>The Daily Protocol</a
+            >
+            <a href="#closing" class="sb-link"
+              ><span class="sb-dot"></span>Final Word</a
+            >
+          </div>
+        </nav>
+        <div class="sb-footer">
+          Evidence-based · Research-grounded · Practical
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <span class="badge b-sage">Peak Performance</span>
+            <span class="topbar-title"
+              >Lifestyle, Health &amp; Productivity System</span
+            >
+          </div>
+          <div class="topbar-right">
+            <button
+              class="icon-btn"
+              id="dark-btn"
+              aria-label="Toggle dark mode"
+            >
+              🌙
+            </button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="hero">
+            <div class="hero-eyebrow">
+              <span class="badge b-teal">Evidence-Based</span>
+              <span class="badge b-indigo">High ROI Only</span>
+              <span class="badge b-violet">20/80 Principle</span>
+            </div>
+            <h1>Peak Performance System</h1>
+            <p class="hero-lead">
+              Interview prep runs on the platform of your physical and mental
+              state. A sharp brain, consistent energy, and a calm nervous system
+              are not luxury additions to your plan — they are the foundation it
+              rests on. Everything here is grounded in research: neuroscience,
+              sleep science, nutrition biochemistry, habit formation, and
+              behavioral psychology. No pseudoscience. No supplements that don't
+              work. Just the 20% of changes that drive 80% of your performance
+              gains.
+            </p>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">8</div>
+              <div class="stat-label">
+                Hours sleep = 40% better memory consolidation
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-num teal">22</div>
+              <div class="stat-label">
+                Minutes walking = measurable mood lift (proven)
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-num amber">2.5L</div>
+              <div class="stat-label">
+                Water/day prevents 13% cognitive decline from dehydration
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-num violet">66</div>
+              <div class="stat-label">
+                Days average to form an automatic habit (UCL study)
+              </div>
+            </div>
+          </div>
+
+          <!-- §1 PARETO -->
+          <div class="section" id="pareto">
+            <h2>
+              <span class="s-num">§1</span>The 20% That Drives 80% of Results
+            </h2>
+            <p>
+              Most performance advice is noise. These five things, done
+              consistently, compound into a measurably different person in 45
+              days. Everything else in this guide is supporting detail.
+            </p>
+
+            <div class="impact-card">
+              <div class="impact-header">
+                <div class="impact-rank r1">1</div>
+                <div class="impact-title">
+                  <div class="impact-name">
+                    Sleep 7.5–8 hours. Non-negotiable.
+                  </div>
+                  <div class="impact-sub">
+                    The highest-leverage intervention available to a human
+                    being. Nothing else comes close.
+                  </div>
+                </div>
+                <span class="badge b-coral">Highest ROI</span>
+              </div>
+              <div class="impact-body">
+                Sleep is when your brain consolidates everything you studied
+                that day into long-term memory. The hippocampus replays the
+                day's learning during slow-wave sleep and transfers it to the
+                neocortex.
+                <strong
+                  >Cutting sleep from 8 to 6 hours reduces cognitive performance
+                  by 30% — equivalent to being legally drunk.</strong
+                >
+                You cannot study your way out of a sleep deficit. A 6-hour study
+                day with 8 hours sleep retains more than a 10-hour study day
+                with 5 hours sleep. Go to bed at the same time every night, even
+                weekends. Set a hard cutoff: no screens 45 minutes before bed.
+                This one habit carries more interview performance weight than 2
+                extra hours of studying.
+              </div>
+              <div class="impact-science">
+                📚 Matthew Walker "Why We Sleep" (2017) · Stickgold &amp; Walker
+                (2005) Nature Reviews Neuroscience · Harvard Medical School
+                Sleep &amp; Learning studies
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-header">
+                <div class="impact-rank r1">2</div>
+                <div class="impact-title">
+                  <div class="impact-name">
+                    30 minutes of movement every morning.
+                  </div>
+                  <div class="impact-sub">
+                    Increases BDNF — brain-derived neurotrophic factor — the
+                    fertiliser for new neural connections.
+                  </div>
+                </div>
+                <span class="badge b-teal">Brain Booster</span>
+              </div>
+              <div class="impact-body">
+                Exercise before studying increases blood flow to the prefrontal
+                cortex (decision-making, focus) and hippocampus (memory). BDNF
+                released during aerobic exercise literally helps neurons grow
+                and connect — John Ratey called it "Miracle-Gro for the brain."
+                <strong
+                  >A 20–30 minute brisk walk before your first study block
+                  improves focus and memory retention for the next 2–4
+                  hours.</strong
+                >
+                You don't need a gym. Walk briskly for 30 minutes after waking.
+                Leave your phone at home. Let your mind wander — this is when
+                your subconscious processes yesterday's learning and when
+                insight on stuck problems most often appears.
+              </div>
+              <div class="impact-science">
+                📚 John Ratey "Spark" (2008) · Hillman et al. (2008) Nature
+                Reviews Neuroscience · Van Praag et al. (1999) Nature
+                Neuroscience
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-header">
+                <div class="impact-rank r1">3</div>
+                <div class="impact-title">
+                  <div class="impact-name">
+                    Eat breakfast with protein within 1 hour of waking.
+                  </div>
+                  <div class="impact-sub">
+                    Sets your neurotransmitter baseline — dopamine, serotonin,
+                    acetylcholine — for the whole day.
+                  </div>
+                </div>
+                <span class="badge b-amber">Fuel</span>
+              </div>
+              <div class="impact-body">
+                Skipping breakfast or eating only simple carbs (bread, biscuits)
+                causes a blood sugar spike followed by a crash in 90–120 minutes
+                — right when you should be in your first deep study block.
+                <strong
+                  >Protein + complex carbs + fat at breakfast creates sustained
+                  glucose release for 3–4 hours of sharp focus.</strong
+                >
+                Target: 25–30g of protein at breakfast. Eggs (3 whole eggs =
+                ~18g), dal + rice, paneer, Greek yoghurt + nuts. Add a complex
+                carb: oats, brown rice, chapati. Add fat: nuts, ghee. This is
+                not a diet — it is neurochemical infrastructure for everything
+                else in your day.
+              </div>
+              <div class="impact-science">
+                📚 Gómez-Pinilla (2008) Nature Reviews Neuroscience · Benton
+                &amp; Parker (1998) Appetite · multiple breakfast-cognition RCTs
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-header">
+                <div class="impact-rank r2">4</div>
+                <div class="impact-title">
+                  <div class="impact-name">
+                    Protect 90-minute deep work blocks. No phone. No tabs.
+                  </div>
+                  <div class="impact-sub">
+                    The brain reaches peak focus at ~23 minutes and sustains it
+                    for 90 minutes before needing recovery.
+                  </div>
+                </div>
+                <span class="badge b-indigo">Focus</span>
+              </div>
+              <div class="impact-body">
+                When you shift attention (check your phone, switch tabs), your
+                brain releases a small dopamine hit that makes the distraction
+                habit stronger. Worse:
+                <strong
+                  >it takes an average of 23 minutes to fully re-enter a state
+                  of deep focus after an interruption</strong
+                >
+                (Gloria Mark, UC Irvine). In a 2-hour study block, one phone
+                check effectively costs you half the session. Phone in another
+                room. One browser tab. 90-minute blocks. This alone can double
+                the effective output of your study hours without adding a single
+                minute.
+              </div>
+              <div class="impact-science">
+                📚 Gloria Mark "Attention Span" (2023) · Cal Newport "Deep Work"
+                (2016) · Ulrich &amp; Keil (2014) attention restoration theory
+              </div>
+            </div>
+
+            <div class="impact-card">
+              <div class="impact-header">
+                <div class="impact-rank r2">5</div>
+                <div class="impact-title">
+                  <div class="impact-name">
+                    Review what you learned within 24 hours.
+                  </div>
+                  <div class="impact-sub">
+                    The Ebbinghaus forgetting curve: without review, you forget
+                    70% of new information within 24 hours.
+                  </div>
+                </div>
+                <span class="badge b-violet">Retention</span>
+              </div>
+              <div class="impact-body">
+                A single 10-minute review within 24 hours reduces decay from 70%
+                to under 20%.
+                <strong
+                  >Spending 30 minutes reviewing yesterday's material before
+                  starting today's new content is more effective than 30 extra
+                  minutes of new study.</strong
+                >
+                The optimal review schedule: Day 1 → Day 3 → Day 7 → Day 14 →
+                Day 30. Use Anki cards or write 5 key points from yesterday in a
+                notebook each morning. This is the mechanism behind spaced
+                repetition — the most research-validated technique in all of
+                learning science, bar none.
+              </div>
+              <div class="impact-science">
+                📚 Ebbinghaus (1885) · Cepeda et al. (2006) Psychological
+                Bulletin meta-analysis · Kornell (2009) Psychological Science
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §2 SLEEP -->
+          <div class="section" id="sleep">
+            <h2><span class="s-num">§2</span>Sleep — The Master Variable</h2>
+            <p>
+              Sleep is the variable that affects every other variable: memory,
+              mood, focus, immune function, stress response, creativity,
+              decision-making. It is also the most commonly sacrificed in crunch
+              periods — which is exactly backwards.
+            </p>
+
+            <div class="g2">
+              <div class="card teal">
+                <div class="card-title">Sleep hygiene essentials</div>
+                <div class="card-body">
+                  <strong>Same bed/wake time daily</strong> — even weekends.
+                  Your circadian rhythm doesn't recognise weekdays; irregularity
+                  is the single biggest disruptor. <strong>Dark room</strong> —
+                  even a crack of light reduces melatonin.
+                  <strong>Cool room (18–20°C)</strong> — your core temperature
+                  must drop 1–2°C to initiate sleep.
+                  <strong>No screens 45–60 min before bed</strong> — blue light
+                  suppresses melatonin by 50% for 3 hours after exposure.
+                </div>
+              </div>
+              <div class="card indigo">
+                <div class="card-title">Pre-sleep wind-down (30 min)</div>
+                <div class="card-body">
+                  9:30 PM: stop all study content. 9:45 PM: dim all lights
+                  (physically signals brain to produce melatonin). 10:00 PM:
+                  write tomorrow's 3 priorities — this offloads the mental
+                  rehearsal loop that keeps you awake at night. 10:15 PM: read
+                  fiction or light non-fiction. 10:30 PM: lights out. This
+                  sequence takes 60 days to feel automatic but works from day
+                  one.
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">The nap advantage</div>
+                <div class="card-body">
+                  A <strong>20-minute nap</strong> (set alarm for 25 min)
+                  between 1–3 PM restores alertness to morning levels without
+                  disrupting night sleep. NASA research: 26-minute nap → 26%
+                  improvement in performance. If you feel the post-lunch crash,
+                  nap instead of pushing through with caffeine. The crash is
+                  your circadian dip — real, physiological, not fixable by
+                  willpower. A short nap is the correct response.
+                </div>
+              </div>
+              <div class="card coral">
+                <div class="card-title">What destroys sleep quality</div>
+                <div class="card-body">
+                  <strong>Alcohol</strong> — even 1 drink cuts REM sleep by 25%,
+                  destroying memory consolidation.
+                  <strong>Caffeine after 2 PM</strong> — half-life of 5–7 hrs
+                  means 2 PM coffee = half still active at 9 PM.
+                  <strong>Irregular wake time</strong> — the biggest circadian
+                  disruptor.
+                  <strong>Intense exercise within 3 hours of bed</strong> —
+                  raises core temperature, delays sleep onset 30–90 min.
+                  <strong>Heavy dinner late</strong> — raises blood glucose,
+                  increases core temperature.
+                </div>
+              </div>
+            </div>
+
+            <div class="callout teal">
+              <span class="callout-label">The sleep-learning link</span>
+              During slow-wave sleep, your hippocampus replays the day's
+              experiences at 20x speed and transfers them to the neocortex for
+              long-term storage. During REM, your brain makes novel connections
+              between concepts — this is where insight and understanding happen.
+              The advice "sleep on a problem" is neuroscientifically accurate.
+              Study something, then sleep, then review: this three-step sequence
+              is the most effective learning protocol known.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §3 MOVEMENT -->
+          <div class="section" id="movement">
+            <h2><span class="s-num">§3</span>Movement &amp; Exercise</h2>
+            <p>
+              You already have a workout plan. Here is the cognitive performance
+              angle — why movement is not just fitness but directly upgrades
+              your study quality:
+            </p>
+
+            <div class="g3">
+              <div class="card">
+                <div class="card-icon">🚶</div>
+                <div class="card-title">Morning walk — 30 min, no phone</div>
+                <div class="card-body">
+                  Before your first study block. Natural light in the first 30
+                  min anchors your circadian rhythm and triggers cortisol to
+                  peak at the right time. The default mode network (creative,
+                  associative thinking) activates during rhythmic walking —
+                  problems you're stuck on often resolve themselves here without
+                  conscious effort.
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-icon">⏰</div>
+                <div class="card-title">Movement breaks — every 90 min</div>
+                <div class="card-body">
+                  Stand up. Walk 5 minutes. Do 10 squats or push-ups. Blood flow
+                  to the brain drops measurably after 90 minutes of sitting.
+                  These micro-breaks reset focus and actually increase total
+                  cognitive output across the day — more effective total work
+                  hours than grinding through fatigue.
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-icon">💪</div>
+                <div class="card-title">Gym plan — keep it running</div>
+                <div class="card-body">
+                  Resistance training reduces cortisol, improves sleep quality,
+                  increases testosterone and growth hormone (both support memory
+                  and energy), and provides the psychological identity of "I'm
+                  someone who takes care of myself." Don't skip gym sessions
+                  during high-stress interview periods — that is precisely when
+                  you need them most.
+                </div>
+              </div>
+            </div>
+
+            <div class="callout">
+              <span class="callout-label">The walking insight phenomenon</span>
+              Stanford research (Oppezzo &amp; Schwartz, 2014) found creative
+              output increased by 81% while walking vs sitting. Your brain in
+              "rest" during a walk is in its most associative, connective state.
+              Walk with a system design problem. Sit down to write the solution.
+              The two modes of thinking need different environments.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §4 BRAIN FOOD -->
+          <div class="section" id="brain-food">
+            <h2><span class="s-num">§4</span>Brain Foods &amp; Nutrition</h2>
+            <p>
+              Your brain is 2% of body weight but consumes 20% of your calories.
+              It runs on glucose and amino acids. The quality of fuel determines
+              the quality of output. You don't need a complicated diet — just
+              know what to eat more of, and what to avoid.
+            </p>
+
+            <div class="t-wrap">
+              <table class="ft">
+                <thead>
+                  <tr>
+                    <th>Food</th>
+                    <th>Why it helps your brain</th>
+                    <th>When &amp; how</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Eggs (whole)</strong></td>
+                    <td class="hi">
+                      Choline → acetylcholine (memory neurotransmitter). B12 for
+                      myelin. ~6g protein per egg.
+                    </td>
+                    <td>
+                      3 eggs at breakfast daily. Don't skip the yolk — all the
+                      choline is there.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Walnuts</strong></td>
+                    <td class="hi">
+                      ALA omega-3. Polyphenols reduce neuroinflammation. Shown
+                      to improve cognitive test scores in RCTs.
+                    </td>
+                    <td>
+                      Small handful (7–8) as mid-morning snack. Calorie dense —
+                      don't overeat.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Blueberries / dark berries</strong></td>
+                    <td class="hi">
+                      Anthocyanins increase blood flow to brain. Improves memory
+                      and learning speed within hours of consumption.
+                    </td>
+                    <td>
+                      100g with breakfast or pre-study. Fresh or frozen — both
+                      equally effective.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Fatty fish (salmon, sardines, mackerel)</strong>
+                    </td>
+                    <td class="hi">
+                      DHA omega-3 — primary structural fat in brain cell
+                      membranes. Reduces inflammation, improves processing
+                      speed.
+                    </td>
+                    <td>
+                      Grilled fish with rice 3–4x/week. Canned sardines are
+                      inexpensive and equally effective.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Dark chocolate (70%+)</strong></td>
+                    <td class="hi">
+                      Flavanols increase cerebral blood flow. Mild caffeine +
+                      theobromine. Magnesium for calm alertness.
+                    </td>
+                    <td>
+                      1–2 squares (20–30g) pre-study or afternoon. Not milk
+                      chocolate — flavanol content too low.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Turmeric + black pepper</strong></td>
+                    <td class="hi">
+                      Curcumin crosses blood-brain barrier, reduces
+                      neuroinflammation. Already in your diet — add black pepper
+                      (increases absorption 2000%).
+                    </td>
+                    <td>
+                      Dal tadka, sabzi, turmeric milk. Every dish with turmeric,
+                      add a pinch of black pepper.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Leafy greens (palak, methi)</strong></td>
+                    <td class="hi">
+                      Vitamin K, folate, lutein — strongly linked to better
+                      working memory and slower cognitive decline.
+                    </td>
+                    <td>
+                      One serving per day. Palak dal, methi sabzi, curry leaf
+                      tadka.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bananas</strong></td>
+                    <td class="hi">
+                      B6 → serotonin + dopamine synthesis. Natural glucose +
+                      potassium. Fast energy without crash.
+                    </td>
+                    <td>
+                      One banana pre-study or post-workout. Pair with peanut
+                      butter for slower release.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Homemade curd / Greek yoghurt</strong></td>
+                    <td class="hi">
+                      Gut-brain axis: probiotics reduce anxiety and improve mood
+                      via vagus nerve. Protein for sustained energy.
+                    </td>
+                    <td>
+                      1 cup daily with lunch. Gut health measurably affects
+                      anxiety and mood (Dinan &amp; Cryan, 2017).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Green tea</strong></td>
+                    <td class="hi">
+                      L-theanine + caffeine = calm focused alertness without
+                      coffee jitters. Increases alpha brainwaves (relaxed focus
+                      state).
+                    </td>
+                    <td>
+                      1–2 cups mid-morning. Best alternative to coffee for
+                      sustained study sessions.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §5 AVOID FOOD -->
+          <div class="section" id="avoid-food">
+            <h2>
+              <span class="s-num">§5</span>What Hurts Cognitive Performance
+            </h2>
+
+            <div class="t-wrap">
+              <table class="ft">
+                <thead>
+                  <tr>
+                    <th>Food / Habit</th>
+                    <th>Why it hurts performance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>White sugar + refined carbs</strong></td>
+                    <td class="bad">
+                      Blood glucose spike → crash in 60–90 min. Crash = brain
+                      fog, irritability, inability to focus. The "2 PM slump" is
+                      mostly sugar-driven.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Heavy oily lunch</strong></td>
+                    <td class="warn">
+                      High-fat meals divert blood to digestive system. Cognitive
+                      performance measurably drops for 2–3 hours after. Save
+                      heavy meals for dinner — not lunch.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Skipping meals</strong></td>
+                    <td class="bad">
+                      Blood glucose drops below 70 mg/dL → brain fog, inability
+                      to concentrate, anxiety. Your brain has no glucose storage
+                      — it needs a consistent supply every 3–4 hours.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Alcohol (even 1 drink)</strong></td>
+                    <td class="bad">
+                      Disrupts REM sleep even at low doses. GABA activation
+                      impairs hippocampal memory formation for 24+ hours. Avoid
+                      entirely during the 45-day preparation period.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Ultra-processed snacks (chips, biscuits)</strong>
+                    </td>
+                    <td class="warn">
+                      Zero nutritional value to the brain. Spike blood sugar,
+                      increase systemic inflammation markers. Replace with nuts,
+                      fruit, or curd.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Caffeine after 2 PM</strong></td>
+                    <td class="bad">
+                      Caffeine half-life is 5–7 hours. 2 PM coffee = half still
+                      blocking adenosine receptors at 9 PM = fragmented,
+                      lower-quality sleep = next day cognitive performance
+                      drops.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Late heavy dinner (after 8 PM)</strong></td>
+                    <td class="warn">
+                      Raises blood glucose and core temperature at precisely the
+                      wrong time for sleep onset. Light dinner before 8 PM is
+                      one of the easiest sleep quality improvements available.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="callout sage">
+              <span class="callout-label">The meal timing principle</span>
+              Eat your biggest meal at lunch, not dinner. Your digestive system
+              follows its own circadian rhythm — most efficient at midday, least
+              efficient late evening. A heavy dinner at 9 PM raises blood
+              glucose, increases body temperature, and fragments sleep. You will
+              feel the difference within 3 days of switching.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §6 HYDRATION -->
+          <div class="section" id="hydration">
+            <h2>
+              <span class="s-num">§6</span>Hydration &amp; Caffeine Strategy
+            </h2>
+
+            <div class="g2">
+              <div class="card teal">
+                <div class="card-title">
+                  💧 Water — the most underrated cognitive enhancer
+                </div>
+                <div class="card-body">
+                  A 1% drop in hydration causes measurable cognitive decline. A
+                  2% drop causes a 13% reduction in short-term memory. Most
+                  people are chronically mildly dehydrated and attribute the
+                  brain fog to something else.
+                  <strong>Target: 2.5–3L water per day.</strong> Practical
+                  system: fill a 1L bottle on your desk at 7am, 11am, and 3pm.
+                  Finish each before the next. Dark yellow urine = dehydrated.
+                  Pale yellow = correctly hydrated.
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">☕ Caffeine — how to use it right</div>
+                <div class="card-body">
+                  <strong>The 90-minute delay rule:</strong> don't drink
+                  caffeine until 90 minutes after waking. Your cortisol peaks
+                  naturally in the first 90 minutes — caffeine here builds
+                  tolerance without benefit. Use at 9–10 AM for your deep study
+                  block. <strong>Cut off at 1–2 PM.</strong> Maximum 1–2 cups
+                  per day. The L-theanine + caffeine combination (green tea, or
+                  coffee + green tea together) gives calm, focused alertness
+                  without the jitters — the most well-studied cognitive
+                  performance stack available.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §7 MEMORY -->
+          <div class="section" id="memory">
+            <h2><span class="s-num">§7</span>Memory &amp; Retention Science</h2>
+            <p>
+              The techniques with the strongest research backing for long-term
+              retention. Not reading strategies. Not highlighting. The actual
+              cognitive tools that work:
+            </p>
+
+            <div class="habit-row">
+              <div class="habit-icon">🎯</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Active Recall — test yourself, never re-read
+                </div>
+                <div class="habit-desc">
+                  Close the material. Write or say everything you remember.
+                  Check. This creates a retrieval path — each retrieval
+                  strengthens the memory trace. Re-reading creates the illusion
+                  of knowing without the path. After reading any section: close
+                  it, explain the concept out loud, then check. This single
+                  technique makes retention 2–3x better than passive review.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Memory +200%</span
+                  ><span class="htag deep">Roediger &amp; Karpicke 2006</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">📅</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Spaced Repetition — review at expanding intervals
+                </div>
+                <div class="habit-desc">
+                  Review on Day 1 → Day 3 → Day 7 → Day 14 → Day 30. Each review
+                  before forgetting resets the decay curve at a higher baseline.
+                  Use Anki (free) — it automatically schedules reviews at the
+                  optimal interval. Create one card per key concept. After 2
+                  weeks of this, you will notice you can recall Java concurrency
+                  details effortlessly. This is not magic — it is the mechanism.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Long-term retention</span
+                  ><span class="htag deep">Ebbinghaus 1885, Cepeda 2006</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">🗣️</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Feynman Technique — explain it simply
+                </div>
+                <div class="habit-desc">
+                  Pick a concept (e.g. "how ConcurrentHashMap works"). Explain
+                  it out loud as if teaching a 12-year-old. Where you stumble —
+                  those are your gaps. Go back and fill them. Repeat until
+                  explanation is smooth. This directly prepares you for the
+                  interview context where you must explain complex things
+                  clearly. Teaching is the best form of learning because
+                  simplification forces deep understanding.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Deep understanding</span
+                  ><span class="htag mood">Interview prep</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">🔗</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Interleaving — mix subjects, do not block-study
+                </div>
+                <div class="habit-desc">
+                  Studying Java for 3 hrs, then system design for 3 hrs feels
+                  efficient but leads to "blocked" learning that doesn't
+                  transfer. Interleaving — Java for 90 min, then system design
+                  90 min, then DSA 90 min — feels harder but produces
+                  significantly better retention and pattern recognition. The
+                  difficulty is the learning. Your 45-day plan already does this
+                  — lean into it.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Transfer learning</span
+                  ><span class="htag deep">Kornell &amp; Bjork 2008</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">✍️</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Write and draw by hand — not just type
+                </div>
+                <div class="habit-desc">
+                  When learning a complex concept (system design, concurrency
+                  model), draw it by hand on paper. Handwriting activates more
+                  brain regions than typing and forces summarisation (you
+                  process to select what to write). Drawing a system
+                  architecture also directly prepares you for whiteboard
+                  interviews. Buy a notebook. Use it daily for "explain by
+                  drawing." This is the single most underrated study technique
+                  among engineers.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Encoding depth</span
+                  ><span class="htag mood">Whiteboard prep</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §8 FOCUS -->
+          <div class="section" id="focus">
+            <h2><span class="s-num">§8</span>Deep Focus &amp; Concentration</h2>
+
+            <div class="g2">
+              <div class="card indigo">
+                <div class="card-title">The 90-minute ultradian rhythm</div>
+                <div class="card-body">
+                  Your brain naturally cycles through 90-minute focus–recovery
+                  periods (Peretz Lavie, chronobiology). Working with these
+                  cycles — 90 minutes fully on, 15–20 minutes fully off —
+                  produces more total output than grinding for 4 continuous
+                  hours of diminishing focus. When the timer rings, close the
+                  laptop and move. Don't "just finish this thing" — that is how
+                  the cycles break and fatigue accumulates.
+                </div>
+              </div>
+              <div class="card violet">
+                <div class="card-title">
+                  Phone = attention capital destroyed
+                </div>
+                <div class="card-body">
+                  Having a smartphone visible on the desk (even face-down, even
+                  off) reduces available cognitive capacity by 10–20% — your
+                  brain uses resources to resist checking it. The solution:
+                  phone in another room during all study blocks. This is not
+                  discipline — this is removing the trigger. Use a cheap
+                  secondary device as a study timer if needed. The best focus
+                  hack is environmental, not motivational.
+                </div>
+              </div>
+              <div class="card teal">
+                <div class="card-title">Background audio</div>
+                <div class="card-body">
+                  For deep work (new concepts): silence or brown noise. For
+                  mechanical tasks (reviewing notes, writing code you already
+                  know): lo-fi instrumental is fine. Lyrics in any language
+                  activate your language processing centres — competing directly
+                  with reading and thinking. The rule: if your task requires
+                  language, your audio should not have language.
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">The 5-4-3-2-1 start trigger</div>
+                <div class="card-body">
+                  When you sit down and feel resistant — count backwards from 5,
+                  then physically begin. Open the first page, read the first
+                  line, write the first word. Resistance is always before
+                  starting, not during. The brain's desire to avoid discomfort
+                  is strongest in the moment before action. Five seconds is the
+                  window. Count. Start. Everything else follows.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §9 HABITS -->
+          <div class="section" id="habits">
+            <h2><span class="s-num">§9</span>Daily Non-Negotiables</h2>
+            <p>
+              Six habits done every day. Small individually. Compounding
+              collectively. 45 days of all six is worth more than one week of
+              perfect performance followed by collapse.
+            </p>
+
+            <div class="habit-row">
+              <div class="habit-icon">☀️</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Morning sunlight within 30 minutes of waking
+                </div>
+                <div class="habit-desc">
+                  10–15 minutes of natural outdoor light anchors your circadian
+                  rhythm, triggers cortisol to peak at the right time, and sets
+                  your melatonin release 14–16 hours later — meaning you feel
+                  sleepy at the correct time at night. This single habit fixes
+                  most sleep timing issues. It is free, takes 10 minutes, and
+                  requires no phone. Step outside or stand by an open window
+                  while drinking water.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag body">Circadian anchor</span
+                  ><span class="htag brain">Cortisol calibration</span
+                  ><span class="htag mood">Mood baseline</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">📓</div>
+              <div class="habit-main">
+                <div class="habit-title">Morning journal — 5 minutes only</div>
+                <div class="habit-desc">
+                  Three things exactly: (1) One specific thing you are grateful
+                  for. (2) Today's single most important outcome. (3) One thing
+                  you are anxious about — name it. Anxiety named loses half its
+                  power by activating the labelling response in the prefrontal
+                  cortex (Lieberman, UCLA). This clears the mental RAM that
+                  would otherwise run in the background competing with your
+                  focus all morning.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag mood">Anxiety reduction</span
+                  ><span class="htag brain">Focus preparation</span
+                  ><span class="htag deep">Pennebaker 1997</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">🧘</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  10 minutes of breath-focused meditation
+                </div>
+                <div class="habit-desc">
+                  Not spiritual practice — nervous system regulation. Box
+                  breathing (4 counts in, hold 4, out 6) activates the
+                  parasympathetic nervous system, reduces cortisol, and directly
+                  improves prefrontal cortex function. After 10 days of daily
+                  practice, fMRI studies show measurable increases in grey
+                  matter density in the PFC. You don't need an app. Sit upright,
+                  count your breaths to 10, restart when you lose count. The
+                  practice is the returning, not the staying.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">PFC activation</span
+                  ><span class="htag mood">Cortisol reduction</span
+                  ><span class="htag deep">Hölzel et al. Harvard 2011</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">📋</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  End-of-day review + tomorrow's 3 tasks
+                </div>
+                <div class="habit-desc">
+                  Before closing the laptop: write what you accomplished, one
+                  thing that surprised you, and 3 specific tasks for tomorrow in
+                  order. This prevents the Zeigarnik effect — unfinished tasks
+                  loop through your mind during sleep, fragmenting rest. Writing
+                  them down signals to your brain they are handled and can be
+                  released. Also means you wake up with zero decision fatigue —
+                  you know exactly what to do first.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Zeigarnik closure</span
+                  ><span class="htag mood">Sleep protection</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">📵</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Phone-free first 60 minutes of every day
+                </div>
+                <div class="habit-desc">
+                  Checking notifications first thing puts you in a reactive
+                  state — responding to other people's agendas — before
+                  orienting to your own. Your first waking moments set the
+                  attention tone for the entire day. Start proactively (your
+                  plan, your priorities, your morning ritual) rather than
+                  reactively. This single habit is cited by virtually every
+                  high-performance person in research studies as the most
+                  impactful change they made. It costs nothing and starts
+                  tomorrow.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag deep">Proactive mindset</span
+                  ><span class="htag brain">Dopamine baseline</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">❄️</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Cold end to morning shower (30–60 seconds)
+                </div>
+                <div class="habit-desc">
+                  Cold water exposure triggers a 2.5x sustained increase in
+                  dopamine (not a spike — a sustained elevation lasting 2–4
+                  hours), norepinephrine (focus), and epinephrine (alertness).
+                  The deeper benefit: tolerating a controllable uncomfortable
+                  experience and calming yourself through it trains your nervous
+                  system's resilience response. Interviews are uncomfortable.
+                  Practicing discomfort tolerance daily makes you better at
+                  performing under it. Turn cold for 30–60 seconds at the end of
+                  every shower.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag brain">Dopamine +250%</span
+                  ><span class="htag mood">Resilience training</span
+                  ><span class="htag deep">Søberg et al. 2021</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §10 RITUAL -->
+          <div class="section" id="ritual">
+            <h2><span class="s-num">§10</span>Morning &amp; Evening Ritual</h2>
+            <p>
+              Rituals remove decisions. When the morning sequence is automatic,
+              you don't waste willpower deciding what to do next — you execute.
+              Build this until it feels as natural as brushing your teeth.
+            </p>
+
+            <div class="ritual-block">
+              <div class="ritual-header">
+                <div class="ritual-time-label">Morning</div>
+                <div class="ritual-title">
+                  The 75-Minute Morning Launch — before you open any study
+                  material
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">5:45</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    Wake. No phone. 500ml water immediately.
+                  </div>
+                  <div class="ritual-detail">
+                    You have been fasting 7–8 hours. Your brain is dehydrated.
+                    Rehydrate before caffeine. Step outside for 10–15 min of
+                    natural light while drinking water.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">6:00</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    5-min journal + yesterday's key learning (spaced review)
+                  </div>
+                  <div class="ritual-detail">
+                    3 gratitudes, today's most important outcome, one anxiety
+                    named. Then read your 5 key points from yesterday — this is
+                    your daily spaced repetition review built into the ritual.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">6:05</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    10-min meditation or box breathing
+                  </div>
+                  <div class="ritual-detail">
+                    4 counts in, hold 4, 6 counts out. Or simply count breaths
+                    to 10 and restart. No app required. Sit upright. The
+                    practice is returning attention when it wanders — the same
+                    skill as sustained study focus.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">6:15</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">30-min brisk walk (no phone)</div>
+                  <div class="ritual-detail">
+                    BDNF dose, cortisol calibration, creative thinking time.
+                    Hold the problem you will study today lightly in mind —
+                    solutions often surface during rhythmic movement without
+                    deliberate effort.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">6:45</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    Protein breakfast. First coffee here (not before).
+                  </div>
+                  <div class="ritual-detail">
+                    90 minutes after waking = optimal caffeine window. Your
+                    cortisol has already peaked naturally. Now caffeine adds to
+                    it rather than replacing it (which builds tolerance faster).
+                    Eat: eggs, oats, paneer, nuts.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">7:00</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    Study begins. Phone in another room.
+                  </div>
+                  <div class="ritual-detail">
+                    You have done everything that optimises your brain for
+                    learning before opening a single resource. Your first
+                    90-minute block is your highest-quality learning window of
+                    the day. Use it for the hardest new material.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ritual-block" style="margin-top: 12px">
+              <div class="ritual-header">
+                <div class="ritual-time-label">Evening</div>
+                <div class="ritual-title">
+                  The Wind-Down Protocol — protect sleep quality
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">6:00 PM</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    End all new learning. Switch to light review only.
+                  </div>
+                  <div class="ritual-detail">
+                    Your brain's ability to encode new long-term memories
+                    decreases in the evening. This is the time for writing
+                    flashcards, reviewing what you've already learned, or
+                    reading engineering blogs. Not new topics.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">7:00 PM</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    Light dinner — dal-rice, khichdi, idli-sambar.
+                  </div>
+                  <div class="ritual-detail">
+                    Finish eating before 8 PM. Light dinner = lower blood
+                    glucose at bedtime = better sleep quality = better memory
+                    consolidation = sharper tomorrow.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">9:00 PM</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    5-min end-of-day review. Write tomorrow's 3 tasks.
+                  </div>
+                  <div class="ritual-detail">
+                    Close the open loops. Your brain will stop rehearsing them
+                    during sleep once they are written. This is the most
+                    important sleep quality intervention most people never try.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">9:30 PM</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    No screens. Dim lights. Physical book or conversation.
+                  </div>
+                  <div class="ritual-detail">
+                    Melatonin is beginning to rise. Bright light and stimulating
+                    content suppress it and delay sleep onset 30–60 min. Read
+                    fiction. Kindle on warm light setting. No notifications.
+                  </div>
+                </div>
+              </div>
+              <div class="ritual-item">
+                <div class="ritual-t">10:30 PM</div>
+                <div class="ritual-content">
+                  <div class="ritual-main">
+                    Lights out. Same time every night.
+                  </div>
+                  <div class="ritual-detail">
+                    Consistency of sleep timing matters more than total hours in
+                    the short term. The same time even on weekends is more
+                    restorative than trying to "catch up" by sleeping 10 hours
+                    on Saturday (which partially works but disrupts Monday's
+                    rhythm).
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §11 DISCIPLINE -->
+          <div class="section" id="discipline">
+            <h2>
+              <span class="s-num">§11</span>Building Discipline — What It
+              Actually Is
+            </h2>
+            <p>
+              Discipline is not a personality trait. It is not willpower. It is
+              not motivation. It is a skill — specifically, the skill of
+              starting despite not feeling like it. Here is what research says
+              actually builds it:
+            </p>
+
+            <div class="g2">
+              <div class="card sage">
+                <div class="card-title">The identity shift</div>
+                <div class="card-body">
+                  "I'm trying to study" is weaker than "I'm a person who studies
+                  every morning." Behaviour follows identity. After each
+                  session, acknowledge it: "I showed up today." After 7 days:
+                  "I'm someone who shows up." This is how the brain builds
+                  self-concept, which then governs behaviour automatically —
+                  without willpower. (James Clear, Atomic Habits — this is the
+                  core mechanism.)
+                </div>
+              </div>
+              <div class="card indigo">
+                <div class="card-title">
+                  Reduce activation energy to near zero
+                </div>
+                <div class="card-body">
+                  The biggest barrier to a habit is starting it. Remove every
+                  friction: laptop open and charged the night before. Notebook
+                  and pen on the desk. First resource already open in the
+                  browser. First task already written on a sticky note. When
+                  starting requires zero decisions, you start. When it requires
+                  five small decisions, the resistance wins.
+                </div>
+              </div>
+              <div class="card violet">
+                <div class="card-title">Never miss twice</div>
+                <div class="card-body">
+                  Missing one day doesn't break a habit. Missing two days in a
+                  row does — the second miss creates a new pattern. You will
+                  miss a day during 45 days. That is expected. The rule: never
+                  let it become two consecutive days. A 30-minute session on a
+                  bad day counts. Progress over perfection is not a platitude —
+                  it is the functional definition of habit formation.
+                </div>
+              </div>
+              <div class="card teal">
+                <div class="card-title">Temptation bundling</div>
+                <div class="card-body">
+                  Only listen to your favourite podcast or music during your
+                  morning walk. Only have your favourite tea while doing your
+                  evening review. Only watch a show after completing your daily
+                  study target. The brain learns to associate the reward with
+                  the behaviour. Over time, the behaviour itself becomes
+                  rewarding. This is the mechanism that makes habits feel
+                  effortless — they pair with something already desired.
+                </div>
+              </div>
+            </div>
+
+            <div class="callout violet">
+              <span class="callout-label"
+                >On motivation — the honest truth</span
+              >
+              Motivation follows action; it does not precede it. Waiting to feel
+              motivated before studying is waiting for a bus that runs on a
+              different schedule. Do the action first. The motivation and
+              positive emotion come after the first 5–10 minutes of genuine
+              engagement. This is not a metaphor — it is the neuroscience of how
+              dopamine is released during goal-directed activity. Start.
+              Everything else follows from starting.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §12 STRESS -->
+          <div class="section" id="stress">
+            <h2>
+              <span class="s-num">§12</span>Stress &amp; Nervous System
+              Management
+            </h2>
+            <p>
+              Being laid off is a real stressor — your nervous system does not
+              distinguish between job loss and physical threat. Chronically
+              elevated cortisol impairs the hippocampus (memory), prefrontal
+              cortex (decisions), and immune system. Managing the stress
+              response is not self-care. It is performance infrastructure.
+            </p>
+
+            <div class="habit-row">
+              <div class="habit-icon">🫁</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Physiological sigh — fastest nervous system reset available
+                </div>
+                <div class="habit-desc">
+                  Double inhale through the nose (in, then in again), followed
+                  by a long slow exhale through the mouth. This deflates
+                  collapsed alveoli (air sacs in the lungs), rapidly reduces
+                  CO2, and calms the amygdala within 1–2 repetitions. Takes 5
+                  seconds. Use before an interview, when stuck on a problem,
+                  when anxiety spikes, or when you feel overwhelmed. Discovered
+                  and validated by Andrew Huberman's lab at Stanford.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag mood">Immediate calm</span
+                  ><span class="htag body">Vagus nerve</span
+                  ><span class="htag deep">Huberman Lab, Stanford</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="habit-row">
+              <div class="habit-icon">🎯</div>
+              <div class="habit-main">
+                <div class="habit-title">
+                  Name what you feel — the labelling effect
+                </div>
+                <div class="habit-desc">
+                  Neuroscience (Lieberman, UCLA) shows that labelling an emotion
+                  "I feel anxious about this interview" reduces amygdala
+                  activation measurably within seconds. Putting feelings into
+                  words down-regulates the emotional brain and activates the
+                  reasoning brain. When anxiety hits: say or write "I feel
+                  anxious because [specific thing]." Then: "What would I tell a
+                  friend feeling this way?" This is cognitive reappraisal — the
+                  most evidence-backed emotional regulation strategy available.
+                </div>
+                <div class="habit-tag">
+                  <span class="htag mood">Amygdala regulation</span
+                  ><span class="htag brain">PFC activation</span
+                  ><span class="htag deep">Lieberman et al., UCLA</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout coral">
+              <span class="callout-label"
+                >Reframe: stress as performance fuel</span
+              >
+              Kelly McGonigal (Stanford, "The Upside of Stress") documented:
+              people told "stress is performance-enhancing" before a stressful
+              task performed better and had healthier cardiovascular responses
+              than those told "stress is harmful." The stress response itself
+              didn't change — the interpretation did. When you feel
+              pre-interview anxiety: "My body is preparing me. This arousal is
+              energy I can direct." This reframe, done sincerely and repeatedly,
+              measurably improves performance. It is accurate biology — the
+              sympathetic nervous system activation that causes anxiety is the
+              same one that creates peak athletic performance.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §13 CONFIDENCE -->
+          <div class="section" id="confidence">
+            <h2><span class="s-num">§13</span>Confidence &amp; Self-Belief</h2>
+
+            <div class="g2">
+              <div class="card indigo">
+                <div class="card-title">
+                  Evidence-based confidence — not affirmations
+                </div>
+                <div class="card-body">
+                  Confidence that sticks comes from accumulated evidence of your
+                  own competence. Every evening, write one specific thing you
+                  did well today — solved a LeetCode problem, explained a
+                  concept clearly, completed your plan. After 14 days, you have
+                  14 concrete data points. When doubt hits ("I can't do this"),
+                  read the list back. You did. 14 times. This is how real
+                  confidence is built — not by telling yourself you're great,
+                  but by generating evidence and reading it back to yourself.
+                </div>
+              </div>
+              <div class="card teal">
+                <div class="card-title">
+                  Your experience is your unfair advantage
+                </div>
+                <div class="card-body">
+                  You have 12 years of real production experience. Fresh
+                  graduates study the same topics from the same books and have
+                  zero real data. Every question is an opportunity to anchor
+                  your answer in reality: "In my last role, we implemented this
+                  because..." — that sentence is worth 10 textbook answers.
+                  Interviewers remember the candidate who connected theory to
+                  production reality. You have more production reality to
+                  connect than 95% of candidates in any given pool.
+                </div>
+              </div>
+              <div class="card violet">
+                <div class="card-title">Posture is physiological feedback</div>
+                <div class="card-body">
+                  Upright posture → higher testosterone, lower cortisol
+                  (physiological, not metaphorical). Slouching compresses the
+                  diaphragm → shallow breathing → anxiety feedback loop.
+                  Practice sitting and standing upright. Before an interview,
+                  stand tall with shoulders back for 2 minutes in a private
+                  space. The nervous system reads proprioceptive signals from
+                  your body continuously — give it signals that say "I am
+                  capable and prepared."
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">Rejection as calibration data</div>
+                <div class="card-body">
+                  Every interview rejection is a signal, not a verdict. After
+                  each one, ask the recruiter for feedback (many will share).
+                  Map it to a specific gap. Fill the gap. Interview again. The
+                  first 3–5 interviews after years of not interviewing will not
+                  represent your ceiling. Treat them as training data, not
+                  make-or-break tests. Your performance will improve measurably
+                  with each iteration as you re-learn the format and pacing.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §14 ENVIRONMENT -->
+          <div class="section" id="environment">
+            <h2><span class="s-num">§14</span>Environment Design</h2>
+            <p>
+              "You don't rise to the level of your goals, you fall to the level
+              of your systems." Your environment shapes behaviour without
+              willpower — design it deliberately:
+            </p>
+
+            <ul class="checklist">
+              <li>
+                <strong
+                  >Dedicated study space — same chair, same desk, every
+                  day.</strong
+                >
+                Your brain learns to associate the environment with focus. Don't
+                study in bed (your brain associates the bed with sleep). One
+                space, one purpose.
+              </li>
+              <li>
+                <strong>Desk clutter = cognitive load.</strong> Only what you
+                need: one notebook, one pen, one water bottle, one resource.
+                Visual clutter competes for the attention you need for learning.
+                Clear the desk the night before.
+              </li>
+              <li>
+                <strong>Prepare the environment the night before.</strong>
+                Laptop charged and open. Notebook on a fresh page. First task
+                written on a sticky note. When you sit down in the morning, you
+                start — you don't set up. The "set up first" phase is where many
+                mornings silently collapse.
+              </li>
+              <li>
+                <strong
+                  >Communicate your study hours to your household — once,
+                  clearly.</strong
+                >
+                "Between 7 AM and 1 PM I'm unavailable unless it's urgent."
+                Interruptions are devastating (23-minute recovery window). Your
+                family respects what you communicate clearly; they cannot read
+                what you don't say.
+              </li>
+              <li>
+                <strong>Capture notebook on the desk.</strong> When intrusive
+                thoughts appear during study ("I need to call that person"),
+                write them in the notebook and return to work immediately. The
+                thought is captured and won't loop. Check the notebook only
+                during breaks.
+              </li>
+              <li>
+                <strong>Decent noise-isolating earphones.</strong> Even a basic
+                pair playing brown noise blocks construction sounds, TV in the
+                next room, household conversations. Worth it immediately,
+                available for under ₹500.
+              </li>
+            </ul>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §15 ELIMINATE -->
+          <div class="section" id="eliminate">
+            <h2>
+              <span class="s-num">§15</span>What to Eliminate — The Subtractives
+            </h2>
+            <p>
+              These have high cognitive cost and low return. Removing even two
+              or three frees up hours of mental bandwidth daily:
+            </p>
+
+            <div class="g2">
+              <div class="card coral">
+                <div class="card-title">📱 Mindless social media scrolling</div>
+                <div class="card-body">
+                  Instagram Reels, YouTube Shorts, Twitter feeds — engineered to
+                  maximise context switches per minute, rewiring your prefrontal
+                  cortex to demand novelty constantly. After 60 minutes of
+                  scrolling, sitting with one topic for 90 minutes feels
+                  physically difficult — because it is, neurologically. Set
+                  20-minute social media windows (after lunch, after dinner) and
+                  use app timers to enforce them. Not forever — for 45 days.
+                </div>
+              </div>
+              <div class="card coral">
+                <div class="card-title">📰 Excessive news</div>
+                <div class="card-body">
+                  News is optimised for anxiety, not information. 90% of what
+                  you absorb in 30 minutes of news will be irrelevant to you in
+                  a week and will negatively impact your mood for hours. Check
+                  news once per day, maximum 15 minutes, after your study
+                  session. The important things will reach you through other
+                  people. The fear of "missing something" is the news industry's
+                  core product — and it has real cognitive costs when you need
+                  your brain to perform.
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">
+                  🔔 Decision fatigue from trivial choices
+                </div>
+                <div class="card-body">
+                  Every decision depletes the same mental resource you use for
+                  complex reasoning. Automate trivial decisions: rotating
+                  breakfast options, same gym days, same study start time, same
+                  morning sequence. Design trivial decisions away. This is not
+                  laziness — it is conserving executive function for the
+                  decisions that actually matter: the system design question,
+                  the algorithm problem, the behavioural story.
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">
+                  💬 Energy-draining social environments
+                </div>
+                <div class="card-body">
+                  Minimise time with people who increase your anxiety about the
+                  job search, trigger comparison, or pull you into rumination.
+                  This is temporary. Maximise time with people who are calm,
+                  constructive, and make you feel capable. Energy states are
+                  genuinely contagious — a 30-minute call with the wrong person
+                  can cost you 2 hours of focus. A 30-minute call with the right
+                  person can rebuild a whole day.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- §16 PROTOCOL -->
+          <div class="section" id="protocol">
+            <h2>
+              <span class="s-num">§16</span>The Daily Protocol — All Together
+            </h2>
+
+            <div class="do-dont">
+              <div class="card teal" style="padding: 20px">
+                <div
+                  class="card-title"
+                  style="font-size: 15px; margin-bottom: 14px"
+                >
+                  ✅ Do Every Single Day
+                </div>
+                <ul>
+                  <li>☀️ Sunlight + no phone for first 60 min</li>
+                  <li>📓 5-min journal: gratitude, intention, anxiety</li>
+                  <li>🧘 10-min breathwork or meditation</li>
+                  <li>🚶 30-min brisk walk before first study block</li>
+                  <li>🍳 Protein breakfast within 1 hr of waking</li>
+                  <li>💧 2.5L+ water throughout the day</li>
+                  <li>📵 Phone in another room during study blocks</li>
+                  <li>⏱️ 90-min deep work blocks with real breaks</li>
+                  <li>❄️ Cold shower end: 30–60 sec</li>
+                  <li>📋 End-of-day review + tomorrow's 3 tasks</li>
+                  <li>📖 Review yesterday's key learning in the morning</li>
+                  <li>🌙 Same bedtime. No screens 45 min prior.</li>
+                </ul>
+              </div>
+              <div class="card coral" style="padding: 20px">
+                <div
+                  class="card-title"
+                  style="font-size: 15px; margin-bottom: 14px"
+                >
+                  ❌ Protect Against Every Day
+                </div>
+                <ul>
+                  <li>📱 No social media before 1 PM</li>
+                  <li>📰 No news scrolling — 15 min max after study</li>
+                  <li>☕ No caffeine before 9 AM or after 2 PM</li>
+                  <li>🚫 No phone visible during study blocks</li>
+                  <li>📚 No new study topics after 6 PM</li>
+                  <li>🍔 No heavy lunch (costs 2–3 hrs of cognition)</li>
+                  <li>🍷 No alcohol during the 45-day period</li>
+                  <li>💻 No studying in bed</li>
+                  <li>🔔 No notifications during 90-min blocks</li>
+                  <li>😴 No sleep below 7 hours — ever</li>
+                  <li>🔄 No "one more thing" that breaks the ritual</li>
+                  <li>📺 No screens 45+ min before sleep</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="callout sage" style="margin-top: 24px">
+              <span class="callout-label">The compound effect</span>
+              Every one of these changes is small in isolation. Sleep alone
+              won't transform your performance. Exercise alone won't. The
+              flashcard review alone won't. But all of them together, sustained
+              for 45 days, compound into a measurably different cognitive
+              baseline. People who apply these protocols consistently report
+              that by week 3, studying feels easier, retention feels sharper,
+              and anxiety feels more manageable — not because the external
+              situation changed, but because the internal platform changed. You
+              are not just preparing for an interview. You are building a
+              high-performance operating system for your life.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- CLOSING -->
+          <div class="section" id="closing">
+            <div class="motivation-block">
+              <h2>This is not a temporary patch. This is who you become.</h2>
+              <p>
+                Everything in this document compounds beyond the 45 days. The
+                sleep routine, the morning walk, the protein breakfast, the
+                phone-free study blocks, the daily review, the cold shower, the
+                journal — these are not interview tricks. They are the operating
+                habits of people who perform consistently at a high level for
+                decades.
+              </p>
+              <div class="quote">
+                "Take care of your body. It's the only place you have to live."
+                — Jim Rohn
+              </div>
+              <p>
+                You are in a rough moment. It is allowed to feel hard. But you
+                have something genuinely valuable: real paid time to rebuild, 12
+                years of experience to draw on, and enough self-awareness to
+                know that how you use these 45 days matters far more than the
+                fact that they came from a layoff.
+              </p>
+              <p>
+                Sleep 8 hours. Walk every morning. Eat real food. Study with
+                full attention. Review what you learn. Apply for jobs every day.
+                Take the cold shower. Do the reps.
+              </p>
+              <p
+                style="
+                  font-weight: 600;
+                  color: #fff;
+                  font-size: 15px;
+                  margin-top: 4px;
+                "
+              >
+                In 45 days, you will not just be better prepared for interviews.
+                You will be a sharper, calmer, more capable version of yourself
+                — regardless of what any hiring manager decides. That version of
+                you finds the right role. Go build it.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /content -->
+
+        <nav class="bottom-nav">
+          <a class="bnav-item active" href="#pareto"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg
+            >Top 5</a
+          >
+          <a class="bnav-item" href="#brain-food"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg
+            >Food</a
+          >
+          <a class="bnav-item" href="#habits"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M9 11l3 3L22 4" />
+              <path
+                d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+              /></svg
+            >Habits</a
+          >
+          <a class="bnav-item" href="#protocol"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" /></svg
+            >Protocol</a
+          >
+        </nav>
+      </main>
+    </div>
+
+    <script>
+      const darkBtn = document.getElementById("dark-btn");
+      const html = document.documentElement;
+      if (localStorage.getItem("ms-dark") === "1") {
+        html.classList.add("dark");
+        darkBtn.textContent = "☀️";
+      }
+      darkBtn.addEventListener("click", () => {
+        const on = html.classList.toggle("dark");
+        darkBtn.textContent = on ? "☀️" : "🌙";
+        localStorage.setItem("ms-dark", on ? "1" : "0");
+      });
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      document.getElementById("hamburger").addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("active");
+      });
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("active");
+      });
+      document.querySelectorAll(".sb-link").forEach((l) =>
+        l.addEventListener("click", () => {
+          if (window.innerWidth < 960) {
+            sidebar.classList.remove("open");
+            overlay.classList.remove("active");
+          }
+        }),
+      );
+      const sections = document.querySelectorAll(".section[id]");
+      const links = document.querySelectorAll(".sb-link");
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              links.forEach((l) => l.classList.remove("active"));
+              const l = document.querySelector(
+                '.sb-link[href="#' + e.target.id + '"]',
+              );
+              if (l) l.classList.add("active");
+            }
+          });
+        },
+        { rootMargin: "-20% 0px -70% 0px" },
+      );
+      sections.forEach((s) => obs.observe(s));
+      const pbar = document.getElementById("pbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const d = document.documentElement.scrollHeight - window.innerHeight;
+          pbar.style.width = (d > 0 ? (window.scrollY / d) * 100 : 0) + "%";
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

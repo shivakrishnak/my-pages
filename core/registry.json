@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-30T12:23:22Z",
-  "count": 13,
+  "generated": "2026-07-01T03:57:47Z",
+  "count": 15,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -118,6 +118,24 @@
       "order": 1,
       "path": "pages/mastery/90day-plan.html",
       "modified": "2026-06-30"
+    },
+    {
+      "title": "45-Day Interview Prep Roadmap · KSK",
+      "description": "",
+      "category": "Work",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/work/interview-prep-roadmap.html",
+      "modified": "2026-06-30"
+    },
+    {
+      "title": "Peak Performance System · Shiva Krishna K",
+      "description": "",
+      "category": "Work",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/work/peak-performance-system.html",
+      "modified": "2026-07-01"
     }
   ]
 }
