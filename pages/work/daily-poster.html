@@ -1,0 +1,1278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Operating System · Shiva Krishna K</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Tokens (shell.css v3 aligned) ── */
+      :root {
+        --bg: #f8f7f5;
+        --surface: #ffffff;
+        --border: #e4e0d8;
+        --border-2: #cdc8bf;
+        --text-1: #1c1917;
+        --text-2: #3d3935;
+        --text-3: #706b62;
+        --text-4: #a39e95;
+        --indigo: #4f46e5;
+        --indigo-dk: #3730a3;
+        --indigo-lt: #eef2ff;
+        --teal: #0d9373;
+        --teal-lt: #ecfdf5;
+        --teal-dk: #065f46;
+        --amber: #b45309;
+        --amber-lt: #fffbeb;
+        --amber-dk: #78350f;
+        --coral: #dc2626;
+        --coral-lt: #fef2f2;
+        --coral-dk: #991b1b;
+        --sage: #4a7c59;
+        --sage-lt: #f0fdf4;
+        --sage-dk: #166534;
+        --violet: #7c3aed;
+        --violet-lt: #f5f3ff;
+        --violet-dk: #4c1d95;
+        --font: "Inter", -apple-system, system-ui, sans-serif;
+      }
+
+      /* ── Screen base ── */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        background: #d4d0ca;
+        font-family: var(--font);
+      }
+      body {
+        font-family: var(--font);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── Print controls (screen only) ── */
+      .screen-controls {
+        text-align: center;
+        padding: 24px 16px 16px;
+        font-family: var(--font);
+      }
+      .screen-controls h2 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #3d3935;
+        margin-bottom: 6px;
+      }
+      .screen-controls p {
+        font-size: 13px;
+        color: #706b62;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+      .btn-print {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #4f46e5;
+        color: #fff;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: var(--font);
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .btn-print:hover {
+        background: #3730a3;
+      }
+
+      /* ── Poster page wrapper ── */
+      .poster {
+        width: 297mm; /* A3 landscape width  */
+        min-height: 210mm; /* A3 landscape height */
+        margin: 0 auto 40px;
+        background: var(--surface);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        gap: 0;
+        page-break-after: always;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* ── Poster header (full width) ── */
+      .poster-header {
+        grid-column: 1 / -1;
+        background: var(--text-1);
+        color: #fff;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .ph-left {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .ph-title {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #fff;
+        line-height: 1;
+      }
+      .ph-sub {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .ph-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ph-pill {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .ph-pill.indigo {
+        background: rgba(79, 70, 229, 0.25);
+        color: #a5b4fc;
+      }
+      .ph-pill.teal {
+        background: rgba(13, 147, 115, 0.25);
+        color: #6ee7b7;
+      }
+      .ph-pill.amber {
+        background: rgba(180, 83, 9, 0.25);
+        color: #fcd34d;
+      }
+      .ph-pill.coral {
+        background: rgba(220, 38, 38, 0.25);
+        color: #fca5a5;
+      }
+
+      /* ── Mantras strip ── */
+      .mantras {
+        grid-column: 1 / -1;
+        background: var(--indigo);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+        padding: 0;
+      }
+      .mantra {
+        padding: 7px 18px;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .mantra:last-child {
+        border-right: none;
+      }
+      .mantra strong {
+        color: #fff;
+      }
+
+      /* ── Column layout ── */
+      .col {
+        padding: 14px 16px;
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .col:last-child {
+        border-right: none;
+      }
+
+      /* ── Section label ── */
+      .section-label {
+        font-size: 8.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-4);
+        padding-bottom: 5px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2px;
+      }
+
+      /* ── Time block (schedule) ── */
+      .schedule-block {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .srow {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        padding: 5px 7px;
+        border-radius: 5px;
+        transition: background 0.1s;
+      }
+      .srow.morning {
+        background: rgba(255, 251, 235, 0.7);
+      }
+      .srow.work {
+        background: rgba(238, 242, 255, 0.7);
+      }
+      .srow.break {
+        background: rgba(240, 253, 244, 0.7);
+      }
+      .srow.evening {
+        background: rgba(245, 243, 255, 0.7);
+      }
+      .srow.night {
+        background: rgba(28, 25, 23, 0.04);
+      }
+      .srow-time {
+        font-size: 8.5px;
+        font-weight: 700;
+        color: var(--text-4);
+        min-width: 54px;
+        flex-shrink: 0;
+        padding-top: 1px;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.3;
+      }
+      .srow-content {
+        flex: 1;
+      }
+      .srow-main {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-1);
+        line-height: 1.3;
+      }
+      .srow-sub {
+        font-size: 9.5px;
+        color: var(--text-3);
+        line-height: 1.4;
+        margin-top: 1px;
+      }
+      .srow-icon {
+        font-size: 13px;
+        flex-shrink: 0;
+        line-height: 1.3;
+      }
+
+      /* ── Habit checklist ── */
+      .habit-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .hitem {
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
+        padding: 5px 7px;
+        border-radius: 5px;
+      }
+      .hitem.do {
+        background: var(--teal-lt);
+      }
+      .hitem.dont {
+        background: var(--coral-lt);
+      }
+      .hitem.brain {
+        background: var(--violet-lt);
+      }
+      .hbox {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        flex-shrink: 0;
+        margin-top: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 8px;
+        font-weight: 700;
+      }
+      .hbox.do {
+        border: 1.5px solid var(--teal);
+        color: var(--teal);
+      }
+      .hbox.dont {
+        border: 1.5px solid var(--coral);
+        color: var(--coral);
+        background: var(--coral-lt);
+      }
+      .hbox.brain {
+        border: 1.5px solid var(--violet);
+        color: var(--violet);
+      }
+      .hitem-text {
+        flex: 1;
+      }
+      .hitem-main {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: var(--text-1);
+        line-height: 1.3;
+      }
+      .hitem-sub {
+        font-size: 9px;
+        color: var(--text-3);
+        line-height: 1.4;
+        margin-top: 1px;
+      }
+
+      /* ── Priority items ── */
+      .priority-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .pitem {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 5px 7px;
+        border-radius: 5px;
+        background: var(--indigo-lt);
+      }
+      .pnum {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: var(--indigo);
+        color: #fff;
+        font-size: 8px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+      }
+      .pnum.teal {
+        background: var(--teal);
+      }
+      .pnum.amber {
+        background: var(--amber);
+      }
+      .pnum.violet {
+        background: var(--violet);
+      }
+      .pnum.coral {
+        background: var(--coral);
+      }
+      .pnum.sage {
+        background: var(--sage);
+      }
+      .pnum.indigo {
+        background: var(--indigo);
+      }
+      .pitem.teal {
+        background: var(--teal-lt);
+      }
+      .pitem.amber {
+        background: var(--amber-lt);
+      }
+      .pitem.violet {
+        background: var(--violet-lt);
+      }
+      .pitem.coral {
+        background: var(--coral-lt);
+      }
+      .pitem.sage {
+        background: var(--sage-lt);
+      }
+      .pitem-text {
+        flex: 1;
+      }
+      .pitem-main {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-1);
+        line-height: 1.3;
+      }
+      .pitem-sub {
+        font-size: 9px;
+        color: var(--text-3);
+        line-height: 1.4;
+        margin-top: 1px;
+      }
+
+      /* ── Mantras / quotes ── */
+      .quote-block {
+        background: var(--text-1);
+        border-radius: 7px;
+        padding: 10px 12px;
+      }
+      .quote-text {
+        font-size: 10.5px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.55;
+        font-style: italic;
+      }
+      .quote-attr {
+        font-size: 8.5px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 4px;
+      }
+
+      .mini-quote {
+        border-left: 2.5px solid var(--indigo);
+        background: var(--indigo-lt);
+        padding: 6px 10px;
+        border-radius: 0 5px 5px 0;
+      }
+      .mini-quote p {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--indigo-dk);
+        line-height: 1.5;
+      }
+
+      /* ── Food grid ── */
+      .food-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+      }
+      .food-item {
+        padding: 5px 7px;
+        border-radius: 5px;
+        background: var(--teal-lt);
+      }
+      .food-item.avoid {
+        background: var(--coral-lt);
+      }
+      .food-name {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--text-1);
+      }
+      .food-why {
+        font-size: 8.5px;
+        color: var(--text-3);
+        line-height: 1.35;
+        margin-top: 1px;
+      }
+
+      /* ── Stat chips ── */
+      .stat-row {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .stat-chip {
+        padding: 5px 9px;
+        border-radius: 20px;
+        text-align: center;
+        flex: 1;
+        min-width: 50px;
+      }
+      .stat-chip.indigo {
+        background: var(--indigo-lt);
+      }
+      .stat-chip.teal {
+        background: var(--teal-lt);
+      }
+      .stat-chip.amber {
+        background: var(--amber-lt);
+      }
+      .stat-chip.violet {
+        background: var(--violet-lt);
+      }
+      .sc-num {
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--indigo);
+      }
+      .sc-num.teal {
+        color: var(--teal);
+      }
+      .sc-num.amber {
+        color: var(--amber);
+      }
+      .sc-num.violet {
+        color: var(--violet);
+      }
+      .sc-label {
+        font-size: 7.5px;
+        color: var(--text-3);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 1.3;
+      }
+
+      /* ── Study block visual ── */
+      .study-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .sv-row {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .sv-time {
+        font-size: 8.5px;
+        font-weight: 700;
+        color: var(--text-4);
+        min-width: 44px;
+        font-variant-numeric: tabular-nums;
+      }
+      .sv-bar {
+        flex: 1;
+        height: 20px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+      }
+      .sv-bar.deep {
+        background: var(--indigo);
+      }
+      .sv-bar.review {
+        background: var(--teal);
+      }
+      .sv-bar.code {
+        background: var(--violet);
+      }
+      .sv-bar.design {
+        background: var(--amber);
+      }
+      .sv-bar.mock {
+        background: var(--coral);
+      }
+      .sv-bar.apply {
+        background: var(--sage);
+      }
+      .sv-bar.break {
+        background: var(--border-2);
+      }
+      .sv-label {
+        font-size: 8.5px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .sv-bar.break .sv-label {
+        color: var(--text-3);
+      }
+
+      /* ── Footer ── */
+      .poster-footer {
+        grid-column: 1 / -1;
+        background: var(--bg);
+        padding: 8px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+      }
+      .pf-left {
+        font-size: 9px;
+        color: var(--text-4);
+        font-weight: 500;
+      }
+      .pf-right {
+        display: flex;
+        gap: 12px;
+      }
+      .pf-mantra {
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--text-3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* ── Divider ── */
+      .mini-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 2px 0;
+      }
+
+      /* ════════════════════════════════════
+   PRINT STYLES
+   ════════════════════════════════════ */
+      @media print {
+        html {
+          background: white;
+        }
+        .screen-controls {
+          display: none;
+        }
+        .poster {
+          width: 100%;
+          min-height: 0;
+          margin: 0;
+          box-shadow: none;
+          page-break-inside: avoid;
+        }
+        @page {
+          size: A3 landscape;
+          margin: 8mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen-controls">
+      <h2>Daily Operating System — Print Poster</h2>
+      <p>
+        A3 Landscape. Print at high quality and hang where you study every day.
+      </p>
+      <button class="btn-print" onclick="window.print()">
+        🖨️ Print / Save as PDF
+      </button>
+    </div>
+
+    <div class="poster">
+      <!-- ══ HEADER ══ -->
+      <div class="poster-header">
+        <div class="ph-left">
+          <div class="ph-title">Daily Operating System</div>
+          <div class="ph-sub">
+            Shiva Krishna K · 45-Day Peak Performance · Jun–Aug 2026
+          </div>
+        </div>
+        <div class="ph-right">
+          <span class="ph-pill indigo">Consistency &gt; Intensity</span>
+          <span class="ph-pill teal">Systems &gt; Motivation</span>
+          <span class="ph-pill amber">Progress &gt; Perfection</span>
+          <span class="ph-pill coral">Showing Up &gt; Optimising</span>
+        </div>
+      </div>
+
+      <!-- ══ MANTRAS STRIP ══ -->
+      <div class="mantras">
+        <div class="mantra">☀️ <strong>Sunlight</strong> first 30 min</div>
+        <div class="mantra">💧 <strong>2.5L</strong> water daily</div>
+        <div class="mantra">🧠 <strong>Sleep 8h</strong> non-negotiable</div>
+        <div class="mantra">📵 <strong>Phone away</strong> during study</div>
+        <div class="mantra">
+          ⏱️ <strong>90-min blocks</strong> then real break
+        </div>
+        <div class="mantra">
+          📋 <strong>Review yesterday</strong> before new content
+        </div>
+        <div class="mantra">💪 <strong>Never miss twice</strong></div>
+        <div class="mantra">🎯 <strong>Apply 2+ jobs</strong> every day</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+       COL 1 — MORNING RITUAL + DAILY SCHEDULE
+       ══════════════════════════════════════════ -->
+      <div class="col">
+        <div class="section-label">
+          Morning Launch Sequence (60 min before study)
+        </div>
+        <div class="schedule-block">
+          <div class="srow morning">
+            <div class="srow-icon">☀️</div>
+            <div class="srow-content">
+              <div class="srow-main">5:45 — Wake. No phone. 500ml water.</div>
+              <div class="srow-sub">
+                Step outside for natural light. Rehydrate before caffeine.
+              </div>
+            </div>
+          </div>
+          <div class="srow morning">
+            <div class="srow-icon">📓</div>
+            <div class="srow-content">
+              <div class="srow-main">5:55 — 5-min Journal</div>
+              <div class="srow-sub">
+                ① Gratitude (specific) ② Today's single most important outcome ③
+                Name one anxiety. Then review yesterday's 5 key learnings.
+              </div>
+            </div>
+          </div>
+          <div class="srow morning">
+            <div class="srow-icon">🧘</div>
+            <div class="srow-content">
+              <div class="srow-main">6:05 — 10-min breathwork</div>
+              <div class="srow-sub">
+                Box breathing 4-4-4-4. Count breaths to 10. Restart when lost.
+                Activates PFC.
+              </div>
+            </div>
+          </div>
+          <div class="srow morning">
+            <div class="srow-icon">🚶</div>
+            <div class="srow-content">
+              <div class="srow-main">6:15 — 30-min brisk walk (no phone)</div>
+              <div class="srow-sub">
+                BDNF dose. Think loosely about today's hard problem. Don't force
+                solutions.
+              </div>
+            </div>
+          </div>
+          <div class="srow morning">
+            <div class="srow-icon">🍳</div>
+            <div class="srow-content">
+              <div class="srow-main">
+                6:45 — Protein breakfast + first coffee
+              </div>
+              <div class="srow-sub">
+                25-30g protein. Complex carb. Fat. Coffee only after 90 min of
+                waking.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Study Day Schedule</div>
+        <div class="study-visual">
+          <div class="sv-row">
+            <div class="sv-time">7:00–9:30</div>
+            <div class="sv-bar deep">
+              <div class="sv-label">
+                🧠 Deep Study Block 1 — New theory (hardest material first)
+              </div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">9:30–9:45</div>
+            <div class="sv-bar break">
+              <div class="sv-label">Break — walk, stretch, no screen</div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">9:45–12:00</div>
+            <div class="sv-bar code">
+              <div class="sv-label">
+                💻 DSA Coding — 2–3 LeetCode mediums in Java
+              </div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">12:00–1:00</div>
+            <div class="sv-bar apply">
+              <div class="sv-label">
+                🎯 Lunch + Apply 2–3 jobs + 1 recruiter message
+              </div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">1:00–3:00</div>
+            <div class="sv-bar design">
+              <div class="sv-label">
+                🏗️ Block 2 — System design OR Java depth (alternate)
+              </div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">3:00–3:30</div>
+            <div class="sv-bar break">
+              <div class="sv-label">Real break — snack, walk, reset energy</div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">3:30–5:30</div>
+            <div class="sv-bar mock">
+              <div class="sv-label">
+                🎤 Mock interview / Behavioral STAR prep / Recording
+              </div>
+            </div>
+          </div>
+          <div class="sv-row">
+            <div class="sv-time">5:30–6:00</div>
+            <div class="sv-bar review">
+              <div class="sv-label">
+                📋 Daily review — 5 key learnings → flashcards
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Evening Wind-Down</div>
+        <div class="schedule-block">
+          <div class="srow evening">
+            <div class="srow-icon">🌆</div>
+            <div class="srow-content">
+              <div class="srow-main">
+                6:00 PM — Stop new learning. Review only.
+              </div>
+            </div>
+          </div>
+          <div class="srow evening">
+            <div class="srow-icon">🍽️</div>
+            <div class="srow-content">
+              <div class="srow-main">7:00 PM — Light dinner before 8 PM</div>
+              <div class="srow-sub">
+                Dal-rice, khichdi, idli-sambar. Heavy dinner fragments sleep.
+              </div>
+            </div>
+          </div>
+          <div class="srow night">
+            <div class="srow-icon">📋</div>
+            <div class="srow-content">
+              <div class="srow-main">
+                9:00 PM — 5-min review + tomorrow's 3 tasks
+              </div>
+              <div class="srow-sub">
+                Closes open loops so brain can stop rehearsing during sleep.
+              </div>
+            </div>
+          </div>
+          <div class="srow night">
+            <div class="srow-icon">📵</div>
+            <div class="srow-content">
+              <div class="srow-main">
+                9:30 PM — No screens. Dim lights. Fiction only.
+              </div>
+            </div>
+          </div>
+          <div class="srow night">
+            <div class="srow-icon">🌙</div>
+            <div class="srow-content">
+              <div class="srow-main">
+                10:30 PM — Lights out. Same time every night.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+       COL 2 — HABITS + BRAIN FUEL + MEMORY
+       ══════════════════════════════════════════ -->
+      <div class="col">
+        <div class="section-label">Daily Non-Negotiables — Do Every Day</div>
+        <div class="habit-list">
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                ☀️ Sunlight in first 30 min of waking
+              </div>
+              <div class="hitem-sub">
+                Anchors circadian rhythm. Sets cortisol peak at right time.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                📓 5-min journal: gratitude · intention · anxiety
+              </div>
+              <div class="hitem-sub">
+                Labelling anxiety reduces amygdala activation within seconds.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">🧘 10-min meditation / breathwork</div>
+              <div class="hitem-sub">
+                PFC activation. Measurable grey matter increase after 10 days.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">🚶 30-min brisk walk before study</div>
+              <div class="hitem-sub">
+                BDNF release. Improves focus + memory for next 2–4 hours.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                🍳 Protein breakfast (25–30g) within 1 hr
+              </div>
+              <div class="hitem-sub">
+                Sets dopamine, serotonin, acetylcholine baseline for the day.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">💧 2.5L+ water throughout the day</div>
+              <div class="hitem-sub">
+                2% dehydration = 13% memory decline. Fill 1L bottle at 7am,
+                11am, 3pm.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">❄️ Cold shower end — 30–60 seconds</div>
+              <div class="hitem-sub">
+                Dopamine +250% sustained 2–4 hrs. Trains stress resilience.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                📋 End-of-day review + 3 tasks for tomorrow
+              </div>
+              <div class="hitem-sub">
+                Zeigarnik closure — written tasks stop looping during sleep.
+              </div>
+            </div>
+          </div>
+          <div class="hitem do">
+            <div class="hbox do">✓</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                🌙 Lights out 10:30 PM. Same time daily.
+              </div>
+              <div class="hitem-sub">
+                Consistency of sleep timing matters more than total hours.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Protect Against — Every Day</div>
+        <div class="habit-list">
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">📱 No social media before 1 PM</div>
+              <div class="hitem-sub">
+                Rewires PFC to demand novelty. Destroys 90-min focus capacity.
+              </div>
+            </div>
+          </div>
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                ☕ No caffeine before 9 AM or after 2 PM
+              </div>
+              <div class="hitem-sub">
+                90-min delay = cortisol synergy. After 2 PM = fragmented sleep.
+              </div>
+            </div>
+          </div>
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                📵 No phone visible during study blocks
+              </div>
+              <div class="hitem-sub">
+                Visible phone reduces cognitive capacity 10–20% even face-down.
+              </div>
+            </div>
+          </div>
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                🍔 No heavy lunch (costs 2–3 hrs of cognition)
+              </div>
+            </div>
+          </div>
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">
+                🍷 No alcohol (cuts REM sleep 25%, impairs memory 24h+)
+              </div>
+            </div>
+          </div>
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">📺 No screens 45 min before sleep</div>
+            </div>
+          </div>
+          <div class="hitem dont">
+            <div class="hbox dont">✕</div>
+            <div class="hitem-text">
+              <div class="hitem-main">😴 Never less than 7 hours sleep</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Science Behind the Numbers</div>
+        <div class="stat-row">
+          <div class="stat-chip indigo">
+            <div class="sc-num">8h</div>
+            <div class="sc-label">Sleep = 40% better memory</div>
+          </div>
+          <div class="stat-chip teal">
+            <div class="sc-num teal">30m</div>
+            <div class="sc-label">Walk = 2–4hr focus boost</div>
+          </div>
+          <div class="stat-chip amber">
+            <div class="sc-num amber">23m</div>
+            <div class="sc-label">To refocus after 1 interruption</div>
+          </div>
+          <div class="stat-chip violet">
+            <div class="sc-num violet">70%</div>
+            <div class="sc-label">Forgotten in 24h without review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+       COL 3 — BRAIN FOOD + MEMORY TECHNIQUES + MINDSET
+       ══════════════════════════════════════════ -->
+      <div class="col">
+        <div class="section-label">Brain Fuel — Eat More Of These</div>
+        <div class="food-grid">
+          <div class="food-item">
+            <div class="food-name">🥚 Eggs (3 daily)</div>
+            <div class="food-why">
+              Choline → acetylcholine. Memory neurotransmitter. Don't skip yolk.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🫐 Blueberries / berries</div>
+            <div class="food-why">
+              Anthocyanins → blood flow to brain. Memory boost within hours.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🐟 Fatty fish 3–4x/wk</div>
+            <div class="food-why">
+              DHA omega-3 — structural fat in brain cell membranes.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🌰 Walnuts (handful)</div>
+            <div class="food-why">
+              ALA omega-3 + polyphenols. Reduces neuroinflammation.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🍫 Dark choc 70%+</div>
+            <div class="food-why">
+              Flavanols + cerebral blood flow. 1–2 squares pre-study.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🫙 Curd / yoghurt</div>
+            <div class="food-why">
+              Gut-brain axis. Probiotics reduce anxiety via vagus nerve.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🌿 Palak / methi daily</div>
+            <div class="food-why">
+              Vitamin K, folate, lutein — working memory and brain health.
+            </div>
+          </div>
+          <div class="food-item">
+            <div class="food-name">🍵 Green tea</div>
+            <div class="food-why">
+              L-theanine + caffeine = calm focus. Alpha brainwave state.
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Avoid — Hurts Cognitive Performance</div>
+        <div class="food-grid">
+          <div class="food-item avoid">
+            <div class="food-name">🚫 White sugar / refined carbs</div>
+            <div class="food-why">
+              Glucose spike → crash in 60–90 min. Brain fog, irritability.
+            </div>
+          </div>
+          <div class="food-item avoid">
+            <div class="food-name">🚫 Heavy oily lunch</div>
+            <div class="food-why">
+              Diverts blood to digestion. Cognitive drop for 2–3 hours after.
+            </div>
+          </div>
+          <div class="food-item avoid">
+            <div class="food-name">🚫 Skipping meals</div>
+            <div class="food-why">
+              Brain glucose drops → fog, anxiety. No glucose storage in brain.
+            </div>
+          </div>
+          <div class="food-item avoid">
+            <div class="food-name">🚫 Late heavy dinner (9PM+)</div>
+            <div class="food-why">
+              Raises core temp at wrong time. Fragments sleep quality.
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Memory Techniques — Use These Every Day</div>
+        <div class="priority-list">
+          <div class="pitem indigo">
+            <div class="pnum indigo">1</div>
+            <div class="pitem-text">
+              <div class="pitem-main">
+                Active Recall — close material, explain from memory first
+              </div>
+              <div class="pitem-sub">
+                2–3x better retention than re-reading. Always test before
+                checking.
+              </div>
+            </div>
+          </div>
+          <div class="pitem teal">
+            <div class="pnum teal">2</div>
+            <div class="pitem-text">
+              <div class="pitem-main">
+                Spaced Repetition — Day 1 → 3 → 7 → 14 → 30
+              </div>
+              <div class="pitem-sub">
+                Review yesterday's 5 key points every morning. Use Anki.
+              </div>
+            </div>
+          </div>
+          <div class="pitem violet">
+            <div class="pnum violet">3</div>
+            <div class="pitem-text">
+              <div class="pitem-main">
+                Feynman — explain it as if teaching a 12-year-old
+              </div>
+              <div class="pitem-sub">
+                Where you stumble = your gap. Fill gap. Repeat until smooth.
+              </div>
+            </div>
+          </div>
+          <div class="pitem amber">
+            <div class="pnum amber">4</div>
+            <div class="pitem-text">
+              <div class="pitem-main">
+                Draw by hand — never just type complex concepts
+              </div>
+              <div class="pitem-sub">
+                Handwriting encodes deeper. Whiteboard prep built in.
+              </div>
+            </div>
+          </div>
+          <div class="pitem sage">
+            <div class="pnum sage">5</div>
+            <div class="pitem-text">
+              <div class="pitem-main">
+                Interleave subjects — Java 90m → System Design 90m → DSA
+              </div>
+              <div class="pitem-sub">
+                Harder but produces significantly better transfer and recall.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-divider"></div>
+        <div class="section-label">Mindset Anchors</div>
+
+        <div class="quote-block">
+          <div class="quote-text">
+            "Motivation follows action — it doesn't precede it. Do the action
+            first. The motivation comes after the first 5 minutes of starting.
+            Count 5-4-3-2-1 and begin."
+          </div>
+          <div class="quote-attr">
+            Mel Robbins · Neuroscience of habit formation
+          </div>
+        </div>
+
+        <div class="mini-quote" style="margin-top: 6px">
+          <p>
+            🫁 Anxiety spike? Double inhale through nose, long exhale out mouth.
+            2 reps. Works in 5 seconds. (Physiological sigh — Huberman Lab)
+          </p>
+        </div>
+
+        <div
+          class="mini-quote"
+          style="
+            margin-top: 4px;
+            border-color: var(--teal);
+            background: var(--teal-lt);
+          "
+        >
+          <p style="color: var(--teal-dk)">
+            😰 Feeling stressed? Name it: "I feel anxious because ___."
+            Labelling reduces amygdala activation immediately. Then ask: "What
+            would I tell a friend feeling this?"
+          </p>
+        </div>
+
+        <div
+          class="mini-quote"
+          style="
+            margin-top: 4px;
+            border-color: var(--amber);
+            background: var(--amber-lt);
+          "
+        >
+          <p style="color: var(--amber-dk)">
+            🔄 Missed yesterday? That's allowed. The rule:
+            <strong>never miss twice.</strong> A 30-minute session counts.
+            Progress over perfection is the mechanism, not the metaphor.
+          </p>
+        </div>
+
+        <div
+          class="mini-quote"
+          style="
+            margin-top: 4px;
+            border-color: var(--violet);
+            background: var(--violet-lt);
+          "
+        >
+          <p style="color: var(--violet-dk)">
+            💪 Interview anxiety = "My body is preparing me. This arousal is
+            energy I can direct." Stress reframed as fuel measurably improves
+            performance. (Kelly McGonigal, Stanford)
+          </p>
+        </div>
+      </div>
+
+      <!-- ══ FOOTER ══ -->
+      <div class="poster-footer">
+        <div class="pf-left">
+          Shiva Krishna K · Personal Knowledge Hub · Start: 29 Jun 2026 · Target
+          offer: 13 Aug 2026 · Print this. Hang it. Read it daily.
+        </div>
+        <div class="pf-right">
+          <span class="pf-mantra">🧠 Consistency &gt; Intensity</span>
+          <span class="pf-mantra">⚡ Systems &gt; Motivation</span>
+          <span class="pf-mantra">✅ Showing Up &gt; Optimising</span>
+        </div>
+      </div>
+    </div>
+    <!-- /poster -->
+  </body>
+</html>

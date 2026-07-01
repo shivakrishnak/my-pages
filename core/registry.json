@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-01T03:57:47Z",
-  "count": 15,
+  "generated": "2026-07-01T06:29:50Z",
+  "count": 16,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -127,6 +127,15 @@
       "order": 999,
       "path": "pages/work/interview-prep-roadmap.html",
       "modified": "2026-06-30"
+    },
+    {
+      "title": "Daily Operating System · Shiva Krishna K",
+      "description": "",
+      "category": "Work",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/work/daily-poster.html",
+      "modified": "2026-07-01"
     },
     {
       "title": "Peak Performance System · Shiva Krishna K",
