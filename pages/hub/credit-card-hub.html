@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credit Card Command Center | Personal Knowledge Hub</title>
+    <meta
+      name="description"
+      content="Every credit card in one place — fees, benefits, lounge access, and closure recommendations."
+    />
+    <script src="../../core/init.js"></script>
+    <style>
+      /* Page-specific styles only. Never touches shell.css. */
+
+      .cc-fee-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: var(--radius-pill);
+        white-space: nowrap;
+      }
+      .cc-fee-badge.fee {
+        background: var(--coral-lt);
+        color: var(--coral-dk);
+      }
+      .cc-fee-badge.free {
+        background: var(--sage-lt);
+        color: var(--sage-dk);
+      }
+
+      .cc-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-3);
+        flex-wrap: wrap;
+        margin-bottom: var(--space-1);
+      }
+      .cc-card-title-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .cc-card-name {
+        font-size: 15.5px;
+        font-weight: 700;
+        color: var(--text-1);
+      }
+      .cc-card-meta {
+        font-size: 11.5px;
+        color: var(--text-4);
+      }
+
+      .cc-quickfacts {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-2);
+        margin: var(--space-3) 0;
+      }
+      .cc-quickfact {
+        background: var(--bg-2);
+        border-radius: var(--radius-sm);
+        padding: var(--space-2) var(--space-3);
+      }
+      .cc-quickfact-label {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: var(--tracking-caps);
+        text-transform: uppercase;
+        color: var(--text-4);
+        margin-bottom: 2px;
+      }
+      .cc-quickfact-val {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--text-1);
+        line-height: 1.4;
+      }
+
+      .cc-reco {
+        margin-top: var(--space-3);
+        padding-top: var(--space-3);
+        border-top: 1px dashed var(--border-2);
+        font-size: 12.5px;
+        line-height: var(--leading-relaxed);
+        color: var(--text-2);
+      }
+      .cc-reco strong {
+        color: var(--text-1);
+      }
+
+      .cc-total-fee-box {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 640px) {
+        .cc-quickfacts {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body
+    data-layout="full"
+    data-title="Credit Card Command Center"
+    data-brand="Personal Knowledge Hub"
+    data-badge="Finance"
+    data-badge-color="indigo"
+    data-toc="true"
+  >
+    <div id="page-content">
+      <header class="ms-hero">
+        <div class="ms-hero-eyebrow">
+          <span class="ms-hero-eyebrow-dot"></span>
+          FINANCE · CREDIT CARD PORTFOLIO
+        </div>
+        <h1>Credit Card Command Center</h1>
+        <p class="ms-hero-lead">
+          Every credit card you hold, in one place — annual fees, fee-waiver
+          thresholds, lounge access, and reward structure, verified against
+          current issuer terms as of July 2026. Built to answer one question
+          fast:
+          <strong
+            >which cards are earning their keep, and which ones should
+            go?</strong
+          >
+        </p>
+        <div class="ms-hero-meta">
+          <span>11 cards tracked</span>
+          <span class="ms-hero-meta-sep">·</span>
+          <span>8 carry an annual fee</span>
+          <span class="ms-hero-meta-sep">·</span>
+          <span>Last verified: July 2026</span>
+        </div>
+      </header>
+
+      <section class="ms-section" id="overview">
+        <h2><span class="ms-section-num">01</span>The Bottom Line</h2>
+        <p>
+          Of your 11 cards, <strong>3 are genuinely lifetime free</strong> (no
+          action needed) and <strong>8 carry an annual fee</strong> — some
+          waivable with realistic spend, one with no waiver at all. If every
+          fee-bearing card went unwaived this cycle, you'd be paying roughly
+          <strong>₹11,500–₹12,500 (+GST)</strong> across the portfolio just to
+          keep them open.
+        </p>
+
+        <div class="ms-callout coral">
+          <span class="ms-callout-label">Read this first</span>
+          A card only earns its annual fee if two things are true: you can
+          comfortably clear its spend-waiver threshold through spending you'd do
+          anyway, <em>and</em> its benefits (lounge access, cashback rate,
+          milestone vouchers) still match what you actually use. Two of your
+          cards — Axis Flipkart and HDFC Regalia Gold — were devalued in 2025–26
+          (lounge access reduced or made spend-conditional), so it's worth
+          re-checking whether they still clear that bar.
+        </div>
+
+        <div class="ms-grid-4">
+          <div class="ms-stat-card">
+            <div class="ms-stat-num indigo">11</div>
+            <div class="ms-stat-label">Total cards</div>
+          </div>
+          <div class="ms-stat-card">
+            <div class="ms-stat-num coral">8</div>
+            <div class="ms-stat-label">Have annual fees</div>
+          </div>
+          <div class="ms-stat-card">
+            <div class="ms-stat-num teal">3</div>
+            <div class="ms-stat-label">Lifetime free</div>
+          </div>
+          <div class="ms-stat-card">
+            <div class="ms-stat-num amber">1</div>
+            <div class="ms-stat-label">Fee with no waiver option</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-section" id="at-a-glance">
+        <h2>
+          <span class="ms-section-num">02</span>At a Glance — All 11 Cards
+        </h2>
+        <p>
+          Sorted by bank. Fee status is flagged so the fee-bearing cards jump
+          out immediately.
+        </p>
+
+        <div class="ms-table-wrap">
+          <table class="ms-table">
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th>Opened</th>
+                <th>Fee Status</th>
+                <th>Annual Fee</th>
+                <th>Waiver Spend</th>
+                <th>Lounge Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Amex Membership Rewards (MRCC)</strong></td>
+                <td class="lo">06/2023</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="bad">₹4,500 + GST</td>
+                <td>₹1.5L/yr (50% off at ₹90k–1.49L)</td>
+                <td class="lo">None</td>
+              </tr>
+              <tr>
+                <td><strong>Axis Flipkart Credit Card</strong></td>
+                <td class="lo">10/2020</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="med">₹500 + GST</td>
+                <td>₹3.5L/yr</td>
+                <td class="bad">Removed Jun 2025</td>
+              </tr>
+              <tr>
+                <td><strong>Axis SuperMoney RuPay</strong></td>
+                <td class="lo">11/2025</td>
+                <td><span class="cc-fee-badge free">Free</span></td>
+                <td class="hi">₹0 — lifetime free</td>
+                <td>—</td>
+                <td class="lo">None</td>
+              </tr>
+              <tr>
+                <td><strong>HDFC Regalia Gold</strong></td>
+                <td class="lo">11/2025</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="bad">₹2,500 + GST</td>
+                <td>₹4L/yr</td>
+                <td>3/qtr domestic (needs ₹60k prior qtr) + 6 intl/yr</td>
+              </tr>
+              <tr>
+                <td><strong>HDFC Tata Neu Infinity</strong></td>
+                <td class="lo">04/2025</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="med">₹1,499 + GST</td>
+                <td>₹3L/yr</td>
+                <td>8/yr domestic (needs ₹50k/qtr) + 4 intl/yr</td>
+              </tr>
+              <tr>
+                <td><strong>HDFC Swiggy Credit Card</strong></td>
+                <td class="lo">05/2025</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="med">₹500 + GST</td>
+                <td>₹2L/yr</td>
+                <td class="lo">None</td>
+              </tr>
+              <tr>
+                <td><strong>HSBC Platinum (Visa)</strong></td>
+                <td class="lo">06/2023</td>
+                <td><span class="cc-fee-badge free">Free</span></td>
+                <td class="hi">₹0 — lifetime free</td>
+                <td>—</td>
+                <td class="lo">None</td>
+              </tr>
+              <tr>
+                <td><strong>ICICI Amazon Pay</strong></td>
+                <td class="lo">06/2023</td>
+                <td><span class="cc-fee-badge free">Free</span></td>
+                <td class="hi">₹0 — lifetime free</td>
+                <td>—</td>
+                <td class="lo">None</td>
+              </tr>
+              <tr>
+                <td><strong>Yes First Preferred</strong></td>
+                <td class="lo">11/2018</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="med">₹999 + GST</td>
+                <td>
+                  ~₹2.5L–4L/yr (verify — oldest card, terms may have shifted)
+                </td>
+                <td>2/qtr domestic + 4 intl/yr (Priority Pass)</td>
+              </tr>
+              <tr>
+                <td><strong>SBI SimplyCLICK</strong></td>
+                <td class="lo">10/2024</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="med">₹499 + GST</td>
+                <td>₹1L/yr</td>
+                <td class="lo">None</td>
+              </tr>
+              <tr>
+                <td><strong>IndusInd CRED RuPay</strong></td>
+                <td class="lo">05/2026</td>
+                <td><span class="cc-fee-badge fee">Has Fee</span></td>
+                <td class="bad">₹499 + GST (2nd yr+)</td>
+                <td class="bad">No waiver available</td>
+                <td class="lo">None (Priority Pass chargeable)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="ms-section" id="closure-review">
+        <h2>
+          <span class="ms-section-num">03</span>Fee-Bearing Cards — Closure
+          Review
+        </h2>
+        <p>
+          These 8 cards cost you money unless you clear their waiver spend.
+          Ranked roughly by how strong the case is to <em>keep</em> paying for
+          them — weakest case first.
+        </p>
+
+        <div class="ms-alert coral">
+          <span>
+            <strong>Highest-priority review:</strong> IndusInd CRED (no waiver
+            exists at any spend level) and Amex MRCC (highest fee, no lounge
+            access, needs ₹1.5L spend just to zero out).
+          </span>
+        </div>
+
+        <div class="ms-card coral" style="margin-top: var(--space-4)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name"
+                >1. IndusInd Bank CRED RuPay Credit Card</span
+              >
+              <span class="cc-card-meta"
+                >Opened 05/2026 · Newest card in the portfolio</span
+              >
+            </div>
+            <span class="ms-badge coral">Strongest closure case</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹499 + GST (from yr 2)</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver</div>
+              <div class="cc-quickfact-val">None at any spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Lounge</div>
+              <div class="cc-quickfact-val">None (chargeable only)</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Core reward</div>
+              <div class="cc-quickfact-val">5% CRED app / e-com</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's flagged:</strong> This is the only card in your
+            wallet where the annual fee is <em>structurally permanent</em> —
+            there's no spend threshold that removes it. The 5% reward rate only
+            applies to e-commerce and CRED-app transactions, capped at 5,000
+            points/cycle, and best value requires redeeming through CRED Travel.
+            If you're not routing meaningful spend through the CRED app
+            specifically, this card is a guaranteed ~₹499+GST/year cost with a
+            thin upside. <br /><strong>Recommendation:</strong> Close unless
+            you're an active, regular CRED app user.
+          </div>
+        </div>
+
+        <div class="ms-card coral" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name"
+                >2. American Express Membership Rewards (MRCC)</span
+              >
+              <span class="cc-card-meta"
+                >Opened 06/2023 · Highest annual fee in the portfolio</span
+              >
+            </div>
+            <span class="ms-badge coral">Review closely</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹4,500 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Full waiver</div>
+              <div class="cc-quickfact-val">₹1.5L/yr spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Partial waiver</div>
+              <div class="cc-quickfact-val">50% off at ₹90k–1.49L</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Lounge</div>
+              <div class="cc-quickfact-val">None</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's flagged:</strong> Highest fee of any card you hold,
+            and it doesn't offer lounge access even at that price. Value depends
+            entirely on hitting the ₹20,000/month + 4×₹1,500 transaction
+            milestones consistently, then redeeming MR points via the 18/24
+            Karat Gold Collection (Taj vouchers) or Marriott Bonvoy transfer —
+            both of which require deliberate effort, not passive spending.
+            <br /><strong>Recommendation:</strong> Keep only if you can
+            realistically clear ₹1.5L/year on this specific card
+            <em>and</em> you actively redeem via Taj vouchers or Marriott
+            transfers. Otherwise, the effective cost is high for what you get.
+          </div>
+        </div>
+
+        <div class="ms-card amber" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name"
+                >3. Axis Bank Flipkart Credit Card</span
+              >
+              <span class="cc-card-meta"
+                >Opened 10/2020 · Devalued June 2025</span
+              >
+            </div>
+            <span class="ms-badge amber">Devalued — reassess</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹500 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver</div>
+              <div class="cc-quickfact-val">₹3.5L/yr spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Lounge</div>
+              <div class="cc-quickfact-val">Removed 20 Jun 2025</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Core reward</div>
+              <div class="cc-quickfact-val">5% Flipkart, 7.5% Myntra</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's flagged:</strong> The card's original headline
+            benefit — 4 complimentary domestic lounge visits/year — was
+            discontinued in June 2025. What's left is a cashback card with
+            quarterly caps (₹4,000 per category) and a long exclusion list
+            (rent, utilities, insurance, fuel, education, EMI, gift cards). The
+            ₹3.5L waiver threshold is comparatively steep for an entry-level
+            card that no longer has a travel perk. <br /><strong
+              >Recommendation:</strong
+            >
+            Keep only if you're a heavy, regular Flipkart/Myntra shopper who'll
+            clear the cashback caps most months. If your Flipkart spend is
+            occasional, the lifetime-free Amazon Pay ICICI card already in your
+            wallet covers similar ground with zero fee risk.
+          </div>
+        </div>
+
+        <div class="ms-card amber" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name">4. HDFC Regalia Gold</span>
+              <span class="cc-card-meta"
+                >Opened 11/2025 · Lounge access tightened Jul 2026</span
+              >
+            </div>
+            <span class="ms-badge amber">Devalued — reassess</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹2,500 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver</div>
+              <div class="cc-quickfact-val">₹4L/yr spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Domestic lounge</div>
+              <div class="cc-quickfact-val">3/qtr, needs ₹60k prior qtr</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Intl lounge</div>
+              <div class="cc-quickfact-val">6/yr, unconditional</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's flagged:</strong> Until July 2026, this card gave
+            12 free domestic lounge visits a year with no spend condition — one
+            of its main draws at this fee point. As of 1 Jul 2026, domestic
+            lounge access requires ₹60,000 spend in the
+            <em>preceding quarter</em>, and the base reward rate also dropped
+            slightly (5 pts/₹200 vs the earlier 4 pts/₹150). The 6 free
+            international visits via Priority Pass are unaffected. <br /><strong
+              >Recommendation:</strong
+            >
+            Keep if you consistently spend ₹60k+/quarter on this card anyway
+            (then lounge access is essentially free) or if you travel
+            internationally often enough to value the unconditional Priority
+            Pass visits. If domestic lounge access was the main reason you hold
+            this card and your spend doesn't clear ₹60k/quarter, the value
+            proposition has weakened.
+          </div>
+        </div>
+
+        <div class="ms-card indigo" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name">5. Yes First Preferred</span>
+              <span class="cc-card-meta"
+                >Opened 11/2018 · Oldest card in the portfolio</span
+              >
+            </div>
+            <span class="ms-badge indigo">Verify terms</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹999 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver (as reported)</div>
+              <div class="cc-quickfact-val">₹2.5L–4L/yr, sources vary</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Domestic lounge</div>
+              <div class="cc-quickfact-val">2/qtr</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Intl lounge</div>
+              <div class="cc-quickfact-val">4/yr via Priority Pass</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's flagged:</strong> Not devalued as far as public
+            sources show, but it's your oldest card (opened 2018) and
+            third-party sources disagree on the exact waiver spend threshold — a
+            sign the terms may have been revised since you first got it. It
+            still carries genuinely useful benefits (both domestic and
+            international lounge access at a sub-₹1,000 fee, which is
+            competitive). <br /><strong>Recommendation:</strong> Don't close
+            this one reflexively — it's arguably your best value-for-fee travel
+            card. But call Yes Bank or check the app to confirm the
+            <em>current</em>
+            waiver threshold and lounge terms before assuming the old numbers
+            still apply.
+          </div>
+        </div>
+
+        <div class="ms-card teal" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name"
+                >6. HDFC Tata Neu Infinity ("NeuCard Infinity")</span
+              >
+              <span class="cc-card-meta">Opened 04/2025</span>
+            </div>
+            <span class="ms-badge teal">Likely keep</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹1,499 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver</div>
+              <div class="cc-quickfact-val">₹3L/yr spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Lounge</div>
+              <div class="cc-quickfact-val">8 domestic + 4 intl/yr</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Core reward</div>
+              <div class="cc-quickfact-val">Up to 10% NeuCoins</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's here:</strong> Not devalued, still offers a wide
+            lounge allowance (8 domestic + 4 international/year) plus strong
+            rewards across a genuinely broad merchant list — BigBasket, Croma,
+            Westside, Air India, Titan, Tanishq, Tata 1mg, Tata Play, Cult.fit.
+            <br /><strong>Recommendation:</strong> Keep if you shop across the
+            Tata ecosystem at all regularly — the ₹3L waiver is achievable and
+            the lounge allowance alone is worth more than the fee for a frequent
+            domestic traveller.
+          </div>
+        </div>
+
+        <div class="ms-card teal" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name">7. HDFC Swiggy Credit Card</span>
+              <span class="cc-card-meta">Opened 05/2025</span>
+            </div>
+            <span class="ms-badge teal">Likely keep</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹500 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver</div>
+              <div class="cc-quickfact-val">₹2L/yr spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Lounge</div>
+              <div class="cc-quickfact-val">None</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Core reward</div>
+              <div class="cc-quickfact-val">10% Swiggy, 5% online</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's here:</strong> Low fee, low waiver bar, and a
+            genuinely high cashback rate (10% on all Swiggy spends — food,
+            Instamart, Dineout, Genie — capped ₹1,500/month). Easily pays for
+            itself with even modest regular Swiggy use, plus the 3-month Swiggy
+            One membership on activation. <br /><strong>Recommendation:</strong>
+            Keep if you use Swiggy at all regularly. It's one of the cheapest
+            ways to earn meaningful cashback on food delivery and quick-commerce
+            in your wallet.
+          </div>
+        </div>
+
+        <div class="ms-card teal" style="margin-top: var(--space-3)">
+          <div class="cc-card-head">
+            <div class="cc-card-title-wrap">
+              <span class="cc-card-name">8. SBI SimplyCLICK</span>
+              <span class="cc-card-meta">Opened 10/2024</span>
+            </div>
+            <span class="ms-badge teal">Likely keep</span>
+          </div>
+          <div class="cc-quickfacts">
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Annual Fee</div>
+              <div class="cc-quickfact-val">₹499 + GST</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Waiver</div>
+              <div class="cc-quickfact-val">₹1L/yr spend</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Lounge</div>
+              <div class="cc-quickfact-val">None</div>
+            </div>
+            <div class="cc-quickfact">
+              <div class="cc-quickfact-label">Core reward</div>
+              <div class="cc-quickfact-val">10X (2.5%) partner brands</div>
+            </div>
+          </div>
+          <div class="cc-reco">
+            <strong>Why it's here:</strong> Lowest fee of any fee-bearing card,
+            and the ₹1L waiver threshold is the easiest to clear in the whole
+            portfolio — roughly ₹8,300/month of online spend. Reward value is
+            modest compared to true cashback cards, but the near-zero risk of
+            paying the fee makes it low-stakes to keep. <br /><strong
+              >Recommendation:</strong
+            >
+            Keep — it's functionally close to free in practice, and the
+            milestone e-vouchers (₹2,000 each at ₹1L and ₹2L spend) add a bit of
+            extra value.
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-section" id="free-cards">
+        <h2>
+          <span class="ms-section-num">04</span>Lifetime Free Cards — No Action
+          Needed
+        </h2>
+        <p>
+          These 3 cards carry zero ongoing cost. Keep them regardless of usage
+          level — there's no downside to holding a free card.
+        </p>
+
+        <div class="ms-grid-3">
+          <div class="ms-card sage">
+            <div class="ms-card-title">Axis SuperMoney RuPay</div>
+            <div class="ms-card-body">
+              Opened 11/2025. FD-backed, lifetime free. 3% cashback on UPI via
+              the super.money app (capped to match your other-spend cashback
+              since Jan 2026), 1% on everything else.
+            </div>
+            <div class="ms-card-meta">
+              <span class="ms-badge sage">₹0 fee</span>
+            </div>
+          </div>
+          <div class="ms-card sage">
+            <div class="ms-card-title">HSBC Platinum (Visa)</div>
+            <div class="ms-card-body">
+              Opened 06/2023. No joining or annual fee, ever. Modest 2 pts/₹150
+              base rate, but points convert to air miles across 14+
+              airline/hotel partners at 2:1 — useful as a slow-accumulate miles
+              card.
+            </div>
+            <div class="ms-card-meta">
+              <span class="ms-badge sage">₹0 fee</span>
+            </div>
+          </div>
+          <div class="ms-card sage">
+            <div class="ms-card-title">ICICI Amazon Pay</div>
+            <div class="ms-card-body">
+              Opened 06/2023. Lifetime free. 5% cashback on Amazon.in for Prime
+              members (3% non-Prime), 2% at Amazon Pay partner merchants, 1%
+              elsewhere — one of the strongest genuinely-free cashback cards
+              available in India.
+            </div>
+            <div class="ms-card-meta">
+              <span class="ms-badge sage">₹0 fee</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-section" id="full-details">
+        <h2>
+          <span class="ms-section-num">05</span>Full Card-by-Card Reference
+        </h2>
+        <p>
+          Complete benefit breakdown for every card, for whenever you need the
+          details.
+        </p>
+
+        <details class="ms-accordion">
+          <summary>
+            American Express Membership Rewards Credit Card (MRCC) — Opened
+            06/2023
+          </summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> Joining ₹1,000+GST, renewal ₹4,500+GST
+                from year 2. Full waiver at ₹1.5L annual spend; 50% waiver
+                between ₹90,000–₹1,49,999.
+              </li>
+              <li>
+                <strong>Base rewards:</strong> 1 MR point per ₹50 spent,
+                excluding fuel, utilities, insurance, and cash transactions.
+              </li>
+              <li>
+                <strong>Milestones:</strong> 1,000 bonus MR points for 4
+                transactions of ₹1,500+ in a calendar month; another 1,000 bonus
+                MR points for spending ₹20,000+ in a calendar month. Both need
+                one-time enrollment.
+              </li>
+              <li>
+                <strong>Redemption:</strong> Best value via the 18K/24K Gold
+                Collection (Amazon Pay, Flipkart, Myntra, Taj Hotel vouchers) or
+                1:1 transfer to Marriott Bonvoy. Avoid statement credit /
+                pay-with-points — both undervalue points at ~25p each.
+              </li>
+              <li><strong>Lounge access:</strong> None.</li>
+              <li>
+                <strong>Fuel:</strong> 0% convenience fee at HPCL pumps under
+                ₹5,000; standard surcharges apply elsewhere.
+              </li>
+              <li><strong>Note:</strong> Points never expire.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>Axis Bank Flipkart Credit Card — Opened 10/2020</summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> ₹500+GST joining and annual. Waived on
+                ₹3.5L+ annual spend (rent and wallet-load spends excluded from
+                the waiver calculation).
+              </li>
+              <li>
+                <strong>Rewards:</strong> 5% cashback on Flipkart and Cleartrip,
+                7.5% on Myntra (each capped ~₹4,000/quarter), 4% on preferred
+                partners (Swiggy, Uber, PVR, cult.fit), 1% on all other eligible
+                spends.
+              </li>
+              <li>
+                <strong>Lounge access:</strong> Discontinued as of 20 June 2025
+                (previously 4 complimentary domestic visits/year).
+              </li>
+              <li>
+                <strong>Exclusions:</strong> No cashback on utilities, telecom,
+                education, rent, insurance, government payments, fuel, wallet
+                loading, gold/jewellery, EMI transactions, or Flipkart/Myntra
+                gift cards.
+              </li>
+              <li>
+                <strong>Other:</strong> 1% fuel surcharge waiver (₹400–₹4,000
+                spend range, max ₹400/cycle). Dining Delights program via
+                EazyDiner, up to 15% off (max ₹500/month).
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>
+            Axis Bank SuperMoney RuPay Credit Card — Opened 11/2025
+          </summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> None — lifetime free, no joining or
+                annual fee.
+              </li>
+              <li>
+                <strong>Structure:</strong> FD-backed (secured) card; credit
+                limit is typically up to 90% of the linked fixed deposit.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 3% cashback on UPI payments via the
+                super.money app; 1% unlimited on all other eligible UPI and
+                non-UPI spends. Since 1 Jan 2026, the 3% super.money cashback is
+                capped to whatever you earn from other UPI/non-UPI spend in the
+                same cycle (minimum ₹100 cap if other cashback is below ₹100).
+              </li>
+              <li>
+                <strong>Other:</strong> 1% fuel surcharge waiver (₹400–₹4,000,
+                max ₹400/cycle). EDGE Reward Points also accrue on eligible
+                transactions.
+              </li>
+              <li>
+                <strong>Note:</strong> Card access is invite-only through the
+                super.money app.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>HDFC Regalia Gold Credit Card — Opened 11/2025</summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> ₹2,500+GST joining and renewal. Waived on
+                ₹4L+ annual spend.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 5 reward points per ₹200 spent
+                (revised from 4 pts/₹150 on 15 May 2026 — a slight effective
+                rate cut to ~1.25%). 5X accelerated rewards on Myntra, Marks &
+                Spencer, Nykaa, and Reliance Digital.
+              </li>
+              <li>
+                <strong>Lounge access:</strong> From 1 July 2026 — 3
+                complimentary domestic lounge visits per quarter, but only if
+                you spent ₹60,000+ in the <em>preceding</em> quarter. 6
+                complimentary international lounge visits per year via Priority
+                Pass remain unconditional.
+              </li>
+              <li>
+                <strong>Milestones:</strong> ₹1,500 gift voucher per quarter on
+                ₹1.5L quarterly spend; ₹5,000 flight voucher on ₹7.5L annual
+                spend (vouchers can't be combined in a single booking).
+              </li>
+              <li>
+                <strong>Welcome benefits:</strong> Complimentary Swiggy One and
+                MMT Black Gold memberships.
+              </li>
+              <li>
+                <strong>New (2026):</strong> "Boarding Edge" program —
+                complimentary spa, buffet, hotel room upgrade, or airport
+                transfer (choose any 2 per quarter) by uploading a boarding pass
+                to SmartBuy.
+              </li>
+              <li>
+                <strong>Insurance:</strong> ₹1 crore accidental air death cover,
+                ₹15L emergency overseas hospitalization, ₹9L lost-card liability
+                cover.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>
+            HDFC Tata Neu Infinity Credit Card ("NeuCard Infinity") — Opened
+            04/2025
+          </summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> ₹1,499+GST joining and annual. Waived on
+                ₹3L+ annual spend. Welcome benefit of 1,499 NeuCoins effectively
+                offsets the joining fee.
+              </li>
+              <li>
+                <strong>Rewards:</strong> Up to 10% NeuCoins on Tata Neu app
+                spends, 5% on Tata partner brands (BigBasket, Croma, Westside,
+                Air India, Tata CLiQ, Tata 1mg, Titan, Tanishq, Cult, Tata Play,
+                Qmin, IHCL/Taj hotels), 1.5% on all other retail and UPI spends
+                (UPI capped at 500 NeuCoins/month).
+              </li>
+              <li>
+                <strong>Lounge access:</strong> 8 complimentary domestic
+                visits/year (max 2/quarter), unlocked by spending ₹50,000+ in
+                the preceding quarter. 4 complimentary international visits/year
+                via Priority Pass (RuPay: automatic; Visa: issued on request).
+              </li>
+              <li>
+                <strong>Insurance:</strong> ₹1 crore accidental air death cover,
+                ₹15L emergency overseas hospitalization, ₹9L lost-card
+                liability.
+              </li>
+              <li>
+                <strong>Other:</strong> 1% fuel surcharge waiver (₹400–₹5,000,
+                max ₹500/cycle). Available in both Visa and RuPay variants —
+                RuPay recommended for UPI reward eligibility.
+              </li>
+              <li>
+                <strong>Exclusions:</strong> No NeuCoins on fuel, rent,
+                government payments, vouchers, wallet loads, cash advances, or
+                EMI transactions.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>HDFC Swiggy Credit Card — Opened 05/2025</summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> ₹500+GST joining and annual. Waived on
+                ₹2L+ annual spend.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 10% cashback on all Swiggy platform
+                spends (Food Ordering, Instamart, Dineout, Genie), capped
+                ₹1,500/billing cycle. 5% cashback on other online spends
+                (Amazon, Flipkart, Myntra, apparel, electronics, dept. stores,
+                entertainment, etc.), capped ₹1,500/cycle. 1% on other eligible
+                spends, capped ₹500/cycle.
+              </li>
+              <li>
+                <strong>Welcome benefit:</strong> Complimentary 3-month Swiggy
+                One membership on activation (extends existing membership if
+                already a Swiggy One member).
+              </li>
+              <li>
+                <strong>Network perks (Mastercard World):</strong> 4
+                complimentary golf rounds/year + 12 free golf lessons/year, up
+                to 12% off hotel bookings via Agoda, complimentary
+                stay-and-dinner at select Mastercard partner locations.
+              </li>
+              <li><strong>Lounge access:</strong> None.</li>
+              <li>
+                <strong>Exclusions:</strong> No cashback on Swiggy Money wallet,
+                Swiggy Minis, Swiggy Liquor, fuel, rent, government payments,
+                jewellery, or EMI.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>HSBC Platinum Credit Card (Visa) — Opened 06/2023</summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> None — lifetime free, no joining or
+                annual fee.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 2 reward points per ₹150 spent on
+                eligible purchases. No points on utilities, tax payments, real
+                estate, jewellery, insurance, fuel, financial institution
+                payments, wallet loading, or education/government transactions.
+              </li>
+              <li>
+                <strong>Air miles:</strong> Convert points to air miles at 2:1
+                with 14+ partners including British Airways, Singapore Airlines
+                KrisFlyer, Air India, Etihad, and Qatar Airways.
+              </li>
+              <li>
+                <strong>Lounge access:</strong> None on this variant (available
+                on HSBC Live+ and Premier tiers instead).
+              </li>
+              <li>
+                <strong>Other:</strong> Up to ₹250 quarterly cashback on
+                contactless fuel spends of ₹10,000+/quarter (transactions
+                ₹1,000–₹5,000). Complimentary 3-month Swiggy One on activation.
+                BOGO movie tickets via BookMyShow.
+              </li>
+              <li>
+                <strong>Forex:</strong> 3.5% markup on foreign currency
+                transactions — high relative to premium travel cards.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>ICICI Bank Amazon Pay Credit Card — Opened 06/2023</summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> None — lifetime free, no joining or
+                annual/renewal fee at any spend level.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 5% cashback on Amazon.in for Prime
+                members, 3% for non-Prime members, 2% at 100+ Amazon Pay partner
+                merchants, 1% on all other eligible spends.
+              </li>
+              <li>
+                <strong>Redemption:</strong> Cashback auto-credits to Amazon Pay
+                balance after each billing cycle — no manual redemption needed,
+                no expiry on points.
+              </li>
+              <li>
+                <strong>Other:</strong> 1% fuel surcharge waiver (₹400–₹4,000,
+                max ₹400/cycle). Culinary Treats program — 15% dining savings at
+                2,500+ partner restaurants. No-cost EMI for 3–6 months on
+                Amazon.in.
+              </li>
+              <li>
+                <strong>Lounge access:</strong> None. No travel or entertainment
+                benefits.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>
+            Yes Bank First Preferred Credit Card — Opened 11/2018
+          </summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> ₹999+GST joining and annual. Waiver spend
+                threshold is reported inconsistently across sources (figures
+                from ₹2.5L to ₹4L appear) — confirm current terms directly with
+                Yes Bank, since this is your oldest card and terms are the most
+                likely to have changed since 2018.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 8 points per ₹200 on most retail
+                spends, 4 points per ₹200 on select categories (utilities,
+                groceries, tax payments, insurance), up to 16 points per ₹200 on
+                travel and dining (per some sources).
+              </li>
+              <li>
+                <strong>Welcome bonus:</strong> Historically 10,000 bonus reward
+                points on first transaction within 90 days of card setup.
+              </li>
+              <li>
+                <strong>Lounge access:</strong> 2 complimentary domestic lounge
+                visits per quarter, plus 4 complimentary international visits
+                per year via Priority Pass membership.
+              </li>
+              <li>
+                <strong>Golf:</strong> 1 complimentary lesson/month plus 4
+                additional sessions with green-fee waiver at select courses.
+              </li>
+              <li>
+                <strong>Insurance:</strong> Credit shield cover ₹8L, lost-card
+                liability cover ₹8L, overseas medical cover.
+              </li>
+              <li>
+                <strong>Forex:</strong> Preferential 1.75% markup (vs the
+                standard 3.5%) — competitive for a sub-₹1,000-fee card.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>SBI SimplyCLICK Credit Card — Opened 10/2024</summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> ₹499+GST joining and annual. Waived on
+                ₹1L+ annual spend.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 10X reward points (~2.5%) on partner
+                brands — Amazon, BookMyShow, Cleartrip, Myntra, Swiggy, Netmeds,
+                Dominos, Apollo 24×7, IGP, Yatra, Gyftr, Tata CLiQ. 5X (~1.25%)
+                on all other online spends. 1X (~0.25%) on offline/other spends.
+              </li>
+              <li>
+                <strong>Welcome benefit:</strong> ₹500 Amazon.in gift voucher on
+                payment of joining fee.
+              </li>
+              <li>
+                <strong>Milestones:</strong> ₹2,000 Cleartrip/Yatra e-voucher
+                each at ₹1L and ₹2L annual online spend.
+              </li>
+              <li>
+                <strong>Other:</strong> 1% fuel surcharge waiver (₹500–₹3,000,
+                max ₹100/cycle).
+              </li>
+              <li><strong>Lounge access:</strong> None.</li>
+              <li>
+                <strong>Note:</strong> Reward points expire 24 months after
+                accrual — redeem periodically rather than letting them sit.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="ms-accordion">
+          <summary>
+            IndusInd Bank CRED RuPay Credit Card — Opened 05/2026
+          </summary>
+          <div class="ms-accordion-body">
+            <ul>
+              <li>
+                <strong>Fees:</strong> No joining fee. ₹499+GST annual fee from
+                year 2 onwards —
+                <strong>no spend-based waiver exists</strong> for this card.
+              </li>
+              <li>
+                <strong>Rewards:</strong> 5 CRED Points per ₹100 (5%) on
+                e-commerce, and on CRED Pay / CRED Store / CRED Travel / CRED
+                UPI transactions — capped at 5,000 points per statement cycle. 1
+                CRED Point per ₹100 (1%) on all other spends including Scan &
+                Pay outside CRED, utilities/insurance paid outside CRED, and
+                international transactions.
+              </li>
+              <li>
+                <strong>Redemption:</strong> Best value redeeming CRED Points
+                against travel bookings on the CRED app (1:1); bill payments
+                redeem at a weaker 2:1 ratio. Points expire after 24 months.
+              </li>
+              <li>
+                <strong>Exclusions:</strong> No points on school/education
+                services, government institutions, wallet loads, rent,
+                jewellery, fuel, or cash withdrawals.
+              </li>
+              <li>
+                <strong>Lounge access:</strong> None complimentary — Priority
+                Pass/LoungeKey usage is chargeable at up to US$35/visit if used.
+              </li>
+              <li>
+                <strong>Protection:</strong> IndusInd's "Total Protect" program
+                covers unauthorized transactions up to your full credit limit.
+              </li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section class="ms-section" id="scope">
+        <h2><span class="ms-section-num">06</span>Adding a Future Card</h2>
+        <p>
+          This page is built to grow. When you get a new card (or close one),
+          update it using this checklist so the comparison table and
+          closure-review logic stay accurate:
+        </p>
+        <ul class="ms-checklist">
+          <li>
+            Add a row to the <strong>At a Glance</strong> table with opened
+            date, fee status, fee amount, waiver spend, and lounge access.
+          </li>
+          <li>
+            Add a full accordion entry in
+            <strong>Full Card-by-Card Reference</strong> with the complete
+            benefit breakdown.
+          </li>
+          <li>
+            If the card has an annual fee, add it to the
+            <strong>Fee-Bearing Cards — Closure Review</strong> section with a
+            recommendation, ranked by strength of the case to keep it.
+          </li>
+          <li>
+            If the card is lifetime free, add it to the
+            <strong>Lifetime Free Cards</strong> grid instead — no closure
+            review needed.
+          </li>
+          <li>
+            Re-check this page roughly every 6 months — issuers revise fee
+            waivers and lounge terms often (as HDFC Regalia Gold and Axis
+            Flipkart both did in 2025–26).
+          </li>
+        </ul>
+
+        <div class="ms-callout amber">
+          <span class="ms-callout-label">Verify before acting</span>
+          Card terms, fee waivers, and lounge policies shown here reflect
+          publicly available information as of July 2026 and can change without
+          much notice — this is especially true for Yes First Preferred, where
+          the exact waiver threshold couldn't be confirmed with certainty.
+          Before closing any card, log in to the issuer's app or call customer
+          care to confirm current terms and check for any pending dues, reward
+          points you'd forfeit, or impact to your credit utilization and credit
+          history length.
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Event delegation only — init.js rebuilds the DOM, so no querySelectorAll at parse time.
+      // This page is currently static reference content; no interactive JS required yet.
+      // If interactivity (e.g. sort/filter the comparison table) is added later,
+      // wire it via document.addEventListener('click', ...) delegation from a stable ancestor.
+    </script>
+  </body>
+</html>

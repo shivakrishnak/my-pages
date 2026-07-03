@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-01T06:29:50Z",
-  "count": 16,
+  "generated": "2026-07-03T16:25:53Z",
+  "count": 17,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -37,6 +37,15 @@
       "order": 999,
       "path": "pages/guides/design-system-preview.html",
       "modified": "2026-06-30"
+    },
+    {
+      "title": "Credit Card Command Center",
+      "description": "Every credit card in one place — fees, benefits, lounge access, and closure recommendations.",
+      "category": "Hub",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/hub/credit-card-hub.html",
+      "modified": "2026-07-03"
     },
     {
       "title": "45-Day Interview Prep Roadmap · KSK",
@@ -129,13 +138,13 @@
       "modified": "2026-06-30"
     },
     {
-      "title": "Daily Operating System · Shiva Krishna K",
+      "title": "Daily OS · Shiva",
       "description": "",
       "category": "Work",
       "icon": "📄",
       "order": 999,
       "path": "pages/work/daily-poster.html",
-      "modified": "2026-07-01"
+      "modified": "2026-07-03"
     },
     {
       "title": "Peak Performance System · Shiva Krishna K",
