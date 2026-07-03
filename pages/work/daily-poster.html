@@ -3,23 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daily Operating System · Shiva Krishna K</title>
+    <title>Daily OS · Shiva</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* ── Tokens (shell.css v3 aligned) ── */
       :root {
         --bg: #f8f7f5;
-        --surface: #ffffff;
+        --bg2: #f0ede8;
+        --bg3: #e8e4dd;
+        --surface: #fff;
         --border: #e4e0d8;
-        --border-2: #cdc8bf;
-        --text-1: #1c1917;
-        --text-2: #3d3935;
-        --text-3: #706b62;
-        --text-4: #a39e95;
+        --border2: #cdc8bf;
+        --t1: #1c1917;
+        --t2: #3d3935;
+        --t3: #706b62;
+        --t4: #a39e95;
         --indigo: #4f46e5;
         --indigo-dk: #3730a3;
         --indigo-lt: #eef2ff;
@@ -38,154 +39,130 @@
         --violet: #7c3aed;
         --violet-lt: #f5f3ff;
         --violet-dk: #4c1d95;
-        --font: "Inter", -apple-system, system-ui, sans-serif;
+        --f: "Inter", -apple-system, system-ui, sans-serif;
+        --r: 7px;
+        --rp: 999px;
       }
-
-      /* ── Screen base ── */
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-      html {
-        background: #d4d0ca;
-        font-family: var(--font);
-      }
+      html,
       body {
-        font-family: var(--font);
+        height: 100%;
+        overflow: hidden;
+        font-family: var(--f);
+        background: var(--bg);
+        color: var(--t2);
         -webkit-font-smoothing: antialiased;
       }
 
-      /* ── Print controls (screen only) ── */
-      .screen-controls {
-        text-align: center;
-        padding: 24px 16px 16px;
-        font-family: var(--font);
-      }
-      .screen-controls h2 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #3d3935;
-        margin-bottom: 6px;
-      }
-      .screen-controls p {
-        font-size: 13px;
-        color: #706b62;
-        margin-bottom: 16px;
-        line-height: 1.5;
-      }
-      .btn-print {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #4f46e5;
-        color: #fff;
-        border: none;
-        padding: 10px 24px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        font-family: var(--font);
-        cursor: pointer;
-        transition: background 0.15s;
-      }
-      .btn-print:hover {
-        background: #3730a3;
-      }
-
-      /* ── Poster page wrapper ── */
-      .poster {
-        width: 297mm; /* A3 landscape width  */
-        min-height: 210mm; /* A3 landscape height */
-        margin: 0 auto 40px;
-        background: var(--surface);
+      /* ══ ROOT GRID ══ */
+      .os {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto 1fr auto;
+        height: 100vh;
+        width: 100vw;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 0;
-        page-break-after: always;
-        position: relative;
         overflow: hidden;
       }
 
-      /* ── Poster header (full width) ── */
-      .poster-header {
-        grid-column: 1 / -1;
-        background: var(--text-1);
+      /* ══ HEADER (full width) ══ */
+      .hdr {
+        grid-column: 1/-1;
+        background: var(--t1);
         color: #fff;
-        padding: 16px 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
+        padding: 8px 16px;
+        gap: 12px;
+        flex-shrink: 0;
       }
-      .ph-left {
+      .hdr-left {
         display: flex;
         align-items: baseline;
-        gap: 12px;
+        gap: 10px;
       }
-      .ph-title {
-        font-size: 22px;
+      .hdr-title {
+        font-size: 15px;
         font-weight: 800;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.03em;
         color: #fff;
         line-height: 1;
       }
-      .ph-sub {
-        font-size: 11px;
+      .hdr-sub {
+        font-size: 9.5px;
         font-weight: 500;
-        color: rgba(255, 255, 255, 0.5);
-        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.05em;
         text-transform: uppercase;
       }
-      .ph-right {
+      .hdr-right {
         display: flex;
+        gap: 6px;
         align-items: center;
-        gap: 8px;
+        flex-wrap: wrap;
       }
-      .ph-pill {
-        font-size: 10px;
+      .hpill {
+        font-size: 9px;
         font-weight: 700;
-        padding: 3px 10px;
-        border-radius: 20px;
-        white-space: nowrap;
-        letter-spacing: 0.04em;
+        padding: 2px 8px;
+        border-radius: var(--rp);
         text-transform: uppercase;
+        letter-spacing: 0.04em;
       }
-      .ph-pill.indigo {
-        background: rgba(79, 70, 229, 0.25);
+      .hpill.in {
+        background: rgba(79, 70, 229, 0.28);
         color: #a5b4fc;
       }
-      .ph-pill.teal {
-        background: rgba(13, 147, 115, 0.25);
+      .hpill.tl {
+        background: rgba(13, 147, 115, 0.28);
         color: #6ee7b7;
       }
-      .ph-pill.amber {
-        background: rgba(180, 83, 9, 0.25);
+      .hpill.am {
+        background: rgba(180, 83, 9, 0.28);
         color: #fcd34d;
       }
-      .ph-pill.coral {
-        background: rgba(220, 38, 38, 0.25);
+      .hpill.co {
+        background: rgba(220, 38, 38, 0.28);
         color: #fca5a5;
       }
+      .dark-btn {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--r);
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        padding: 3px 8px;
+        cursor: pointer;
+        font-family: var(--f);
+        transition: background 0.15s;
+      }
+      .dark-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
 
-      /* ── Mantras strip ── */
+      /* ══ MANTRAS STRIP ══ */
       .mantras {
-        grid-column: 1 / -1;
+        grid-column: 1/-1;
         background: var(--indigo);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0;
         flex-wrap: wrap;
-        padding: 0;
+        flex-shrink: 0;
       }
       .mantra {
-        padding: 7px 18px;
-        font-size: 10.5px;
+        padding: 5px 14px;
+        font-size: 9.5px;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.9);
-        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.88);
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         border-right: 1px solid rgba(255, 255, 255, 0.15);
       }
@@ -196,123 +173,123 @@
         color: #fff;
       }
 
-      /* ── Column layout ── */
+      /* ══ COLUMNS ══ */
       .col {
-        padding: 14px 16px;
+        padding: 10px 11px;
         border-right: 1px solid var(--border);
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 7px;
       }
       .col:last-child {
         border-right: none;
       }
 
-      /* ── Section label ── */
-      .section-label {
-        font-size: 8.5px;
+      /* Section label */
+      .slabel {
+        font-size: 8px;
         font-weight: 800;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--text-4);
-        padding-bottom: 5px;
+        color: var(--t4);
+        padding-bottom: 4px;
         border-bottom: 1px solid var(--border);
-        margin-bottom: 2px;
+        flex-shrink: 0;
       }
 
-      /* ── Time block (schedule) ── */
-      .schedule-block {
+      /* ══ SCHEDULE ROWS ══ */
+      .sched {
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 2px;
+        flex-shrink: 0;
       }
-      .srow {
+      .sr {
         display: flex;
-        gap: 8px;
+        gap: 7px;
         align-items: flex-start;
-        padding: 5px 7px;
+        padding: 4px 6px;
         border-radius: 5px;
-        transition: background 0.1s;
       }
-      .srow.morning {
-        background: rgba(255, 251, 235, 0.7);
+      .sr.am {
+        background: rgba(255, 251, 235, 0.8);
       }
-      .srow.work {
-        background: rgba(238, 242, 255, 0.7);
+      .sr.wk {
+        background: rgba(238, 242, 255, 0.8);
       }
-      .srow.break {
-        background: rgba(240, 253, 244, 0.7);
+      .sr.br {
+        background: rgba(240, 253, 244, 0.8);
       }
-      .srow.evening {
-        background: rgba(245, 243, 255, 0.7);
+      .sr.ev {
+        background: rgba(245, 243, 255, 0.8);
       }
-      .srow.night {
+      .sr.nt {
         background: rgba(28, 25, 23, 0.04);
       }
-      .srow-time {
-        font-size: 8.5px;
+      .sr-t {
+        font-size: 8px;
         font-weight: 700;
-        color: var(--text-4);
-        min-width: 54px;
+        color: var(--t4);
+        min-width: 52px;
         flex-shrink: 0;
         padding-top: 1px;
         font-variant-numeric: tabular-nums;
         line-height: 1.3;
       }
-      .srow-content {
-        flex: 1;
-      }
-      .srow-main {
+      .sr-icon {
         font-size: 11px;
-        font-weight: 700;
-        color: var(--text-1);
-        line-height: 1.3;
-      }
-      .srow-sub {
-        font-size: 9.5px;
-        color: var(--text-3);
-        line-height: 1.4;
-        margin-top: 1px;
-      }
-      .srow-icon {
-        font-size: 13px;
         flex-shrink: 0;
         line-height: 1.3;
       }
+      .sr-c {
+        flex: 1;
+        min-width: 0;
+      }
+      .sr-main {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--t1);
+        line-height: 1.3;
+      }
+      .sr-sub {
+        font-size: 8.5px;
+        color: var(--t3);
+        line-height: 1.35;
+        margin-top: 1px;
+      }
 
-      /* ── Habit checklist ── */
-      .habit-list {
+      /* ══ HABIT ROWS ══ */
+      .hlist {
         display: flex;
         flex-direction: column;
         gap: 2px;
+        flex-shrink: 0;
       }
-      .hitem {
+      .hi {
         display: flex;
         align-items: flex-start;
-        gap: 7px;
-        padding: 5px 7px;
+        gap: 6px;
+        padding: 4px 6px;
         border-radius: 5px;
       }
-      .hitem.do {
+      .hi.do {
         background: var(--teal-lt);
       }
-      .hitem.dont {
+      .hi.dont {
         background: var(--coral-lt);
       }
-      .hitem.brain {
-        background: var(--violet-lt);
-      }
       .hbox {
-        width: 14px;
-        height: 14px;
+        width: 13px;
+        height: 13px;
         border-radius: 3px;
         flex-shrink: 0;
         margin-top: 1px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 8px;
-        font-weight: 700;
+        font-size: 7.5px;
+        font-weight: 800;
       }
       .hbox.do {
         border: 1.5px solid var(--teal);
@@ -321,43 +298,409 @@
       .hbox.dont {
         border: 1.5px solid var(--coral);
         color: var(--coral);
-        background: var(--coral-lt);
       }
-      .hbox.brain {
-        border: 1.5px solid var(--violet);
-        color: var(--violet);
-      }
-      .hitem-text {
+      .hi-t {
         flex: 1;
+        min-width: 0;
       }
-      .hitem-main {
-        font-size: 10.5px;
+      .hi-main {
+        font-size: 10px;
         font-weight: 700;
-        color: var(--text-1);
+        color: var(--t1);
         line-height: 1.3;
       }
-      .hitem-sub {
-        font-size: 9px;
-        color: var(--text-3);
-        line-height: 1.4;
+      .hi-sub {
+        font-size: 8.5px;
+        color: var(--t3);
+        line-height: 1.35;
         margin-top: 1px;
       }
 
-      /* ── Priority items ── */
-      .priority-list {
+      /* ══ PRIORITY ITEMS ══ */
+      .plist {
         display: flex;
         flex-direction: column;
-        gap: 3px;
+        gap: 2px;
+        flex-shrink: 0;
       }
-      .pitem {
+      .pi {
         display: flex;
         align-items: flex-start;
         gap: 6px;
+        padding: 4px 6px;
+        border-radius: 5px;
+      }
+      .pi.in {
+        background: var(--indigo-lt);
+      }
+      .pi.tl {
+        background: var(--teal-lt);
+      }
+      .pi.am {
+        background: var(--amber-lt);
+      }
+      .pi.vl {
+        background: var(--violet-lt);
+      }
+      .pi.sg {
+        background: var(--sage-lt);
+      }
+      .pi.co {
+        background: var(--coral-lt);
+      }
+      .pnum {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7.5px;
+        font-weight: 800;
+        color: #fff;
+        margin-top: 1px;
+      }
+      .pnum.in {
+        background: var(--indigo);
+      }
+      .pnum.tl {
+        background: var(--teal);
+      }
+      .pnum.am {
+        background: var(--amber);
+      }
+      .pnum.vl {
+        background: var(--violet);
+      }
+      .pnum.sg {
+        background: var(--sage);
+      }
+      .pnum.co {
+        background: var(--coral);
+      }
+      .pi-t {
+        flex: 1;
+        min-width: 0;
+      }
+      .pi-main {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--t1);
+        line-height: 1.3;
+      }
+      .pi-sub {
+        font-size: 8.5px;
+        color: var(--t3);
+        line-height: 1.35;
+        margin-top: 1px;
+      }
+
+      /* ══ MINI QUOTE ══ */
+      .mq {
+        border-left: 2.5px solid var(--indigo);
+        background: var(--indigo-lt);
+        padding: 5px 8px;
+        border-radius: 0 5px 5px 0;
+        flex-shrink: 0;
+      }
+      .mq p {
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--indigo-dk);
+        line-height: 1.5;
+      }
+      .mq.tl {
+        border-color: var(--teal);
+        background: var(--teal-lt);
+      }
+      .mq.tl p {
+        color: var(--teal-dk);
+      }
+      .mq.am {
+        border-color: var(--amber);
+        background: var(--amber-lt);
+      }
+      .mq.am p {
+        color: var(--amber-dk);
+      }
+      .mq.co {
+        border-color: var(--coral);
+        background: var(--coral-lt);
+      }
+      .mq.co p {
+        color: var(--coral-dk);
+      }
+      .mq.vl {
+        border-color: var(--violet);
+        background: var(--violet-lt);
+      }
+      .mq.vl p {
+        color: var(--violet-dk);
+      }
+      .mq.sg {
+        border-color: var(--sage);
+        background: var(--sage-lt);
+      }
+      .mq.sg p {
+        color: var(--sage-dk);
+      }
+
+      /* ══ DARK QUOTE BLOCK ══ */
+      .dq {
+        background: var(--t1);
+        border-radius: 6px;
+        padding: 8px 10px;
+        flex-shrink: 0;
+      }
+      .dq p {
+        font-size: 9.5px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.55;
+        font-style: italic;
+      }
+      .dq cite {
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.38);
+        font-style: normal;
+        display: block;
+        margin-top: 4px;
+      }
+
+      /* ══ STUDY BARS ══ */
+      .sbars {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex-shrink: 0;
+      }
+      .sb-row {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+      .sb-time {
+        font-size: 8px;
+        font-weight: 700;
+        color: var(--t4);
+        min-width: 44px;
+        font-variant-numeric: tabular-nums;
+      }
+      .bar {
+        flex: 1;
+        height: 18px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        padding: 0 7px;
+      }
+      .bar.deep {
+        background: var(--indigo);
+      }
+      .bar.code {
+        background: var(--violet);
+      }
+      .bar.design {
+        background: var(--amber);
+      }
+      .bar.mock {
+        background: var(--coral);
+      }
+      .bar.apply {
+        background: var(--sage);
+      }
+      .bar.brk {
+        background: var(--bg3);
+      }
+      .bar.review {
+        background: var(--teal);
+      }
+      .bl {
+        font-size: 8.5px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .bar.brk .bl {
+        color: var(--t3);
+      }
+
+      /* ══ FOOD GRID ══ */
+      .fg {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        flex-shrink: 0;
+      }
+      .fi {
+        padding: 4px 6px;
+        border-radius: 5px;
+        background: var(--teal-lt);
+      }
+      .fi.av {
+        background: var(--coral-lt);
+      }
+      .fi-n {
+        font-size: 9.5px;
+        font-weight: 700;
+        color: var(--t1);
+        line-height: 1.2;
+      }
+      .fi-w {
+        font-size: 8px;
+        color: var(--t3);
+        line-height: 1.3;
+        margin-top: 1px;
+      }
+
+      /* ══ STAT CHIPS ══ */
+      .stats {
+        display: flex;
+        gap: 3px;
+        flex-shrink: 0;
+      }
+      .sc {
+        flex: 1;
+        padding: 5px 6px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .sc.in {
+        background: var(--indigo-lt);
+      }
+      .sc.tl {
+        background: var(--teal-lt);
+      }
+      .sc.am {
+        background: var(--amber-lt);
+      }
+      .sc.vl {
+        background: var(--violet-lt);
+      }
+      .sc-n {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--indigo);
+      }
+      .sc-n.tl {
+        color: var(--teal);
+      }
+      .sc-n.am {
+        color: var(--amber);
+      }
+      .sc-n.vl {
+        color: var(--violet);
+      }
+      .sc-l {
+        font-size: 7px;
+        color: var(--t3);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        line-height: 1.3;
+      }
+
+      /* ══ CUE CARDS ══ */
+      .cue-tabs {
+        display: flex;
+        gap: 3px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+      }
+      .cue-tab {
+        font-size: 8.5px;
+        font-weight: 700;
+        padding: 3px 9px;
+        border-radius: var(--rp);
+        border: 1.5px solid var(--border2);
+        background: var(--surface);
+        color: var(--t3);
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .cue-tab.active {
+        background: var(--indigo);
+        color: #fff;
+        border-color: var(--indigo);
+      }
+      .cue-tab.tl.active {
+        background: var(--teal);
+        border-color: var(--teal);
+      }
+      .cue-tab.am.active {
+        background: var(--amber);
+        border-color: var(--amber);
+      }
+      .cue-tab.vl.active {
+        background: var(--violet);
+        border-color: var(--violet);
+      }
+      .cue-tab.co.active {
+        background: var(--coral);
+        border-color: var(--coral);
+      }
+      .cue-tab.sg.active {
+        background: var(--sage);
+        border-color: var(--sage);
+      }
+
+      .cue-panels {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .cue-panel {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        height: 100%;
+        overflow: hidden;
+      }
+      .cue-panel.active {
+        display: flex;
+      }
+      .cue-headline {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--t1);
+        line-height: 1.3;
+        flex-shrink: 0;
+      }
+      .cue-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        overflow: hidden;
+        flex: 1;
+      }
+      .cue-step {
+        display: flex;
+        gap: 7px;
+        align-items: flex-start;
         padding: 5px 7px;
         border-radius: 5px;
         background: var(--indigo-lt);
+        flex-shrink: 0;
       }
-      .pnum {
+      .cue-step.tl {
+        background: var(--teal-lt);
+      }
+      .cue-step.am {
+        background: var(--amber-lt);
+      }
+      .cue-step.vl {
+        background: var(--violet-lt);
+      }
+      .cue-step.co {
+        background: var(--coral-lt);
+      }
+      .cue-step.sg {
+        background: var(--sage-lt);
+      }
+      .cs-n {
         width: 16px;
         height: 16px;
         border-radius: 50%;
@@ -371,489 +714,341 @@
         justify-content: center;
         margin-top: 1px;
       }
-      .pnum.teal {
+      .cs-n.tl {
         background: var(--teal);
       }
-      .pnum.amber {
+      .cs-n.am {
         background: var(--amber);
       }
-      .pnum.violet {
+      .cs-n.vl {
         background: var(--violet);
       }
-      .pnum.coral {
+      .cs-n.co {
         background: var(--coral);
       }
-      .pnum.sage {
+      .cs-n.sg {
         background: var(--sage);
       }
-      .pnum.indigo {
-        background: var(--indigo);
-      }
-      .pitem.teal {
-        background: var(--teal-lt);
-      }
-      .pitem.amber {
-        background: var(--amber-lt);
-      }
-      .pitem.violet {
-        background: var(--violet-lt);
-      }
-      .pitem.coral {
-        background: var(--coral-lt);
-      }
-      .pitem.sage {
-        background: var(--sage-lt);
-      }
-      .pitem-text {
+      .cs-t {
         flex: 1;
       }
-      .pitem-main {
-        font-size: 11px;
+      .cs-main {
+        font-size: 10px;
         font-weight: 700;
-        color: var(--text-1);
+        color: var(--t1);
         line-height: 1.3;
       }
-      .pitem-sub {
-        font-size: 9px;
-        color: var(--text-3);
+      .cs-sub {
+        font-size: 8.5px;
+        color: var(--t3);
         line-height: 1.4;
         margin-top: 1px;
       }
 
-      /* ── Mantras / quotes ── */
-      .quote-block {
-        background: var(--text-1);
-        border-radius: 7px;
-        padding: 10px 12px;
+      /* MVD section */
+      .mvd-block {
+        background: linear-gradient(135deg, #052e16, #065f46);
+        border-radius: 6px;
+        padding: 8px 10px;
+        flex-shrink: 0;
       }
-      .quote-text {
-        font-size: 10.5px;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.55;
-        font-style: italic;
-      }
-      .quote-attr {
-        font-size: 8.5px;
-        color: rgba(255, 255, 255, 0.45);
-        margin-top: 4px;
-      }
-
-      .mini-quote {
-        border-left: 2.5px solid var(--indigo);
-        background: var(--indigo-lt);
-        padding: 6px 10px;
-        border-radius: 0 5px 5px 0;
-      }
-      .mini-quote p {
-        font-size: 10px;
-        font-weight: 600;
-        color: var(--indigo-dk);
-        line-height: 1.5;
-      }
-
-      /* ── Food grid ── */
-      .food-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3px;
-      }
-      .food-item {
-        padding: 5px 7px;
-        border-radius: 5px;
-        background: var(--teal-lt);
-      }
-      .food-item.avoid {
-        background: var(--coral-lt);
-      }
-      .food-name {
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--text-1);
-      }
-      .food-why {
-        font-size: 8.5px;
-        color: var(--text-3);
-        line-height: 1.35;
-        margin-top: 1px;
-      }
-
-      /* ── Stat chips ── */
-      .stat-row {
-        display: flex;
-        gap: 4px;
-        flex-wrap: wrap;
-      }
-      .stat-chip {
-        padding: 5px 9px;
-        border-radius: 20px;
-        text-align: center;
-        flex: 1;
-        min-width: 50px;
-      }
-      .stat-chip.indigo {
-        background: var(--indigo-lt);
-      }
-      .stat-chip.teal {
-        background: var(--teal-lt);
-      }
-      .stat-chip.amber {
-        background: var(--amber-lt);
-      }
-      .stat-chip.violet {
-        background: var(--violet-lt);
-      }
-      .sc-num {
-        font-size: 16px;
+      .mvd-title {
+        font-size: 9px;
         font-weight: 800;
-        letter-spacing: -0.03em;
-        color: var(--indigo);
-      }
-      .sc-num.teal {
-        color: var(--teal);
-      }
-      .sc-num.amber {
-        color: var(--amber);
-      }
-      .sc-num.violet {
-        color: var(--violet);
-      }
-      .sc-label {
-        font-size: 7.5px;
-        color: var(--text-3);
-        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.04em;
-        line-height: 1.3;
+        letter-spacing: 0.07em;
+        color: #6ee7b7;
+        margin-bottom: 4px;
       }
-
-      /* ── Study block visual ── */
-      .study-visual {
+      .mvd-items {
         display: flex;
         flex-direction: column;
         gap: 2px;
       }
-      .sv-row {
-        display: flex;
-        gap: 4px;
-        align-items: center;
-      }
-      .sv-time {
-        font-size: 8.5px;
-        font-weight: 700;
-        color: var(--text-4);
-        min-width: 44px;
-        font-variant-numeric: tabular-nums;
-      }
-      .sv-bar {
-        flex: 1;
-        height: 20px;
-        border-radius: 4px;
+      .mvd-item {
         display: flex;
         align-items: center;
-        padding: 0 8px;
+        gap: 6px;
+        font-size: 9.5px;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.3;
       }
-      .sv-bar.deep {
-        background: var(--indigo);
+      .mvd-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #34d399;
+        flex-shrink: 0;
       }
-      .sv-bar.review {
-        background: var(--teal);
-      }
-      .sv-bar.code {
-        background: var(--violet);
-      }
-      .sv-bar.design {
-        background: var(--amber);
-      }
-      .sv-bar.mock {
-        background: var(--coral);
-      }
-      .sv-bar.apply {
-        background: var(--sage);
-      }
-      .sv-bar.break {
-        background: var(--border-2);
-      }
-      .sv-label {
-        font-size: 8.5px;
-        font-weight: 700;
-        color: #fff;
-      }
-      .sv-bar.break .sv-label {
-        color: var(--text-3);
+      .mvd-foot {
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 5px;
+        line-height: 1.4;
+        font-style: italic;
       }
 
-      /* ── Footer ── */
-      .poster-footer {
-        grid-column: 1 / -1;
-        background: var(--bg);
-        padding: 8px 24px;
+      /* ══ FOOTER ══ */
+      .ftr {
+        grid-column: 1/-1;
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        padding: 5px 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-top: 1px solid var(--border);
+        flex-shrink: 0;
       }
-      .pf-left {
-        font-size: 9px;
-        color: var(--text-4);
-        font-weight: 500;
+      .ftr-l {
+        font-size: 8.5px;
+        color: var(--t4);
       }
-      .pf-right {
+      .ftr-r {
         display: flex;
         gap: 12px;
       }
-      .pf-mantra {
-        font-size: 9px;
+      .ftr-m {
+        font-size: 8.5px;
         font-weight: 700;
-        color: var(--text-3);
+        color: var(--t3);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.04em;
       }
 
-      /* ── Divider ── */
-      .mini-divider {
+      /* dark mode */
+      .dark {
+        --bg: #161412;
+        --bg2: #1e1c19;
+        --bg3: #272421;
+        --surface: #1e1c19;
+        --border: #302d29;
+        --border2: #413d38;
+        --t1: #f2ede8;
+        --t2: #c4bdb5;
+        --t3: #7d7870;
+        --t4: #504c47;
+        --indigo: #818cf8;
+        --indigo-dk: #4f46e5;
+        --indigo-lt: #1e1b4b;
+        --teal-lt: #022c22;
+        --teal-dk: #34d399;
+        --amber-lt: #1c0a00;
+        --amber-dk: #fbbf24;
+        --coral-lt: #1c0808;
+        --coral-dk: #f87171;
+        --sage-lt: #052e16;
+        --sage-dk: #4ade80;
+        --violet-lt: #1e0a3c;
+        --violet-dk: #a78bfa;
+      }
+      .dark .hdr {
+        background: #0d0c0a;
+      }
+      .dark .mvd-block {
+        background: linear-gradient(135deg, #031a0d, #022c22);
+      }
+
+      /* divider */
+      .div {
         height: 1px;
         background: var(--border);
-        margin: 2px 0;
-      }
-
-      /* ════════════════════════════════════
-   PRINT STYLES
-   ════════════════════════════════════ */
-      @media print {
-        html {
-          background: white;
-        }
-        .screen-controls {
-          display: none;
-        }
-        .poster {
-          width: 100%;
-          min-height: 0;
-          margin: 0;
-          box-shadow: none;
-          page-break-inside: avoid;
-        }
-        @page {
-          size: A3 landscape;
-          margin: 8mm;
-        }
+        flex-shrink: 0;
+        margin: 1px 0;
       }
     </style>
   </head>
   <body>
-    <div class="screen-controls">
-      <h2>Daily Operating System — Print Poster</h2>
-      <p>
-        A3 Landscape. Print at high quality and hang where you study every day.
-      </p>
-      <button class="btn-print" onclick="window.print()">
-        🖨️ Print / Save as PDF
-      </button>
-    </div>
-
-    <div class="poster">
+    <div class="os" id="os">
       <!-- ══ HEADER ══ -->
-      <div class="poster-header">
-        <div class="ph-left">
-          <div class="ph-title">Daily Operating System</div>
-          <div class="ph-sub">
-            Shiva Krishna K · 45-Day Peak Performance · Jun–Aug 2026
-          </div>
+      <header class="hdr">
+        <div class="hdr-left">
+          <span class="hdr-title">Daily Operating System</span>
+          <span class="hdr-sub"
+            >Shiva Krishna K · 45-Day Peak Sprint · Jun–Aug 2026</span
+          >
         </div>
-        <div class="ph-right">
-          <span class="ph-pill indigo">Consistency &gt; Intensity</span>
-          <span class="ph-pill teal">Systems &gt; Motivation</span>
-          <span class="ph-pill amber">Progress &gt; Perfection</span>
-          <span class="ph-pill coral">Showing Up &gt; Optimising</span>
+        <div class="hdr-right">
+          <span class="hpill in">Consistency &gt; Intensity</span>
+          <span class="hpill tl">Progress &gt; Perfection</span>
+          <span class="hpill am">Systems &gt; Motivation</span>
+          <span class="hpill co">Showing Up &gt; Optimising</span>
+          <button class="dark-btn" id="darkBtn">🌙</button>
         </div>
-      </div>
+      </header>
 
-      <!-- ══ MANTRAS STRIP ══ -->
+      <!-- ══ MANTRAS ══ -->
       <div class="mantras">
         <div class="mantra">☀️ <strong>Sunlight</strong> first 30 min</div>
         <div class="mantra">💧 <strong>2.5L</strong> water daily</div>
-        <div class="mantra">🧠 <strong>Sleep 8h</strong> non-negotiable</div>
+        <div class="mantra">🧠 <strong>Sleep 8h</strong> — non-negotiable</div>
         <div class="mantra">📵 <strong>Phone away</strong> during study</div>
         <div class="mantra">
           ⏱️ <strong>90-min blocks</strong> then real break
         </div>
         <div class="mantra">
-          📋 <strong>Review yesterday</strong> before new content
+          📋 <strong>Review yesterday</strong> before new
         </div>
         <div class="mantra">💪 <strong>Never miss twice</strong></div>
         <div class="mantra">🎯 <strong>Apply 2+ jobs</strong> every day</div>
       </div>
 
-      <!-- ══════════════════════════════════════════
-       COL 1 — MORNING RITUAL + DAILY SCHEDULE
-       ══════════════════════════════════════════ -->
+      <!-- ══════════════════════════
+       COL 1 — SCHEDULE
+  ══════════════════════════ -->
       <div class="col">
-        <div class="section-label">
-          Morning Launch Sequence (60 min before study)
-        </div>
-        <div class="schedule-block">
-          <div class="srow morning">
-            <div class="srow-icon">☀️</div>
-            <div class="srow-content">
-              <div class="srow-main">5:45 — Wake. No phone. 500ml water.</div>
-              <div class="srow-sub">
-                Step outside for natural light. Rehydrate before caffeine.
+        <div class="slabel">Morning Launch (before study)</div>
+        <div class="sched">
+          <div class="sr am">
+            <div class="sr-icon">☀️</div>
+            <div class="sr-c">
+              <div class="sr-main">5:45 — Wake · no phone · 500ml water</div>
+              <div class="sr-sub">
+                Step outside. Natural light anchors circadian rhythm.
               </div>
             </div>
           </div>
-          <div class="srow morning">
-            <div class="srow-icon">📓</div>
-            <div class="srow-content">
-              <div class="srow-main">5:55 — 5-min Journal</div>
-              <div class="srow-sub">
-                ① Gratitude (specific) ② Today's single most important outcome ③
-                Name one anxiety. Then review yesterday's 5 key learnings.
+          <div class="sr am">
+            <div class="sr-icon">📓</div>
+            <div class="sr-c">
+              <div class="sr-main">5:55 — 5-min journal</div>
+              <div class="sr-sub">
+                ① Gratitude ② Today's #1 outcome ③ Name 1 anxiety. Review
+                yesterday's 5 key learnings.
               </div>
             </div>
           </div>
-          <div class="srow morning">
-            <div class="srow-icon">🧘</div>
-            <div class="srow-content">
-              <div class="srow-main">6:05 — 10-min breathwork</div>
-              <div class="srow-sub">
-                Box breathing 4-4-4-4. Count breaths to 10. Restart when lost.
-                Activates PFC.
+          <div class="sr am">
+            <div class="sr-icon">🧘</div>
+            <div class="sr-c">
+              <div class="sr-main">6:05 — 10-min breathwork</div>
+              <div class="sr-sub">
+                Box breathing 4-4-4-4. Count to 10. Restart when lost.
               </div>
             </div>
           </div>
-          <div class="srow morning">
-            <div class="srow-icon">🚶</div>
-            <div class="srow-content">
-              <div class="srow-main">6:15 — 30-min brisk walk (no phone)</div>
-              <div class="srow-sub">
-                BDNF dose. Think loosely about today's hard problem. Don't force
-                solutions.
+          <div class="sr am">
+            <div class="sr-icon">🚶</div>
+            <div class="sr-c">
+              <div class="sr-main">6:15 — 30-min brisk walk (no phone)</div>
+              <div class="sr-sub">
+                BDNF dose. Think loosely about today's hard topic.
               </div>
             </div>
           </div>
-          <div class="srow morning">
-            <div class="srow-icon">🍳</div>
-            <div class="srow-content">
-              <div class="srow-main">
-                6:45 — Protein breakfast + first coffee
-              </div>
-              <div class="srow-sub">
-                25-30g protein. Complex carb. Fat. Coffee only after 90 min of
-                waking.
+          <div class="sr am">
+            <div class="sr-icon">🍳</div>
+            <div class="sr-c">
+              <div class="sr-main">6:45 — Protein breakfast + first coffee</div>
+              <div class="sr-sub">
+                25-30g protein. Coffee only 90 min after waking.
               </div>
             </div>
           </div>
         </div>
 
-        <div class="mini-divider"></div>
-        <div class="section-label">Study Day Schedule</div>
-        <div class="study-visual">
-          <div class="sv-row">
-            <div class="sv-time">7:00–9:30</div>
-            <div class="sv-bar deep">
-              <div class="sv-label">
-                🧠 Deep Study Block 1 — New theory (hardest material first)
+        <div class="div"></div>
+        <div class="slabel">Study Day — Flexible Blocks</div>
+        <div class="sbars">
+          <div class="sb-row">
+            <div class="sb-time">7:00–9:30</div>
+            <div class="bar deep">
+              <div class="bl">
+                🧠 Deep Study — New theory (hardest material first)
               </div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">9:30–9:45</div>
-            <div class="sv-bar break">
-              <div class="sv-label">Break — walk, stretch, no screen</div>
+          <div class="sb-row">
+            <div class="sb-time">9:30–9:45</div>
+            <div class="bar brk">
+              <div class="bl">Break — walk, stretch, no screen</div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">9:45–12:00</div>
-            <div class="sv-bar code">
-              <div class="sv-label">
-                💻 DSA Coding — 2–3 LeetCode mediums in Java
-              </div>
+          <div class="sb-row">
+            <div class="sb-time">9:45–12:00</div>
+            <div class="bar code">
+              <div class="bl">💻 DSA Coding — 2–3 LeetCode mediums in Java</div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">12:00–1:00</div>
-            <div class="sv-bar apply">
-              <div class="sv-label">
+          <div class="sb-row">
+            <div class="sb-time">12:00–1:00</div>
+            <div class="bar apply">
+              <div class="bl">
                 🎯 Lunch + Apply 2–3 jobs + 1 recruiter message
               </div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">1:00–3:00</div>
-            <div class="sv-bar design">
-              <div class="sv-label">
-                🏗️ Block 2 — System design OR Java depth (alternate)
+          <div class="sb-row">
+            <div class="sb-time">1:00–3:00</div>
+            <div class="bar design">
+              <div class="bl">
+                🏗️ Block 2 — System Design OR Java depth (alternate)
               </div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">3:00–3:30</div>
-            <div class="sv-bar break">
-              <div class="sv-label">Real break — snack, walk, reset energy</div>
+          <div class="sb-row">
+            <div class="sb-time">3:00–3:30</div>
+            <div class="bar brk">
+              <div class="bl">Real break — snack, walk, energy reset</div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">3:30–5:30</div>
-            <div class="sv-bar mock">
-              <div class="sv-label">
-                🎤 Mock interview / Behavioral STAR prep / Recording
+          <div class="sb-row">
+            <div class="sb-time">3:30–5:30</div>
+            <div class="bar mock">
+              <div class="bl">
+                🎤 Mock interview / Behavioral STAR / Recording
               </div>
             </div>
           </div>
-          <div class="sv-row">
-            <div class="sv-time">5:30–6:00</div>
-            <div class="sv-bar review">
-              <div class="sv-label">
+          <div class="sb-row">
+            <div class="sb-time">5:30–6:00</div>
+            <div class="bar review">
+              <div class="bl">
                 📋 Daily review — 5 key learnings → flashcards
               </div>
             </div>
           </div>
         </div>
 
-        <div class="mini-divider"></div>
-        <div class="section-label">Evening Wind-Down</div>
-        <div class="schedule-block">
-          <div class="srow evening">
-            <div class="srow-icon">🌆</div>
-            <div class="srow-content">
-              <div class="srow-main">
+        <div class="div"></div>
+        <div class="slabel">Evening Wind-Down</div>
+        <div class="sched">
+          <div class="sr ev">
+            <div class="sr-icon">🌆</div>
+            <div class="sr-c">
+              <div class="sr-main">
                 6:00 PM — Stop new learning. Review only.
               </div>
             </div>
           </div>
-          <div class="srow evening">
-            <div class="srow-icon">🍽️</div>
-            <div class="srow-content">
-              <div class="srow-main">7:00 PM — Light dinner before 8 PM</div>
-              <div class="srow-sub">
-                Dal-rice, khichdi, idli-sambar. Heavy dinner fragments sleep.
+          <div class="sr ev">
+            <div class="sr-icon">🍽️</div>
+            <div class="sr-c">
+              <div class="sr-main">7:00 PM — Light dinner before 8 PM</div>
+              <div class="sr-sub">
+                Dal-rice, khichdi. Heavy dinner fragments sleep.
               </div>
             </div>
           </div>
-          <div class="srow night">
-            <div class="srow-icon">📋</div>
-            <div class="srow-content">
-              <div class="srow-main">
+          <div class="sr nt">
+            <div class="sr-icon">📋</div>
+            <div class="sr-c">
+              <div class="sr-main">
                 9:00 PM — 5-min review + tomorrow's 3 tasks
               </div>
-              <div class="srow-sub">
-                Closes open loops so brain can stop rehearsing during sleep.
-              </div>
             </div>
           </div>
-          <div class="srow night">
-            <div class="srow-icon">📵</div>
-            <div class="srow-content">
-              <div class="srow-main">
+          <div class="sr nt">
+            <div class="sr-icon">📵</div>
+            <div class="sr-c">
+              <div class="sr-main">
                 9:30 PM — No screens. Dim lights. Fiction only.
               </div>
             </div>
           </div>
-          <div class="srow night">
-            <div class="srow-icon">🌙</div>
-            <div class="srow-content">
-              <div class="srow-main">
+          <div class="sr nt">
+            <div class="sr-icon">🌙</div>
+            <div class="sr-c">
+              <div class="sr-main">
                 10:30 PM — Lights out. Same time every night.
               </div>
             </div>
@@ -861,418 +1056,781 @@
         </div>
       </div>
 
-      <!-- ══════════════════════════════════════════
-       COL 2 — HABITS + BRAIN FUEL + MEMORY
-       ══════════════════════════════════════════ -->
+      <!-- ══════════════════════════
+       COL 2 — HABITS + FOOD
+  ══════════════════════════ -->
       <div class="col">
-        <div class="section-label">Daily Non-Negotiables — Do Every Day</div>
-        <div class="habit-list">
-          <div class="hitem do">
+        <div class="slabel">Do Every Day — Non-Negotiables</div>
+        <div class="hlist">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
-                ☀️ Sunlight in first 30 min of waking
-              </div>
-              <div class="hitem-sub">
-                Anchors circadian rhythm. Sets cortisol peak at right time.
+            <div class="hi-t">
+              <div class="hi-main">☀️ Sunlight first 30 min of waking</div>
+              <div class="hi-sub">
+                Anchors circadian rhythm. Cortisol peaks right.
               </div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
+            <div class="hi-t">
+              <div class="hi-main">
                 📓 5-min journal: gratitude · intention · anxiety
               </div>
-              <div class="hitem-sub">
-                Labelling anxiety reduces amygdala activation within seconds.
+              <div class="hi-sub">
+                Naming anxiety reduces amygdala activation instantly.
               </div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">🧘 10-min meditation / breathwork</div>
-              <div class="hitem-sub">
-                PFC activation. Measurable grey matter increase after 10 days.
+            <div class="hi-t">
+              <div class="hi-main">🧘 10-min breathwork / meditation</div>
+              <div class="hi-sub">
+                PFC activation. Grey matter grows after 10 days.
               </div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">🚶 30-min brisk walk before study</div>
-              <div class="hitem-sub">
-                BDNF release. Improves focus + memory for next 2–4 hours.
-              </div>
+            <div class="hi-t">
+              <div class="hi-main">🚶 30-min walk before study (no phone)</div>
+              <div class="hi-sub">BDNF → 2–4 hr focus + memory boost.</div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
+            <div class="hi-t">
+              <div class="hi-main">
                 🍳 Protein breakfast (25–30g) within 1 hr
               </div>
-              <div class="hitem-sub">
-                Sets dopamine, serotonin, acetylcholine baseline for the day.
+              <div class="hi-sub">
+                Sets dopamine, serotonin, acetylcholine for the day.
               </div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">💧 2.5L+ water throughout the day</div>
-              <div class="hitem-sub">
-                2% dehydration = 13% memory decline. Fill 1L bottle at 7am,
-                11am, 3pm.
+            <div class="hi-t">
+              <div class="hi-main">
+                💧 2.5L+ water (1L bottle at 7am, 11am, 3pm)
+              </div>
+              <div class="hi-sub">2% dehydration = 13% memory decline.</div>
+            </div>
+          </div>
+          <div class="hi do">
+            <div class="hbox do">✓</div>
+            <div class="hi-t">
+              <div class="hi-main">❄️ Cold shower end — 30–60 sec</div>
+              <div class="hi-sub">
+                Dopamine +250% sustained 2–4 hrs. Builds resilience.
               </div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">❄️ Cold shower end — 30–60 seconds</div>
-              <div class="hitem-sub">
-                Dopamine +250% sustained 2–4 hrs. Trains stress resilience.
+            <div class="hi-t">
+              <div class="hi-main">
+                📋 End-of-day review + tomorrow's 3 tasks
+              </div>
+              <div class="hi-sub">
+                Zeigarnik closure: written = brain stops looping.
               </div>
             </div>
           </div>
-          <div class="hitem do">
+          <div class="hi do">
             <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
-                📋 End-of-day review + 3 tasks for tomorrow
-              </div>
-              <div class="hitem-sub">
-                Zeigarnik closure — written tasks stop looping during sleep.
-              </div>
-            </div>
-          </div>
-          <div class="hitem do">
-            <div class="hbox do">✓</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
-                🌙 Lights out 10:30 PM. Same time daily.
-              </div>
-              <div class="hitem-sub">
-                Consistency of sleep timing matters more than total hours.
+            <div class="hi-t">
+              <div class="hi-main">
+                🌙 Lights out 10:30 PM — same time every night
               </div>
             </div>
           </div>
         </div>
 
-        <div class="mini-divider"></div>
-        <div class="section-label">Protect Against — Every Day</div>
-        <div class="habit-list">
-          <div class="hitem dont">
+        <div class="div"></div>
+        <div class="slabel">Never Do</div>
+        <div class="hlist">
+          <div class="hi dont">
             <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">📱 No social media before 1 PM</div>
-              <div class="hitem-sub">
-                Rewires PFC to demand novelty. Destroys 90-min focus capacity.
+            <div class="hi-t">
+              <div class="hi-main">📱 No social media before 1 PM</div>
+              <div class="hi-sub">
+                Rewires PFC for novelty. Kills 90-min focus capacity.
               </div>
             </div>
           </div>
-          <div class="hitem dont">
+          <div class="hi dont">
             <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
+            <div class="hi-t">
+              <div class="hi-main">
                 ☕ No caffeine before 9 AM or after 2 PM
               </div>
-              <div class="hitem-sub">
-                90-min delay = cortisol synergy. After 2 PM = fragmented sleep.
+            </div>
+          </div>
+          <div class="hi dont">
+            <div class="hbox dont">✕</div>
+            <div class="hi-t">
+              <div class="hi-main">📵 No phone visible during study blocks</div>
+              <div class="hi-sub">
+                Visible phone = 10–20% cognitive drain even off.
               </div>
             </div>
           </div>
-          <div class="hitem dont">
+          <div class="hi dont">
             <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
-                📵 No phone visible during study blocks
-              </div>
-              <div class="hitem-sub">
-                Visible phone reduces cognitive capacity 10–20% even face-down.
+            <div class="hi-t">
+              <div class="hi-main">
+                🍷 No alcohol (cuts REM 25%, impairs memory 24h+)
               </div>
             </div>
           </div>
-          <div class="hitem dont">
+          <div class="hi dont">
             <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
-                🍔 No heavy lunch (costs 2–3 hrs of cognition)
+            <div class="hi-t">
+              <div class="hi-main">
+                😴 Never &lt;7 hours sleep · no screen 45min before bed
               </div>
-            </div>
-          </div>
-          <div class="hitem dont">
-            <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">
-                🍷 No alcohol (cuts REM sleep 25%, impairs memory 24h+)
-              </div>
-            </div>
-          </div>
-          <div class="hitem dont">
-            <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">📺 No screens 45 min before sleep</div>
-            </div>
-          </div>
-          <div class="hitem dont">
-            <div class="hbox dont">✕</div>
-            <div class="hitem-text">
-              <div class="hitem-main">😴 Never less than 7 hours sleep</div>
             </div>
           </div>
         </div>
 
-        <div class="mini-divider"></div>
-        <div class="section-label">Science Behind the Numbers</div>
-        <div class="stat-row">
-          <div class="stat-chip indigo">
-            <div class="sc-num">8h</div>
-            <div class="sc-label">Sleep = 40% better memory</div>
+        <div class="div"></div>
+        <div class="slabel">Brain Fuel</div>
+        <div class="fg">
+          <div class="fi">
+            <div class="fi-n">🥚 Eggs (3 daily)</div>
+            <div class="fi-w">
+              Choline → acetylcholine. Memory neurotransmitter.
+            </div>
           </div>
-          <div class="stat-chip teal">
-            <div class="sc-num teal">30m</div>
-            <div class="sc-label">Walk = 2–4hr focus boost</div>
+          <div class="fi">
+            <div class="fi-n">🫐 Berries</div>
+            <div class="fi-w">
+              Anthocyanins → brain blood flow. Memory boost in hours.
+            </div>
           </div>
-          <div class="stat-chip amber">
-            <div class="sc-num amber">23m</div>
-            <div class="sc-label">To refocus after 1 interruption</div>
+          <div class="fi">
+            <div class="fi-n">🐟 Fatty fish 3–4x</div>
+            <div class="fi-w">
+              DHA omega-3 — brain cell membrane structural fat.
+            </div>
           </div>
-          <div class="stat-chip violet">
-            <div class="sc-num violet">70%</div>
-            <div class="sc-label">Forgotten in 24h without review</div>
+          <div class="fi">
+            <div class="fi-n">🌰 Walnuts</div>
+            <div class="fi-w">
+              ALA + polyphenols. Reduces neuroinflammation.
+            </div>
+          </div>
+          <div class="fi">
+            <div class="fi-n">🍵 Green tea</div>
+            <div class="fi-w">
+              L-theanine + caffeine = calm focus. Alpha brainwaves.
+            </div>
+          </div>
+          <div class="fi">
+            <div class="fi-n">🌿 Palak / methi</div>
+            <div class="fi-w">Vitamin K, folate, lutein — working memory.</div>
+          </div>
+          <div class="fi av">
+            <div class="fi-n">🚫 White sugar</div>
+            <div class="fi-w">
+              Glucose spike → crash in 60–90 min. Brain fog.
+            </div>
+          </div>
+          <div class="fi av">
+            <div class="fi-n">🚫 Heavy lunch</div>
+            <div class="fi-w">
+              Diverts blood to digestion. 2–3 hr cognitive drop.
+            </div>
+          </div>
+        </div>
+
+        <div class="div"></div>
+        <div class="stats">
+          <div class="sc in">
+            <div class="sc-n">8h</div>
+            <div class="sc-l">Sleep = 40% memory</div>
+          </div>
+          <div class="sc tl">
+            <div class="sc-n tl">30m</div>
+            <div class="sc-l">Walk = 2–4hr focus</div>
+          </div>
+          <div class="sc am">
+            <div class="sc-n am">23m</div>
+            <div class="sc-l">Refocus after 1 interruption</div>
+          </div>
+          <div class="sc vl">
+            <div class="sc-n vl">70%</div>
+            <div class="sc-l">Forgotten in 24h without review</div>
           </div>
         </div>
       </div>
 
-      <!-- ══════════════════════════════════════════
-       COL 3 — BRAIN FOOD + MEMORY TECHNIQUES + MINDSET
-       ══════════════════════════════════════════ -->
+      <!-- ══════════════════════════
+       COL 3 — MEMORY + MINDSET
+  ══════════════════════════ -->
       <div class="col">
-        <div class="section-label">Brain Fuel — Eat More Of These</div>
-        <div class="food-grid">
-          <div class="food-item">
-            <div class="food-name">🥚 Eggs (3 daily)</div>
-            <div class="food-why">
-              Choline → acetylcholine. Memory neurotransmitter. Don't skip yolk.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🫐 Blueberries / berries</div>
-            <div class="food-why">
-              Anthocyanins → blood flow to brain. Memory boost within hours.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🐟 Fatty fish 3–4x/wk</div>
-            <div class="food-why">
-              DHA omega-3 — structural fat in brain cell membranes.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🌰 Walnuts (handful)</div>
-            <div class="food-why">
-              ALA omega-3 + polyphenols. Reduces neuroinflammation.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🍫 Dark choc 70%+</div>
-            <div class="food-why">
-              Flavanols + cerebral blood flow. 1–2 squares pre-study.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🫙 Curd / yoghurt</div>
-            <div class="food-why">
-              Gut-brain axis. Probiotics reduce anxiety via vagus nerve.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🌿 Palak / methi daily</div>
-            <div class="food-why">
-              Vitamin K, folate, lutein — working memory and brain health.
-            </div>
-          </div>
-          <div class="food-item">
-            <div class="food-name">🍵 Green tea</div>
-            <div class="food-why">
-              L-theanine + caffeine = calm focus. Alpha brainwave state.
-            </div>
-          </div>
-        </div>
-
-        <div class="mini-divider"></div>
-        <div class="section-label">Avoid — Hurts Cognitive Performance</div>
-        <div class="food-grid">
-          <div class="food-item avoid">
-            <div class="food-name">🚫 White sugar / refined carbs</div>
-            <div class="food-why">
-              Glucose spike → crash in 60–90 min. Brain fog, irritability.
-            </div>
-          </div>
-          <div class="food-item avoid">
-            <div class="food-name">🚫 Heavy oily lunch</div>
-            <div class="food-why">
-              Diverts blood to digestion. Cognitive drop for 2–3 hours after.
-            </div>
-          </div>
-          <div class="food-item avoid">
-            <div class="food-name">🚫 Skipping meals</div>
-            <div class="food-why">
-              Brain glucose drops → fog, anxiety. No glucose storage in brain.
-            </div>
-          </div>
-          <div class="food-item avoid">
-            <div class="food-name">🚫 Late heavy dinner (9PM+)</div>
-            <div class="food-why">
-              Raises core temp at wrong time. Fragments sleep quality.
-            </div>
-          </div>
-        </div>
-
-        <div class="mini-divider"></div>
-        <div class="section-label">Memory Techniques — Use These Every Day</div>
-        <div class="priority-list">
-          <div class="pitem indigo">
-            <div class="pnum indigo">1</div>
-            <div class="pitem-text">
-              <div class="pitem-main">
+        <div class="slabel">Memory Techniques — Use Daily</div>
+        <div class="plist">
+          <div class="pi in">
+            <div class="pnum in">1</div>
+            <div class="pi-t">
+              <div class="pi-main">
                 Active Recall — close material, explain from memory first
               </div>
-              <div class="pitem-sub">
-                2–3x better retention than re-reading. Always test before
-                checking.
+              <div class="pi-sub">
+                2–3× better than re-reading. Test before checking every time.
               </div>
             </div>
           </div>
-          <div class="pitem teal">
-            <div class="pnum teal">2</div>
-            <div class="pitem-text">
-              <div class="pitem-main">
+          <div class="pi tl">
+            <div class="pnum tl">2</div>
+            <div class="pi-t">
+              <div class="pi-main">
                 Spaced Repetition — Day 1 → 3 → 7 → 14 → 30
               </div>
-              <div class="pitem-sub">
+              <div class="pi-sub">
                 Review yesterday's 5 key points every morning. Use Anki.
               </div>
             </div>
           </div>
-          <div class="pitem violet">
-            <div class="pnum violet">3</div>
-            <div class="pitem-text">
-              <div class="pitem-main">
-                Feynman — explain it as if teaching a 12-year-old
+          <div class="pi vl">
+            <div class="pnum vl">3</div>
+            <div class="pi-t">
+              <div class="pi-main">
+                Feynman — explain as if teaching a 12-year-old
               </div>
-              <div class="pitem-sub">
-                Where you stumble = your gap. Fill gap. Repeat until smooth.
+              <div class="pi-sub">
+                Where you stumble = your gap. Fill it. Repeat until smooth.
               </div>
             </div>
           </div>
-          <div class="pitem amber">
-            <div class="pnum amber">4</div>
-            <div class="pitem-text">
-              <div class="pitem-main">
+          <div class="pi am">
+            <div class="pnum am">4</div>
+            <div class="pi-t">
+              <div class="pi-main">
                 Draw by hand — never just type complex concepts
               </div>
-              <div class="pitem-sub">
+              <div class="pi-sub">
                 Handwriting encodes deeper. Whiteboard prep built in.
               </div>
             </div>
           </div>
-          <div class="pitem sage">
-            <div class="pnum sage">5</div>
-            <div class="pitem-text">
-              <div class="pitem-main">
-                Interleave subjects — Java 90m → System Design 90m → DSA
+          <div class="pi sg">
+            <div class="pnum sg">5</div>
+            <div class="pi-t">
+              <div class="pi-main">
+                Interleave — Java 90m → System Design → DSA
               </div>
-              <div class="pitem-sub">
-                Harder but produces significantly better transfer and recall.
+              <div class="pi-sub">
+                Harder but dramatically better recall and transfer.
               </div>
             </div>
           </div>
         </div>
 
-        <div class="mini-divider"></div>
-        <div class="section-label">Mindset Anchors</div>
-
-        <div class="quote-block">
-          <div class="quote-text">
-            "Motivation follows action — it doesn't precede it. Do the action
-            first. The motivation comes after the first 5 minutes of starting.
-            Count 5-4-3-2-1 and begin."
-          </div>
-          <div class="quote-attr">
-            Mel Robbins · Neuroscience of habit formation
-          </div>
-        </div>
-
-        <div class="mini-quote" style="margin-top: 6px">
+        <div class="div"></div>
+        <div class="slabel">Mindset Anchors</div>
+        <div class="dq">
           <p>
-            🫁 Anxiety spike? Double inhale through nose, long exhale out mouth.
-            2 reps. Works in 5 seconds. (Physiological sigh — Huberman Lab)
+            "Motivation follows action — never the other way. Count 5-4-3-2-1
+            and begin. Everything else follows from starting."
+          </p>
+          <cite>Mel Robbins · Neuroscience of Habit Formation</cite>
+        </div>
+
+        <div class="mq" style="margin-top: 4px">
+          <p>
+            🫁 <strong>Anxiety spike?</strong> Double inhale through nose, long
+            exhale out mouth. 2 reps. Works in 5 seconds. (Huberman Lab —
+            Physiological Sigh)
+          </p>
+        </div>
+        <div class="mq am">
+          <p>
+            🔄 <strong>Missed yesterday?</strong> Fine. Rule:
+            <strong>never miss twice.</strong> A 30-min session counts. Progress
+            &gt; Perfection is the mechanism, not the metaphor.
+          </p>
+        </div>
+        <div class="mq vl">
+          <p>
+            💪 <strong>Interview nerves?</strong> "My body is preparing me. This
+            arousal is energy I can direct." Stress reframed as fuel measurably
+            improves performance. (Kelly McGonigal, Stanford)
+          </p>
+        </div>
+        <div class="mq tl">
+          <p>
+            🧠 <strong>Remember:</strong> You are not starting over. You have 12
+            years of real production experience. You are surfacing what you
+            already know. That is your unfair advantage.
           </p>
         </div>
 
-        <div
-          class="mini-quote"
-          style="
-            margin-top: 4px;
-            border-color: var(--teal);
-            background: var(--teal-lt);
-          "
-        >
-          <p style="color: var(--teal-dk)">
-            😰 Feeling stressed? Name it: "I feel anxious because ___."
-            Labelling reduces amygdala activation immediately. Then ask: "What
-            would I tell a friend feeling this?"
-          </p>
+        <div class="div"></div>
+
+        <!-- ══ MVD ══ -->
+        <div class="mvd-block">
+          <div class="mvd-title">⚡ Minimum Viable Day — When Life Hits</div>
+          <div class="mvd-items">
+            <div class="mvd-item">
+              <div class="mvd-dot"></div>
+              1 study block (even 45 min) of active recall
+            </div>
+            <div class="mvd-item">
+              <div class="mvd-dot"></div>
+              Apply to 1 job
+            </div>
+            <div class="mvd-item">
+              <div class="mvd-dot"></div>
+              Walk 15 min
+            </div>
+            <div class="mvd-item">
+              <div class="mvd-dot"></div>
+              Write tomorrow's 1 task before sleep
+            </div>
+            <div class="mvd-item">
+              <div class="mvd-dot"></div>
+              Sleep by 11 PM
+            </div>
+          </div>
+          <div class="mvd-foot">
+            This is a full win. You stayed in the game. That is what matters.
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════
+       COL 4 — ROADBLOCK CUE CARDS
+  ══════════════════════════ -->
+      <div class="col">
+        <div class="slabel">Roadblock Cue Cards — What to do when...</div>
+
+        <div class="cue-tabs" id="cueTabs">
+          <button class="cue-tab active" data-cue="sleepy">😴 Sleepy</button>
+          <button class="cue-tab tl active" data-cue="stuck">🧱 Stuck</button>
+          <button class="cue-tab am" data-cue="nostart">😑 Can't Start</button>
+          <button class="cue-tab vl" data-cue="doom">📱 Doom Scrolled</button>
+          <button class="cue-tab co" data-cue="panic">😰 Panic</button>
+          <button class="cue-tab sg" data-cue="offtrack">💔 Off Track</button>
         </div>
 
-        <div
-          class="mini-quote"
-          style="
-            margin-top: 4px;
-            border-color: var(--amber);
-            background: var(--amber-lt);
-          "
-        >
-          <p style="color: var(--amber-dk)">
-            🔄 Missed yesterday? That's allowed. The rule:
-            <strong>never miss twice.</strong> A 30-minute session counts.
-            Progress over perfection is the mechanism, not the metaphor.
-          </p>
-        </div>
+        <div class="cue-panels" id="cuePanels">
+          <!-- SLEEPY -->
+          <div class="cue-panel active" id="cue-sleepy">
+            <div class="cue-headline">😴 Feeling sleepy while reading</div>
+            <div class="cue-steps">
+              <div class="cue-step">
+                <div class="cs-n">1</div>
+                <div class="cs-t">
+                  <div class="cs-main">Stop reading immediately</div>
+                  <div class="cs-sub">
+                    Reading while drowsy has near-zero retention. You're wasting
+                    time, not studying.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step">
+                <div class="cs-n">2</div>
+                <div class="cs-t">
+                  <div class="cs-main">20-min nap (set alarm for 25 min)</div>
+                  <div class="cs-sub">
+                    NASA study: 26-min nap = 26% performance boost. 1–3 PM only.
+                    Don't fight it — use it.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step">
+                <div class="cs-n">3</div>
+                <div class="cs-t">
+                  <div class="cs-main">Or: switch to active mode instead</div>
+                  <div class="cs-sub">
+                    Stop reading. Write what you know from memory. Draw the
+                    concept. Talk out loud. Movement beats drowsiness.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step">
+                <div class="cs-n">4</div>
+                <div class="cs-t">
+                  <div class="cs-main">Cold water on face + 10 squats</div>
+                  <div class="cs-sub">
+                    Triggers norepinephrine release. Works in 60 seconds. Better
+                    than coffee at 3 PM.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step">
+                <div class="cs-n">5</div>
+                <div class="cs-t">
+                  <div class="cs-main">Check: did you eat a heavy lunch?</div>
+                  <div class="cs-sub">
+                    Post-lunch fog = blood diverted to digestion. Eat lighter.
+                    Curd + rice + sabzi, not biryani.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mq tl" style="margin-top: 4px">
+              <p>
+                Root cause of daily sleepiness during study = previous night's
+                poor sleep. Fix the night, fix the day.
+              </p>
+            </div>
+          </div>
 
-        <div
-          class="mini-quote"
-          style="
-            margin-top: 4px;
-            border-color: var(--violet);
-            background: var(--violet-lt);
-          "
-        >
-          <p style="color: var(--violet-dk)">
-            💪 Interview anxiety = "My body is preparing me. This arousal is
-            energy I can direct." Stress reframed as fuel measurably improves
-            performance. (Kelly McGonigal, Stanford)
-          </p>
+          <!-- STUCK -->
+          <div class="cue-panel" id="cue-stuck">
+            <div class="cue-headline">
+              🧱 Stuck on a concept — nothing is clicking
+            </div>
+            <div class="cue-steps">
+              <div class="cue-step tl">
+                <div class="cs-n tl">1</div>
+                <div class="cs-t">
+                  <div class="cs-main">Write what you DO know first</div>
+                  <div class="cs-sub">
+                    Start with what's clear. Often the gap becomes obvious once
+                    you write the boundary.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step tl">
+                <div class="cs-n tl">2</div>
+                <div class="cs-t">
+                  <div class="cs-main">Go one level simpler</div>
+                  <div class="cs-sub">
+                    If ConcurrentHashMap isn't clicking, go back to HashMap.
+                    Always find the floor you're standing on.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step tl">
+                <div class="cs-n tl">3</div>
+                <div class="cs-t">
+                  <div class="cs-main">Change the medium</div>
+                  <div class="cs-sub">
+                    Stop reading. Draw it. Talk to yourself. Find a YouTube
+                    video just to SEE it. Understanding unlocks at different
+                    angles.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step tl">
+                <div class="cs-n tl">4</div>
+                <div class="cs-t">
+                  <div class="cs-main">Write your confusion specifically</div>
+                  <div class="cs-sub">
+                    "I understand X but I don't understand why Y." Precision in
+                    the question accelerates finding the answer.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step tl">
+                <div class="cs-n tl">5</div>
+                <div class="cs-t">
+                  <div class="cs-main">Walk away for 20 minutes</div>
+                  <div class="cs-sub">
+                    Insight often arrives during rest. Default mode network
+                    processes what focused attention can't. Walk. Come back.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CAN'T START -->
+          <div class="cue-panel" id="cue-nostart">
+            <div class="cue-headline">
+              😑 Can't start — everything feels heavy
+            </div>
+            <div class="cue-steps">
+              <div class="cue-step am">
+                <div class="cs-n am">1</div>
+                <div class="cs-t">
+                  <div class="cs-main">5 — 4 — 3 — 2 — 1 — GO</div>
+                  <div class="cs-sub">
+                    Count backwards and physically open the laptop. The
+                    resistance lives before the start, not after it.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step am">
+                <div class="cs-n am">2</div>
+                <div class="cs-t">
+                  <div class="cs-main">2-minute rule: just 2 minutes</div>
+                  <div class="cs-sub">
+                    Tell yourself: "I'll study for just 2 minutes." You'll
+                    almost never stop at 2 minutes. Starting is the whole game.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step am">
+                <div class="cs-n am">3</div>
+                <div class="cs-t">
+                  <div class="cs-main">Do the easiest thing first</div>
+                  <div class="cs-sub">
+                    Review yesterday's flashcards. Don't start with new hard
+                    material. Build momentum with something you already know.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step am">
+                <div class="cs-n am">4</div>
+                <div class="cs-t">
+                  <div class="cs-main">Name what's actually wrong</div>
+                  <div class="cs-sub">
+                    Is it fear? Overwhelm? Boredom? Tiredness? Name it. Write
+                    it. Then ask: "What's the one smallest next action?"
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step am">
+                <div class="cs-n am">5</div>
+                <div class="cs-t">
+                  <div class="cs-main">Today's MVD — deploy it</div>
+                  <div class="cs-sub">
+                    One block. One job application. One walk. That's a win. Do
+                    that. Only that. Don't negotiate more.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DOOM SCROLLED -->
+          <div class="cue-panel" id="cue-doom">
+            <div class="cue-headline">📱 Doom-scrolled and wasted 2 hours</div>
+            <div class="cue-steps">
+              <div class="cue-step vl">
+                <div class="cs-n vl">1</div>
+                <div class="cs-t">
+                  <div class="cs-main">Put the phone in another room. Now.</div>
+                  <div class="cs-sub">
+                    Not face down. Not silent. Another room. This is the only
+                    fix. Willpower alone doesn't work against engineered feeds.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step vl">
+                <div class="cs-n vl">2</div>
+                <div class="cs-t">
+                  <div class="cs-main">Don't catastrophise the wasted time</div>
+                  <div class="cs-sub">
+                    2 hours gone ≠ the day is over. 3 hours of quality study
+                    remain. That is still a productive day.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step vl">
+                <div class="cs-n vl">3</div>
+                <div class="cs-t">
+                  <div class="cs-main">5-4-3-2-1 and start the next block</div>
+                  <div class="cs-sub">
+                    The only recovery is action. Not guilt. Not planning a
+                    better tomorrow. Action now.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step vl">
+                <div class="cs-n vl">4</div>
+                <div class="cs-t">
+                  <div class="cs-main">Set app time limits tonight</div>
+                  <div class="cs-sub">
+                    Use ScreenTime (iPhone) to limit Instagram/YouTube to 20
+                    min/day. Make it require a password someone else sets.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mq vl" style="margin-top: 4px">
+              <p>
+                You are not weak for getting sucked in. These apps spent $100M
+                engineering that pull. You need a structural barrier, not more
+                willpower.
+              </p>
+            </div>
+          </div>
+
+          <!-- PANIC -->
+          <div class="cue-panel" id="cue-panic">
+            <div class="cue-headline">
+              😰 Overwhelm / panic / "I'll never be ready"
+            </div>
+            <div class="cue-steps">
+              <div class="cue-step co">
+                <div class="cs-n co">1</div>
+                <div class="cs-t">
+                  <div class="cs-main">Physiological sigh — right now</div>
+                  <div class="cs-sub">
+                    Double inhale (nose), long exhale (mouth). Twice. Resets the
+                    nervous system in under 10 seconds.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step co">
+                <div class="cs-n co">2</div>
+                <div class="cs-t">
+                  <div class="cs-main">Name the specific fear</div>
+                  <div class="cs-sub">
+                    "I'm scared I don't know X." Not "I'll never be ready."
+                    Specific fear = solvable. Vague dread = spiral.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step co">
+                <div class="cs-n co">3</div>
+                <div class="cs-t">
+                  <div class="cs-main">Read your evidence list</div>
+                  <div class="cs-sub">
+                    Open your journal. Find one thing you nailed this week. You
+                    have 12 years of nailing things. This is not your ceiling.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step co">
+                <div class="cs-n co">4</div>
+                <div class="cs-t">
+                  <div class="cs-main">Zoom out: what is actually true?</div>
+                  <div class="cs-sub">
+                    You have paid runway. You have a plan. You have a study
+                    system. You showed up today. That is more than most
+                    candidates.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step co">
+                <div class="cs-n co">5</div>
+                <div class="cs-t">
+                  <div class="cs-main">
+                    Do the next 25 minutes, nothing more
+                  </div>
+                  <div class="cs-sub">
+                    Don't think about the offer deadline. Don't think about 45
+                    days. Think about the next Pomodoro only.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OFF TRACK -->
+          <div class="cue-panel" id="cue-offtrack">
+            <div class="cue-headline">💔 Bad week — feel behind, off track</div>
+            <div class="cue-steps">
+              <div class="cue-step sg">
+                <div class="cs-n sg">1</div>
+                <div class="cs-t">
+                  <div class="cs-main">
+                    One missed day is noise. A week needs a reset.
+                  </div>
+                  <div class="cs-sub">
+                    Saturday morning reset: honest 20-min review. What happened?
+                    What's one thing to fix? Only one.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step sg">
+                <div class="cs-n sg">2</div>
+                <div class="cs-t">
+                  <div class="cs-main">Shrink the plan until it's easy</div>
+                  <div class="cs-sub">
+                    If the full schedule isn't working, go MVD for 3 days.
+                    Rebuild momentum at minimum before expanding again.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step sg">
+                <div class="cs-n sg">3</div>
+                <div class="cs-t">
+                  <div class="cs-main">Look at what you DID do</div>
+                  <div class="cs-sub">
+                    Write a "done list" not a "to-do list." What did you
+                    actually accomplish? Progress is always more than it feels.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step sg">
+                <div class="cs-n sg">4</div>
+                <div class="cs-t">
+                  <div class="cs-main">Don't restart from scratch</div>
+                  <div class="cs-sub">
+                    Every time you feel behind and restart the whole system, you
+                    lose the compounding. Continue from exactly where you are.
+                  </div>
+                </div>
+              </div>
+              <div class="cue-step sg">
+                <div class="cs-n sg">5</div>
+                <div class="cs-t">
+                  <div class="cs-main">Remember what's actually at stake</div>
+                  <div class="cs-sub">
+                    Paid leave ends. Savings run out. You have a real timeline
+                    and a real reason. That's not pressure — that's clarity.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mq sg" style="margin-top: 4px">
+              <p>
+                The system is not the enemy. Your perfectionism is. A messy,
+                inconsistent journey with the system beats a perfect plan that
+                restarts every Monday.
+              </p>
+            </div>
+          </div>
         </div>
+        <!-- /cue-panels -->
       </div>
 
       <!-- ══ FOOTER ══ -->
-      <div class="poster-footer">
-        <div class="pf-left">
-          Shiva Krishna K · Personal Knowledge Hub · Start: 29 Jun 2026 · Target
-          offer: 13 Aug 2026 · Print this. Hang it. Read it daily.
+      <footer class="ftr">
+        <div class="ftr-l">
+          Shiva Krishna K · Start: 29 Jun 2026 · Target offer: 13 Aug 2026 ·
+          Hang this where you study. Read it before you open a browser.
         </div>
-        <div class="pf-right">
-          <span class="pf-mantra">🧠 Consistency &gt; Intensity</span>
-          <span class="pf-mantra">⚡ Systems &gt; Motivation</span>
-          <span class="pf-mantra">✅ Showing Up &gt; Optimising</span>
+        <div class="ftr-r">
+          <span class="ftr-m">🧠 Consistency &gt; Intensity</span>
+          <span class="ftr-m">⚡ Systems &gt; Motivation</span>
+          <span class="ftr-m">✅ Showing Up &gt; Optimising</span>
         </div>
-      </div>
+      </footer>
     </div>
-    <!-- /poster -->
+    <!-- /os -->
+
+    <script>
+      // Dark mode
+      const darkBtn = document.getElementById("darkBtn");
+      const html = document.documentElement;
+      if (localStorage.getItem("dos-dark") === "1") {
+        html.classList.add("dark");
+        darkBtn.textContent = "☀️";
+      }
+      darkBtn.addEventListener("click", () => {
+        const on = html.classList.toggle("dark");
+        darkBtn.textContent = on ? "☀️" : "🌙";
+        localStorage.setItem("dos-dark", on ? "1" : "0");
+      });
+
+      // Cue card tabs — event delegation
+      document.addEventListener("click", function (e) {
+        const tab = e.target.closest("#cueTabs .cue-tab");
+        if (!tab) return;
+        const cue = tab.getAttribute("data-cue");
+        // Update tabs
+        document
+          .querySelectorAll("#cueTabs .cue-tab")
+          .forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        // Update panels
+        document
+          .querySelectorAll("#cuePanels .cue-panel")
+          .forEach((p) => p.classList.remove("active"));
+        const panel = document.getElementById("cue-" + cue);
+        if (panel) panel.classList.add("active");
+      });
+    </script>
   </body>
 </html>
