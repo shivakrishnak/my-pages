@@ -8,6 +8,7 @@
       name="description"
       content="Every credit card in one place — fees, benefits, lounge access, and closure recommendations."
     />
+    <meta name="page-icon" content="💳" />
     <script src="../../core/init.js"></script>
     <style>
       /* Page-specific styles only. Never touches shell.css. */
@@ -144,8 +145,252 @@
         </div>
       </header>
 
+      <section class="ms-section" id="purchase-matrix">
+        <h2>
+          <span class="ms-section-num">01</span>Which Card For What — Purchase
+          Category Matrix
+        </h2>
+        <p>
+          The go-to table before checkout. Rows are your cards, columns are
+          spend categories. Where a card has an accelerated rate for a category,
+          it's called out; otherwise it falls back to the card's base rate.
+          "Excl." means that category earns nothing on that card — don't use it
+          there even out of habit.
+        </p>
+
+        <p><strong>Quick-pick summary by category:</strong></p>
+        <ul class="ms-checklist">
+          <li>
+            <strong>Amazon:</strong> ICICI Amazon Pay (5% Prime / 3% non-Prime)
+            — no other card comes close.
+          </li>
+          <li><strong>Flipkart:</strong> Axis Flipkart Card (5%).</li>
+          <li>
+            <strong>Myntra:</strong> Axis Flipkart Card (7.5%) beats HDFC
+            Regalia Gold's 5X points.
+          </li>
+          <li>
+            <strong>Flights/Travel:</strong> Yes First Preferred (accelerated
+            travel tier) or SBI SimplyCLICK via Cleartrip/Yatra for the
+            milestone vouchers.
+          </li>
+          <li>
+            <strong>Insurance & utility bills:</strong> Route through ICICI
+            Amazon Pay's bill-pay feature (2%) or the Tata Neu app (up to 5%) if
+            you're already there — most other cards exclude these categories
+            entirely.
+          </li>
+          <li>
+            <strong>Food delivery (Swiggy/Zomato):</strong> HDFC Swiggy Card,
+            hands down (10%).
+          </li>
+          <li>
+            <strong>Quick-commerce grocery (Zepto/Blinkit/Instamart):</strong>
+            Instamart specifically → HDFC Swiggy (10%); Zepto/Blinkit → IndusInd
+            CRED or Axis SuperMoney (both ~5% via UPI/e-commerce coding).
+          </li>
+          <li>
+            <strong>Fuel:</strong> No card in your wallet earns rewards on fuel
+            — pick whichever gives the surcharge waiver (most do) and don't
+            expect points.
+          </li>
+        </ul>
+
+        <details class="ms-accordion" open>
+          <summary>
+            Full comparison table — all 9 categories (tap to collapse on mobile)
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-table-wrap">
+              <table class="ms-table">
+                <thead>
+                  <tr>
+                    <th>Card</th>
+                    <th>Amazon</th>
+                    <th>Flipkart</th>
+                    <th>Myntra</th>
+                    <th>Flights / Travel</th>
+                    <th>Insurance</th>
+                    <th>Utility Bills</th>
+                    <th>
+                      Food Delivery<br /><span
+                        style="
+                          font-weight: 400;
+                          text-transform: none;
+                          letter-spacing: 0;
+                        "
+                        >(Swiggy/Zomato)</span
+                      >
+                    </th>
+                    <th>
+                      Quick-Commerce Grocery<br /><span
+                        style="
+                          font-weight: 400;
+                          text-transform: none;
+                          letter-spacing: 0;
+                        "
+                        >(Zepto/Blinkit/Instamart)</span
+                      >
+                    </th>
+                    <th>Fuel</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Amex MRCC</strong></td>
+                    <td class="lo">~1% base</td>
+                    <td class="lo">~1% base</td>
+                    <td class="lo">~1% base</td>
+                    <td class="lo">~1% base</td>
+                    <td class="bad">Excl.</td>
+                    <td class="bad">Excl.</td>
+                    <td class="lo">~1% base</td>
+                    <td class="lo">~1% base</td>
+                    <td class="bad">Excl. (0% HPCL fee &lt;₹5k)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Axis Flipkart</strong></td>
+                    <td class="lo">1% (not a partner)</td>
+                    <td class="hi">★ 5%</td>
+                    <td class="hi">★ 7.5%</td>
+                    <td>5% via Cleartrip only</td>
+                    <td class="bad">Excl.</td>
+                    <td class="bad">Excl.</td>
+                    <td class="med">4% (preferred partner)</td>
+                    <td class="lo">1% (not a partner)</td>
+                    <td class="bad">Excl. (surcharge waiver only)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Axis SuperMoney</strong></td>
+                    <td class="lo">1% (3% if via UPI on app)</td>
+                    <td class="lo">1% (3% if via UPI on app)</td>
+                    <td class="lo">1% (3% if via UPI on app)</td>
+                    <td class="lo">1%</td>
+                    <td class="lo">1%</td>
+                    <td class="lo">1%</td>
+                    <td class="lo">1% (3% if via UPI on app)</td>
+                    <td class="lo">1% (3% if via UPI on app)</td>
+                    <td>1% surcharge waiver</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HDFC Regalia Gold</strong></td>
+                    <td class="lo">~1.25% base</td>
+                    <td class="lo">~1.25% base</td>
+                    <td class="hi">★ 5X points (accel.)</td>
+                    <td>SmartBuy offers vary</td>
+                    <td class="lo">~1.25% base</td>
+                    <td class="lo">~1.25% base</td>
+                    <td class="lo">~1.25% base</td>
+                    <td class="lo">~1.25% base</td>
+                    <td>1% surcharge waiver</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HDFC Tata Neu Infinity</strong></td>
+                    <td class="lo">1.5% (not Tata)</td>
+                    <td class="lo">1.5% (not Tata)</td>
+                    <td class="lo">1.5% (not Tata)</td>
+                    <td class="med">5% via Air India</td>
+                    <td>1.5–5% if paid via Tata Neu app</td>
+                    <td>1.5–5% if paid via Tata Neu app</td>
+                    <td class="lo">1.5% (not Tata)</td>
+                    <td class="med">
+                      5% at BigBasket (Tata); 1.5% Zepto/Blinkit
+                    </td>
+                    <td class="bad">Excl.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HDFC Swiggy</strong></td>
+                    <td class="med">5% (online category)</td>
+                    <td class="med">5% (online category)</td>
+                    <td class="med">5% (online category)</td>
+                    <td class="lo">1% base</td>
+                    <td class="bad">Excl.</td>
+                    <td class="bad">Excl.</td>
+                    <td class="hi">★ 10% (Swiggy app)</td>
+                    <td>10% via Instamart; 1% Zepto/Blinkit</td>
+                    <td class="bad">No waiver, no reward</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HSBC Platinum</strong></td>
+                    <td class="lo">~0.9% base</td>
+                    <td class="lo">~0.9% base</td>
+                    <td class="lo">~0.9% base</td>
+                    <td class="lo">~0.9% base</td>
+                    <td class="bad">Excl.</td>
+                    <td class="bad">Excl.</td>
+                    <td class="lo">~0.9% base</td>
+                    <td class="lo">~0.9% base</td>
+                    <td>₹250 cashback/qtr on ₹10k+ contactless</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ICICI Amazon Pay</strong></td>
+                    <td class="hi">★ 5% (Prime) / 3% (non-Prime)</td>
+                    <td class="lo">1% (not Amazon)</td>
+                    <td class="lo">1% (not Amazon)</td>
+                    <td>2% if via Amazon Pay partner</td>
+                    <td>2% if paid via Amazon Pay</td>
+                    <td class="med">2% via Amazon Pay bill pay</td>
+                    <td class="lo">1% (not a partner)</td>
+                    <td class="lo">1% (not a partner)</td>
+                    <td>1% surcharge waiver</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Yes First Preferred</strong></td>
+                    <td>~2% (general retail)</td>
+                    <td>~2% (general retail)</td>
+                    <td>~2% (general retail)</td>
+                    <td class="hi">★ ~4% (travel/dining tier)</td>
+                    <td class="lo">~1% (select category)</td>
+                    <td class="lo">~1% (select category)</td>
+                    <td>~4% if coded as dining</td>
+                    <td class="lo">~1% (select category)</td>
+                    <td class="bad">Excl. (surcharge waiver only)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SBI SimplyCLICK</strong></td>
+                    <td class="med">~1.25% (5X, not a 10X partner)</td>
+                    <td class="med">~1.25% (5X, not a 10X partner)</td>
+                    <td class="hi">★ ~2.5% (10X partner)</td>
+                    <td class="hi">★ ~2.5% via Cleartrip/Yatra</td>
+                    <td>~1.25% if paid online</td>
+                    <td>~1.25% if paid online</td>
+                    <td class="hi">★ ~2.5% (10X partner)</td>
+                    <td class="med">~1.25% (5X online)</td>
+                    <td class="bad">Excl. (surcharge waiver only)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>IndusInd CRED RuPay</strong></td>
+                    <td class="hi">★ 5% (e-commerce)</td>
+                    <td class="hi">★ 5% (e-commerce)</td>
+                    <td class="hi">★ 5% (e-commerce)</td>
+                    <td>5% via CRED Travel; else 5% e-com</td>
+                    <td>5% if via CRED app; 1% outside</td>
+                    <td>5% if via CRED app; 1% outside</td>
+                    <td class="hi">★ 5% (e-commerce)</td>
+                    <td class="hi">★ 5% (e-commerce)</td>
+                    <td class="bad">Excl.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="ms-callout amber" style="margin-top: var(--space-4)">
+              <span class="ms-callout-label"
+                >Read the fine print before relying on this</span
+              >
+              Quick-commerce apps (Zepto, Blinkit, Instamart) aren't always
+              coded the same way merchant-side, so the "accelerated" categories
+              above can behave inconsistently even on the same card month to
+              month. Treat the highlighted (darker) cells as your default pick,
+              but if a card's app shows a different cashback/points result than
+              expected, trust the statement over this table and update the row.
+            </div>
+          </div>
+        </details>
+      </section>
+
       <section class="ms-section" id="overview">
-        <h2><span class="ms-section-num">01</span>The Bottom Line</h2>
+        <h2><span class="ms-section-num">02</span>The Bottom Line</h2>
         <p>
           Of your 11 cards, <strong>6 are lifetime free</strong> (no action
           needed) and <strong>5 carry an annual fee</strong>. If every
@@ -205,7 +450,7 @@
 
       <section class="ms-section" id="at-a-glance">
         <h2>
-          <span class="ms-section-num">02</span>At a Glance — All 11 Cards
+          <span class="ms-section-num">03</span>At a Glance — All 11 Cards
         </h2>
         <p>
           Sorted by bank. Fee status is flagged so the fee-bearing cards jump
@@ -340,243 +585,6 @@
           a one-time check with the issuer to confirm this is a standing waiver
           and not a lag before a fee eventually lands.
         </p>
-      </section>
-
-      <section class="ms-section" id="purchase-matrix">
-        <h2>
-          <span class="ms-section-num">03</span>Which Card For What — Purchase
-          Category Matrix
-        </h2>
-        <p>
-          The go-to table before checkout. Rows are your cards, columns are
-          spend categories. Where a card has an accelerated rate for a category,
-          it's called out; otherwise it falls back to the card's base rate.
-          "Excl." means that category earns nothing on that card — don't use it
-          there even out of habit.
-        </p>
-
-        <div class="ms-table-wrap">
-          <table class="ms-table">
-            <thead>
-              <tr>
-                <th>Card</th>
-                <th>Amazon</th>
-                <th>Flipkart</th>
-                <th>Myntra</th>
-                <th>Flights / Travel</th>
-                <th>Insurance</th>
-                <th>Utility Bills</th>
-                <th>
-                  Food Delivery<br /><span
-                    style="
-                      font-weight: 400;
-                      text-transform: none;
-                      letter-spacing: 0;
-                    "
-                    >(Swiggy/Zomato)</span
-                  >
-                </th>
-                <th>
-                  Quick-Commerce Grocery<br /><span
-                    style="
-                      font-weight: 400;
-                      text-transform: none;
-                      letter-spacing: 0;
-                    "
-                    >(Zepto/Blinkit/Instamart)</span
-                  >
-                </th>
-                <th>Fuel</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Amex MRCC</strong></td>
-                <td class="lo">~1% base</td>
-                <td class="lo">~1% base</td>
-                <td class="lo">~1% base</td>
-                <td class="lo">~1% base</td>
-                <td class="bad">Excl.</td>
-                <td class="bad">Excl.</td>
-                <td class="lo">~1% base</td>
-                <td class="lo">~1% base</td>
-                <td class="bad">Excl. (0% HPCL fee &lt;₹5k)</td>
-              </tr>
-              <tr>
-                <td><strong>Axis Flipkart</strong></td>
-                <td class="lo">1% (not a partner)</td>
-                <td class="hi">5%</td>
-                <td class="hi">7.5%</td>
-                <td>5% via Cleartrip only</td>
-                <td class="bad">Excl.</td>
-                <td class="bad">Excl.</td>
-                <td class="med">4% (preferred partner)</td>
-                <td class="lo">1% (not a partner)</td>
-                <td class="bad">Excl. (surcharge waiver only)</td>
-              </tr>
-              <tr>
-                <td><strong>Axis SuperMoney</strong></td>
-                <td class="lo">1% (3% if via UPI on app)</td>
-                <td class="lo">1% (3% if via UPI on app)</td>
-                <td class="lo">1% (3% if via UPI on app)</td>
-                <td class="lo">1%</td>
-                <td class="lo">1%</td>
-                <td class="lo">1%</td>
-                <td class="lo">1% (3% if via UPI on app)</td>
-                <td class="lo">1% (3% if via UPI on app)</td>
-                <td>1% surcharge waiver</td>
-              </tr>
-              <tr>
-                <td><strong>HDFC Regalia Gold</strong></td>
-                <td class="lo">~1.25% base</td>
-                <td class="lo">~1.25% base</td>
-                <td class="hi">5X points (accel.)</td>
-                <td>SmartBuy offers vary</td>
-                <td class="lo">~1.25% base</td>
-                <td class="lo">~1.25% base</td>
-                <td class="lo">~1.25% base</td>
-                <td class="lo">~1.25% base</td>
-                <td>1% surcharge waiver</td>
-              </tr>
-              <tr>
-                <td><strong>HDFC Tata Neu Infinity</strong></td>
-                <td class="lo">1.5% (not Tata)</td>
-                <td class="lo">1.5% (not Tata)</td>
-                <td class="lo">1.5% (not Tata)</td>
-                <td class="med">5% via Air India</td>
-                <td>1.5–5% if paid via Tata Neu app</td>
-                <td>1.5–5% if paid via Tata Neu app</td>
-                <td class="lo">1.5% (not Tata)</td>
-                <td class="med">5% at BigBasket (Tata); 1.5% Zepto/Blinkit</td>
-                <td class="bad">Excl.</td>
-              </tr>
-              <tr>
-                <td><strong>HDFC Swiggy</strong></td>
-                <td class="med">5% (online category)</td>
-                <td class="med">5% (online category)</td>
-                <td class="med">5% (online category)</td>
-                <td class="lo">1% base</td>
-                <td class="bad">Excl.</td>
-                <td class="bad">Excl.</td>
-                <td class="hi">10% (Swiggy app)</td>
-                <td>10% via Instamart; 1% Zepto/Blinkit</td>
-                <td class="bad">No waiver, no reward</td>
-              </tr>
-              <tr>
-                <td><strong>HSBC Platinum</strong></td>
-                <td class="lo">~0.9% base</td>
-                <td class="lo">~0.9% base</td>
-                <td class="lo">~0.9% base</td>
-                <td class="lo">~0.9% base</td>
-                <td class="bad">Excl.</td>
-                <td class="bad">Excl.</td>
-                <td class="lo">~0.9% base</td>
-                <td class="lo">~0.9% base</td>
-                <td>₹250 cashback/qtr on ₹10k+ contactless</td>
-              </tr>
-              <tr>
-                <td><strong>ICICI Amazon Pay</strong></td>
-                <td class="hi">5% (Prime) / 3% (non-Prime)</td>
-                <td class="lo">1% (not Amazon)</td>
-                <td class="lo">1% (not Amazon)</td>
-                <td>2% if via Amazon Pay partner</td>
-                <td>2% if paid via Amazon Pay</td>
-                <td class="med">2% via Amazon Pay bill pay</td>
-                <td class="lo">1% (not a partner)</td>
-                <td class="lo">1% (not a partner)</td>
-                <td>1% surcharge waiver</td>
-              </tr>
-              <tr>
-                <td><strong>Yes First Preferred</strong></td>
-                <td>~2% (general retail)</td>
-                <td>~2% (general retail)</td>
-                <td>~2% (general retail)</td>
-                <td class="hi">~4% (travel/dining tier)</td>
-                <td class="lo">~1% (select category)</td>
-                <td class="lo">~1% (select category)</td>
-                <td>~4% if coded as dining</td>
-                <td class="lo">~1% (select category)</td>
-                <td class="bad">Excl. (surcharge waiver only)</td>
-              </tr>
-              <tr>
-                <td><strong>SBI SimplyCLICK</strong></td>
-                <td class="med">~1.25% (5X, not a 10X partner)</td>
-                <td class="med">~1.25% (5X, not a 10X partner)</td>
-                <td class="hi">~2.5% (10X partner)</td>
-                <td class="hi">~2.5% via Cleartrip/Yatra</td>
-                <td>~1.25% if paid online</td>
-                <td>~1.25% if paid online</td>
-                <td class="hi">~2.5% (10X partner)</td>
-                <td class="med">~1.25% (5X online)</td>
-                <td class="bad">Excl. (surcharge waiver only)</td>
-              </tr>
-              <tr>
-                <td><strong>IndusInd CRED RuPay</strong></td>
-                <td class="hi">5% (e-commerce)</td>
-                <td class="hi">5% (e-commerce)</td>
-                <td class="hi">5% (e-commerce)</td>
-                <td>5% via CRED Travel; else 5% e-com</td>
-                <td>5% if via CRED app; 1% outside</td>
-                <td>5% if via CRED app; 1% outside</td>
-                <td class="hi">5% (e-commerce)</td>
-                <td class="hi">5% (e-commerce)</td>
-                <td class="bad">Excl.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="ms-callout amber" style="margin-top: var(--space-4)">
-          <span class="ms-callout-label"
-            >Read the fine print before relying on this</span
-          >
-          Quick-commerce apps (Zepto, Blinkit, Instamart) aren't always coded
-          the same way merchant-side, so the "accelerated" categories above can
-          behave inconsistently even on the same card month to month. Treat the
-          highlighted (darker) cells as your default pick, but if a card's app
-          shows a different cashback/points result than expected, trust the
-          statement over this table and update the row.
-        </div>
-
-        <p style="margin-top: var(--space-3)">
-          <strong>Quick-pick summary by category:</strong>
-        </p>
-        <ul class="ms-checklist">
-          <li>
-            <strong>Amazon:</strong> ICICI Amazon Pay (5% Prime / 3% non-Prime)
-            — no other card comes close.
-          </li>
-          <li><strong>Flipkart:</strong> Axis Flipkart Card (5%).</li>
-          <li>
-            <strong>Myntra:</strong> Axis Flipkart Card (7.5%) beats HDFC
-            Regalia Gold's 5X points.
-          </li>
-          <li>
-            <strong>Flights/Travel:</strong> Yes First Preferred (accelerated
-            travel tier) or SBI SimplyCLICK via Cleartrip/Yatra for the
-            milestone vouchers.
-          </li>
-          <li>
-            <strong>Insurance & utility bills:</strong> Route through ICICI
-            Amazon Pay's bill-pay feature (2%) or the Tata Neu app (up to 5%) if
-            you're already there — most other cards exclude these categories
-            entirely.
-          </li>
-          <li>
-            <strong>Food delivery (Swiggy/Zomato):</strong> HDFC Swiggy Card,
-            hands down (10%).
-          </li>
-          <li>
-            <strong>Quick-commerce grocery (Zepto/Blinkit/Instamart):</strong>
-            Instamart specifically → HDFC Swiggy (10%); Zepto/Blinkit → IndusInd
-            CRED or Axis SuperMoney (both ~5% via UPI/e-commerce coding).
-          </li>
-          <li>
-            <strong>Fuel:</strong> No card in your wallet earns rewards on fuel
-            — pick whichever gives the surcharge waiver (most do) and don't
-            expect points.
-          </li>
-        </ul>
       </section>
 
       <section class="ms-section" id="closure-review">
@@ -1340,7 +1348,7 @@
       </section>
 
       <section class="ms-section" id="scope">
-        <h2><span class="ms-section-num">06</span>Adding a Future Card</h2>
+        <h2><span class="ms-section-num">07</span>Adding a Future Card</h2>
         <p>
           This page is built to grow. When you get a new card (or close one),
           update it using this checklist so the comparison table and
