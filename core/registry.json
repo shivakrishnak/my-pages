@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-06T03:40:54Z",
-  "count": 16,
+  "generated": "2026-07-06T08:54:13Z",
+  "count": 17,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -109,6 +109,15 @@
       "order": 6,
       "path": "pages/mastery/part5.html",
       "modified": "2026-06-30"
+    },
+    {
+      "title": "How to Think & Understand",
+      "description": "A domain-spanning protocol for reading, thinking, and understanding — ten worked examples, live drills, and retrieval practice.",
+      "category": "Thinking & Learning",
+      "icon": "🔎",
+      "order": 1,
+      "path": "pages/mastery/how-to-think-and-understand.html",
+      "modified": "2026-07-06"
     },
     {
       "title": "90-Day Action Plan",

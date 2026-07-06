@@ -1,0 +1,2224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <title>How to Think &amp; Understand</title>
+    <meta
+      name="description"
+      content="A domain-spanning protocol for reading, thinking, and understanding — ten worked examples, live drills, and retrieval practice."
+    />
+    <meta name="page-icon" content="🔎" />
+    <meta name="page-category" content="Thinking &amp; Learning" />
+    <meta name="page-order" content="1" />
+
+    <script src="../../core/init.js"></script>
+    <style>
+      /* Page-specific additions on top of shell.css.
+         Only things unique to this page live here: the internal-monologue
+         "script" component, the reading protocol checklist, the thinking-
+         loop trainer, the failure-mode audit, and the Feynman counter. */
+
+      /* ── Internal monologue "script" ── */
+      .think-script {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin: var(--space-3) 0 var(--space-4);
+      }
+      .think-line {
+        display: flex;
+        gap: var(--space-4);
+        padding: var(--space-3) 0;
+        border-bottom: 1px dashed var(--border);
+        align-items: baseline;
+      }
+      .think-line:last-child {
+        border-bottom: none;
+      }
+      .think-label {
+        flex-shrink: 0;
+        width: 96px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: var(--tracking-caps);
+        text-transform: uppercase;
+        color: var(--indigo);
+        padding-top: 2px;
+      }
+      .think-text {
+        flex: 1;
+        font-size: 13.5px;
+        line-height: var(--leading-relaxed);
+        color: var(--text-2);
+        min-width: 0;
+      }
+      .think-text em {
+        color: var(--text-1);
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      /* ── Domain accordion tweaks ── */
+      .domain-card {
+        margin: var(--space-3) 0;
+      }
+      .domain-card summary {
+        font-size: 14px;
+      }
+
+      /* ── Domain quick-jump chips ── */
+      .domain-jump {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin: var(--space-4) 0 var(--space-2);
+      }
+      .domain-jump a {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--border-2);
+        background: var(--surface);
+        color: var(--text-2);
+        text-decoration: none;
+        transition: all var(--dur);
+        white-space: nowrap;
+      }
+      .domain-jump a:hover {
+        border-color: var(--indigo);
+        color: var(--indigo);
+        background: var(--indigo-lt);
+      }
+
+      /* ── Interactive checklist (protocol practice + failure-mode audit) ── */
+      .practice-list {
+        list-style: none;
+        margin: var(--space-3) 0;
+        padding: 0;
+      }
+      .practice-row {
+        display: flex;
+        gap: var(--space-3);
+        align-items: flex-start;
+        padding: var(--space-3) var(--space-1);
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        transition: background var(--dur);
+        min-height: 44px;
+      }
+      .practice-row:last-child {
+        border-bottom: none;
+      }
+      .practice-row:hover {
+        background: var(--bg-2);
+      }
+      .practice-chk {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border-3);
+        background: var(--surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+        transition: all var(--dur);
+      }
+      .practice-chk.on {
+        background: var(--teal);
+        border-color: var(--teal);
+      }
+      .practice-chk-icon {
+        display: none;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .practice-chk.on .practice-chk-icon {
+        display: block;
+      }
+      .practice-label {
+        font-size: 13.5px;
+        color: var(--text-1);
+        flex: 1;
+        line-height: 1.5;
+      }
+      .practice-row.done .practice-label {
+        color: var(--text-4);
+        text-decoration: line-through;
+      }
+      .practice-progress {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-2);
+      }
+      .practice-progress .prog-wrap {
+        flex: 1;
+        margin: 0;
+      }
+      .practice-progress-label {
+        font-size: 12px;
+        color: var(--text-3);
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ── Thinking Loop trainer ── */
+      .loop-trainer {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-5) var(--space-6);
+        margin: var(--space-4) 0;
+        box-shadow: var(--shadow-xs);
+      }
+      .loop-topic-field {
+        margin-bottom: var(--space-4);
+      }
+      .loop-steps {
+        display: flex;
+        gap: 4px;
+        margin-bottom: var(--space-4);
+        flex-wrap: wrap;
+      }
+      .loop-step-dot {
+        flex: 1;
+        min-width: 28px;
+        height: 6px;
+        border-radius: var(--radius-pill);
+        background: var(--bg-3);
+        transition: background var(--dur);
+      }
+      .loop-step-dot.active {
+        background: var(--indigo);
+      }
+      .loop-step-dot.filled {
+        background: var(--teal);
+      }
+      .loop-question {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-1);
+        margin-bottom: var(--space-1);
+        line-height: var(--leading-snug);
+      }
+      .loop-question-sub {
+        font-size: 12.5px;
+        color: var(--text-3);
+        margin-bottom: var(--space-3);
+        line-height: 1.5;
+      }
+      .loop-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--space-4);
+        gap: var(--space-3);
+      }
+      .loop-counter {
+        font-size: 12px;
+        color: var(--text-4);
+        font-variant-numeric: tabular-nums;
+      }
+      .loop-done-banner {
+        display: none;
+        background: var(--teal-lt);
+        border: 1px solid rgba(13, 147, 115, 0.25);
+        border-radius: var(--radius);
+        padding: var(--space-4) var(--space-5);
+        margin-top: var(--space-3);
+      }
+      .loop-done-banner.show {
+        display: block;
+      }
+      .loop-done-banner h4 {
+        font-size: 14px;
+        color: var(--teal);
+        margin-bottom: var(--space-1);
+      }
+      .loop-done-banner p {
+        font-size: 13px;
+        color: var(--teal-dk);
+      }
+
+      /* ── Feynman compression widget ── */
+      .feynman-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-5) var(--space-6);
+        margin: var(--space-4) 0;
+        box-shadow: var(--shadow-xs);
+      }
+      .feynman-stats {
+        display: flex;
+        gap: var(--space-5);
+        margin-top: var(--space-3);
+        flex-wrap: wrap;
+      }
+      .feynman-stat {
+        font-size: 12px;
+        color: var(--text-3);
+      }
+      .feynman-stat b {
+        font-size: 15px;
+        display: block;
+        color: var(--text-1);
+        font-variant-numeric: tabular-nums;
+      }
+      .feynman-stat.warn b {
+        color: var(--coral);
+      }
+      .feynman-stat.ok b {
+        color: var(--teal);
+      }
+      .feynman-jargon-hit {
+        margin-top: var(--space-3);
+      }
+
+      /* ── Retrieval quiz ── */
+      .quiz-item {
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3) 0;
+      }
+      .quiz-item:last-child {
+        border-bottom: none;
+      }
+      .quiz-item summary {
+        list-style: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-1);
+        padding: var(--space-2) 0;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+      }
+      .quiz-item summary::-webkit-details-marker {
+        display: none;
+      }
+      .quiz-item summary::before {
+        content: "?";
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--indigo-lt);
+        color: var(--indigo);
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+      }
+      .quiz-item[open] summary::before {
+        content: "✓";
+        background: var(--teal-lt);
+        color: var(--teal);
+      }
+      .quiz-answer {
+        font-size: 13.5px;
+        color: var(--text-2);
+        line-height: var(--leading-relaxed);
+        padding: var(--space-2) 0 var(--space-2) 34px;
+      }
+
+      @media (max-width: 640px) {
+        .think-line {
+          flex-direction: column;
+          gap: 2px;
+        }
+        .think-label {
+          width: auto;
+        }
+        .loop-trainer,
+        .feynman-box {
+          padding: var(--space-4);
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    data-layout="full"
+    data-title="How to Think &amp; Understand"
+    data-brand="Thinking &amp; Learning"
+    data-badge="Cognitive Skills"
+    data-badge-color="indigo"
+    data-toc="true"
+  >
+    <div id="page-content">
+      <div class="ms-hero" style="padding-top: 1rem">
+        <div class="ms-hero-eyebrow">
+          <span class="ms-badge indigo">Thinking &amp; Learning</span>
+          <span class="ms-hero-eyebrow-dot"></span>
+          <span>~28 min read · 10 domains · 3 interactive drills</span>
+        </div>
+        <h1>How to Think &amp; Understand</h1>
+        <p class="ms-hero-lead">
+          Reading words and understanding an idea are two different skills. This
+          page teaches the second one: a repeatable protocol for turning text
+          into a working mental model, worked line-by-line across ten unrelated
+          domains, plus three drills you actually do instead of just read about.
+        </p>
+      </div>
+
+      <div class="ms-section" id="s0">
+        <h2><span class="ms-section-num">§0</span>The Gap Nobody Names</h2>
+        <p>
+          School teaches you to read. It almost never teaches you the difference
+          between reading and understanding &mdash; so most people go their
+          whole life mistaking one for the other. Here is the real chain:
+        </p>
+        <div class="ms-word-web">
+          <div>
+            <div class="ms-ww-label">Layer 1</div>
+            <div class="ms-ww-val">
+              Words &mdash; shapes your eyes recognize
+            </div>
+          </div>
+          <div>
+            <div class="ms-ww-label">Layer 2</div>
+            <div class="ms-ww-val">
+              Propositions &mdash; claims your brain parses
+            </div>
+          </div>
+          <div>
+            <div class="ms-ww-label">Layer 3</div>
+            <div class="ms-ww-val">
+              Mental model &mdash; structure you can run in your head
+            </div>
+          </div>
+          <div>
+            <div class="ms-ww-label">Layer 4</div>
+            <div class="ms-ww-val">
+              Usable knowledge &mdash; you can predict, apply, or teach it
+            </div>
+          </div>
+        </div>
+        <p>
+          Most reading stops at Layer 2. Your eyes move, your brain recognizes
+          familiar words, and you feel a click of
+          <strong>"yeah, I get it."</strong> That click is
+          <strong>fluency</strong> &mdash; a cheap, automatic feeling generated
+          by mere familiarity. It is not <strong>understanding</strong>, which
+          only exists once you've built something at Layer 3 that you could
+          actually operate without the original text in front of you.
+        </p>
+        <div class="ms-callout coral">
+          <span class="ms-callout-label">The test that exposes the gap</span>
+          Close the material and explain the idea to a smart 12-year-old, using
+          a <em>different</em> example than the one you were given. If you
+          can't, you had fluency, not understanding &mdash; and that gap was
+          invisible to you while reading. That's exactly what makes it
+          dangerous.
+        </div>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s1">
+        <h2>
+          <span class="ms-section-num">§1</span>The Six-Move Reading Protocol
+        </h2>
+        <p>
+          This is the operating procedure. Run it per <em>chunk</em> of text
+          &mdash; one paragraph, or one claim, whichever is smaller. The engine
+          behind all six moves: you are constantly generating something &mdash;
+          a guess, a paraphrase, a connection &mdash; <em>before</em> the text
+          hands it to you. That act of generation is what carves the memory
+          trace. Passively absorbing words doesn't.
+        </p>
+        <ol class="ms-steps">
+          <li>
+            <strong>Survey</strong> &mdash; skim headings and topic sentences
+            first. Build the skeleton before hanging any meat on it.
+          </li>
+          <li>
+            <strong>Question</strong> &mdash; before reading a section, ask
+            "what problem is this actually solving?"
+          </li>
+          <li>
+            <strong>Read slowly, chunk by chunk</strong> &mdash; one proposition
+            at a time, not one sentence at a time.
+          </li>
+          <li>
+            <strong>Self-explain</strong> &mdash; after each chunk, say out loud
+            or write: "So what this is actually saying is&hellip;" in your own
+            words.
+          </li>
+          <li>
+            <strong>Connect</strong> &mdash; "what does this remind me of? Where
+            have I seen this exact pattern before?"
+          </li>
+          <li>
+            <strong>Predict, then check</strong> &mdash; before reading the next
+            sentence, guess what it will say. Compare. Being wrong is just as
+            useful as being right &mdash; it tells you exactly where your model
+            had a gap.
+          </li>
+        </ol>
+
+        <h3 id="s1-practice">Practice it right now</h3>
+        <p>
+          Check off each move as you actually do it &mdash; on this page, on the
+          next section, on anything. The point isn't finishing the checklist;
+          it's noticing which moves you skip by default.
+        </p>
+        <div class="practice-progress">
+          <div class="prog-wrap">
+            <div class="prog-bar">
+              <div class="prog-fill" id="protocol-progress-fill"></div>
+            </div>
+          </div>
+          <span class="practice-progress-label" id="protocol-progress-label"
+            >0 / 6</span
+          >
+        </div>
+        <ul class="practice-list" id="protocol-checklist" data-group="protocol">
+          <li class="practice-row" data-id="p1">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >Surveyed the next section's headings before reading it</span
+            >
+          </li>
+          <li class="practice-row" data-id="p2">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >Asked "what problem does this solve?" before reading it</span
+            >
+          </li>
+          <li class="practice-row" data-id="p3">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >Read one chunk slowly instead of skimming the whole section</span
+            >
+          </li>
+          <li class="practice-row" data-id="p4">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >Paraphrased that chunk out loud in your own words</span
+            >
+          </li>
+          <li class="practice-row" data-id="p5">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >Connected it to something you already knew</span
+            >
+          </li>
+          <li class="practice-row" data-id="p6">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >Predicted the next sentence before reading it</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s2">
+        <h2>
+          <span class="ms-section-num">§2</span>The Internal Script, Across Ten
+          Domains
+        </h2>
+        <p>
+          Here is what the protocol actually sounds like inside your head
+          &mdash; a real transcript, line by line, like a screenplay of your own
+          thinking. Same six-move method, run against ten completely unrelated
+          domains, so you can see the pattern is the method, not the subject.
+          Open any card. Read the source paragraph first,
+          <em>then</em> the script &mdash; and notice every script does the same
+          thing: predict before reading, paraphrase in new words, connect to
+          something unrelated, then generate your own example that wasn't in the
+          text at all.
+        </p>
+
+        <div class="domain-jump">
+          <a href="#ex-fin">💰 Finance</a>
+          <a href="#ex-swe">💻 Software Eng.</a>
+          <a href="#ex-hab">🧘 Habits</a>
+          <a href="#ex-bio">🧬 Biology</a>
+          <a href="#ex-his">🏛️ History</a>
+          <a href="#ex-phy">⚛️ Physics</a>
+          <a href="#ex-law">⚖️ Law</a>
+          <a href="#ex-cook">🍞 Cooking</a>
+          <a href="#ex-psy">🧠 Psychology</a>
+          <a href="#ex-int">📈 Interviews</a>
+        </div>
+
+        <details class="ms-accordion domain-card" id="ex-fin">
+          <summary>
+            💰 Personal Finance &mdash; Compound interest — why early years feel
+            slow and later years feel explosive
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              Compound interest grows a balance not by adding a fixed amount
+              each period, but by adding a percentage of whatever the balance
+              currently is. Because each period's growth is calculated on a base
+              that already includes all previous growth, the growth rate itself
+              stays constant while the absolute amount added keeps increasing.
+              This is why early years look deceptively slow and later years look
+              explosive &mdash; the mechanism hasn't changed at all, only the
+              size of the base it's acting on.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >First move: the sentence is ruling something OUT &mdash; “not
+                  a fixed amount.” That means an alternative is coming next.
+                  Filing it as: whatever this is NOT, is simple interest (a flat
+                  dollar amount added every period).</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If growth is a <em>percentage of the current balance</em>,
+                  and the balance keeps rising, then the dollar amount added
+                  each round must also rise &mdash; even though the percentage
+                  itself never changes. Let's see if the text confirms
+                  that.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed, almost word for word: “growth rate stays constant,
+                  absolute amount added keeps increasing.” Good &mdash; that
+                  means I modeled it correctly before being told, not just
+                  recognized the words after the fact.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >In my own words, no jargon: the percentage never changes. But
+                  the pile it's a percentage <em>of</em> keeps growing, so 10%
+                  of a bigger pile is a bigger scoop every time &mdash; even
+                  though it's the same 10%.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as a snowball rolling downhill: fixed rule (pick
+                  up snow proportional to surface area), growing base, so the
+                  absolute pickup accelerates. Same shape as an epidemic's
+                  R-number multiplied against a growing infected
+                  population.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >The payoff line says “no switch flips &mdash; only the base
+                  changes.” That directly kills a common misconception: people
+                  think compounding “kicks in” later, like a mechanism turning
+                  on. It doesn't. Day 1 and day 10,000 run the identical
+                  formula; only the number being multiplied is different.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example, not the one given: a skill that improves 1% a
+                  week. Week 1, invisible. Week 100, you look like you
+                  “suddenly” became an expert. Same mechanism, no switch flip
+                  &mdash; the base (current skill) got bigger, so the same 1% is
+                  a bigger absolute gain.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              No switch ever flips. Only the size of the base being multiplied
+              changes &mdash; the rate was constant the entire time.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-swe">
+          <summary>
+            💻 Software Engineering &mdash; Cache invalidation &mdash; why a
+            cache can be simultaneously fast and dangerously wrong
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              A cache doesn't make data more correct; it makes stale data faster
+              to retrieve. The cache is only as trustworthy as the invalidation
+              strategy behind it &mdash; if the underlying data changes and
+              nothing tells the cache to forget, the cache will confidently
+              return the wrong answer at full speed. The hard part of caching
+              was never storing the value; it was knowing the exact moment to
+              throw it away.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >First sentence is another “not X, but Y” move: caching isn't
+                  a correctness tool, it's a speed tool. That's the frame
+                  everything else hangs off.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If a cache is just “speed with no correctness guarantee,”
+                  then the entire risk must live in one place: knowing when to
+                  throw the cached value away. Betting the next sentence names
+                  that as the hard part.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed: “the hard part was never storing the value; it was
+                  knowing the exact moment to throw it away.” My prediction
+                  wasn't just close &mdash; it was the thesis.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >A cache is a bet that the world hasn't changed since you last
+                  looked. The whole system works exactly until that bet is
+                  wrong, and nothing in the cache itself can tell you it's now
+                  wrong.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as a stale map: the map isn't lying, it's just
+                  describing a world that used to exist. Same shape as gossip
+                  &mdash; fast to spread, no built-in mechanism to un-spread
+                  once the underlying fact changes.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >Where does this break down? Some data genuinely never changes
+                  (a compiled build artifact, a past invoice) &mdash; for that
+                  data, “stale” is meaningless because there's no new truth to
+                  go stale against. So the real principle isn't “caching is
+                  risky,” it's “caching is risky in proportion to how fast the
+                  underlying truth moves.”</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: a printed team org-chart on the wall. Fast to
+                  check (glance at the wall, no need to ask HR). Wrong the day
+                  someone gets promoted, and the wall doesn't know it's wrong
+                  &mdash; someone has to walk over and repaint it. That repaint
+                  step is the invalidation strategy.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              Caching buys speed by betting the world hasn't changed. The entire
+              engineering problem is deciding when that bet has expired.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-hab">
+          <summary>
+            🧘 Habits & Behavior Design &mdash; Why a habit that survives a bad
+            day beats a habit that only works on a good day
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              A habit that survives contact with a bad day is worth more than a
+              habit that only survives on a good day. Most people design habits
+              assuming their best-case motivation and environment, which is
+              precisely the condition in which the habit was never at risk. The
+              real test &mdash; and the only one worth designing for &mdash; is
+              the version of you that is tired, busy, and unmotivated.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >Claim up front: value of a habit is proportional to how it
+                  performs under <em>bad</em> conditions, not good ones. That's
+                  a value judgment, not a fact &mdash; worth watching for the
+                  argument that supports it.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If people design for best-case conditions, the next sentence
+                  probably explains why that's backwards &mdash; likely
+                  something like “that's the one condition where the habit was
+                  never actually tested.”</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed almost exactly: designing for best-case motivation
+                  means testing the habit in the one condition where it was
+                  never at risk of failing anyway. The test was rigged to always
+                  pass.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >People stress-test their habits on the one day the habit
+                  didn't need to be strong. That's like testing a bridge's load
+                  limit only on calm, windless days, then acting surprised when
+                  a storm collapses it.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same failure mode as testing code only on the happy path and
+                  never the edge cases. Same failure mode as fire drills that
+                  only run when everyone's already awake and ready.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >Push on it: if you design a habit purely for your worst day,
+                  it may be too weak to ever produce a real result even on your
+                  best day. So the real synthesis isn't “only design for bad
+                  days” &mdash; it's a floor for bad days (the minimum that
+                  still counts) and a ceiling for good days (the stretch
+                  version), which is exactly the Minimum Viable Day idea.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: a 2-pushup minimum isn't a compromise or a
+                  joke version of a real habit &mdash; it's precisely engineered
+                  to survive the tired, unmotivated version of you. That's not a
+                  flaw in the design. That's the entire point of the
+                  design.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              Design the floor for your worst day, not your best day &mdash; the
+              best day was never the one at risk.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-bio">
+          <summary>
+            🧬 Biology &mdash; Natural selection &mdash; why “survival of the
+            fittest” doesn't mean what most people think
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              Natural selection does not act on what is strongest; it acts on
+              whatever combination of traits leaves behind the most surviving
+              offspring in a specific environment. A trait that would be a
+              liability in one environment can be the deciding advantage in
+              another, which means there is no such thing as a universally “fit”
+              organism &mdash; fitness is always a statement about a trait
+              relative to a specific set of conditions, not a property the
+              organism carries on its own.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >First move rules something out again: NOT “what is
+                  strongest.” My brain should immediately hold the gap open:
+                  strongest isn't the criterion &mdash; something else is.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If it's not raw strength, my guess: the real criterion is
+                  something to do with reproduction, since that's the only way a
+                  trait actually persists across generations.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed: “leaves behind the most surviving offspring.”
+                  Reproduction, not strength, not size, not speed &mdash; purely
+                  whichever traits result in more descendants.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >“Fit” doesn't mean muscular or dominant. It means: good at
+                  leaving more copies of your genes behind, in this specific
+                  place, right now. A trait can look impressive and still be a
+                  bad bet reproductively.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as market fit for a product: a product isn't
+                  objectively “good,” it's good relative to a specific
+                  customer's specific problem in a specific context. Move it to
+                  a different market and the same product can fail
+                  completely.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >The text explicitly warns against a universal-fitness trap:
+                  there's no such thing as a universally fit organism, only
+                  fitness-relative-to-an-environment. That kills the common
+                  cartoon image of evolution as a ladder toward “better”
+                  organisms &mdash; it's not a ladder, it's a moving target that
+                  resets with every environment.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: a polar bear's thick white fur is a massive
+                  reproductive advantage in the Arctic and would be a fatal
+                  liability in a desert &mdash; overheating, too visible against
+                  sand. Same organism, same trait, completely opposite fitness
+                  value, purely because the environment changed.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              Fitness isn't a property an organism has. It's a relationship
+              between a trait and a specific environment &mdash; move the
+              environment, and the fitness score resets.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-his">
+          <summary>
+            🏛️ History &mdash; Why large institutions rarely collapse from one
+            cause
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              Large, long-lived institutions almost never collapse from a single
+              cause; they collapse when several independent stresses &mdash;
+              financial, military, administrative, and social &mdash; peak in
+              the same narrow window and overwhelm a system that could have
+              absorbed any one of them alone. The single “final” event
+              historians love to cite is usually just the stress the system
+              happened to be least able to absorb at that particular moment, not
+              the true cause of the collapse.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >Claim: collapse is rarely single-cause. That's a warning
+                  against a very common storytelling habit &mdash; picking one
+                  dramatic event and calling it “the cause.”</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If it's multiple independent stresses, the text probably
+                  needs to explain why they'd need to overlap in time, not just
+                  all exist at some point. Watching for a timing argument.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed: the stresses have to “peak in the same narrow
+                  window” and overwhelm a system that “could have absorbed any
+                  one of them alone.” Timing is the actual mechanism, not just
+                  the existence of multiple problems.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >It's not that four problems existed. It's that a system built
+                  to handle one problem at a time got hit by four at once, and
+                  none of them alone would have been fatal.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as a person's burnout: no single deadline broke
+                  them, it's five deadlines landing the same week on a body that
+                  already wasn't sleeping. Same shape as a server outage: the
+                  single alert that fires is rarely the root cause, it's the one
+                  system that finally couldn't absorb load that four other
+                  things had already been quietly stealing.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >The sharpest sentence: the “final” event historians cite is
+                  just whichever stress the system was least able to absorb
+                  <em>at that moment</em> &mdash; not the true cause. That means
+                  the popularly taught “cause” of a collapse is often just an
+                  artifact of bad timing, and a good historian's job is finding
+                  the other three stresses nobody wrote a dramatic headline
+                  about.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: a company doesn't go bankrupt because of one
+                  bad product launch. It goes bankrupt when the bad launch lands
+                  in the same quarter as a key client leaving, a cash-flow
+                  crunch, and a founder departure &mdash; any one of those
+                  alone, the company absorbs and moves on.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              The dramatic “final” event is rarely the cause. It's just
+              whichever of several simultaneous stresses the system happened to
+              be weakest against at that moment.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-phy">
+          <summary>
+            ⚛️ Physics &mdash; Why the sky is blue &mdash; and why sunsets are
+            red using the exact same mechanism
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              Sunlight entering the atmosphere is made of many wavelengths, and
+              air molecules scatter shorter wavelengths &mdash; blues and
+              violets &mdash; far more strongly than longer wavelengths like
+              red. At midday, when sunlight travels through a relatively thin
+              slice of atmosphere, that scattered blue light reaches your eyes
+              from every direction, which is why the whole sky looks blue. At
+              sunset, the light travels through a much longer, thicker path of
+              atmosphere, so by the time it reaches you almost all the blue has
+              already been scattered away in other directions, leaving mostly
+              red and orange to arrive directly.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >Mechanism first, phenomenon second &mdash; the text is
+                  building the tool before showing what it's for. Key mechanism:
+                  shorter wavelengths (blue/violet) scatter more than longer
+                  wavelengths (red).</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If blue scatters more and this is happening constantly
+                  overhead, my guess for why the sky looks blue specifically
+                  (not violet, which scatters even more): probably has to do
+                  with how much violet the sun emits or how our eyes perceive it
+                  &mdash; that detail isn't in this paragraph, flagging it as an
+                  open question rather than inventing an answer.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >The paragraph explains midday: scattered blue arrives “from
+                  every direction” &mdash; that's the key detail. It's not that
+                  blue light travels straight to your eye from the sun; it's
+                  been bounced around the whole sky first, so the whole sky
+                  glows with it.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >Blue light doesn't come to your eyes in a straight line from
+                  the sun. It bounces off air molecules first, in every
+                  direction, so the entire sky becomes a diffuse blue
+                  lightbulb.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as a frosted glass lampshade: light doesn't travel
+                  straight through, it scatters inside the glass and the whole
+                  shade glows evenly instead of showing one bright point.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >Now the sunset half, using the identical mechanism: longer
+                  path through atmosphere means more chances for blue to get
+                  scattered away <em>before</em> reaching you, so what's left
+                  when it finally arrives is mostly red/orange. Same rule (blue
+                  scatters more), completely different result, purely because
+                  the path length changed &mdash; this is structurally the same
+                  trick as the compound-interest example: same mechanism,
+                  different output because one variable (path length / base
+                  size) changed.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: shining a flashlight through clean water
+                  (short path) looks nearly white; through murky water full of
+                  particles (long effective scattering path), by the time the
+                  light reaches the far side, the shorter wavelengths have been
+                  scattered out and what's left is a dimmer, warmer-toned beam
+                  &mdash; same principle, aquarium instead of atmosphere.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              One rule &mdash; blue scatters more than red &mdash; explains two
+              opposite-looking phenomena (blue sky, red sunset) purely because
+              the length of the light's path through the atmosphere changes.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-law">
+          <summary>
+            ⚖️ Law / Contracts &mdash; An indemnification clause &mdash; why one
+            paragraph can quietly transfer all the financial risk
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              Party A shall indemnify, defend, and hold harmless Party B from
+              and against any and all claims, damages, losses, and expenses,
+              including reasonable attorneys' fees, arising out of or relating
+              to Party A's performance under this Agreement, regardless of
+              whether such claims arise from Party A's negligence, except to the
+              extent caused by Party B's gross negligence or willful misconduct.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >Legal text rewards slowing down at every comma, not speeding
+                  up. First move: identify the three verbs stacked together
+                  &mdash; indemnify, defend, hold harmless. Each one is a
+                  distinct promise, not decorative repetition.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >“Indemnify” usually means “pay for the loss.” “Defend”
+                  usually means “pay the legal costs of fighting the claim, even
+                  before guilt is decided.” “Hold harmless” usually means “don't
+                  come after the other party even if you technically could.”
+                  Predicting the clause is doing all three at once &mdash;
+                  checking as I re-read.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >“Any and all claims, damages, losses, and expenses, including
+                  reasonable attorneys' fees” &mdash; that's an extremely wide
+                  net, deliberately not narrowed to only valid or successful
+                  claims. Even a claim that turns out to be false still triggers
+                  the defend obligation.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >Party A is agreeing to pay for the mess AND pay the lawyers
+                  to clean it up AND not blame Party B for it &mdash; as long as
+                  the mess came out of Party A doing its job under this
+                  contract.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >The load-bearing phrase is easy to skim past: “regardless of
+                  whether such claims arise from Party A's negligence.” That's
+                  the clause doing something specific &mdash; it's not just
+                  covering honest mistakes, it's covering Party A's
+                  <em>own negligence</em>. That's a much bigger promise than a
+                  casual read suggests.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >Now the carve-out at the end: “except to the extent caused by
+                  Party B's gross negligence or willful misconduct.” This is the
+                  boundary of the whole clause &mdash; Party A isn't covering
+                  literally everything, just everything up to the point where
+                  Party B did something seriously wrong. Missing this exception
+                  while reading would make the clause look far more one-sided
+                  than it actually is.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >Plain-English version I'd actually sign off on: “If my work
+                  causes a problem for you &mdash; even if it's my fault &mdash;
+                  I'll cover the costs and legal fees. The only thing I'm not
+                  covering is if the problem was actually caused by you being
+                  seriously or deliberately careless.”</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              “Regardless of negligence” and the final exception clause are the
+              two phrases doing all the real work. Everything else in the
+              sentence is scope-widening around those two hinges.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-cook">
+          <summary>
+            🍞 Cooking &mdash; Why a seared steak crust and a caramelized onion
+            are NOT the same chemical reaction
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              Browning in food comes from two distinct chemical processes that
+              are commonly confused. Caramelization is the breakdown of sugar
+              alone under heat, which is why it happens in onions and sugar
+              syrups. The Maillard reaction, by contrast, requires both a sugar
+              and a protein (an amino acid) reacting together, and it happens at
+              a lower temperature than caramelization &mdash; which is why a
+              seared steak develops its crust well before any sugar in the pan
+              would be hot enough to caramelize on its own.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >The setup names a common confusion directly: two different
+                  reactions people lump into one word, “browning.” Filing the
+                  two names before reading further: caramelization vs.
+                  Maillard.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If caramelization is “sugar alone,” the contrasting reaction
+                  is probably “sugar plus something else.” The most likely
+                  candidate in food: protein. Checking.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed: Maillard needs sugar AND an amino acid (protein)
+                  together. That's the entire distinguishing fact &mdash; one
+                  ingredient vs. two.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >Caramelization is what sugar does by itself when it gets hot
+                  enough. Maillard is what happens when sugar and protein react
+                  with each other &mdash; a different reaction, different
+                  requirements, different temperature threshold.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as two people separately doing chores
+                  (caramelization: sugar alone) vs. two people who need each
+                  other to complete a task (Maillard: sugar needs protein
+                  present to react this way) &mdash; one is a solo process, one
+                  is a partnership.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >The payoff is the temperature comparison: Maillard happens at
+                  a <em>lower</em> temperature than caramelization. That's the
+                  fact that explains the steak &mdash; the crust isn't
+                  caramelized sugar, because the pan was never hot enough for
+                  that. It's Maillard, which kicks in earlier. Getting this
+                  backwards (assuming steak crust = caramelization) is the
+                  single most common home-cook misconception this paragraph is
+                  correcting.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: toast turning golden-brown is Maillard (flour
+                  has both starch/sugar and protein), while a plain sugar cube
+                  melted in a pan turning amber is pure caramelization &mdash;
+                  no protein involved, no Maillard possible, sugar alone.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              Steak crust isn't caramelized. It's Maillard &mdash; and the
+              giveaway is that Maillard needs protein present, while
+              caramelization doesn't.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-psy">
+          <summary>
+            🧠 Psychology &mdash; The sunk cost fallacy &mdash; why past
+            investment feels relevant to a future decision when it isn't
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              A sunk cost is money, time, or effort that has already been spent
+              and cannot be recovered regardless of what you decide next. The
+              fallacy is treating that unrecoverable past cost as a reason to
+              continue a decision, when the only information that should
+              actually influence a future choice is what happens from this point
+              forward. The past cost is real, but it is no longer a variable in
+              the decision &mdash; it has already happened no matter which
+              option you pick next.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >Definition first: sunk cost = already spent, unrecoverable,
+                  no matter what you choose next. That last clause &mdash; “no
+                  matter what you choose next” &mdash; is doing quiet but heavy
+                  lifting.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If a cost is fixed regardless of the choice ahead, then
+                  logically it shouldn't be able to influence which choice is
+                  best going forward. Guessing the next sentence names exactly
+                  that as the fallacy.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed: the fallacy is using an unrecoverable past cost as
+                  a reason to continue. The word “reason” is key &mdash; it's
+                  not that people miscalculate the sunk cost, it's that they let
+                  a number that can no longer change, change their decision
+                  about the future.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >The money's gone either way. Continuing doesn't get it back,
+                  and quitting doesn't lose it twice. So the past spending
+                  should carry zero weight in this decision &mdash; only what
+                  happens next matters.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as a bad relationship kept going because of “all
+                  the years we've put in” &mdash; the years are gone either way;
+                  the only real question is whether the next year is worth
+                  having, independent of the years already spent. Same shape as
+                  finishing a bad movie because you already paid for the ticket
+                  &mdash; the ticket price doesn't change based on whether you
+                  leave or stay.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >Push on the edge case: is sunk cost reasoning EVER valid? If
+                  continuing provides new information about whether to keep
+                  going (a project close to completion, where quitting now
+                  wastes the near-complete value), that's not sunk-cost
+                  reasoning &mdash; that's a legitimate future-facing
+                  calculation about remaining cost vs. remaining benefit. The
+                  fallacy is specifically using the <em>past</em> spend as the
+                  justification, not correctly weighing what remains.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: I've spent 6 months in a job search targeting
+                  one type of role. If a different role becomes clearly better
+                  going forward, the 6 months already spent is not a valid
+                  reason to keep targeting the original role &mdash; that time
+                  is gone regardless of what I choose next. The only question
+                  worth asking is which path is better from today onward.</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              The past cost is real, but it's fixed no matter what you choose
+              next &mdash; so logically it should carry zero weight in the
+              decision. It usually carries the most weight anyway. That gap is
+              the whole fallacy.
+            </div>
+          </div>
+        </details>
+
+        <details class="ms-accordion domain-card" id="ex-int">
+          <summary>
+            📈 System Design / Interviews &mdash; Why a strong system design
+            answer is a tradeoff, not a solution
+          </summary>
+          <div class="ms-accordion-body">
+            <div class="ms-quote">
+              There is no universally correct system design; there is only a
+              design that correctly reflects a specific set of tradeoffs the
+              candidate was willing to state out loud. Choosing strong
+              consistency over availability is not a mistake &mdash; refusing to
+              say which one you chose, and why, is the mistake. Interviewers are
+              not grading whether the diagram is right; they are grading whether
+              the reasoning that produced the diagram would survive contact with
+              a real production incident.
+            </div>
+            <div class="think-script">
+              <div class="think-line">
+                <span class="think-label">SURVEY</span>
+                <span class="think-text"
+                  >First move rules out the thing most candidates assume they're
+                  being graded on: there's no “correct” design. That reframes
+                  the entire exercise before any technical content even shows
+                  up.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PREDICT</span>
+                <span class="think-text"
+                  >If there's no universally correct design, the grading
+                  criterion must be about the process, not the output. Guessing
+                  the next sentence names what's actually being evaluated:
+                  probably the reasoning, or the ability to state tradeoffs
+                  explicitly.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">READ</span>
+                <span class="think-text"
+                  >Confirmed, and sharper than I predicted: refusing to state
+                  the tradeoff is called out as the actual mistake &mdash; not
+                  picking a wrong side of the tradeoff. That's a much higher bar
+                  than “know the technologies.”</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">PARAPHRASE</span>
+                <span class="think-text"
+                  >You will never be punished for choosing consistency over
+                  availability, or the reverse. You will be punished for drawing
+                  a diagram and never admitting out loud that a tradeoff was
+                  even being made.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CONNECT</span>
+                <span class="think-text"
+                  >Same shape as a doctor explaining a treatment plan: the value
+                  isn't in picking the objectively perfect treatment (often
+                  there isn't one), it's in being able to say why this option
+                  was chosen over the alternatives and what the downside risk
+                  is. Same shape as a chess commentator explaining a move: the
+                  point isn't whether it's the engine's top choice, it's whether
+                  the reasoning behind it holds up.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">CRITIQUE</span>
+                <span class="think-text"
+                  >The final sentence adds a stress-test: reasoning should
+                  “survive contact with a real production incident.” That's a
+                  concrete, checkable bar &mdash; it's not asking “does this
+                  sound smart,” it's asking “if this design's assumption breaks
+                  at 3am, does the candidate already know which piece fails
+                  first and why.” That reframes prep: memorizing patterns isn't
+                  the goal, being able to name each pattern's failure mode
+                  is.</span
+                >
+              </div>
+              <div class="think-line">
+                <span class="think-label">GENERATE</span>
+                <span class="think-text"
+                  >My own example: choosing a message queue over direct
+                  synchronous calls between two services. The correct answer
+                  isn't “queue is always better.” It's being able to say: “I
+                  chose a queue because I'm prioritizing resilience to
+                  downstream slowness over end-to-end latency guarantees, and
+                  here's what breaks if the queue itself backs up.”</span
+                >
+              </div>
+            </div>
+            <div class="ms-callout teal">
+              <span class="ms-callout-label"
+                >Worth keeping a year from now</span
+              >
+              The diagram was never the deliverable. The tradeoff you're willing
+              to name out loud, and the failure mode you already know is coming,
+              are the actual deliverable.
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s3">
+        <h2><span class="ms-section-num">§3</span>The General Thinking Loop</h2>
+        <p>
+          The same machinery works on anything that claims to be true or
+          important &mdash; a conversation, a decision, a claim someone made in
+          a meeting &mdash; not just text on a page. Run these six questions on
+          any new idea within about 60 seconds of hearing it, and it will still
+          be usable weeks later. Skip them, and it evaporates in about 48 hours
+          &mdash; because it never got attached to anything.
+        </p>
+        <div class="ms-model-grid">
+          <div class="ms-model-card">
+            <div class="ms-model-num">01</div>
+            <div class="ms-model-name">One plain sentence</div>
+            <div class="ms-model-def">
+              What is it, compressed to one sentence? If you can't compress it,
+              you don't actually have it yet.
+            </div>
+          </div>
+          <div class="ms-model-card">
+            <div class="ms-model-num">02</div>
+            <div class="ms-model-name">The pressure behind it</div>
+            <div class="ms-model-def">
+              Why does it exist? Nothing exists in a vacuum &mdash; find the
+              problem that created it.
+            </div>
+          </div>
+          <div class="ms-model-card">
+            <div class="ms-model-num">03</div>
+            <div class="ms-model-name">The mechanism</div>
+            <div class="ms-model-def">
+              What's actually happening underneath the label? Don't accept a
+              name as an explanation.
+            </div>
+          </div>
+          <div class="ms-model-card">
+            <div class="ms-model-num">04</div>
+            <div class="ms-model-name">Inversion</div>
+            <div class="ms-model-def">
+              What would have to be true for this to be false? Fastest way to
+              find the load-bearing assumption.
+            </div>
+          </div>
+          <div class="ms-model-card">
+            <div class="ms-model-num">05</div>
+            <div class="ms-model-name">Transfer</div>
+            <div class="ms-model-def">
+              Where else does this exact pattern show up? This is what turns one
+              fact into ten.
+            </div>
+          </div>
+          <div class="ms-model-card">
+            <div class="ms-model-num">06</div>
+            <div class="ms-model-name">The edge case</div>
+            <div class="ms-model-def">
+              What breaks it? No mental model is universal &mdash; find its
+              cliff edge.
+            </div>
+          </div>
+        </div>
+
+        <h3 id="s3-practice">Run it now, on your own topic</h3>
+        <p>
+          Type anything you're currently trying to understand &mdash; a work
+          decision, an article, a claim a friend made. Step through all six
+          questions against it. Nothing is sent anywhere; it only lives in this
+          tab while it's open.
+        </p>
+        <div class="loop-trainer">
+          <div class="loop-topic-field">
+            <label class="ms-label" for="loop-topic-input"
+              >The idea you're examining</label
+            >
+            <input
+              type="text"
+              class="ms-input"
+              id="loop-topic-input"
+              placeholder='e.g. "We should switch to a message queue here"'
+            />
+          </div>
+          <div class="loop-steps" id="loop-steps" aria-hidden="true"></div>
+          <div class="loop-counter" id="loop-counter">Question 1 of 6</div>
+          <div class="loop-question" id="loop-question"></div>
+          <div class="loop-question-sub" id="loop-question-sub"></div>
+          <textarea
+            class="ms-textarea"
+            id="loop-answer"
+            data-step="0"
+            placeholder="Type your answer here&hellip;"
+            style="min-height: 80px"
+          ></textarea>
+          <div class="loop-nav">
+            <button
+              class="ms-btn secondary sm"
+              id="loop-prev"
+              type="button"
+              disabled
+            >
+              ← Back
+            </button>
+            <button class="ms-btn primary sm" id="loop-next" type="button">
+              Next question →
+            </button>
+          </div>
+          <div class="loop-done-banner" id="loop-done-banner">
+            <h4>All six questions answered.</h4>
+            <p>
+              Re-read your six answers together &mdash; that's your actual
+              understanding of the topic, in your own words, not the source's.
+              That block of text is what should go in a note, not the original
+              material.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s4">
+        <h2>
+          <span class="ms-section-num">§4</span>Failure Modes &mdash; Self-Audit
+        </h2>
+        <p>
+          These are the four ways your brain fakes understanding without you
+          noticing. Read each one, then be honest with the checklist below about
+          which ones you actually do.
+        </p>
+        <div class="ms-grid-2">
+          <div class="ms-card coral">
+            <div class="ms-card-title">Fluency illusion</div>
+            <div class="ms-card-body">
+              "This makes sense" while reading &ne; "I could rebuild this from
+              scratch." Highlighting and re-reading both feel productive and
+              both do almost nothing &mdash; they raise fluency, not
+              understanding.
+            </div>
+          </div>
+          <div class="ms-card coral">
+            <div class="ms-card-title">Nodding-along</div>
+            <div class="ms-card-body">
+              Agreeing with each sentence in isolation without holding the whole
+              structure in mind. You can agree with every brick and still not
+              know what building it forms.
+            </div>
+          </div>
+          <div class="ms-card coral">
+            <div class="ms-card-title">Word-recognition as comprehension</div>
+            <div class="ms-card-body">
+              You recognize "compound interest" as a familiar phrase and stop
+              there, instead of rebuilding the mechanism behind the words.
+            </div>
+          </div>
+          <div class="ms-card coral">
+            <div class="ms-card-title">Passive connection</div>
+            <div class="ms-card-body">
+              Waiting for the text to tell you what it connects to, instead of
+              generating the connection yourself. Connections you generate
+              stick. Connections you're handed mostly don't.
+            </div>
+          </div>
+        </div>
+
+        <h3 id="s4-audit">Which ones are actually you?</h3>
+        <ul class="practice-list" id="failure-checklist" data-group="failure">
+          <li class="practice-row" data-id="f1">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >I highlight or re-read instead of self-explaining</span
+            >
+          </li>
+          <li class="practice-row" data-id="f2">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >I agree with sentences one at a time without holding the whole
+              argument in mind</span
+            >
+          </li>
+          <li class="practice-row" data-id="f3">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >I recognize familiar terms and assume that means I understand
+              them</span
+            >
+          </li>
+          <li class="practice-row" data-id="f4">
+            <span class="practice-chk"
+              ><span class="practice-chk-icon">✓</span></span
+            >
+            <span class="practice-label"
+              >I wait for the material to tell me connections instead of finding
+              my own</span
+            >
+          </li>
+        </ul>
+        <div class="ms-callout amber">
+          <span class="ms-callout-label">If you checked any of these</span>
+          That's not a character flaw &mdash; it's the default setting for every
+          human brain, because fluency is cheap to generate and understanding is
+          expensive. The checklist above in §1 is the fix. Progress over
+          perfection: catching yourself doing one of these once a day is already
+          the win.
+        </div>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s5">
+        <h2><span class="ms-section-num">§5</span>Minimum Viable Practice</h2>
+        <p>
+          You will not run the full script from §2 on every paragraph you ever
+          read &mdash; that's not sustainable, and a system that requires
+          perfection dies within two weeks. Match the effort to what the
+          material is actually worth to you.
+        </p>
+        <div class="ms-table-wrap">
+          <table class="ms-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>What you actually do</th>
+                <th>Use it for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MVD</strong> <em>(minimum viable)</em></td>
+                <td>
+                  After finishing a page or section, pause and say &mdash; out
+                  loud, zero notes &mdash; one sentence for what it actually
+                  said. Can't do it? Re-read just that part.
+                </td>
+                <td class="hi">~90% of what you read</td>
+              </tr>
+              <tr>
+                <td><strong>Standard</strong></td>
+                <td>
+                  MVD, plus one prediction before each paragraph and one
+                  connection to something you already know, per section.
+                </td>
+                <td class="med">Material for a current project</td>
+              </tr>
+              <tr>
+                <td><strong>Advanced</strong></td>
+                <td>
+                  The full §2 script: predict &rarr; read &rarr; paraphrase
+                  &rarr; connect &rarr; critique &rarr; generate your own
+                  example.
+                </td>
+                <td class="bad">
+                  A handful of things per month you want to own for years
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s6">
+        <h2><span class="ms-section-num">§6</span>Retrieval Quiz</h2>
+        <p>
+          Answer each question from memory <em>before</em> revealing it. The act
+          of trying and failing to retrieve something is itself part of what
+          builds the memory &mdash; peeking first skips the part that actually
+          works.
+        </p>
+
+        <details class="quiz-item">
+          <summary>
+            What's the difference between fluency and understanding, and why is
+            fluency dangerous specifically because it feels good?
+          </summary>
+          <div class="quiz-answer">
+            Fluency is the automatic feeling of familiarity your brain generates
+            just from recognizing words &mdash; it's cheap and requires no real
+            work. Understanding means you've built a structure in your head you
+            could actually operate without the source text. Fluency is dangerous
+            because it feels identical to understanding from the inside, so you
+            have no internal signal telling you which one you actually have.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            Why does self-explaining in your own words work better than
+            re-reading?
+          </summary>
+          <div class="quiz-answer">
+            Re-reading only increases fluency &mdash; the words get more
+            familiar, but nothing new is built. Self-explaining forces you to
+            generate a paraphrase, which requires the structure to actually
+            exist in your head first. Generation, not exposure, is what carves
+            the memory trace.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            In the compound interest example, what was the one thing worth
+            keeping a year later?
+          </summary>
+          <div class="quiz-answer">
+            No switch ever flips. The growth mechanism is identical on day 1 and
+            day 10,000 &mdash; only the size of the base being multiplied
+            changes, which is why early growth looks slow and later growth looks
+            explosive.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            What's the inversion question, and why is it usually the fastest way
+            to find a hidden assumption?
+          </summary>
+          <div class="quiz-answer">
+            "What would have to be true for this to be false?" It's fast because
+            instead of searching broadly for weaknesses, it forces you to name
+            the exact condition the claim depends on &mdash; the load-bearing
+            assumption is usually whatever that condition turns out to be.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            In the caching example, what's the actual hard problem in caching
+            &mdash; and why isn't it storage?
+          </summary>
+          <div class="quiz-answer">
+            Knowing the exact moment to throw a cached value away. Storing a
+            value is trivial; a cache only causes damage when the underlying
+            data has changed and nothing tells the cache to forget &mdash; it
+            then returns a confident, fast, wrong answer.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            In the history example, why is the dramatic "final" event usually
+            not the real cause of a collapse?
+          </summary>
+          <div class="quiz-answer">
+            Because it's typically just whichever of several independent
+            stresses happened to peak at a moment the system was least able to
+            absorb &mdash; not the true underlying cause. Any one of the
+            stresses alone likely would have been survivable.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            What's the sunk cost fallacy actually a fallacy about &mdash; the
+            past cost, or something else?
+          </summary>
+          <div class="quiz-answer">
+            It's a fallacy about relevance, not about the cost itself. The past
+            cost is real, but it's fixed no matter what you choose next, so
+            logically it should carry zero weight in a forward- looking
+            decision. The fallacy is letting a number that can no longer change,
+            change the decision anyway.
+          </div>
+        </details>
+
+        <details class="quiz-item">
+          <summary>
+            In the system design example, what is an interviewer actually
+            grading if not "the correct design"?
+          </summary>
+          <div class="quiz-answer">
+            Whether the candidate can explicitly name the tradeoff they chose
+            and why, and whether that reasoning would survive contact with a
+            real production incident &mdash; not whether the diagram matches one
+            "correct" answer, since no universally correct design exists.
+          </div>
+        </details>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s7">
+        <h2><span class="ms-section-num">§7</span>The Feynman Challenge</h2>
+        <p>
+          Explain the entire method on this page in three sentences, with no
+          jargon &mdash; no "fluency illusion," no "propositions," no "mental
+          model." If you can't compress it that far, that's a signal for which
+          part you haven't actually internalized yet; go back to that part.
+        </p>
+        <div class="feynman-box">
+          <label class="ms-label" for="feynman-input"
+            >Your three-sentence explanation</label
+          >
+          <textarea
+            class="ms-textarea"
+            id="feynman-input"
+            placeholder="Explain the whole method here, like you're talking to a smart 12-year-old&hellip;"
+            style="min-height: 120px"
+          ></textarea>
+          <div class="feynman-stats">
+            <div class="feynman-stat" id="feynman-sentences">
+              <b>0</b>sentences
+            </div>
+            <div class="feynman-stat" id="feynman-words"><b>0</b>words</div>
+            <div class="feynman-stat" id="feynman-jargon">
+              <b>0</b>jargon words used
+            </div>
+          </div>
+          <div class="feynman-jargon-hit" id="feynman-jargon-list"></div>
+        </div>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s8">
+        <h2><span class="ms-section-num">§8</span>This Week's MVD</h2>
+        <div class="ms-summary">
+          <div class="ms-summary-title">Do not try all of this at once</div>
+          <p style="margin-bottom: var(--space-3)">
+            Pick exactly one of these for the next seven days. Consistency on
+            one beats intensity on all four.
+          </p>
+          <ul class="ms-checklist">
+            <li>
+              On one thing you read this week, run the MVD tier from §5 &mdash;
+              one spoken sentence, zero notes, after each section.
+            </li>
+            <li>
+              Pick one domain script from §2 you didn't already know and
+              generate your own example for it &mdash; out loud, not in your
+              head.
+            </li>
+            <li>
+              Run the Thinking Loop trainer in §3 on one real decision you're
+              actually facing this week, not a hypothetical one.
+            </li>
+            <li>
+              Notice one moment you're nodding-along (§4) in a meeting or
+              conversation and pause to actually paraphrase what was just said,
+              silently, to yourself.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ms-page-nav">
+        <a href="../../index.html" class="ms-page-nav-btn">← All pages</a>
+        <a href="part1.html" class="ms-page-nav-btn next"
+          >Mastery System, Part I →</a
+        >
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ══════════════════════════════════════════════════════════
+           All handlers use event delegation on document — init.js
+           rebuilds the DOM after this script first parses, so any
+           NodeList captured up front would point to detached nodes.
+           ══════════════════════════════════════════════════════════ */
+
+        /* ── §1 / §4: generic checkable practice lists ── */
+        function updateProtocolProgress() {
+          var rows = document.querySelectorAll('.practice-row[data-id^="p"]');
+          var done = document.querySelectorAll(
+            '.practice-row[data-id^="p"] .practice-chk.on',
+          ).length;
+          var total = rows.length;
+          var fill = document.getElementById("protocol-progress-fill");
+          var label = document.getElementById("protocol-progress-label");
+          if (fill) fill.style.width = (total ? (done / total) * 100 : 0) + "%";
+          if (label) label.textContent = done + " / " + total;
+        }
+
+        document.addEventListener("click", function (e) {
+          var row = e.target.closest(".practice-row");
+          if (!row) return;
+          var chk = row.querySelector(".practice-chk");
+          if (!chk) return;
+          chk.classList.toggle("on");
+          row.classList.toggle("done");
+          if (row.closest("#protocol-checklist")) updateProtocolProgress();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          var row = e.target.closest(".practice-row");
+          if (!row) return;
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            row.click();
+          }
+        });
+
+        /* Make practice rows focusable/keyboard-operable */
+        document.querySelectorAll(".practice-row").forEach(function (row) {
+          row.setAttribute("tabindex", "0");
+          row.setAttribute("role", "checkbox");
+          row.setAttribute("aria-checked", "false");
+        });
+        document.addEventListener("click", function (e) {
+          var row = e.target.closest(".practice-row");
+          if (!row) return;
+          var on = row.querySelector(".practice-chk").classList.contains("on");
+          row.setAttribute("aria-checked", on ? "true" : "false");
+        });
+
+        /* ── §3: Thinking Loop trainer ── */
+        var loopQuestions = [
+          {
+            q: "One plain sentence — what is it?",
+            sub: "Compress the idea to a single sentence. If you can't, you don't have it yet.",
+          },
+          {
+            q: "Why does it exist?",
+            sub: "What pressure or problem created this idea in the first place?",
+          },
+          {
+            q: "What's the mechanism underneath the label?",
+            sub: "Don't accept the name of the thing as an explanation of the thing.",
+          },
+          {
+            q: "What would have to be true for this to be false?",
+            sub: "Inversion — the fastest way to find the load-bearing assumption.",
+          },
+          {
+            q: "Where else does this exact pattern show up?",
+            sub: "Transfer — this is what turns one fact into ten.",
+          },
+          {
+            q: "What breaks it? Where's the edge case?",
+            sub: "No mental model is universal — find its cliff edge.",
+          },
+        ];
+        var loopState = new Array(loopQuestions.length).fill("");
+        var loopIndex = 0;
+
+        function renderLoopDots() {
+          var wrap = document.getElementById("loop-steps");
+          if (!wrap) return;
+          wrap.innerHTML = "";
+          loopQuestions.forEach(function (_, i) {
+            var dot = document.createElement("div");
+            dot.className = "loop-step-dot";
+            if (i === loopIndex) dot.classList.add("active");
+            else if (loopState[i]) dot.classList.add("filled");
+            wrap.appendChild(dot);
+          });
+        }
+
+        function renderLoopStep() {
+          var qEl = document.getElementById("loop-question");
+          var subEl = document.getElementById("loop-question-sub");
+          var counterEl = document.getElementById("loop-counter");
+          var answerEl = document.getElementById("loop-answer");
+          var prevBtn = document.getElementById("loop-prev");
+          var nextBtn = document.getElementById("loop-next");
+          var banner = document.getElementById("loop-done-banner");
+          if (!qEl) return;
+
+          var step = loopQuestions[loopIndex];
+          qEl.textContent = step.q;
+          subEl.textContent = step.sub;
+          counterEl.textContent =
+            "Question " + (loopIndex + 1) + " of " + loopQuestions.length;
+          answerEl.value = loopState[loopIndex] || "";
+          prevBtn.disabled = loopIndex === 0;
+          nextBtn.textContent =
+            loopIndex === loopQuestions.length - 1
+              ? "Finish"
+              : "Next question →";
+          banner.classList.remove("show");
+          renderLoopDots();
+        }
+
+        document.addEventListener("input", function (e) {
+          if (e.target && e.target.id === "loop-answer") {
+            loopState[loopIndex] = e.target.value;
+          }
+        });
+
+        document.addEventListener("click", function (e) {
+          if (e.target && e.target.id === "loop-next") {
+            if (loopIndex < loopQuestions.length - 1) {
+              loopIndex++;
+              renderLoopStep();
+            } else {
+              var banner = document.getElementById("loop-done-banner");
+              if (banner) banner.classList.add("show");
+              renderLoopDots();
+            }
+          }
+          if (e.target && e.target.id === "loop-prev") {
+            if (loopIndex > 0) {
+              loopIndex--;
+              renderLoopStep();
+            }
+          }
+        });
+
+        if (document.getElementById("loop-question")) {
+          renderLoopStep();
+        }
+
+        /* ── §7: Feynman compression counter ── */
+        var jargonWords = [
+          "fluency",
+          "proposition",
+          "propositions",
+          "mental model",
+          "cognitive",
+          "retrieval",
+          "paraphrase",
+          "mechanism",
+          "framework",
+          "methodology",
+          "heuristic",
+          "epistemic",
+        ];
+
+        function updateFeynman() {
+          var input = document.getElementById("feynman-input");
+          if (!input) return;
+          var text = input.value || "";
+          var trimmed = text.trim();
+
+          var sentenceCount = trimmed
+            ? trimmed.split(/[.!?]+/).filter(function (s) {
+                return s.trim().length > 0;
+              }).length
+            : 0;
+          var wordCount = trimmed
+            ? trimmed.split(/\s+/).filter(Boolean).length
+            : 0;
+
+          var lower = text.toLowerCase();
+          var hits = jargonWords.filter(function (w) {
+            return lower.indexOf(w) !== -1;
+          });
+
+          var sEl = document.querySelector("#feynman-sentences b");
+          var wEl = document.querySelector("#feynman-words b");
+          var jEl = document.querySelector("#feynman-jargon b");
+          var sWrap = document.getElementById("feynman-sentences");
+          var jWrap = document.getElementById("feynman-jargon");
+          var listEl = document.getElementById("feynman-jargon-list");
+
+          if (sEl) sEl.textContent = sentenceCount;
+          if (wEl) wEl.textContent = wordCount;
+          if (jEl) jEl.textContent = hits.length;
+
+          sWrap.className =
+            "feynman-stat " +
+            (sentenceCount > 0 && sentenceCount <= 3
+              ? "ok"
+              : sentenceCount > 3
+                ? "warn"
+                : "");
+          jWrap.className = "feynman-stat " + (hits.length > 0 ? "warn" : "ok");
+
+          if (listEl) {
+            listEl.innerHTML = hits.length
+              ? '<span class="ms-badge amber">Jargon spotted: ' +
+                hits.join(", ") +
+                "</span>"
+              : "";
+          }
+        }
+
+        document.addEventListener("input", function (e) {
+          if (e.target && e.target.id === "feynman-input") updateFeynman();
+        });
+        if (document.getElementById("feynman-input")) updateFeynman();
+      })();
+    </script>
+  </body>
+</html>
