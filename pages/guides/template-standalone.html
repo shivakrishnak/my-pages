@@ -1,0 +1,165 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  STANDALONE PAGE TEMPLATE — no sidebar, topbar + bottom-nav only
+  (data-layout="mixed")
+
+  Use this template when a page doesn't need a table-of-contents
+  sidebar — single-screen tools, dashboards, calculators, short
+  notes. For long reference docs with many sections, use
+  template-with-sidebar.html instead.
+
+  This file is a real, working page. Copy it, rename it, edit the
+  marked sections, delete this comment block, done.
+
+  Architecture: this page has ONE required script tag —
+  core/init.js — which injects the entire shell (progress bar,
+  topbar, bottom-nav, dark mode applied before paint) around
+  whatever you put inside #page-content. You never hand-write
+  shell HTML. See pages/guides/how-to-add-a-page.html for the
+  full explanation.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- ░░░ EDIT: title and description — these populate the homepage card ░░░ -->
+    <title>Page Title Goes Here</title>
+    <meta
+      name="description"
+      content="One sentence shown on the homepage card. Keep it under ~110 characters."
+    />
+
+    <!-- ░░░ EDIT (optional): registry metadata — see core/generate_registry.py for full docs ░░░ -->
+    <meta name="page-icon" content="🛠️" />
+    <!-- <meta name="page-category" content="Custom Label"> -->
+    <!-- omit to use the folder name automatically -->
+    <!-- <meta name="page-order" content="1"> -->
+    <!-- omit to sort alphabetically -->
+    <!-- <meta name="page-hidden" content="true"> -->
+    <!-- uncomment to hide from homepage -->
+
+    <!-- ░░░ DO NOT EDIT: applies saved dark-mode preference before first paint.
+     Must stay a plain blocking <script>, before init.js. ░░░ -->
+    <script>
+      if (localStorage.getItem("ms-dark") === "1") {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+
+    <!-- ░░░ DO NOT EDIT: the single entry point. Path depends on folder depth —
+     if this file is at pages/your-group/page.html, "../../core/init.js"
+     is correct. One level deeper, add another ../ ░░░ -->
+    <script src="../../core/init.js"></script>
+
+    <!-- ░░░ EDIT: page-specific layout CSS goes here, on top of shell.css.
+     Don't fork shell.css — extend it here instead. ░░░ -->
+    <style>
+      /* Example: a simple two-column stat layout for a tool/dashboard page.
+     Delete and replace with whatever this page actually needs. */
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .tool-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem;
+      }
+      .tool-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-1);
+        margin-bottom: 0.5rem;
+      }
+      .tool-card p {
+        font-size: 13px;
+        color: var(--text-2);
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+
+  <!-- ░░░ EDIT: data-layout="mixed" = topbar + bottom-nav, no sidebar.
+   data-title sets the topbar text. data-badge is an optional colored
+   pill (badge-color: indigo | teal | amber | coral | sage). ░░░ -->
+  <body
+    data-layout="mixed"
+    data-title="Page Title Goes Here"
+    data-badge="Tool"
+    data-badge-color="indigo"
+  >
+    <!-- ░░░ EDIT: everything inside #page-content is your actual page.
+     init.js moves this into place inside the generated shell.
+     Use shell.css component classes (.ms-callout, .ms-table,
+     .ms-framework, .ms-section, etc.) for anything that should
+     look consistent with the rest of the hub. ░░░ -->
+    <div id="page-content">
+      <div class="ms-hero" style="padding-top: 1rem">
+        <h1>Page Title Goes Here</h1>
+        <p class="ms-hero-lead">
+          A one or two sentence description of what this page does or contains.
+        </p>
+      </div>
+
+      <div class="ms-callout">
+        This is a callout box — use shell.css's built-in component classes
+        wherever they fit, so this page still feels like part of the hub even
+        without a sidebar.
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <h3>Example card</h3>
+          <p>
+            Replace this grid with whatever layout the page actually needs — a
+            calculator, a dashboard, a single long-form note. The shell only
+            provides the topbar, colors, and dark mode here; the content layout
+            is yours.
+          </p>
+        </div>
+        <div class="tool-card">
+          <h3>Another example</h3>
+          <p>
+            Delete the &lt;style&gt; block above and this grid entirely if your
+            page is just prose — shell.css's typography and spacing will look
+            right with zero extra CSS.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content -->
+
+    <!-- ░░░ EDIT (optional): page-specific JS goes here — OUTSIDE #page-content,
+     still inside <body>. init.js collects scripts here and re-executes
+     them after building the shell.
+
+     CRITICAL — init.js rebuilds the DOM, so any element you'd query with
+     querySelectorAll at parse time will be a detached, invalid reference
+     by the time this actually runs. ALWAYS use event delegation instead:
+
+       document.addEventListener('click', function (e) {
+         var card = e.target.closest('.tool-card');
+         if (!card) return;
+         // handle click
+       });
+
+     Delete this block entirely if the page has no interactivity. ░░░ -->
+    <script>
+      // Example delegated handler — delete if this page has no interactivity.
+      document.addEventListener("click", function (e) {
+        var card = e.target.closest(".tool-card");
+        if (!card) return;
+        // handle card click
+      });
+    </script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-05T17:13:57Z",
+  "generated": "2026-07-06T03:40:54Z",
   "count": 16,
   "pages": [
     {
@@ -18,7 +18,7 @@
       "icon": "🧭",
       "order": 1,
       "path": "pages/guides/how-to-add-a-page.html",
-      "modified": "2026-06-30"
+      "modified": "2026-07-06"
     },
     {
       "title": "PKH Design System — Complete Reference & User Guide",
@@ -27,7 +27,7 @@
       "icon": "📄",
       "order": 999,
       "path": "pages/guides/design-system-preview.html",
-      "modified": "2026-06-30"
+      "modified": "2026-07-06"
     },
     {
       "title": "Sample Page",
@@ -36,7 +36,7 @@
       "icon": "📄",
       "order": 999,
       "path": "pages/guides/sample-page.html",
-      "modified": "2026-06-30"
+      "modified": "2026-07-06"
     },
     {
       "title": "Credit Card Command Center",

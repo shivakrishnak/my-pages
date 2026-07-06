@@ -1,0 +1,183 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  SIDEBAR PAGE TEMPLATE — full sidebar + topbar + bottom-nav
+  (data-layout="full")
+
+  Use this template for long-form reference content with multiple
+  sections — anything that benefits from a table-of-contents and
+  jump-to-section navigation. For a single-screen tool or short
+  page, use template-standalone.html instead, it's lighter.
+
+  This file is a real, working page. Copy it, rename it, edit the
+  marked sections, delete this comment block, done.
+
+  If your page is part of a MULTI-PAGE group (like the mastery
+  system's pages), duplicate this template once per page in the
+  group, and keep the "All Parts" list in every copy's sidebar in
+  sync — it's how readers move between pages in the same project.
+
+  TWO WAYS TO GET SIDEBAR CONTENT — this template uses option (B):
+
+  (A) AUTOMATIC — add data-toc="true" to <body> and delete the
+      #page-sidebar block below entirely. init.js scans this page's
+      own h2/h3 headings (with ids) and builds the TOC for you.
+      Best for a single standalone page with no sibling pages to
+      link to.
+
+  (B) CUSTOM (used below) — keep the #page-sidebar block and don't
+      set data-toc. Needed whenever the sidebar must show more than
+      this page's own headings — like the "All Pages In This
+      Project" list here, or tab-based navigation instead of
+      scrolling sections (see pages/fitness/workout-plan.html).
+      init.js uses the innerHTML of #page-sidebar verbatim instead
+      of auto-generating a TOC.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- ░░░ EDIT: title and description — these populate the homepage card ░░░ -->
+    <title>Page Title Goes Here</title>
+    <meta
+      name="description"
+      content="One sentence shown on the homepage card. Keep it under ~110 characters."
+    />
+
+    <!-- ░░░ EDIT (optional): registry metadata — see core/generate_registry.py for full docs ░░░ -->
+    <meta name="page-icon" content="📘" />
+    <!-- <meta name="page-category" content="Custom Label"> -->
+    <!-- omit to use the folder name automatically -->
+    <!-- <meta name="page-order" content="1"> -->
+    <!-- omit to sort alphabetically -->
+    <!-- <meta name="page-hidden" content="true"> -->
+    <!-- uncomment to hide from homepage -->
+
+    <!-- ░░░ DO NOT EDIT: applies saved dark-mode preference before first paint.
+     Must stay a plain blocking <script>, before init.js. ░░░ -->
+    <script>
+      if (localStorage.getItem("ms-dark") === "1") {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+
+    <!-- ░░░ DO NOT EDIT: the single entry point. Path depends on folder depth —
+     if this file is at pages/your-group/page.html, "../../core/init.js"
+     is correct. One level deeper, add another ../ ░░░ -->
+    <script src="../../core/init.js"></script>
+  </head>
+
+  <!-- ░░░ EDIT: data-layout="full" = sidebar + topbar + bottom-nav.
+   data-title sets the topbar text. data-badge is an optional colored
+   pill (badge-color: indigo | teal | amber | coral | sage).
+   data-brand sets the sidebar header text (defaults to hub name). ░░░ -->
+  <body
+    data-layout="full"
+    data-title="Page Title Goes Here"
+    data-brand="Project Name Goes Here"
+    data-badge="Section Tag"
+    data-badge-color="indigo"
+  >
+    <!-- ░░░ EDIT: custom sidebar content — see option (B) note above.
+     init.js drops this verbatim into the sidebar nav area. Every
+     <a href="#some-id"> below must match an id="some-id" on a
+     heading further down the page. ░░░ -->
+    <div id="page-sidebar">
+      <span class="ms-nav-label">This Page</span>
+      <a href="#s1" class="ms-nav-item sub">1. First Section</a>
+      <a href="#s1-1" class="ms-nav-item sub">↳ 1.1 A Subsection</a>
+      <a href="#s1-2" class="ms-nav-item sub">↳ 1.2 Another Subsection</a>
+      <a href="#s2" class="ms-nav-item sub">2. Second Section</a>
+
+      <!-- ░░░ EDIT: if this page is part of a multi-page group, list every
+       sibling page here so readers can jump between them. The "active"
+       class marks the current page — set it manually per copy.
+       If this is a single standalone page, delete this whole block. ░░░ -->
+      <div style="border-top: 1px solid var(--border); padding: 0.5rem 0">
+        <span class="ms-nav-label">All Pages In This Project</span>
+        <a href="page-one.html" class="ms-nav-item active"
+          ><span class="ms-nav-dot"></span>Page One</a
+        >
+        <a href="page-two.html" class="ms-nav-item"
+          ><span class="ms-nav-dot"></span>Page Two</a
+        >
+      </div>
+    </div>
+
+    <!-- ░░░ EDIT: everything inside #page-content is your actual page.
+     init.js moves this into place inside the generated shell. Each
+     top-level topic should be a .ms-section with an id matching its
+     sidebar TOC link above. Use shell.css's component classes —
+     .ms-callout, .ms-table, .ms-framework, .ms-steps, .ms-quote,
+     .ms-drill, etc. — see any file in pages/mastery/ for live
+     examples of each. ░░░ -->
+    <div id="page-content">
+      <div class="ms-hero">
+        <div class="ms-hero-eyebrow" style="color: var(--indigo)">
+          <span class="ms-badge indigo">Project Name</span>
+        </div>
+        <h1>Page Title Goes Here</h1>
+        <p class="ms-hero-lead">
+          A one or two sentence description of what this page covers.
+        </p>
+      </div>
+
+      <div class="ms-section" id="s1">
+        <h2><span class="ms-section-num">§1</span>First Section</h2>
+        <p>Section content goes here.</p>
+      </div>
+
+      <div class="ms-section" id="s1-1">
+        <h3>1.1 A Subsection</h3>
+        <p>Subsection content goes here.</p>
+
+        <div class="ms-callout">
+          Example callout box — good for a key insight or warning.
+        </div>
+      </div>
+
+      <div class="ms-section" id="s1-2">
+        <h3>1.2 Another Subsection</h3>
+        <p>More content.</p>
+      </div>
+
+      <hr class="ms-divider" />
+
+      <div class="ms-section" id="s2">
+        <h2><span class="ms-section-num">§2</span>Second Section</h2>
+        <p>Content for the second top-level section.</p>
+      </div>
+
+      <!-- ░░░ EDIT: prev/next links — delete this block if this is a
+       single standalone page with nothing to link to ░░░ -->
+      <div class="ms-page-nav">
+        <span></span>
+        <a href="page-two.html" class="ms-page-nav-btn next">Next Page →</a>
+      </div>
+    </div>
+    <!-- /#page-content -->
+
+    <!-- ░░░ EDIT (optional): page-specific JS goes here — OUTSIDE #page-content,
+     still inside <body>. init.js collects scripts here and re-executes
+     them after building the shell.
+
+     CRITICAL — init.js rebuilds the DOM, so any element you'd query with
+     querySelectorAll at parse time will be a detached, invalid reference
+     by the time this actually runs. ALWAYS use event delegation instead:
+
+       document.addEventListener('click', function (e) {
+         var link = e.target.closest('.some-class');
+         if (!link) return;
+         // handle click
+       });
+
+     Delete this block entirely if the page has no interactivity beyond
+     the shell's built-in scroll-spy, TOC highlighting, and dark mode
+     (which init.js + shell.js already handle for every page). ░░░ -->
+  </body>
+</html>
