@@ -1,0 +1,2223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>30-Day Interview Sprint · July 2026 · Shiva Krishna K</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f8f7f5;
+        --bg-2: #f0ede8;
+        --bg-3: #e8e4dd;
+        --surface: #ffffff;
+        --surface-2: #faf9f8;
+        --border: #e4e0d8;
+        --border-2: #cdc8bf;
+        --text-1: #1c1917;
+        --text-2: #3d3935;
+        --text-3: #706b62;
+        --text-4: #a39e95;
+        --indigo: #4f46e5;
+        --indigo-mid: #6d64f0;
+        --indigo-dk: #3730a3;
+        --indigo-lt: #eef2ff;
+        --teal: #0d9373;
+        --teal-lt: #ecfdf5;
+        --teal-dk: #065f46;
+        --amber: #b45309;
+        --amber-lt: #fffbeb;
+        --amber-dk: #78350f;
+        --coral: #dc2626;
+        --coral-lt: #fef2f2;
+        --coral-dk: #991b1b;
+        --sage: #4a7c59;
+        --sage-lt: #f0fdf4;
+        --sage-dk: #166534;
+        --violet: #7c3aed;
+        --violet-lt: #f5f3ff;
+        --violet-dk: #4c1d95;
+        --font:
+          "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+          sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+        --sidebar-w: 280px;
+        --topbar-h: 52px;
+        --radius: 8px;
+        --radius-lg: 14px;
+        --radius-pill: 999px;
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-sm:
+          0 1px 4px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+        --dur: 0.2s;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .dark {
+        --bg: #161412;
+        --bg-2: #1e1c19;
+        --bg-3: #272421;
+        --surface: #1e1c19;
+        --surface-2: #252220;
+        --border: #302d29;
+        --border-2: #413d38;
+        --text-1: #f2ede8;
+        --text-2: #c4bdb5;
+        --text-3: #7d7870;
+        --text-4: #504c47;
+        --indigo: #818cf8;
+        --indigo-lt: #1e1b4b;
+        --indigo-dk: #4f46e5;
+        --teal-lt: #022c22;
+        --teal-dk: #34d399;
+        --amber-lt: #1c0a00;
+        --amber-dk: #fbbf24;
+        --coral-lt: #1c0808;
+        --coral-dk: #f87171;
+        --sage-lt: #052e16;
+        --sage-dk: #4ade80;
+        --violet-lt: #1e0a3c;
+        --violet-dk: #a78bfa;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        overflow-x: clip;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font);
+        font-size: 15px;
+        line-height: 1.7;
+        background: var(--bg);
+        color: var(--text-2);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: clip;
+        transition:
+          background var(--dur),
+          color var(--dur);
+      }
+      a {
+        color: var(--indigo);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--text-1);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+      ul,
+      ol {
+        list-style: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+      ::selection {
+        background: var(--indigo-lt);
+        color: var(--indigo-dk);
+      }
+      :focus-visible {
+        outline: 2px solid var(--indigo);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      .shell {
+        display: flex;
+        min-height: 100vh;
+      }
+      .sidebar {
+        width: var(--sidebar-w);
+        flex-shrink: 0;
+        background: var(--bg-2);
+        border-right: 1px solid var(--border);
+        position: fixed;
+        inset: 0 auto 0 0;
+        overflow-y: auto;
+        z-index: 300;
+        display: flex;
+        flex-direction: column;
+        transition: transform var(--dur) var(--ease);
+        scrollbar-width: thin;
+        scrollbar-color: var(--border-2) transparent;
+      }
+      .sidebar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background: var(--border-2);
+        border-radius: 2px;
+      }
+      .sb-header {
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        background: var(--bg-2);
+        z-index: 10;
+      }
+      .sb-brand {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-1);
+        line-height: 1.3;
+      }
+      .sb-brand span {
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--text-4);
+        margin-top: 2px;
+      }
+      .sb-nav {
+        padding: 8px 0;
+        flex: 1;
+      }
+      .sb-label {
+        display: block;
+        padding: 12px 16px 4px;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-4);
+      }
+      .sb-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        font-size: 12.5px;
+        color: var(--text-3);
+        text-decoration: none;
+        border-right: 2px solid transparent;
+        min-height: 32px;
+        transition:
+          background var(--dur),
+          color var(--dur);
+      }
+      .sb-item:hover {
+        background: var(--bg-3);
+        color: var(--text-1);
+        text-decoration: none;
+      }
+      .sb-item.active {
+        background: var(--indigo-lt);
+        color: var(--indigo);
+        font-weight: 600;
+        border-right-color: var(--indigo);
+      }
+      .sb-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--border-2);
+        flex-shrink: 0;
+      }
+      .sb-item.active .sb-dot {
+        background: var(--indigo);
+      }
+      .sb-footer {
+        padding: 12px 16px;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        color: var(--text-4);
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 250;
+      }
+      .overlay.active {
+        display: block;
+      }
+      .main {
+        margin-left: var(--sidebar-w);
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        height: var(--topbar-h);
+        background: rgba(248, 247, 245, 0.94);
+        backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .dark .topbar {
+        background: rgba(22, 20, 18, 0.94);
+      }
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+      }
+      .hamburger {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        color: var(--text-2);
+        border-radius: var(--radius);
+      }
+      .hamburger:hover {
+        background: var(--bg-3);
+      }
+      .topbar-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-1);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text-3);
+        font-size: 15px;
+      }
+      .icon-btn:hover {
+        background: var(--bg-3);
+        color: var(--text-1);
+      }
+
+      .content {
+        flex: 1;
+        max-width: 820px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 10px;
+        border-radius: var(--radius-pill);
+        white-space: nowrap;
+        line-height: 1.6;
+      }
+      .b-indigo {
+        background: var(--indigo-lt);
+        color: var(--indigo-dk);
+      }
+      .b-teal {
+        background: var(--teal-lt);
+        color: var(--teal-dk);
+      }
+      .b-amber {
+        background: var(--amber-lt);
+        color: var(--amber-dk);
+      }
+      .b-coral {
+        background: var(--coral-lt);
+        color: var(--coral-dk);
+      }
+      .b-sage {
+        background: var(--sage-lt);
+        color: var(--sage-dk);
+      }
+      .b-violet {
+        background: var(--violet-lt);
+        color: var(--violet-dk);
+      }
+
+      .hero {
+        padding: 36px 0 28px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 36px;
+      }
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .hero h1 {
+        font-size: clamp(22px, 4vw, 32px);
+        margin-bottom: 12px;
+      }
+      .hero-lead {
+        font-size: 15.5px;
+        color: var(--text-2);
+        line-height: 1.7;
+        max-width: 640px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 14px 16px;
+        box-shadow: var(--shadow-xs);
+      }
+      .stat-num {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--indigo);
+        letter-spacing: -0.03em;
+      }
+      .stat-num.teal {
+        color: var(--teal);
+      }
+      .stat-num.amber {
+        color: var(--amber);
+      }
+      .stat-num.violet {
+        color: var(--violet);
+      }
+      .stat-label {
+        font-size: 10.5px;
+        color: var(--text-3);
+        margin-top: 2px;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      .section {
+        margin-bottom: 48px;
+        scroll-margin-top: 72px;
+      }
+      .section h2 {
+        font-size: clamp(17px, 3vw, 21px);
+        margin-bottom: 8px;
+      }
+      .section h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 20px 0 8px;
+        color: var(--text-1);
+      }
+      .section p {
+        color: var(--text-2);
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .s-num {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-4);
+        margin-right: 6px;
+      }
+      hr.div {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 36px 0;
+      }
+
+      .callout {
+        border-left: 3px solid var(--indigo);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        background: var(--indigo-lt);
+        padding: 12px 16px;
+        margin: 14px 0;
+        font-size: 13.5px;
+        color: var(--text-2);
+        line-height: 1.65;
+      }
+      .callout.teal {
+        border-color: var(--teal);
+        background: var(--teal-lt);
+      }
+      .callout.amber {
+        border-color: var(--amber);
+        background: var(--amber-lt);
+      }
+      .callout.coral {
+        border-color: var(--coral);
+        background: var(--coral-lt);
+      }
+      .callout.sage {
+        border-color: var(--sage);
+        background: var(--sage-lt);
+      }
+      .callout-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: block;
+        color: var(--indigo);
+      }
+      .callout.teal .callout-label {
+        color: var(--teal);
+      }
+      .callout.amber .callout-label {
+        color: var(--amber);
+      }
+      .callout.coral .callout-label {
+        color: var(--coral);
+      }
+      .callout.sage .callout-label {
+        color: var(--sage);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        margin-bottom: 10px;
+        box-shadow: var(--shadow-xs);
+      }
+      .card.indigo {
+        border-left: 3px solid var(--indigo);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.teal {
+        border-left: 3px solid var(--teal);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.amber {
+        border-left: 3px solid var(--amber);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.coral {
+        border-left: 3px solid var(--coral);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card.violet {
+        border-left: 3px solid var(--violet);
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      }
+      .card-title {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--text-1);
+        margin-bottom: 4px;
+      }
+      .card-body {
+        font-size: 13px;
+        color: var(--text-2);
+        line-height: 1.65;
+      }
+
+      .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      /* Week card - the core planning unit */
+      .week-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow-xs);
+      }
+      .week-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg-2);
+        flex-wrap: wrap;
+      }
+      .week-num {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--indigo-lt);
+        color: var(--indigo);
+        font-size: 13px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .week-num.teal {
+        background: var(--teal-lt);
+        color: var(--teal);
+      }
+      .week-num.amber {
+        background: var(--amber-lt);
+        color: var(--amber);
+      }
+      .week-num.violet {
+        background: var(--violet-lt);
+        color: var(--violet);
+      }
+      .week-title {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--text-1);
+      }
+      .week-sub {
+        font-size: 11.5px;
+        color: var(--text-3);
+        margin-top: 1px;
+      }
+      .week-body {
+        padding: 14px 18px;
+      }
+
+      .daily-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+        margin: 10px 0 14px;
+      }
+      .day-chip {
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 6px 5px;
+        text-align: center;
+      }
+      .day-chip-num {
+        font-size: 9px;
+        font-weight: 700;
+        color: var(--text-4);
+        text-transform: uppercase;
+      }
+      .day-chip-focus {
+        font-size: 9.5px;
+        font-weight: 600;
+        color: var(--text-1);
+        margin-top: 2px;
+        line-height: 1.25;
+      }
+      .day-chip.rest {
+        background: var(--sage-lt);
+      }
+      .day-chip.review {
+        background: var(--amber-lt);
+      }
+
+      .target-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 6px 0;
+        font-size: 13px;
+      }
+      .target-row-icon {
+        flex-shrink: 0;
+        font-size: 13px;
+        margin-top: 1px;
+      }
+      .target-row-text {
+        flex: 1;
+        color: var(--text-2);
+        line-height: 1.55;
+      }
+      .target-row-text strong {
+        color: var(--text-1);
+      }
+
+      /* DSA table */
+      .t-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-xs);
+        margin: 14px 0;
+      }
+      .dsa-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12.5px;
+      }
+      .dsa-table th {
+        background: var(--bg-2);
+        text-align: left;
+        padding: 8px 12px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-3);
+        border-bottom: 1px solid var(--border-2);
+        white-space: nowrap;
+      }
+      .dsa-table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-2);
+        vertical-align: top;
+        line-height: 1.5;
+      }
+      .dsa-table tr:last-child td {
+        border-bottom: none;
+      }
+      .dsa-table tbody tr:hover td {
+        background: var(--bg-2);
+      }
+      .dsa-table td strong {
+        color: var(--text-1);
+      }
+      .roi-pill {
+        display: inline-flex;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 1px 7px;
+        border-radius: var(--radius-pill);
+        white-space: nowrap;
+      }
+      .roi-critical {
+        background: var(--coral-lt);
+        color: var(--coral-dk);
+      }
+      .roi-high {
+        background: var(--amber-lt);
+        color: var(--amber-dk);
+      }
+      .roi-med {
+        background: var(--sage-lt);
+        color: var(--sage-dk);
+      }
+
+      .checklist {
+        list-style: none;
+        margin: 8px 0;
+      }
+      .checklist li {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--text-2);
+        line-height: 1.55;
+      }
+      .checklist li:last-child {
+        border-bottom: none;
+      }
+      .checklist li::before {
+        content: "□";
+        font-size: 14px;
+        color: var(--text-4);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .topic-pills {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin: 8px 0;
+      }
+      .topic-pill {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--border-2);
+        background: var(--surface);
+        color: var(--text-2);
+        text-decoration: none;
+        transition: all var(--dur);
+      }
+      .topic-pill:hover {
+        border-color: var(--indigo);
+        color: var(--indigo);
+        text-decoration: none;
+      }
+      .topic-pill.p1 {
+        background: var(--coral-lt);
+        border-color: var(--coral);
+        color: var(--coral-dk);
+      }
+      .topic-pill.p2 {
+        background: var(--amber-lt);
+        border-color: var(--amber);
+        color: var(--amber-dk);
+      }
+      .topic-pill.p3 {
+        background: var(--sage-lt);
+        border-color: var(--sage);
+        color: var(--sage-dk);
+      }
+
+      .review-block {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        margin: 14px 0;
+      }
+      .review-block h4 {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-3);
+        margin-bottom: 8px;
+      }
+
+      .motivation-block {
+        background: linear-gradient(
+          135deg,
+          #1e1b4b 0%,
+          #3730a3 50%,
+          #4f46e5 100%
+        );
+        border-radius: var(--radius-lg);
+        padding: 28px 24px;
+        color: #fff;
+      }
+      .motivation-block h2 {
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .motivation-block p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 13.5px;
+        line-height: 1.75;
+        margin-bottom: 8px;
+      }
+      .motivation-block .quote {
+        background: rgba(255, 255, 255, 0.1);
+        border-left: 3px solid rgba(255, 255, 255, 0.4);
+        border-radius: 0 8px 8px 0;
+        padding: 10px 14px;
+        margin: 10px 0;
+        font-size: 14px;
+        font-weight: 500;
+        font-style: italic;
+        color: #fff;
+      }
+
+      .bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 200;
+        background: rgba(248, 247, 245, 0.97);
+        backdrop-filter: blur(24px);
+        border-top: 1px solid var(--border);
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 4px;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .dark .bottom-nav {
+        background: rgba(22, 20, 18, 0.97);
+      }
+      .bnav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        padding: 6px 10px;
+        min-width: 52px;
+        min-height: 44px;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text-4);
+        font-size: 9.5px;
+        font-weight: 500;
+        background: none;
+        border: none;
+        border-radius: var(--radius);
+      }
+      .bnav-item.active {
+        color: var(--indigo);
+      }
+      .bnav-item svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        z-index: 700;
+        pointer-events: none;
+      }
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--indigo), var(--indigo-mid));
+        transition: width 0.08s linear;
+      }
+
+      @media (max-width: 960px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+        .sidebar.open {
+          transform: translateX(0);
+          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+        .main {
+          margin-left: 0;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .content {
+          padding: 24px 18px 80px;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .daily-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .bottom-nav {
+          display: flex;
+        }
+        .g2 {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .daily-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .hero h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress"><div class="progress-bar" id="pbar"></div></div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sb-header">
+          <div class="sb-brand">
+            30-Day Interview Sprint<span>Shiva Krishna K · July 2026</span>
+          </div>
+        </div>
+        <nav class="sb-nav">
+          <span class="sb-label">Foundation</span>
+          <a href="#mindset" class="sb-item"
+            ><span class="sb-dot"></span>Mindset &amp; ROI Strategy</a
+          >
+          <a href="#priority" class="sb-item"
+            ><span class="sb-dot"></span>Topic Priority (from sk-int)</a
+          >
+          <a href="#dsa-list" class="sb-item"
+            ><span class="sb-dot"></span>High-ROI DSA List</a
+          >
+          <a href="#daily" class="sb-item"
+            ><span class="sb-dot"></span>Daily Structure</a
+          >
+
+          <span class="sb-label">The Plan</span>
+          <a href="#week1" class="sb-item"
+            ><span class="sb-dot"></span>Week 1 — Jul 1–7</a
+          >
+          <a href="#week2" class="sb-item"
+            ><span class="sb-dot"></span>Week 2 — Jul 8–14</a
+          >
+          <a href="#week3" class="sb-item"
+            ><span class="sb-dot"></span>Week 3 — Jul 15–21</a
+          >
+          <a href="#week4" class="sb-item"
+            ><span class="sb-dot"></span>Week 4 — Jul 22–28</a
+          >
+          <a href="#week5" class="sb-item"
+            ><span class="sb-dot"></span>Final Sprint — Jul 29–31</a
+          >
+
+          <span class="sb-label">System</span>
+          <a href="#review-system" class="sb-item"
+            ><span class="sb-dot"></span>Weekly Review &amp; Revise</a
+          >
+          <a href="#closing" class="sb-item"
+            ><span class="sb-dot"></span>Final Word</a
+          >
+        </nav>
+        <div class="sb-footer">
+          Start: 1 Jul 2026 · Interview-ready: 31 Jul 2026
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <span class="badge b-indigo">30-Day Plan</span>
+            <span class="topbar-title">July 2026 Interview Sprint</span>
+          </div>
+          <button class="icon-btn" id="darkBtn" aria-label="Toggle dark mode">
+            🌙
+          </button>
+        </header>
+
+        <div class="content">
+          <div class="hero">
+            <div class="hero-eyebrow">
+              <span class="badge b-coral">Start: 1 Jul 2026</span>
+              <span>→</span>
+              <span class="badge b-teal">Interview-ready: 31 Jul 2026</span>
+            </div>
+            <h1>30-Day Interview Sprint — July 2026</h1>
+            <p class="hero-lead">
+              One month. 12 years of real
+              Java/Spring/microservices/SQL/system-design experience already in
+              your head. This plan surfaces it, closes the real gaps (DSA
+              fluency, articulation), and gets you genuinely ready to sit any
+              interview by July 31 — not by covering everything, but by covering
+              the right things at high intensity.
+            </p>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-num">30</div>
+              <div class="stat-label">Days to interview-ready</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num teal">4</div>
+              <div class="stat-label">Weeks, each with a clear theme</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num amber">45</div>
+              <div class="stat-label">High-ROI DSA problems, prioritized</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num violet">12</div>
+              <div class="stat-label">Years of experience to leverage</div>
+            </div>
+          </div>
+
+          <!-- MINDSET -->
+          <div class="section" id="mindset">
+            <h2><span class="s-num">§1</span>Mindset &amp; ROI Strategy</h2>
+            <p>
+              Thirty days is enough — not because the material is small, but
+              because you're not learning from zero. You're doing three things:
+              <strong>resurfacing</strong> what 12 years already taught you,
+              <strong>closing</strong> the one real gap (DSA fluency under time
+              pressure), and <strong>rehearsing</strong> articulation so it
+              comes out clearly in a room.
+            </p>
+
+            <div class="callout teal">
+              <span class="callout-label"
+                >The ROI filter for everything below</span
+              >
+              Your
+              <a href="https://shivakrishnak.github.io/sk-int" target="_blank"
+                >sk-int</a
+              >
+              reference covers 40+ domains from L0 (orientation) to L6 (theory)
+              — that's comprehensive by design, built for zero-to-mastery on
+              each topic. For a 30-day sprint at your experience level, the job
+              is <strong>ruthless filtering</strong>: pick the domains that get
+              asked constantly at senior backend interviews, go to L2–L3 depth
+              (not L5–L6), and skip domains that are low-probability for your
+              specific target roles entirely.
+            </div>
+
+            <div class="g2" style="margin-top: 16px">
+              <div class="card teal">
+                <div class="card-title">Consistency &gt; Intensity</div>
+                <div class="card-body">
+                  6–7 focused hours daily, same structure, every day beats
+                  sporadic 12-hour cram days. Your brain compounds on repetition
+                  of structure, not heroic one-offs.
+                </div>
+              </div>
+              <div class="card indigo">
+                <div class="card-title">Depth over breadth, always</div>
+                <div class="card-body">
+                  Explaining HashMap resizing and ConcurrentHashMap locking
+                  clearly beats a shallow tour of 10 topics. Depth is what
+                  interviewers actually probe for.
+                </div>
+              </div>
+              <div class="card amber">
+                <div class="card-title">
+                  DSA is a skill, not a knowledge gap
+                </div>
+                <div class="card-body">
+                  You know the concepts. What needs rebuilding is speed and
+                  pattern recognition under a clock. That only comes from timed
+                  reps — not more reading.
+                </div>
+              </div>
+              <div class="card violet">
+                <div class="card-title">Talk before you type</div>
+                <div class="card-body">
+                  Every technical answer should be rehearsed out loud first.
+                  Interviews are a spoken-word test wearing a technical costume.
+                  Practice the spoken part deliberately.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- PRIORITY MATRIX -->
+          <div class="section" id="priority">
+            <h2>
+              <span class="s-num">§2</span>Topic Priority — Filtered from sk-int
+            </h2>
+            <p>
+              Mapped from the full
+              <a href="https://shivakrishnak.github.io/sk-int" target="_blank"
+                >sk-int</a
+              >
+              reference (40+ domains, L0–L6 each) down to what actually returns
+              interview offers for a senior Java/Spring/microservices/SQL
+              backend profile. P1 = go to L2–L3 depth this month. P2 = review to
+              L1–L2, refresh fast. P3 = skim only if time remains. Everything
+              else in sk-int: explicitly skip for this sprint.
+            </p>
+
+            <div class="topic-pills">
+              <span
+                style="
+                  font-size: 11px;
+                  font-weight: 700;
+                  color: var(--text-4);
+                  width: 100%;
+                  margin-bottom: 4px;
+                "
+                >🔴 P1 — Deep prep, asked in nearly every senior interview</span
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/java-core/"
+                class="topic-pill p1"
+                target="_blank"
+                >Java Core (L1–L3)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/java-concurrency/"
+                class="topic-pill p1"
+                target="_blank"
+                >Java Concurrency (L1–L3)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/spring/"
+                class="topic-pill p1"
+                target="_blank"
+                >Spring (L1–L3)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/system-design/"
+                class="topic-pill p1"
+                target="_blank"
+                >System Design (L1–L4)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/microservices/"
+                class="topic-pill p1"
+                target="_blank"
+                >Microservices (L1–L3)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/database-sql/"
+                class="topic-pill p1"
+                target="_blank"
+                >Database SQL (L1–L3)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/data-structures/"
+                class="topic-pill p1"
+                target="_blank"
+                >Data Structures (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/algorithms/"
+                class="topic-pill p1"
+                target="_blank"
+                >Algorithms (L1–L3)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/design-patterns/"
+                class="topic-pill p1"
+                target="_blank"
+                >Design Patterns (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/behavioral/"
+                class="topic-pill p1"
+                target="_blank"
+                >Behavioral / STAR (L1–L3)</a
+              >
+            </div>
+
+            <div class="topic-pills">
+              <span
+                style="
+                  font-size: 11px;
+                  font-weight: 700;
+                  color: var(--text-4);
+                  width: 100%;
+                  margin-bottom: 4px;
+                "
+                >🟡 P2 — Review fast, asked at good companies / senior
+                loops</span
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/java-jvm/"
+                class="topic-pill p2"
+                target="_blank"
+                >Java JVM (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/jpa/"
+                class="topic-pill p2"
+                target="_blank"
+                >JPA (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/kafka/"
+                class="topic-pill p2"
+                target="_blank"
+                >Kafka (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/distributed-systems/"
+                class="topic-pill p2"
+                target="_blank"
+                >Distributed Systems (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/rest-api/"
+                class="topic-pill p2"
+                target="_blank"
+                >REST API (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/nosql/"
+                class="topic-pill p2"
+                target="_blank"
+                >NoSQL / Redis (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/software-architecture/"
+                class="topic-pill p2"
+                target="_blank"
+                >Software Architecture (L1–L2)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/security/"
+                class="topic-pill p2"
+                target="_blank"
+                >Security (L1)</a
+              >
+              <a
+                href="https://shivakrishnak.github.io/sk-int/docker/"
+                class="topic-pill p2"
+                target="_blank"
+                >Docker (L1)</a
+              >
+            </div>
+
+            <div class="topic-pills">
+              <span
+                style="
+                  font-size: 11px;
+                  font-weight: 700;
+                  color: var(--text-4);
+                  width: 100%;
+                  margin-bottom: 4px;
+                "
+                >🟢 P3 — Skim only if week 4 has slack</span
+              >
+              <span class="topic-pill p3"
+                >Async Java (CompletableFuture basics)</span
+              >
+              <span class="topic-pill p3">Kubernetes (L1 concepts only)</span>
+              <span class="topic-pill p3">AWS (core services overview)</span>
+              <span class="topic-pill p3"
+                >React (L1 hooks, if role needs it)</span
+              >
+              <span class="topic-pill p3">Observability (L1 basics)</span>
+            </div>
+
+            <div class="callout coral" style="margin-top: 14px">
+              <span class="callout-label">Explicitly skip this month</span>
+              From sk-int's full catalog: GraalVM, Quarkus, Micronaut (niche
+              runtimes, rarely asked in standard Java/Spring interviews),
+              TypeScript deep internals, Frontend Build Tools, AI Agents / RAG /
+              MCP / LLM APIs (unless applying to AI-infra roles specifically),
+              Git L4+ internals, any L4–L6 tier of any topic. These have
+              near-zero ROI for a 30-day senior backend sprint — sk-int covers
+              them because it's a zero-to-mastery reference for everyone, not
+              because you need them.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- DSA LIST -->
+          <div class="section" id="dsa-list">
+            <h2>
+              <span class="s-num">§3</span>High-ROI DSA List — Concepts &amp;
+              Problems
+            </h2>
+            <p>
+              Ordered by how often each pattern actually appears in real
+              interview loops, not by difficulty. Master pattern recognition,
+              not memorized solutions — the goal is: see a problem, immediately
+              know "this is sliding window" or "this needs BFS," within 60
+              seconds.
+            </p>
+
+            <div class="t-wrap">
+              <table class="dsa-table">
+                <thead>
+                  <tr>
+                    <th>Pattern</th>
+                    <th>ROI</th>
+                    <th>Core problems to master</th>
+                    <th>Why it's tested</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Arrays &amp; Hashing</strong></td>
+                    <td><span class="roi-pill roi-critical">Critical</span></td>
+                    <td>
+                      Two Sum, Group Anagrams, Top K Frequent, Product of Array
+                      Except Self, Longest Consecutive Sequence
+                    </td>
+                    <td>
+                      Appears in nearly every phone screen. Tests basic hash map
+                      fluency.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Two Pointers</strong></td>
+                    <td><span class="roi-pill roi-critical">Critical</span></td>
+                    <td>
+                      Valid Palindrome, 3Sum, Container With Most Water,
+                      Trapping Rain Water
+                    </td>
+                    <td>
+                      Fast pattern to spot, quick to code — common warm-up
+                      question.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sliding Window</strong></td>
+                    <td><span class="roi-pill roi-critical">Critical</span></td>
+                    <td>
+                      Best Time to Buy/Sell Stock, Longest Substring Without
+                      Repeating Chars, Longest Repeating Char Replacement,
+                      Minimum Window Substring
+                    </td>
+                    <td>
+                      Extremely common at mid-senior level; tests optimization
+                      thinking.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Stack</strong></td>
+                    <td><span class="roi-pill roi-high">High</span></td>
+                    <td>
+                      Valid Parentheses, Min Stack, Evaluate RPN, Daily
+                      Temperatures (monotonic stack)
+                    </td>
+                    <td>
+                      Monotonic stack pattern shows up disguised in many
+                      "hard-looking" problems.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Binary Search</strong></td>
+                    <td><span class="roi-pill roi-high">High</span></td>
+                    <td>
+                      Binary Search, Search in Rotated Sorted Array, Find
+                      Minimum in Rotated Sorted Array, Binary Search on Answer
+                      (Koko Eating Bananas)
+                    </td>
+                    <td>
+                      "Binary search on the answer" is a favorite senior-level
+                      twist question.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Linked Lists</strong></td>
+                    <td><span class="roi-pill roi-high">High</span></td>
+                    <td>
+                      Reverse Linked List, Merge Two Sorted Lists, Reorder List,
+                      Remove Nth Node From End, Detect Cycle (Floyd's)
+                    </td>
+                    <td>
+                      Tests pointer manipulation fluency — common at every
+                      level.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Trees (BFS/DFS)</strong></td>
+                    <td><span class="roi-pill roi-critical">Critical</span></td>
+                    <td>
+                      Invert Binary Tree, Max Depth, Same Tree, Level Order
+                      Traversal, Validate BST, Lowest Common Ancestor, Diameter
+                      of Binary Tree
+                    </td>
+                    <td>
+                      The single most common category at senior backend
+                      interviews.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tries</strong></td>
+                    <td><span class="roi-pill roi-med">Medium</span></td>
+                    <td>Implement Trie, Word Search II (if time)</td>
+                    <td>
+                      Occasional at companies with search/autocomplete-heavy
+                      products.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Heap / Priority Queue</strong></td>
+                    <td><span class="roi-pill roi-high">High</span></td>
+                    <td>
+                      Kth Largest Element, Top K Frequent Elements, Merge K
+                      Sorted Lists, Find Median from Data Stream
+                    </td>
+                    <td>
+                      Common at senior level — tests comfort combining data
+                      structures.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Backtracking</strong></td>
+                    <td><span class="roi-pill roi-med">Medium</span></td>
+                    <td>Subsets, Combination Sum, Permutations, Word Search</td>
+                    <td>
+                      Occasional; strong signal of recursive thinking when it
+                      appears.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Graphs (BFS/DFS/Union-Find)</strong></td>
+                    <td><span class="roi-pill roi-critical">Critical</span></td>
+                    <td>
+                      Number of Islands, Clone Graph, Course Schedule
+                      (topological sort), Pacific Atlantic Water Flow, Number of
+                      Connected Components (Union-Find)
+                    </td>
+                    <td>
+                      Very common at senior level — tests graph traversal
+                      fluency deeply.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>1D Dynamic Programming</strong></td>
+                    <td><span class="roi-pill roi-high">High</span></td>
+                    <td>
+                      Climbing Stairs, House Robber, Longest Increasing
+                      Subsequence, Coin Change, Word Break
+                    </td>
+                    <td>
+                      Common but bounded — senior candidates aren't expected to
+                      go beyond 1D/simple 2D.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>2D Dynamic Programming</strong></td>
+                    <td><span class="roi-pill roi-med">Medium</span></td>
+                    <td>Unique Paths, Longest Common Subsequence</td>
+                    <td>
+                      Occasional; know the pattern but don't over-invest here.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Intervals</strong></td>
+                    <td><span class="roi-pill roi-high">High</span></td>
+                    <td>
+                      Merge Intervals, Insert Interval, Non-overlapping
+                      Intervals, Meeting Rooms II
+                    </td>
+                    <td>
+                      Common — maps directly to real scheduling/calendar
+                      problems.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Greedy</strong></td>
+                    <td><span class="roi-pill roi-med">Medium</span></td>
+                    <td>Jump Game, Gas Station</td>
+                    <td>
+                      Occasional; good to recognize the "greedy works here"
+                      signal.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="callout amber">
+              <span class="callout-label"
+                >The honest bar at 12 years experience</span
+              >
+              Interviewers don't expect LeetCode-hard fluency from senior
+              candidates — they expect
+              <strong
+                >clean code, the correct approach articulated first, and real
+                trade-off discussion</strong
+              >
+              on medium-difficulty problems within 30–40 minutes. Skip
+              Hard-tagged problems almost entirely this month; they have poor
+              ROI relative to nailing the Critical/High rows above cold.
+            </div>
+
+            <h3>Daily DSA practice structure</h3>
+            <div class="target-row">
+              <div class="target-row-icon">1️⃣</div>
+              <div class="target-row-text">
+                <strong>Solve 2–3 problems/day</strong> from the pattern that
+                week is focused on (see weekly breakdown below)
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-row-icon">2️⃣</div>
+              <div class="target-row-text">
+                <strong>Speak the approach out loud</strong> before writing code
+                — this is the actual interview skill, not silent coding
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-row-icon">3️⃣</div>
+              <div class="target-row-text">
+                <strong>Time yourself</strong> — 25–30 min per medium problem,
+                hard stop, then review the optimal solution regardless of
+                outcome
+              </div>
+            </div>
+            <div class="target-row">
+              <div class="target-row-icon">4️⃣</div>
+              <div class="target-row-text">
+                <strong>Re-solve without looking</strong> 3 days later (spaced
+                repetition) — pick 1 problem from 3 days ago each morning as
+                warm-up
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- DAILY STRUCTURE -->
+          <div class="section" id="daily">
+            <h2>
+              <span class="s-num">§4</span>Daily Structure — Every Weekday
+            </h2>
+            <div class="review-block">
+              <h4>Daily Time Blocks (~7 hrs)</h4>
+              <div class="target-row">
+                <div class="target-row-icon">🧠</div>
+                <div class="target-row-text">
+                  <strong>7:00–9:00 — Deep Theory Block:</strong> today's sk-int
+                  topic, L2–L3 depth. Read → close the tab → explain out loud →
+                  write 3 likely interview questions and answer them cold.
+                </div>
+              </div>
+              <div class="target-row">
+                <div class="target-row-icon">💻</div>
+                <div class="target-row-text">
+                  <strong>9:15–11:45 — DSA Practice:</strong> 2–3 timed problems
+                  from this week's pattern focus + 1 warm-up re-solve from 3
+                  days ago.
+                </div>
+              </div>
+              <div class="target-row">
+                <div class="target-row-icon">🎯</div>
+                <div class="target-row-text">
+                  <strong>12:00–1:00 — Lunch + Job Search:</strong> apply to 2–3
+                  roles, 1 recruiter/network message, log everything in a
+                  tracker.
+                </div>
+              </div>
+              <div class="target-row">
+                <div class="target-row-icon">🏗️</div>
+                <div class="target-row-text">
+                  <strong
+                    >1:00–3:00 — System Design / Architecture Block:</strong
+                  >
+                  alternate daily between a system design problem (draw +
+                  explain out loud) and articulating your own real production
+                  architecture decisions.
+                </div>
+              </div>
+              <div class="target-row">
+                <div class="target-row-icon">🎤</div>
+                <div class="target-row-text">
+                  <strong>3:30–5:00 — Mock Practice:</strong> record yourself
+                  explaining a concept, or do a Pramp/peer mock once weekly
+                  minimum from week 2 onward.
+                </div>
+              </div>
+              <div class="target-row">
+                <div class="target-row-icon">📋</div>
+                <div class="target-row-text">
+                  <strong>5:00–5:30 — Daily Review:</strong> write 5 key things
+                  learned + what's still shaky → tomorrow's first task, so
+                  tomorrow starts with zero decision fatigue.
+                </div>
+              </div>
+            </div>
+            <p style="margin-top: 10px">
+              <strong>Minimum Viable Day (MVD)</strong> if life happens: 1 DSA
+              problem solved with full spoken walkthrough, 1 job application, 20
+              minutes of sk-int review. That's a complete win — never let a bad
+              day become two in a row.
+            </p>
+          </div>
+
+          <hr class="div" />
+
+          <!-- WEEK 1 -->
+          <div class="section" id="week1">
+            <h2><span class="s-num">§5</span>Week-by-Week Plan</h2>
+
+            <div class="week-card">
+              <div class="week-header">
+                <div class="week-num">W1</div>
+                <div>
+                  <div class="week-title">
+                    Week 1 — Core Foundations, Broad Refresh
+                  </div>
+                  <div class="week-sub">
+                    Jul 1 (Wed) – Jul 7 (Tue) · Rebuild recall across everything
+                    at once
+                  </div>
+                </div>
+              </div>
+              <div class="week-body">
+                <div class="daily-grid">
+                  <div class="day-chip">
+                    <div class="day-chip-num">Wed 1</div>
+                    <div class="day-chip-focus">Java Core L1–L2</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Thu 2</div>
+                    <div class="day-chip-focus">Java Core L2–L3</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Fri 3</div>
+                    <div class="day-chip-focus">Concurrency L1</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Sat 4</div>
+                    <div class="day-chip-focus">Spring L1</div>
+                  </div>
+                  <div class="day-chip rest">
+                    <div class="day-chip-num">Sun 5</div>
+                    <div class="day-chip-focus">Light review only</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Mon 6</div>
+                    <div class="day-chip-focus">Design Patterns L1</div>
+                  </div>
+                  <div class="day-chip review">
+                    <div class="day-chip-num">Tue 7</div>
+                    <div class="day-chip-focus">Week review + mock</div>
+                  </div>
+                </div>
+                <h3>Daily targets</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    Theory: Java Core (OOP, Collections, Generics, Streams) →
+                    Concurrency basics (threads, synchronized, ExecutorService)
+                    → Spring Boot (IoC, DI, bean lifecycle) → Design Patterns
+                    (GoF: Creational/Structural/Behavioral)
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-text">
+                    DSA: <strong>Arrays &amp; Hashing</strong> pattern — Two
+                    Sum, Group Anagrams, Top K Frequent, Product Except Self
+                    (3/day)
+                  </div>
+                </div>
+                <h3>Weekly target</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">🎯</div>
+                  <div class="target-row-text">
+                    By Sunday: explain OOP pillars + SOLID from memory, describe
+                    HashMap internals (buckets, hashing, Java 8 treeification)
+                    without notes, name all GoF patterns with one real example
+                    each. Solve 15 Arrays/Hashing problems, comfortable with the
+                    pattern.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="week-card" id="week2">
+              <div class="week-header">
+                <div class="week-num teal">W2</div>
+                <div>
+                  <div class="week-title">
+                    Week 2 — Concurrency, JVM &amp; Spring Depth
+                  </div>
+                  <div class="week-sub">
+                    Jul 8 (Wed) – Jul 14 (Tue) · Go deep on what actually
+                    differentiates senior candidates
+                  </div>
+                </div>
+              </div>
+              <div class="week-body">
+                <div class="daily-grid">
+                  <div class="day-chip">
+                    <div class="day-chip-num">Wed 8</div>
+                    <div class="day-chip-focus">Concurrency L2</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Thu 9</div>
+                    <div class="day-chip-focus">Concurrency L3</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Fri 10</div>
+                    <div class="day-chip-focus">JVM L1–L2</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Sat 11</div>
+                    <div class="day-chip-focus">Spring L2–L3</div>
+                  </div>
+                  <div class="day-chip rest">
+                    <div class="day-chip-num">Sun 12</div>
+                    <div class="day-chip-focus">Light review only</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Mon 13</div>
+                    <div class="day-chip-focus">JPA L1–L2</div>
+                  </div>
+                  <div class="day-chip review">
+                    <div class="day-chip-num">Tue 14</div>
+                    <div class="day-chip-focus">Week review + mock</div>
+                  </div>
+                </div>
+                <h3>Daily targets</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    Theory: Concurrency deep (ConcurrentHashMap,
+                    CompletableFuture, locks, Java Memory Model) → JVM (heap, GC
+                    basics, class loading) → Spring AOP + @Transactional
+                    internals + Spring Security basics → JPA (fetch strategies,
+                    N+1 problem, JPQL)
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-text">
+                    DSA: <strong>Two Pointers + Sliding Window</strong> — Valid
+                    Palindrome, 3Sum, Longest Substring Without Repeat, Min
+                    Window Substring (3/day)
+                  </div>
+                </div>
+                <h3>Weekly target</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">🎯</div>
+                  <div class="target-row-text">
+                    Explain what happens when two threads call a synchronized
+                    method, step by step. Explain @Transactional propagation
+                    (REQUIRED vs REQUIRES_NEW) with a real example. Walk through
+                    fixing an N+1 query 3 different ways. First Pramp/peer mock
+                    this week.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="week-card" id="week3">
+              <div class="week-header">
+                <div class="week-num amber">W3</div>
+                <div>
+                  <div class="week-title">
+                    Week 3 — System Design &amp; Microservices
+                  </div>
+                  <div class="week-sub">
+                    Jul 15 (Wed) – Jul 21 (Tue) · The round that determines
+                    senior vs mid-level offers
+                  </div>
+                </div>
+              </div>
+              <div class="week-body">
+                <div class="daily-grid">
+                  <div class="day-chip">
+                    <div class="day-chip-num">Wed 15</div>
+                    <div class="day-chip-focus">SD Framework</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Thu 16</div>
+                    <div class="day-chip-focus">Caching + LB</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Fri 17</div>
+                    <div class="day-chip-focus">Microservices L1–2</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Sat 18</div>
+                    <div class="day-chip-focus">Kafka + Messaging</div>
+                  </div>
+                  <div class="day-chip rest">
+                    <div class="day-chip-num">Sun 19</div>
+                    <div class="day-chip-focus">Light review only</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Mon 20</div>
+                    <div class="day-chip-focus">SQL indexing/txns</div>
+                  </div>
+                  <div class="day-chip review">
+                    <div class="day-chip-num">Tue 21</div>
+                    <div class="day-chip-focus">Week review + mock</div>
+                  </div>
+                </div>
+                <h3>Daily targets</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    Theory: SD framework (requirements → capacity → API → data
+                    model → architecture → deep dive) → caching patterns
+                    (write-through/back, cache-aside, LRU) + load balancing +
+                    consistent hashing → Microservices patterns (Saga, CQRS,
+                    Circuit Breaker) → Kafka basics (partitions, consumer
+                    groups, delivery guarantees) → SQL (B-tree indexes, EXPLAIN
+                    plan, isolation levels, locking)
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-text">
+                    DSA: <strong>Trees (BFS/DFS)</strong> — Invert Tree, Max
+                    Depth, Level Order, Validate BST, LCA, Diameter (3/day, this
+                    is the highest-ROI category)
+                  </div>
+                </div>
+                <h3>Weekly target</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">🎯</div>
+                  <div class="target-row-text">
+                    Design 3 systems end-to-end out loud (URL shortener, rate
+                    limiter, notification service) in 45 min each, following the
+                    framework cleanly. Explain Saga pattern (choreography vs
+                    orchestration) with a real trade-off. Second mock interview
+                    this week — full system design round, timed and recorded.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="week-card" id="week4">
+              <div class="week-header">
+                <div class="week-num violet">W4</div>
+                <div>
+                  <div class="week-title">
+                    Week 4 — DSA Intensive &amp; Coding Fluency
+                  </div>
+                  <div class="week-sub">
+                    Jul 22 (Wed) – Jul 28 (Tue) · Close the remaining
+                    coding-round gap
+                  </div>
+                </div>
+              </div>
+              <div class="week-body">
+                <div class="daily-grid">
+                  <div class="day-chip">
+                    <div class="day-chip-num">Wed 22</div>
+                    <div class="day-chip-focus">Graphs BFS/DFS</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Thu 23</div>
+                    <div class="day-chip-focus">Graphs + Union-Find</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Fri 24</div>
+                    <div class="day-chip-focus">Heap/PQ</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Sat 25</div>
+                    <div class="day-chip-focus">1D DP</div>
+                  </div>
+                  <div class="day-chip rest">
+                    <div class="day-chip-num">Sun 26</div>
+                    <div class="day-chip-focus">Light review only</div>
+                  </div>
+                  <div class="day-chip">
+                    <div class="day-chip-num">Mon 27</div>
+                    <div class="day-chip-focus">Intervals + Greedy</div>
+                  </div>
+                  <div class="day-chip review">
+                    <div class="day-chip-num">Tue 28</div>
+                    <div class="day-chip-focus">Week review + 2 mocks</div>
+                  </div>
+                </div>
+                <h3>Daily targets</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    Theory: light this week — 30–45 min/day reviewing weak spots
+                    flagged in prior weekly reviews only. This week is
+                    coding-fluency focused.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-text">
+                    DSA: <strong>Graphs</strong> (Number of Islands, Clone
+                    Graph, Course Schedule, Union-Find) →
+                    <strong>Heap/PQ</strong> (Kth Largest, Merge K Lists) →
+                    <strong>1D DP</strong> (Climbing Stairs, House Robber, Coin
+                    Change) → <strong>Intervals + Greedy</strong> (Merge
+                    Intervals, Jump Game) — 3–4/day, higher volume this week
+                  </div>
+                </div>
+                <h3>Weekly target</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">🎯</div>
+                  <div class="target-row-text">
+                    Comfortably solve any Critical/High-ROI pattern problem cold
+                    within 30 min including trade-off discussion. Two full mock
+                    interviews this week (one coding, one system design), both
+                    recorded and reviewed.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="week-card" id="week5">
+              <div class="week-header">
+                <div class="week-num coral">Final</div>
+                <div>
+                  <div class="week-title">
+                    Final Sprint — Polish &amp; Real Interviews
+                  </div>
+                  <div class="week-sub">
+                    Jul 29 (Wed) – Jul 31 (Fri) · Convert preparation into
+                    performance
+                  </div>
+                </div>
+              </div>
+              <div class="week-body">
+                <h3>Daily targets (3 days)</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">🎤</div>
+                  <div class="target-row-text">
+                    <strong>Wed 29:</strong> Full mock interview loop simulation
+                    — 45 min coding + 45 min system design, back to back, timed
+                    like a real onsite. Review recording harshly.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">📖</div>
+                  <div class="target-row-text">
+                    <strong>Thu 30:</strong> Finalize 10 STAR stories from your
+                    12 years — specific numbers, decisions, outcomes. Research
+                    2–3 target companies' tech stack and recent engineering blog
+                    posts.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">✅</div>
+                  <div class="target-row-text">
+                    <strong>Fri 31:</strong> Light review only — reread your
+                    weekly review notes, re-skim your weakest 2 topics, rest. No
+                    new material. Prepare 5 thoughtful questions to ask
+                    interviewers.
+                  </div>
+                </div>
+                <div class="callout sage" style="margin-top: 12px">
+                  <span class="callout-label"
+                    >The mindset shift for the final sprint</span
+                  >
+                  These 3 days are not for learning anything new. They're for
+                  converting 27 days of preparation into calm, articulate
+                  performance. If a gap surfaces now, note it and move on —
+                  don't spiral. Confident partial knowledge beats anxious
+                  complete knowledge in an actual interview room.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <!-- REVIEW SYSTEM -->
+          <div class="section" id="review-system">
+            <h2>
+              <span class="s-num">§6</span>Weekly Review &amp; Revise System
+            </h2>
+            <p>
+              Every Sunday (light day) and the Tuesday closing each week, run
+              this review honestly. This is what keeps the plan a living
+              document instead of a wishlist you fall behind on by week 2.
+            </p>
+
+            <ul class="checklist">
+              <li>
+                What were the 3 most important things I learned this week? Write
+                them down specifically.
+              </li>
+              <li>
+                What's one concept I still can't explain clearly out loud? That
+                goes first in next week's queue.
+              </li>
+              <li>
+                How many DSA problems did I actually solve, and how many felt
+                genuinely comfortable vs. still shaky?
+              </li>
+              <li>
+                Did I apply to at least 10 roles this week? If not, why — and
+                what's the fix?
+              </li>
+              <li>
+                Did I do at least one mock interview or recorded
+                self-explanation this week?
+              </li>
+              <li>
+                What's my energy level — am I burning out, or is there more to
+                give next week?
+              </li>
+              <li>
+                Based on all of the above: what changes in next week's daily
+                targets? (Revise the plan, don't just follow it blindly.)
+              </li>
+            </ul>
+
+            <div class="callout amber">
+              <span class="callout-label"
+                >Revising is not failing the plan</span
+              >
+              If week 1 shows Java Concurrency needs more time than scheduled,
+              pull a day from week 4's DSA volume and add it to week 2. This
+              document is a living plan, not a locked contract — the discipline
+              is in reviewing honestly every week, not in following the original
+              schedule rigidly. A plan that adapts to real signal beats a
+              perfect plan that ignores it.
+            </div>
+          </div>
+
+          <hr class="div" />
+
+          <div class="section" id="closing">
+            <div class="motivation-block">
+              <h2>
+                You're not learning a new field. You're presenting one you
+                already know.
+              </h2>
+              <p>
+                Thirty days feels tight only if you imagine starting from zero.
+                You're not. Every day this month is about making 12 years of
+                real production experience <em>visible and articulate</em> —
+                plus closing the one honest gap, which is coding-interview speed
+                under a clock.
+              </p>
+              <div class="quote">
+                "The gap between a rejected senior candidate and a hired one is
+                almost always articulation and pattern-recognition speed — not
+                underlying knowledge."
+              </div>
+              <p>
+                Review honestly every week. Revise the plan when the signal says
+                to. Show up daily, even on the hard days — a Minimum Viable Day
+                is still a day you didn't lose.
+              </p>
+              <p style="font-weight: 600; color: #fff">
+                Start: 1 July 2026. Interview-ready: 31 July 2026. Thirty days.
+                Let's go.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="bottom-nav">
+          <a class="bnav-item active" href="#mindset"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4l3 3" /></svg
+            >Plan</a
+          >
+          <a class="bnav-item" href="#dsa-list"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M9 11l3 3L22 4" />
+              <path
+                d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+              /></svg
+            >DSA</a
+          >
+          <a class="bnav-item" href="#week1"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 3h18v18H3z" />
+              <path d="M3 9h18M3 15h18M9 3v18" /></svg
+            >Weeks</a
+          >
+          <a class="bnav-item" href="#review-system"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+              />
+              <path d="M16 3H8a2 2 0 0 0-2 2v2h12V5a2 2 0 0 0-2-2z" /></svg
+            >Review</a
+          >
+        </nav>
+      </main>
+    </div>
+
+    <script>
+      const darkBtn = document.getElementById("darkBtn");
+      const html = document.documentElement;
+      if (localStorage.getItem("ms-dark") === "1") {
+        html.classList.add("dark");
+        darkBtn.textContent = "☀️";
+      }
+      darkBtn.addEventListener("click", () => {
+        const on = html.classList.toggle("dark");
+        darkBtn.textContent = on ? "☀️" : "🌙";
+        localStorage.setItem("ms-dark", on ? "1" : "0");
+      });
+
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      document.getElementById("hamburger").addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("active");
+      });
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("active");
+      });
+      document.querySelectorAll(".sb-item").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth < 960) {
+            sidebar.classList.remove("open");
+            overlay.classList.remove("active");
+          }
+        });
+      });
+
+      const sections = document.querySelectorAll(".section[id]");
+      const sbLinks = document.querySelectorAll(".sb-item");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              sbLinks.forEach((l) => l.classList.remove("active"));
+              const link = document.querySelector(
+                '.sb-item[href="#' + entry.target.id + '"]',
+              );
+              if (link) link.classList.add("active");
+            }
+          });
+        },
+        { rootMargin: "-20% 0px -70% 0px" },
+      );
+      sections.forEach((s) => observer.observe(s));
+
+      const bar = document.getElementById("pbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const docH =
+            document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.width =
+            (docH > 0 ? (window.scrollY / docH) * 100 : 0) + "%";
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

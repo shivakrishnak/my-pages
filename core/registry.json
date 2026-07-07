@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-06T08:54:13Z",
-  "count": 17,
+  "generated": "2026-07-07T07:21:52Z",
+  "count": 18,
   "pages": [
     {
       "title": "5-Day Workout Plan",
@@ -127,6 +127,15 @@
       "order": 1,
       "path": "pages/mastery/90day-plan.html",
       "modified": "2026-06-30"
+    },
+    {
+      "title": "30-Day Interview Sprint · July 2026 · Shiva Krishna K",
+      "description": "",
+      "category": "Work",
+      "icon": "📄",
+      "order": 999,
+      "path": "pages/work/30day-interview-plan.html",
+      "modified": "2026-07-07"
     },
     {
       "title": "45-Day Interview Prep Roadmap · KSK",
