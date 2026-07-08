@@ -970,6 +970,9 @@
           <a href="#daily" class="sb-item"
             ><span class="sb-dot"></span>Daily Structure</a
           >
+          <a href="#sequencing" class="sb-item"
+            ><span class="sb-dot"></span>Sequencing Strategy</a
+          >
 
           <span class="sb-label">The Plan</span>
           <a href="#week1" class="sb-item"
@@ -1646,40 +1649,108 @@
 
           <hr class="div" />
 
+          <!-- SEQUENCING PHILOSOPHY -->
+          <div class="section" id="sequencing">
+            <h2>
+              <span class="s-num">§5</span>Sequencing Strategy — Why This Order
+            </h2>
+            <p>
+              A pure linear plan — Week 1 = Java only, Week 2 = Concurrency
+              only, Week 3 = System Design only — optimizes for
+              <em>learning progression</em>, not for
+              <strong>being interview-ready at an unknown cutoff date</strong>.
+              If an interview lands after 2 weeks under that structure, you'd
+              have deep Java knowledge and zero System Design — a real gap for
+              senior roles, where System Design is often the highest-stakes
+              round.
+            </p>
+            <p>
+              But touching a brand new topic every single day is its own problem
+              — one day of exposure rarely produces real consolidation,
+              especially for dense material like Concurrency internals or System
+              Design deep-dives. So this plan uses
+              <strong>2-day topic blocks</strong>: enough focus time to actually
+              retain the material, while still guaranteeing full breadth by day
+              7 and full depth by day 14.
+            </p>
+            <div class="callout coral">
+              <span class="callout-label">The actual design rule</span>
+              Every week is built from three 2-day blocks, covering all 6
+              high-ROI categories — Java Core, Concurrency, Spring, System
+              Design, Microservices + SQL, and DSA — grouped in pairs that
+              naturally reinforce each other (e.g. Concurrency pairs with JVM;
+              System Design pairs with Microservices patterns). Week 1's three
+              blocks give real, consolidated coverage of everything. Week 2's
+              three blocks deepen the same six categories using the same pairing
+              logic. By day 14 you have genuine interview-readiness across the
+              full breadth — not shallow exposure, but actual working knowledge
+              in two-day doses. Weeks 3–4 convert that into true fluency and
+              speed.
+            </div>
+            <p>
+              Within each 2-day block, day one is
+              <strong>concept-building</strong> and day two is
+              <strong>application + the DSA pattern for that block</strong> — so
+              every block ends with something you can actually demonstrate, not
+              just something you read. If a week gets interrupted, you've
+              already banked a complete, usable block rather than a
+              half-finished topic.
+            </p>
+            <div class="callout teal">
+              <span class="callout-label"
+                >What "complete by day 30" means here</span
+              >
+              By the end of week 4, every P1 topic from §2 has been covered at
+              L2–L3 depth, and every Critical/High-ROI DSA pattern from §3 has
+              been drilled multiple times with spaced repetition. Nothing in the
+              P1 list is left untouched — the 2-day pairing only changes
+              <em>how</em> depth accumulates on each topic, not whether it gets
+              covered by day 30.
+            </div>
+          </div>
+
+          <hr class="div" />
+
           <!-- WEEK 1 -->
           <div class="section" id="week1">
-            <h2><span class="s-num">§5</span>Week-by-Week Plan</h2>
+            <h2><span class="s-num">§6</span>Week-by-Week Plan</h2>
 
             <div class="week-card">
               <div class="week-header">
                 <div class="week-num">W1</div>
                 <div>
                   <div class="week-title">
-                    Week 1 — Core Foundations, Broad Refresh
+                    Week 1 — Full Breadth, Real Consolidation
                   </div>
                   <div class="week-sub">
-                    Jul 1 (Wed) – Jul 7 (Tue) · Rebuild recall across everything
-                    at once
+                    Jul 1 (Wed) – Jul 7 (Tue) · Three 2-day blocks covering all
+                    6 categories — survivable if an interview lands right after
+                    this week
                   </div>
                 </div>
+                <span class="badge b-coral" style="margin-left: auto"
+                  >Highest ROI/day</span
+                >
               </div>
               <div class="week-body">
                 <div class="daily-grid">
                   <div class="day-chip">
                     <div class="day-chip-num">Wed 1</div>
-                    <div class="day-chip-focus">Java Core L1–L2</div>
+                    <div class="day-chip-focus">Java Core — Concepts</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Thu 2</div>
-                    <div class="day-chip-focus">Java Core L2–L3</div>
+                    <div class="day-chip-focus">Java Core — Applied + DSA</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Fri 3</div>
-                    <div class="day-chip-focus">Concurrency L1</div>
+                    <div class="day-chip-focus">SD Framework — Concepts</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Sat 4</div>
-                    <div class="day-chip-focus">Spring L1</div>
+                    <div class="day-chip-focus">
+                      SD Framework — Applied + DSA
+                    </div>
                   </div>
                   <div class="day-chip rest">
                     <div class="day-chip-num">Sun 5</div>
@@ -1687,40 +1758,95 @@
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Mon 6</div>
-                    <div class="day-chip-focus">Design Patterns L1</div>
+                    <div class="day-chip-focus">Concurrency + Spring L1</div>
                   </div>
                   <div class="day-chip review">
                     <div class="day-chip-num">Tue 7</div>
-                    <div class="day-chip-focus">Week review + mock</div>
+                    <div class="day-chip-focus">
+                      Applied + DSA + week review
+                    </div>
                   </div>
                 </div>
-                <h3>Daily targets</h3>
+
+                <h3>Block 1 (Wed–Thu) — Java Core</h3>
                 <div class="target-row">
                   <div class="target-row-icon">📘</div>
                   <div class="target-row-text">
-                    Theory: Java Core (OOP, Collections, Generics, Streams) →
-                    Concurrency basics (threads, synchronized, ExecutorService)
-                    → Spring Boot (IoC, DI, bean lifecycle) → Design Patterns
-                    (GoF: Creational/Structural/Behavioral)
+                    <strong>Wed — Concepts:</strong> OOP pillars, SOLID,
+                    Collections framework, Generics, Streams. Highest-frequency
+                    topic in any Java interview, done first and given a full day
+                    to actually sink in.
                   </div>
                 </div>
                 <div class="target-row">
-                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-icon">🔁</div>
                   <div class="target-row-text">
-                    DSA: <strong>Arrays &amp; Hashing</strong> pattern — Two
-                    Sum, Group Anagrams, Top K Frequent, Product Except Self
-                    (3/day)
+                    <strong>Thu — Applied:</strong> explain HashMap internals
+                    (buckets, hashing, Java 8 treeification) from memory, write
+                    code demonstrating 3 SOLID principles. DSA:
+                    <strong>Arrays &amp; Hashing</strong> — Two Sum, Group
+                    Anagrams, Top K Frequent (3 problems).
                   </div>
                 </div>
-                <h3>Weekly target</h3>
+
+                <h3>Block 2 (Fri–Sat) — System Design Framework</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Fri — Concepts:</strong> the full framework
+                    (requirements → capacity estimation → API design → data
+                    model → high-level architecture → deep dive). The single
+                    most decisive senior-round skill, introduced early
+                    deliberately so you have it even at a short cutoff.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Sat — Applied:</strong> run the framework out loud
+                    on a simple prompt (URL shortener) start to finish, 30 min,
+                    even if the deep-dive stays shallow this week. DSA:
+                    <strong>Trees BFS/DFS</strong> — Invert Tree, Max Depth,
+                    Level Order (3 problems — the highest-ROI DSA pattern,
+                    started here so it gets a second pass in Block 3).
+                  </div>
+                </div>
+
+                <h3>Block 3 (Mon–Tue) — Concurrency + Spring Foundations</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Mon — Concepts:</strong> Concurrency L1 (threads,
+                    synchronized, ExecutorService) paired with Spring L1 (IoC,
+                    DI, bean lifecycle, REST controllers) — both are baseline
+                    assumed knowledge in nearly every Java backend interview, so
+                    they're grouped together rather than each getting a full
+                    day.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Tue — Applied:</strong> explain what a thread pool
+                    does and why you'd configure it a certain way; explain
+                    Spring's IoC container in your own words. DSA: continue
+                    <strong>Trees</strong> — Validate BST, Lowest Common
+                    Ancestor (2 problems, completing the pattern from Block 2) +
+                    week 1 review.
+                  </div>
+                </div>
+
+                <h3>Weekly target — what "interview-ready" means at day 7</h3>
                 <div class="target-row">
                   <div class="target-row-icon">🎯</div>
                   <div class="target-row-text">
-                    By Sunday: explain OOP pillars + SOLID from memory, describe
-                    HashMap internals (buckets, hashing, Java 8 treeification)
-                    without notes, name all GoF patterns with one real example
-                    each. Solve 15 Arrays/Hashing problems, comfortable with the
-                    pattern.
+                    You can explain OOP + SOLID and HashMap internals from
+                    memory, walk through the System Design framework structure
+                    for any prompt, explain what a thread pool and Spring's IoC
+                    container do, and solve an Arrays/Hashing or Trees problem
+                    cold in 30 min. That's a real, consolidated baseline if an
+                    interview happens early in week 2 — not just surface
+                    exposure.
                   </div>
                 </div>
               </div>
@@ -1731,31 +1857,35 @@
                 <div class="week-num teal">W2</div>
                 <div>
                   <div class="week-title">
-                    Week 2 — Concurrency, JVM &amp; Spring Depth
+                    Week 2 — Deepen All 6, Genuinely Interview-Ready
                   </div>
                   <div class="week-sub">
-                    Jul 8 (Wed) – Jul 14 (Tue) · Go deep on what actually
-                    differentiates senior candidates
+                    Jul 8 (Wed) – Jul 14 (Tue) · Same 6 categories, same 2-day
+                    pairing, real depth now — this is the "ready for an
+                    interview in 2 weeks" checkpoint
                   </div>
                 </div>
+                <span class="badge b-amber" style="margin-left: auto"
+                  >2-week readiness checkpoint</span
+                >
               </div>
               <div class="week-body">
                 <div class="daily-grid">
                   <div class="day-chip">
                     <div class="day-chip-num">Wed 8</div>
-                    <div class="day-chip-focus">Concurrency L2</div>
+                    <div class="day-chip-focus">Concurrency L2–3 Concepts</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Thu 9</div>
-                    <div class="day-chip-focus">Concurrency L3</div>
+                    <div class="day-chip-focus">Concurrency Applied + DSA</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Fri 10</div>
-                    <div class="day-chip-focus">JVM L1–L2</div>
+                    <div class="day-chip-focus">SD: Caching/LB Concepts</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Sat 11</div>
-                    <div class="day-chip-focus">Spring L2–L3</div>
+                    <div class="day-chip-focus">SD Applied + DSA</div>
                   </div>
                   <div class="day-chip rest">
                     <div class="day-chip-num">Sun 12</div>
@@ -1763,41 +1893,99 @@
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Mon 13</div>
-                    <div class="day-chip-focus">JPA L1–L2</div>
+                    <div class="day-chip-focus">Spring L2–3 + SQL txns</div>
                   </div>
                   <div class="day-chip review">
                     <div class="day-chip-num">Tue 14</div>
-                    <div class="day-chip-focus">Week review + mock</div>
+                    <div class="day-chip-focus">
+                      Full mock — treat as a real interview
+                    </div>
                   </div>
                 </div>
-                <h3>Daily targets</h3>
+
+                <h3>Block 1 (Wed–Thu) — Concurrency Deep Dive</h3>
                 <div class="target-row">
                   <div class="target-row-icon">📘</div>
                   <div class="target-row-text">
-                    Theory: Concurrency deep (ConcurrentHashMap,
-                    CompletableFuture, locks, Java Memory Model) → JVM (heap, GC
-                    basics, class loading) → Spring AOP + @Transactional
-                    internals + Spring Security basics → JPA (fetch strategies,
-                    N+1 problem, JPQL)
+                    <strong>Wed — Concepts:</strong> ConcurrentHashMap
+                    internals, CompletableFuture, Java Memory Model,
+                    happens-before. This is the deep-dive Java interviewers
+                    actually probe for at senior level — given a full
+                    concept-building day since week 1 only covered basics.
                   </div>
                 </div>
                 <div class="target-row">
-                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-icon">🔁</div>
                   <div class="target-row-text">
-                    DSA: <strong>Two Pointers + Sliding Window</strong> — Valid
-                    Palindrome, 3Sum, Longest Substring Without Repeat, Min
-                    Window Substring (3/day)
+                    <strong>Thu — Applied:</strong> explain step by step what
+                    happens when two threads call a synchronized method. DSA:
+                    <strong>Graphs BFS/DFS</strong> — Number of Islands, Clone
+                    Graph, Course Schedule (3 problems — second-highest ROI
+                    pattern after Trees).
                   </div>
                 </div>
-                <h3>Weekly target</h3>
+
+                <h3>Block 2 (Fri–Sat) — System Design Deep Dive</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Fri — Concepts:</strong> caching patterns
+                    (write-through/back, cache-aside, LRU), load balancing,
+                    consistent hashing. Now you go genuinely deep on the
+                    framework from week 1's Block 2, not just structure it.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Sat — Applied:</strong> design a rate limiter or
+                    notification service end-to-end, 45 min, including a real
+                    caching/scaling deep dive this time. DSA: continue
+                    <strong>Graphs</strong> — Pacific Atlantic Water Flow,
+                    Union-Find basics (2 problems, completing the pattern).
+                  </div>
+                </div>
+
+                <h3>Block 3 (Mon–Tue) — Spring Depth + SQL</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Mon — Concepts:</strong> Spring L2–L3 (AOP,
+                    @Transactional propagation internals, Spring Security
+                    basics, JPA fetch strategies, N+1 problem) paired with SQL
+                    (isolation levels, locking, EXPLAIN plans) — both build
+                    directly on week 1's Spring/data foundations.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Tue — Applied:</strong> explain @Transactional
+                    propagation (REQUIRED vs REQUIRES_NEW) with a real example,
+                    walk through fixing an N+1 query 3 ways. DSA: 1 warm-up
+                    re-solve each from Trees and Graphs (spaced repetition).
+                    Then the full mock interview — this is the actual test of
+                    the 2-week readiness bar, not a formality.
+                  </div>
+                </div>
+
+                <h3>
+                  Weekly target — the "ready in 2 weeks" bar, made explicit
+                </h3>
                 <div class="target-row">
                   <div class="target-row-icon">🎯</div>
                   <div class="target-row-text">
-                    Explain what happens when two threads call a synchronized
-                    method, step by step. Explain @Transactional propagation
-                    (REQUIRED vs REQUIRES_NEW) with a real example. Walk through
-                    fixing an N+1 query 3 different ways. First Pramp/peer mock
-                    this week.
+                    <strong
+                      >By Tuesday July 14, you should be able to sit a real
+                      interview loop and perform credibly across every round
+                      type:</strong
+                    >
+                    a 45-minute system design problem with real depth on
+                    caching/scaling, a Java deep dive on concurrency and Spring
+                    internals, a medium DSA problem from Trees/Graphs solved
+                    cleanly in 30 min, and coherent behavioral answers. Because
+                    each topic got a full 2-day block instead of one day, this
+                    knowledge should feel consolidated, not just recently read.
                   </div>
                 </div>
               </div>
@@ -1808,11 +1996,11 @@
                 <div class="week-num amber">W3</div>
                 <div>
                   <div class="week-title">
-                    Week 3 — System Design &amp; Microservices
+                    Week 3 — Depth &amp; Fluency, Same 6 Categories
                   </div>
                   <div class="week-sub">
-                    Jul 15 (Wed) – Jul 21 (Tue) · The round that determines
-                    senior vs mid-level offers
+                    Jul 15 (Wed) – Jul 21 (Tue) · If you still have runway,
+                    convert breadth into genuine mastery and speed
                   </div>
                 </div>
               </div>
@@ -1820,19 +2008,21 @@
                 <div class="daily-grid">
                   <div class="day-chip">
                     <div class="day-chip-num">Wed 15</div>
-                    <div class="day-chip-focus">SD Framework</div>
+                    <div class="day-chip-focus">JVM Concepts</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Thu 16</div>
-                    <div class="day-chip-focus">Caching + LB</div>
+                    <div class="day-chip-focus">JVM Applied + DSA</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Fri 17</div>
-                    <div class="day-chip-focus">Microservices L1–2</div>
+                    <div class="day-chip-focus">Microservices Concepts</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Sat 18</div>
-                    <div class="day-chip-focus">Kafka + Messaging</div>
+                    <div class="day-chip-focus">
+                      Microservices Applied + DSA
+                    </div>
                   </div>
                   <div class="day-chip rest">
                     <div class="day-chip-num">Sun 19</div>
@@ -1840,43 +2030,81 @@
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Mon 20</div>
-                    <div class="day-chip-focus">SQL indexing/txns</div>
+                    <div class="day-chip-focus">Kafka + NoSQL/Redis</div>
                   </div>
                   <div class="day-chip review">
                     <div class="day-chip-num">Tue 21</div>
-                    <div class="day-chip-focus">Week review + mock</div>
+                    <div class="day-chip-focus">Applied + DSA + 2 mocks</div>
                   </div>
                 </div>
-                <h3>Daily targets</h3>
+
+                <h3>Block 1 (Wed–Thu) — JVM</h3>
                 <div class="target-row">
                   <div class="target-row-icon">📘</div>
                   <div class="target-row-text">
-                    Theory: SD framework (requirements → capacity → API → data
-                    model → architecture → deep dive) → caching patterns
-                    (write-through/back, cache-aside, LRU) + load balancing +
-                    consistent hashing → Microservices patterns (Saga, CQRS,
-                    Circuit Breaker) → Kafka basics (partitions, consumer
-                    groups, delivery guarantees) → SQL (B-tree indexes, EXPLAIN
-                    plan, isolation levels, locking)
+                    <strong>Wed — Concepts:</strong> heap structure, GC basics
+                    (G1), class loading. The remaining Java gap from weeks 1–2.
                   </div>
                 </div>
                 <div class="target-row">
-                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-icon">🔁</div>
                   <div class="target-row-text">
-                    DSA: <strong>Trees (BFS/DFS)</strong> — Invert Tree, Max
-                    Depth, Level Order, Validate BST, LCA, Diameter (3/day, this
-                    is the highest-ROI category)
+                    <strong>Thu — Applied:</strong> explain what happens during
+                    a GC pause and why it matters for latency-sensitive
+                    services. DSA: <strong>Heap/Priority Queue</strong> — Kth
+                    Largest Element, Top K Frequent, Merge K Sorted Lists (3
+                    problems).
                   </div>
                 </div>
+
+                <h3>Block 2 (Fri–Sat) — Microservices Patterns</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Fri — Concepts:</strong> Saga (choreography vs
+                    orchestration), CQRS, Circuit Breaker, Bulkhead — real
+                    trade-off framing, not just definitions.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Sat — Applied:</strong> pick a Saga vs 2PC scenario
+                    and argue both sides out loud. DSA:
+                    <strong>Intervals</strong> — Merge Intervals, Insert
+                    Interval, Meeting Rooms II (3 problems).
+                  </div>
+                </div>
+
+                <h3>Block 3 (Mon–Tue) — Kafka + NoSQL</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Mon — Concepts:</strong> Kafka depth (exactly-once
+                    delivery, idempotent consumers, partitions) paired with
+                    NoSQL/Redis (eviction policies, pub/sub, when to choose over
+                    SQL).
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Tue — Applied:</strong> explain how you'd make a
+                    Kafka consumer idempotent. DSA: 1D DP warm-up — Climbing
+                    Stairs, House Robber (2 problems, new pattern introduced).
+                    Then two mock interviews — one coding, one system design,
+                    both timed and recorded.
+                  </div>
+                </div>
+
                 <h3>Weekly target</h3>
                 <div class="target-row">
                   <div class="target-row-icon">🎯</div>
                   <div class="target-row-text">
-                    Design 3 systems end-to-end out loud (URL shortener, rate
-                    limiter, notification service) in 45 min each, following the
-                    framework cleanly. Explain Saga pattern (choreography vs
-                    orchestration) with a real trade-off. Second mock interview
-                    this week — full system design round, timed and recorded.
+                    Solve any Critical/High-ROI DSA pattern cold in under 25
+                    minutes with trade-off discussion. Explain GC behavior, Saga
+                    trade-offs, and Kafka idempotency clearly and quickly —
+                    these were the remaining gaps after week 2's checkpoint.
                   </div>
                 </div>
               </div>
@@ -1887,11 +2115,11 @@
                 <div class="week-num violet">W4</div>
                 <div>
                   <div class="week-title">
-                    Week 4 — DSA Intensive &amp; Coding Fluency
+                    Week 4 — Fluency Under Pressure, Remaining Gaps Closed
                   </div>
                   <div class="week-sub">
-                    Jul 22 (Wed) – Jul 28 (Tue) · Close the remaining
-                    coding-round gap
+                    Jul 22 (Wed) – Jul 28 (Tue) · Higher DSA volume, close
+                    whatever weekly reviews flagged as weak
                   </div>
                 </div>
               </div>
@@ -1899,19 +2127,21 @@
                 <div class="daily-grid">
                   <div class="day-chip">
                     <div class="day-chip-num">Wed 22</div>
-                    <div class="day-chip-focus">Graphs BFS/DFS</div>
+                    <div class="day-chip-focus">Design Patterns + DP</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Thu 23</div>
-                    <div class="day-chip-focus">Graphs + Union-Find</div>
+                    <div class="day-chip-focus">Weak-spot review + DP</div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Fri 24</div>
-                    <div class="day-chip-focus">Heap/PQ</div>
+                    <div class="day-chip-focus">
+                      Security + Distributed Sys L1
+                    </div>
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Sat 25</div>
-                    <div class="day-chip-focus">1D DP</div>
+                    <div class="day-chip-focus">Applied + Greedy</div>
                   </div>
                   <div class="day-chip rest">
                     <div class="day-chip-num">Sun 26</div>
@@ -1919,41 +2149,85 @@
                   </div>
                   <div class="day-chip">
                     <div class="day-chip-num">Mon 27</div>
-                    <div class="day-chip-focus">Intervals + Greedy</div>
+                    <div class="day-chip-focus">Docker L1 + mixed DSA</div>
                   </div>
                   <div class="day-chip review">
                     <div class="day-chip-num">Tue 28</div>
                     <div class="day-chip-focus">Week review + 2 mocks</div>
                   </div>
                 </div>
-                <h3>Daily targets</h3>
+
+                <h3>Block 1 (Wed–Thu) — Design Patterns Refresh + DP</h3>
                 <div class="target-row">
                   <div class="target-row-icon">📘</div>
                   <div class="target-row-text">
-                    Theory: light this week — 30–45 min/day reviewing weak spots
-                    flagged in prior weekly reviews only. This week is
-                    coding-fluency focused.
+                    <strong>Wed — Concepts:</strong> GoF patterns refresh
+                    (Creational/Structural/Behavioral) — this got only a light
+                    touch in week 1's Block 1 and deserves a proper revisit now.
                   </div>
                 </div>
                 <div class="target-row">
-                  <div class="target-row-icon">💻</div>
+                  <div class="target-row-icon">🔁</div>
                   <div class="target-row-text">
-                    DSA: <strong>Graphs</strong> (Number of Islands, Clone
-                    Graph, Course Schedule, Union-Find) →
-                    <strong>Heap/PQ</strong> (Kth Largest, Merge K Lists) →
-                    <strong>1D DP</strong> (Climbing Stairs, House Robber, Coin
-                    Change) → <strong>Intervals + Greedy</strong> (Merge
-                    Intervals, Jump Game) — 3–4/day, higher volume this week
+                    <strong>Thu — Applied + weak-spot review:</strong> name each
+                    GoF pattern with one real example. This slot is also where
+                    you plug in whatever weeks 1–3's reviews flagged as
+                    genuinely shaky — the plan is a living document, not a rigid
+                    script (§7). DSA: <strong>1D DP continued</strong> — Coin
+                    Change, Word Break (2 problems).
                   </div>
                 </div>
+
+                <h3>Block 2 (Fri–Sat) — P2 Topics + Greedy</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Fri — Concepts:</strong> Security L1 (auth basics,
+                    common vulnerabilities) paired with Distributed Systems L1
+                    (CAP theorem, eventual consistency) — P2-tier topics filled
+                    in now since all of P1 is already covered.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Sat — Applied:</strong> explain the CAP theorem
+                    trade-off with a real system example. DSA:
+                    <strong>Greedy</strong> — Jump Game, Gas Station (2
+                    problems).
+                  </div>
+                </div>
+
+                <h3>Block 3 (Mon–Tue) — Docker + Mixed Review</h3>
+                <div class="target-row">
+                  <div class="target-row-icon">📘</div>
+                  <div class="target-row-text">
+                    <strong>Mon — Concepts:</strong> Docker L1 (images,
+                    containers, basic Dockerfile) — last P2 topic, light
+                    treatment since it's rarely the focus of a backend
+                    interview.
+                  </div>
+                </div>
+                <div class="target-row">
+                  <div class="target-row-icon">🔁</div>
+                  <div class="target-row-text">
+                    <strong>Tue — Mixed DSA review:</strong> 3–4 problems pulled
+                    from every pattern covered so far — this is pure
+                    spaced-repetition consolidation, not new material. Then two
+                    full mocks, both recorded.
+                  </div>
+                </div>
+
                 <h3>Weekly target</h3>
                 <div class="target-row">
                   <div class="target-row-icon">🎯</div>
                   <div class="target-row-text">
-                    Comfortably solve any Critical/High-ROI pattern problem cold
-                    within 30 min including trade-off discussion. Two full mock
-                    interviews this week (one coding, one system design), both
-                    recorded and reviewed.
+                    Every P1 topic from §2 has now been covered at L2–L3 depth
+                    at least once, with the highest-frequency ones (Java Core,
+                    Concurrency, System Design, Trees/Graphs) touched 2–3 times
+                    via spaced repetition. Two full mocks this week, both
+                    recorded — one should feel genuinely close to interview
+                    conditions.
                   </div>
                 </div>
               </div>
@@ -2019,7 +2293,7 @@
           <!-- REVIEW SYSTEM -->
           <div class="section" id="review-system">
             <h2>
-              <span class="s-num">§6</span>Weekly Review &amp; Revise System
+              <span class="s-num">§7</span>Weekly Review &amp; Revise System
             </h2>
             <p>
               Every Sunday (light day) and the Tuesday closing each week, run
